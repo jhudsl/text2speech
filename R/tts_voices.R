@@ -8,23 +8,32 @@
 #' and language names
 #' @export
 #'
+#' @examples
+#' tts_voices(service = "microsoft")
+#' \dontrun{
+#' if (tts_google_auth()) {
+#' tts_voices(service = "google")
+#' }
+#' if (tts_amazon_auth()) {
+#' tts_voices(service = "amazon")
+#' }
+#' }
 tts_voices = function(
-  service = c("amazon", "google", "microsoft"),
-  ...
+  service = c("amazon", "google", "microsoft")
 ) {
   service = match.arg(service)
   res = switch(service,
-         amazon = tts_amazon_voices(...),
-         google = tts_google_voices(...),
-         microsoft = tts_microsoft_voices(...)
+         amazon = tts_amazon_voices(),
+         google = tts_google_voices(),
+         microsoft = tts_microsoft_voices()
   )
   res
 }
 
 #' @rdname tts_voices
 #' @export
-tts_amazon_voices = function(...) {
-  res = aws.polly::list_voices(...)
+tts_amazon_voices = function() {
+  res = aws.polly::list_voices(language = NULL)
   cn = colnames(res)
   cn[ cn == "Gender" ] = "gender"
   cn[ cn == "LanguageCode" ] = "language_code"
@@ -39,7 +48,7 @@ tts_amazon_voices = function(...) {
 
 #' @rdname tts_voices
 #' @export
-tts_microsoft_voices = function(...) {
+tts_microsoft_voices = function() {
   res = mscstts::ms_locale_df()
   cn = colnames(res)
   cn[ cn == "Gender" ] = "gender"
@@ -55,7 +64,7 @@ tts_microsoft_voices = function(...) {
 
 #' @rdname tts_voices
 #' @export
-tts_google_voices = function(...) {
+tts_google_voices = function() {
   res = googleLanguageR::gl_talk_languages()
   cn = colnames(res)
   cn[ cn == "ssmlGender" ] = "gender"

@@ -7,13 +7,13 @@
 \alias{tts_google_voices}
 \title{Text to Speech Voices}
 \usage{
-tts_voices(service = c("amazon", "google", "microsoft"), ...)
+tts_voices(service = c("amazon", "google", "microsoft"))
 
-tts_amazon_voices(...)
+tts_amazon_voices()
 
-tts_microsoft_voices(...)
+tts_microsoft_voices()
 
-tts_google_voices(...)
+tts_google_voices()
 }
 \arguments{
 \item{service}{service to use}
@@ -26,4 +26,15 @@ and language names
 }
 \description{
 Text to Speech Voices
+}
+\examples{
+tts_voices(service = "microsoft")
+\dontrun{
+if (tts_google_auth()) {
+tts_voices(service = "google")
+}
+if (tts_amazon_auth()) {
+tts_voices(service = "amazon")
+}
+}
 }
