@@ -10,6 +10,7 @@ tts_google = function(
   text,
   output_format = c("mp3", "wav"),
   voice = "en-US-Standard-C",
+  bind_audio = TRUE,
   ...) {
 
   limit = 5000
@@ -41,8 +42,13 @@ tts_google = function(
            wav = out, file = res)
     # out = do.call(tuneR::bind, out)
   })
-
   res = dplyr::bind_rows(res)
+  res$audio_type = audio_type
+
+  if (bind_audio) {
+    res = tts_bind_wav(res)
+  }
+
   return(res)
 }
 
@@ -52,6 +58,7 @@ tts_amazon = function(
   text,
   output_format = c("mp3", "wav"),
   voice = "Joanna",
+  bind_audio = TRUE,
   ...) {
 
   limit = 1500
@@ -86,6 +93,10 @@ tts_amazon = function(
     df
   })
   res = dplyr::bind_rows(res)
+  res$audio_type = audio_type
+  if (bind_audio) {
+    res = tts_bind_wav(res)
+  }
 
   return(res)
 
@@ -97,6 +108,7 @@ tts_microsoft = function(
   text,
   output_format = c("mp3", "wav"),
   voice = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
+  bind_audio = TRUE,
   ...) {
 
   limit = 800
@@ -133,6 +145,10 @@ tts_microsoft = function(
     df
   })
   res = dplyr::bind_rows(res)
+  res$audio_type = audio_type
+  if (bind_audio) {
+    res = tts_bind_wav(res)
+  }
 
   return(res)
 }

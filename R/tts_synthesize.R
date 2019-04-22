@@ -7,33 +7,97 @@
 #' [text2speech::tts_amazon()], or
 #' [text2speech::tts_microsoft()]
 #' @param service service to use
+#'
 #' @note All functions have a  `voice`` argument fro a
 #' full voice name that can be passed to the
-#' service, such as `voice` for [aws.polly::get_synthesis], or
+#' service, such as `voice` for [aws.polly::get_synthesis]
+#'
+#' @param bind_audio Should the [text2speech::tts_bind_wav()]
+#' be run on after the audio has been created, to ensure that
+#' the length of text and the number of rows is consistent?
+#' This affects the output format of some audio.
 #'
 #'
 #' @return A `data.frame` of text and wav files
 #' @export
+#' @examples
+#' \dontrun{
+#'
+#' if (requireNamespace("stringi", quietly = TRUE)) {
+#' set.seed(1)
+#' text = stringi::stri_rand_lipsum(10)
+#' text[3] = paste0(text[3:length(text)], collapse = " " )
+#' text = text[c(1,3)]
+#' nchar(text)
+#' res = tts_google(text, bind_audio = FALSE)
+#' testthat::expect_equal(nrow(res), length(text) + 1)
+#' bound = tts_bind_wav(res)
+#' testthat::expect_equal(nrow(bound), length(text))
+#' }
+#' }
 tts = function(
   text,
   output_format = c("mp3", "wav"),
   ...,
-  service = c("amazon", "google", "microsoft")) {
+  service = c("amazon", "google", "microsoft"),
+  bind_audio = TRUE) {
 
   service = match.arg(service)
   output_format = match.arg(output_format)
   if (service == "google") {
-    res = tts_google(text = text,
-                     output_format = output_format,
-                     ...)
+    res = tts_google(
+      text = text,
+      output_format = output_format,
+      bind_audio = bind_audio,
+      ...)
   }
   if (service == "amazon") {
-    res = tts_amazon(text = text, output_format = output_format,
-                     ...)
+    res = tts_amazon(
+      text = text,
+      output_format = output_format,
+      bind_audio = bind_audio,
+      ...)
   }
   if (service == "microsoft") {
-    res = tts_microsoft(text = text, output_format = output_format,
-                        ...)
+    res = tts_microsoft(
+      text = text,
+      output_format = output_format,
+      bind_audio = bind_audio,
+      ...)
   }
 
+}
+
+#' Bind Wavs together
+#'
+#' @param result A \code{data.frame} from
+#' [text2speech::tts()].
+#'
+#' @return A `data.frame` with the same structure as
+#' that of \code{tts}
+#'
+#' @note As the data are split due to limits of the
+#' API, then this allows the text and the
+#' results to be harmonized
+#'
+#' @export
+tts_bind_wav = function(result) {
+  ss = split(result, result$original_text)
+  ss = lapply(ss, function(x) {
+    if (nrow(x) == 1) {
+      return(x)
+    }
+    wav = x$wav
+    wav = do.call(tuneR::bind, wav)
+    txt = paste(x$text, collapse = " ")
+    output = tempfile(fileext = ".wav")
+    tuneR::writeWave(wav, output)
+    dplyr::tibble(original_text = txt,
+                  text = txt,
+                  wav = list(wav),
+                  file = output,
+                  audio_type = "wav")
+  })
+  ss = dplyr::bind_rows(ss)
+  return(ss)
 }

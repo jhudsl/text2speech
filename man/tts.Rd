@@ -8,17 +8,17 @@
 \title{Text to Speech}
 \usage{
 tts_google(text, output_format = c("mp3", "wav"),
-  voice = "en-US-Standard-C", ...)
+  voice = "en-US-Standard-C", bind_audio = TRUE, ...)
 
 tts_amazon(text, output_format = c("mp3", "wav"), voice = "Joanna",
-  ...)
+  bind_audio = TRUE, ...)
 
 tts_microsoft(text, output_format = c("mp3", "wav"),
   voice = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
-  ...)
+  bind_audio = TRUE, ...)
 
 tts(text, output_format = c("mp3", "wav"), ..., service = c("amazon",
-  "google", "microsoft"))
+  "google", "microsoft"), bind_audio = TRUE)
 }
 \arguments{
 \item{text}{A character vector of text to speak}
@@ -30,6 +30,11 @@ service, such as the
 argument `voice` for [aws.polly::get_synthesis], or
 or [mscstts::ms_synthesize()] or the
 `name` argument for [googleLanguageR::gl_talk()]}
+
+\item{bind_audio}{Should the [text2speech::tts_bind_wav()]
+be run on after the audio has been created, to ensure that
+the length of text and the number of rows is consistent?
+This affects the output format of some audio.}
 
 \item{...}{Additional arguments to
 [text2speech::tts_google()],
@@ -47,5 +52,21 @@ Text to Speech
 \note{
 All functions have a  `voice`` argument fro a
 full voice name that can be passed to the
-service, such as `voice` for [aws.polly::get_synthesis], or
+service, such as `voice` for [aws.polly::get_synthesis]
+}
+\examples{
+\dontrun{
+
+if (requireNamespace("stringi", quietly = TRUE)) {
+set.seed(1)
+text = stringi::stri_rand_lipsum(10)
+text[3] = paste0(text[3:length(text)], collapse = " " )
+text = text[c(1,3)]
+nchar(text)
+res = tts_google(text, bind_audio = FALSE)
+testthat::expect_equal(nrow(res), length(text) + 1)
+bound = tts_bind_wav(res)
+testthat::expect_equal(nrow(bound), length(text))
+}
+}
 }

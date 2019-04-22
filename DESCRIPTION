@@ -15,7 +15,8 @@ Suggests:
     covr,
     knitr,
     rmarkdown,
-    testthat
+    testthat,
+    stringi
 Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr
@@ -30,5 +31,6 @@ Imports:
     googleLanguageR,
     httr,
     mscstts (>= 0.5.1),
-    tuneR
+    tuneR,
+    magrittr
 Remotes: muschellij2/mscstts
