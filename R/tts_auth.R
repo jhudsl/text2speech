@@ -29,3 +29,33 @@ tts_auth = function(type = c("amazon", "google", "microsoft"),
   return(res)
 }
 
+
+#' @rdname tts_auth
+#' @export
+tts_google_authenticated = function() {
+  res = try({
+    suppressMessages({
+      googleLanguageR::gl_talk_languages()
+    })
+  }, silent = TRUE)
+  !inherits(res, "try-error")
+}
+
+
+#' @rdname tts_auth
+#' @export
+tts_amazon_authenticated = function() {
+  L = aws.polly::list_voices()
+  if (length(L) == 0 || NROW(L) == 0) {
+    return(FALSE)
+  }
+  return(TRUE)
+}
+
+#' @rdname tts_auth
+#' @export
+tts_microsoft_authenticated = function(...) {
+  res = mscstts::ms_get_tts_token(...)
+  res = res$request
+  httr::status_code(res) < 400
+}

@@ -4,6 +4,9 @@
 \name{tts_amazon_auth}
 \alias{tts_amazon_auth}
 \alias{tts_auth}
+\alias{tts_google_authenticated}
+\alias{tts_amazon_authenticated}
+\alias{tts_microsoft_authenticated}
 \alias{tts_google_auth}
 \alias{tts_microsoft_auth}
 \title{Authorize Text-to-Speech Engine}
@@ -12,6 +15,12 @@ tts_amazon_auth(key_or_json_file = NULL, ...)
 
 tts_auth(type = c("amazon", "google", "microsoft"),
   key_or_json_file = NULL, ...)
+
+tts_google_authenticated()
+
+tts_amazon_authenticated()
+
+tts_microsoft_authenticated(...)
 
 tts_google_auth(key_or_json_file = NULL, ...)
 
