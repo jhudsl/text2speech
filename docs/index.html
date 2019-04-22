@@ -93,26 +93,63 @@
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the released version of text2speech from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"text2speech"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(text2speech)</a></code></pre></div>
 </div>
-<div id="example" class="section level2">
+<div id="authentication" class="section level2">
 <h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(text2speech)</a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="co">## basic example code</span></a></code></pre></div>
-<p>What is special about using <code>README.Rmd</code> instead of just <code>README.md</code>? You can include R chunks like so:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(cars)</a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="co">#&gt;      speed           dist       </span></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="co">#&gt;  Min.   : 4.0   Min.   :  2.00  </span></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="co">#&gt;  1st Qu.:12.0   1st Qu.: 26.00  </span></a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="co">#&gt;  Median :15.0   Median : 36.00  </span></a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt;  Mean   :15.4   Mean   : 42.98  </span></a>
-<a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt;  3rd Qu.:19.0   3rd Qu.: 56.00  </span></a>
-<a class="sourceLine" id="cb3-8" title="8"><span class="co">#&gt;  Max.   :25.0   Max.   :120.00</span></a></code></pre></div>
-<p>You’ll still need to render <code>README.Rmd</code> regularly, to keep <code>README.md</code> up-to-date.</p>
-<p>You can also embed plots, for example:</p>
-<p><img src="reference/figures/README-pressure-1.png" width="100%"></p>
-<p>In that case, don’t forget to commit and push the resulting figure files, so they display on GitHub!</p>
+<a href="#authentication" class="anchor"></a>Authentication</h2>
+<p>This should allow for authentication, which still needs to be set up in each syervice separately, to be one function at least:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="reference/tts_auth.html">tts_auth</a></span>(<span class="st">"google"</span>)</a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="co">#&gt; Successfully authenticated via ~/Dropbox/Projects/cbds_translate/RClass-Translator.json</span></a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="co">#&gt; [1] TRUE</span></a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="kw"><a href="reference/tts_auth.html">tts_auth</a></span>(<span class="st">"amazon"</span>)</a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="co">#&gt; [1] TRUE</span></a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="kw"><a href="reference/tts_auth.html">tts_auth</a></span>(<span class="st">"microsoft"</span>)</a>
+<a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
+</div>
+<div id="voices" class="section level2">
+<h2 class="hasAnchor">
+<a href="#voices" class="anchor"></a>Voices</h2>
+<p>Listing out different voices for each service.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">df =<span class="st"> </span><span class="kw"><a href="reference/tts_voices.html">tts_voices</a></span>(<span class="dt">service =</span> <span class="st">"microsoft"</span>)</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(df))</a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="co">#&gt;                                                             voice</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; 1      Microsoft Server Speech Text to Speech Voice (ar-EG, Hoda)</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt; 2     Microsoft Server Speech Text to Speech Voice (ar-SA, Naayf)</span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt; 3      Microsoft Server Speech Text to Speech Voice (bg-BG, Ivan)</span></a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt; 4 Microsoft Server Speech Text to Speech Voice (ca-ES, HerenaRUS)</span></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt; 5     Microsoft Server Speech Text to Speech Voice (cs-CZ, Jakub)</span></a>
+<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt; 6  Microsoft Server Speech Text to Speech Voice (da-DK, HelleRUS)</span></a>
+<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt;                language language_code gender   service</span></a>
+<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt; 1        Arabic (Egypt)         ar-EG Female microsoft</span></a>
+<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt; 2 Arabic (Saudi Arabia)         ar-SA   Male microsoft</span></a>
+<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt; 3             Bulgarian         bg-BG   Male microsoft</span></a>
+<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt; 4       Catalan (Spain)         ca-ES Female microsoft</span></a>
+<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt; 5                 Czech         cs-CZ   Male microsoft</span></a>
+<a class="sourceLine" id="cb4-16" title="16"><span class="co">#&gt; 6                Danish         da-DK Female microsoft</span></a>
+<a class="sourceLine" id="cb4-17" title="17"></a>
+<a class="sourceLine" id="cb4-18" title="18"><span class="cf">if</span> (<span class="kw"><a href="reference/tts_auth.html">tts_google_auth</a></span>()) {</a>
+<a class="sourceLine" id="cb4-19" title="19">  df =<span class="st"> </span><span class="kw"><a href="reference/tts_voices.html">tts_voices</a></span>(<span class="dt">service =</span> <span class="st">"google"</span>)</a>
+<a class="sourceLine" id="cb4-20" title="20">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(df))</a>
+<a class="sourceLine" id="cb4-21" title="21">}</a>
+<a class="sourceLine" id="cb4-22" title="22"><span class="co">#&gt;              voice language language_code gender service</span></a>
+<a class="sourceLine" id="cb4-23" title="23"><span class="co">#&gt; 1  ar-XA-Wavenet-A     &lt;NA&gt;         ar-XA FEMALE  google</span></a>
+<a class="sourceLine" id="cb4-24" title="24"><span class="co">#&gt; 2  ar-XA-Wavenet-B     &lt;NA&gt;         ar-XA   MALE  google</span></a>
+<a class="sourceLine" id="cb4-25" title="25"><span class="co">#&gt; 3  ar-XA-Wavenet-C     &lt;NA&gt;         ar-XA   MALE  google</span></a>
+<a class="sourceLine" id="cb4-26" title="26"><span class="co">#&gt; 4 ar-XA-Standard-A     &lt;NA&gt;         ar-XA FEMALE  google</span></a>
+<a class="sourceLine" id="cb4-27" title="27"><span class="co">#&gt; 5 ar-XA-Standard-B     &lt;NA&gt;         ar-XA   MALE  google</span></a>
+<a class="sourceLine" id="cb4-28" title="28"><span class="co">#&gt; 6 ar-XA-Standard-C     &lt;NA&gt;         ar-XA   MALE  google</span></a>
+<a class="sourceLine" id="cb4-29" title="29"><span class="cf">if</span> (<span class="kw"><a href="reference/tts_auth.html">tts_amazon_auth</a></span>()) {</a>
+<a class="sourceLine" id="cb4-30" title="30">  df =<span class="st"> </span><span class="kw"><a href="reference/tts_voices.html">tts_voices</a></span>(<span class="dt">service =</span> <span class="st">"amazon"</span>)</a>
+<a class="sourceLine" id="cb4-31" title="31">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(df))</a>
+<a class="sourceLine" id="cb4-32" title="32">}</a>
+<a class="sourceLine" id="cb4-33" title="33"><span class="co">#&gt;     voice   language language_code gender service</span></a>
+<a class="sourceLine" id="cb4-34" title="34"><span class="co">#&gt; 1   Filiz    Turkish         tr-TR Female  amazon</span></a>
+<a class="sourceLine" id="cb4-35" title="35"><span class="co">#&gt; 2  Astrid    Swedish         sv-SE Female  amazon</span></a>
+<a class="sourceLine" id="cb4-36" title="36"><span class="co">#&gt; 3 Tatyana    Russian         ru-RU Female  amazon</span></a>
+<a class="sourceLine" id="cb4-37" title="37"><span class="co">#&gt; 4   Maxim    Russian         ru-RU   Male  amazon</span></a>
+<a class="sourceLine" id="cb4-38" title="38"><span class="co">#&gt; 5  Carmen   Romanian         ro-RO Female  amazon</span></a>
+<a class="sourceLine" id="cb4-39" title="39"><span class="co">#&gt; 6    Inês Portuguese         pt-PT Female  amazon</span></a></code></pre></div>
 </div>
 </div>
   </div>

@@ -23,35 +23,67 @@ You can install the released version of text2speech from
 install.packages("text2speech")
 ```
 
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
 ``` r
 library(text2speech)
-## basic example code
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+## Authentication
+
+This should allow for authentication, which still needs to be set up in
+each syervice separately, to be one function at least:
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+tts_auth("google")
+#> Successfully authenticated via ~/Dropbox/Projects/cbds_translate/RClass-Translator.json
+#> [1] TRUE
+tts_auth("amazon")
+#> [1] TRUE
+tts_auth("microsoft")
+#> [1] TRUE
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date.
+## Voices
 
-You can also embed plots, for example:
+Listing out different voices for each service.
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
+``` r
+df = tts_voices(service = "microsoft")
+print(head(df))
+#>                                                             voice
+#> 1      Microsoft Server Speech Text to Speech Voice (ar-EG, Hoda)
+#> 2     Microsoft Server Speech Text to Speech Voice (ar-SA, Naayf)
+#> 3      Microsoft Server Speech Text to Speech Voice (bg-BG, Ivan)
+#> 4 Microsoft Server Speech Text to Speech Voice (ca-ES, HerenaRUS)
+#> 5     Microsoft Server Speech Text to Speech Voice (cs-CZ, Jakub)
+#> 6  Microsoft Server Speech Text to Speech Voice (da-DK, HelleRUS)
+#>                language language_code gender   service
+#> 1        Arabic (Egypt)         ar-EG Female microsoft
+#> 2 Arabic (Saudi Arabia)         ar-SA   Male microsoft
+#> 3             Bulgarian         bg-BG   Male microsoft
+#> 4       Catalan (Spain)         ca-ES Female microsoft
+#> 5                 Czech         cs-CZ   Male microsoft
+#> 6                Danish         da-DK Female microsoft
 
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub\!
+if (tts_google_auth()) {
+  df = tts_voices(service = "google")
+  print(head(df))
+}
+#>              voice language language_code gender service
+#> 1  ar-XA-Wavenet-A     <NA>         ar-XA FEMALE  google
+#> 2  ar-XA-Wavenet-B     <NA>         ar-XA   MALE  google
+#> 3  ar-XA-Wavenet-C     <NA>         ar-XA   MALE  google
+#> 4 ar-XA-Standard-A     <NA>         ar-XA FEMALE  google
+#> 5 ar-XA-Standard-B     <NA>         ar-XA   MALE  google
+#> 6 ar-XA-Standard-C     <NA>         ar-XA   MALE  google
+if (tts_amazon_auth()) {
+  df = tts_voices(service = "amazon")
+  print(head(df))
+}
+#>     voice   language language_code gender service
+#> 1   Filiz    Turkish         tr-TR Female  amazon
+#> 2  Astrid    Swedish         sv-SE Female  amazon
+#> 3 Tatyana    Russian         ru-RU Female  amazon
+#> 4   Maxim    Russian         ru-RU   Male  amazon
+#> 5  Carmen   Romanian         ro-RO Female  amazon
+#> 6    Inês Portuguese         pt-PT Female  amazon
+```
