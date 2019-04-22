@@ -1,0 +1,22 @@
+Type: Package
+Package: text2speech
+Title: Text to Speech
+Version: 0.1.0
+Authors@R: 
+    person(given = "John",
+           family = "Muschelli",
+           role = c("aut", "cre"),
+           email = "muschellij2@gmail.com",
+           comment = c(ORCID = "0000-0001-6469-1750"))
+Description: Unifies different text to speech engines, such as
+    Google, Microsoft, and Amazon.
+License: GPL-3
+Suggests: 
+    covr,
+    knitr,
+    rmarkdown,
+    testthat
+Encoding: UTF-8
+LazyData: true
+VignetteBuilder: knitr
+RoxygenNote: 6.1.1
