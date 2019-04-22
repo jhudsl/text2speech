@@ -16,11 +16,10 @@ such as Google, Microsoft, and Amazon.
 
 ## Installation
 
-You can install the released version of text2speech from
-[CRAN](https://CRAN.R-project.org) with:
+You can install the GitHub version of `text2speech`:
 
 ``` r
-install.packages("text2speech")
+devtools::install_github("muschellij2/text2speech")
 ```
 
 ``` r
