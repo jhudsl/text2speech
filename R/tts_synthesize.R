@@ -9,12 +9,15 @@
 #' @param service service to use
 #' @param language An ISO 3166 country identification tag. If
 #' NULL, then a data.frame of the results are returned.
+#' @note All functions have a  `voice`` argument fro a
+#' full voice name that can be passed to the
+#' service, such as `voice` for [aws.polly::get_synthesis], or
+#'
 #'
 #' @return A `data.frame` of text and wav files
 #' @export
 tts = function(
   text,
-  voice,
   output_format = c("mp3", "wav"),
   ...,
   service = c("amazon", "google", "microsoft")) {
@@ -24,16 +27,15 @@ tts = function(
   if (service == "google") {
     res = tts_google(text = text,
                      output_format = output_format,
-                     voice = voice,
-               ...)
+                     ...)
   }
   if (service == "amazon") {
     res = tts_amazon(text = text, output_format = output_format,
-               ...)
+                     ...)
   }
   if (service == "microsoft") {
     res = tts_microsoft(text = text, output_format = output_format,
-                     ...)
+                        ...)
   }
 
 }

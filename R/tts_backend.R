@@ -1,5 +1,11 @@
 #' @export
 #' @rdname tts
+#' @param voice A full voice name that can be passed to the
+#' service, such as the
+#' argument `voice` for [aws.polly::get_synthesis], or
+#' or [mscstts::ms_synthesize()] or the
+#' `name` argument for [googleLanguageR::gl_talk()]
+#'
 tts_google = function(
   text,
   output_format = c("mp3", "wav"),
@@ -24,6 +30,7 @@ tts_google = function(
         tt,
         output = output,
         audioEncoding = output_format,
+        name = voice,
         ...)
     }, FUN.VALUE = character(1L))
     names(res) = NULL

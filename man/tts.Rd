@@ -17,13 +17,19 @@ tts_microsoft(text, output_format = c("mp3", "wav"),
   voice = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
   ...)
 
-tts(text, voice, output_format = c("mp3", "wav"), ...,
-  service = c("amazon", "google", "microsoft"))
+tts(text, output_format = c("mp3", "wav"), ..., service = c("amazon",
+  "google", "microsoft"))
 }
 \arguments{
 \item{text}{A character vector of text to speak}
 
 \item{output_format}{Format of output files}
+
+\item{voice}{A full voice name that can be passed to the
+service, such as the
+argument `voice` for [aws.polly::get_synthesis], or
+or [mscstts::ms_synthesize()] or the
+`name` argument for [googleLanguageR::gl_talk()]}
 
 \item{...}{Additional arguments to
 [text2speech::tts_google()],
@@ -40,4 +46,9 @@ A `data.frame` of text and wav files
 }
 \description{
 Text to Speech
+}
+\note{
+All functions have a  `voice`` argument fro a
+full voice name that can be passed to the
+service, such as `voice` for [aws.polly::get_synthesis], or
 }

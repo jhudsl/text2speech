@@ -22,3 +22,13 @@ VignetteBuilder: knitr
 RoxygenNote: 6.1.1
 URL: https://github.com/muschellij2/text2speech
 BugReports: https://github.com/muschellij2/text2speech/issues
+Imports: 
+    aws.polly,
+    aws.signature,
+    dplyr,
+    googleAuthR,
+    googleLanguageR,
+    httr,
+    mscstts (>= 0.5.1),
+    tuneR
+Remotes: muschellij2/mscstts
