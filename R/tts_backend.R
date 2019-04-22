@@ -1,6 +1,9 @@
+#' @export
+#' @rdname tts
 tts_google = function(
   text,
   output_format = c("mp3", "wav"),
+  voice = "en-US-Standard-C",
   ...) {
 
   limit = 5000
@@ -15,30 +18,36 @@ tts_google = function(
   res = lapply(text, function(string) {
     strings = tts_split_text(string, limit = limit)
 
-    res = lapply(strings, function(tt) {
+    res = vapply(strings, function(tt) {
       output = tts_temp_audio(audio_type)
       out = googleLanguageR::gl_talk(
         tt,
         output = output,
         audioEncoding = output_format,
         ...)
-    })
+    }, FUN.VALUE = character(1L))
+    names(res) = NULL
     out = lapply(res, tts_audio_read,
                  output_format = audio_type)
-    out = tuneR::bind(out)
+    df = dplyr::tibble(original_text = string,
+           text = strings,
+           wav = out, file = res)
+    # out = do.call(tuneR::bind, out)
   })
 
+  res = dplyr::bind_rows(res)
   return(res)
 }
 
+#' @export
+#' @rdname tts
 tts_amazon = function(
   text,
   output_format = c("mp3", "wav"),
+  voice = "Joanna",
   ...) {
 
   limit = 1500
-  text = tts_split_text(text, limit = limit)
-
   output_format = match.arg(output_format)
   audio_type = output_format
 
@@ -47,30 +56,43 @@ tts_amazon = function(
     "mp3" = "mp3",
     "wav" = "pcm")
 
+  res = lapply(text, function(string) {
+    strings = tts_split_text(string,
+                             limit = limit)
 
-  result = lapply(
-    text,
-    aws.polly::get_synthesis,
-    format = output_format,
-    ...)
+    res = vapply(strings, function(tt) {
+      output = tts_temp_audio(audio_type)
 
-  wav <- do.call(tuneR::bind, result)
+      out = aws.polly::get_synthesis(
+        tt,
+        voice = voice,
+        format = output_format,
+        ...)
+      writeBin(out, con = output)
+      output
+    }, FUN.VALUE = character(1L))
+    out = lapply(res, tts_audio_read,
+                 output_format = audio_type)
+    df = dplyr::tibble(original_text = string,
+                       text = strings,
+                       wav = out, file = res)
+    df
+  })
+  res = dplyr::bind_rows(res)
 
-  tmp <- tempfile(fileext = ext)
-  writeBin(res, con = tmp)
   return(res)
 
 }
 
-
+#' @export
+#' @rdname tts
 tts_microsoft = function(
   text,
   output_format = c("mp3", "wav"),
+  voice = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
   ...) {
 
   limit = 800
-  text = tts_split_text(text, limit = limit)
-
   output_format = match.arg(output_format)
   audio_type = output_format
 
@@ -79,11 +101,31 @@ tts_microsoft = function(
     "mp3" = "audio-24khz-160kbitrate-mono-mp3",
     "wav" = "riff-24khz-16bit-mono-pcm")
 
-  res = mscstts::ms_synthesize(
-    text,
-    output_format = output_format,
-    ...)
-  tmp <- tempfile(fileext = ext)
-  writeBin(res$content, con = tmp)
+
+  res = lapply(text, function(string) {
+    strings = tts_split_text(string,
+                             limit = limit)
+
+    res = vapply(strings, function(tt) {
+      output = tts_temp_audio(audio_type)
+      out = mscstts::ms_synthesize(
+        tt,
+        output_format = output_format,
+        voice = voice,
+        ...)
+      writeBin(out$content, con = output)
+      output
+    }, FUN.VALUE = character(1L))
+    names(res) = NULL
+    out = lapply(res, tts_audio_read,
+                 output_format = audio_type)
+    df = dplyr::tibble(original_text = string,
+                       text = strings,
+                       wav = out, file = res)
+    # out = do.call(tuneR::bind, out)
+    df
+  })
+  res = dplyr::bind_rows(res)
+
   return(res)
 }
