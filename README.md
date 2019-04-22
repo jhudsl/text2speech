@@ -34,7 +34,6 @@ each syervice separately, to be one function at least:
 
 ``` r
 tts_auth("google")
-#> Successfully authenticated via ~/Dropbox/Projects/cbds_translate/RClass-Translator.json
 #> [1] TRUE
 tts_auth("amazon")
 #> [1] TRUE
