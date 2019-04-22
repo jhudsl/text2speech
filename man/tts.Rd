@@ -37,9 +37,6 @@ or [mscstts::ms_synthesize()] or the
 [text2speech::tts_microsoft()]}
 
 \item{service}{service to use}
-
-\item{language}{An ISO 3166 country identification tag. If
-NULL, then a data.frame of the results are returned.}
 }
 \value{
 A `data.frame` of text and wav files

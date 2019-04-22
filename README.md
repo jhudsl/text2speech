@@ -5,6 +5,10 @@
 
 <!-- badges: start -->
 
+[![Travis build
+status](https://travis-ci.com/muschellij2/text2speech.svg?branch=master)](https://travis-ci.com/muschellij2/text2speech)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/muschellij2/text2speech?branch=master&svg=true)](https://ci.appveyor.com/project/muschellij2/text2speech)
 <!-- badges: end -->
 
 The goal of text2speech is to unify different text to speech engines,

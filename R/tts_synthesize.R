@@ -7,8 +7,6 @@
 #' [text2speech::tts_amazon()], or
 #' [text2speech::tts_microsoft()]
 #' @param service service to use
-#' @param language An ISO 3166 country identification tag. If
-#' NULL, then a data.frame of the results are returned.
 #' @note All functions have a  `voice`` argument fro a
 #' full voice name that can be passed to the
 #' service, such as `voice` for [aws.polly::get_synthesis], or
