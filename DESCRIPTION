@@ -10,7 +10,8 @@ Authors@R:
            comment = c(ORCID = "0000-0001-6469-1750"))
 Description: Unifies different text to speech engines, such as
     Google, Microsoft, and Amazon.  Text synthesis can be done
-    in any engine with a simple switch of the service argument.
+    in any engine with a simple switch of an argument denoting
+    the service requested.
 License: GPL-3
 Suggests: 
     covr,
