@@ -60,7 +60,12 @@ tts_amazon_authenticated = function() {
 #' @rdname tts_auth
 #' @export
 tts_microsoft_authenticated = function(...) {
-  res = mscstts::ms_get_tts_token(...)
+  res = try({
+    mscstts::ms_get_tts_token(...)
+  })
+  if (inherits(res, "try-error")) {
+    return(FALSE)
+  }
   res = res$request
   httr::status_code(res) < 400
 }
