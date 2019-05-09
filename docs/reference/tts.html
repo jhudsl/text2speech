@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">text2speech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -86,9 +86,12 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/bad-vignette.html">bad-vignette</a>
+      <a href="../articles/listing_voices.html">Listing out voices</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -123,17 +126,17 @@
     </div>
 
     <pre class="usage"><span class='fu'>tts_google</span>(<span class='no'>text</span>, <span class='kw'>output_format</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"mp3"</span>, <span class='st'>"wav"</span>),
-  <span class='kw'>voice</span> <span class='kw'>=</span> <span class='st'>"en-US-Standard-C"</span>, <span class='no'>...</span>)
+  <span class='kw'>voice</span> <span class='kw'>=</span> <span class='st'>"en-US-Standard-C"</span>, <span class='kw'>bind_audio</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
 <span class='fu'>tts_amazon</span>(<span class='no'>text</span>, <span class='kw'>output_format</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"mp3"</span>, <span class='st'>"wav"</span>), <span class='kw'>voice</span> <span class='kw'>=</span> <span class='st'>"Joanna"</span>,
-  <span class='no'>...</span>)
+  <span class='kw'>bind_audio</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
 <span class='fu'>tts_microsoft</span>(<span class='no'>text</span>, <span class='kw'>output_format</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"mp3"</span>, <span class='st'>"wav"</span>),
   <span class='kw'>voice</span> <span class='kw'>=</span> <span class='st'>"Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)"</span>,
-  <span class='no'>...</span>)
+  <span class='kw'>bind_audio</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
 <span class='fu'>tts</span>(<span class='no'>text</span>, <span class='kw'>output_format</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"mp3"</span>, <span class='st'>"wav"</span>), <span class='no'>...</span>, <span class='kw'>service</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"amazon"</span>,
-  <span class='st'>"google"</span>, <span class='st'>"microsoft"</span>))</pre>
+  <span class='st'>"google"</span>, <span class='st'>"microsoft"</span>), <span class='kw'>bind_audio</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -153,6 +156,13 @@ service, such as the
 argument `voice` for [aws.polly::get_synthesis], or
 or [mscstts::ms_synthesize()] or the
 `name` argument for [googleLanguageR::gl_talk()]</p></td>
+    </tr>
+    <tr>
+      <th>bind_audio</th>
+      <td><p>Should the [text2speech::tts_bind_wav()]
+be run on after the audio has been created, to ensure that
+the length of text and the number of rows is consistent?
+This affects the output format of some audio.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -175,9 +185,23 @@ or [mscstts::ms_synthesize()] or the
 
     <p>All functions have a  `voice`` argument fro a
 full voice name that can be passed to the
-service, such as `voice` for [aws.polly::get_synthesis], or</p>
+service, such as `voice` for [aws.polly::get_synthesis]</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"stringi"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>1</span>)
+<span class='no'>text</span> <span class='kw'>=</span> <span class='kw pkg'>stringi</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stringi/topics/stri_rand_lipsum'>stri_rand_lipsum</a></span>(<span class='fl'>10</span>)
+<span class='no'>text</span>[<span class='fl'>3</span>] <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='no'>text</span>[<span class='fl'>3</span>:<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>text</span>)], <span class='kw'>collapse</span> <span class='kw'>=</span> <span class='st'>" "</span> )
+<span class='no'>text</span> <span class='kw'>=</span> <span class='no'>text</span>[<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>3</span>)]
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nchar'>nchar</a></span>(<span class='no'>text</span>)
+<span class='no'>res</span> <span class='kw'>=</span> <span class='fu'>tts_google</span>(<span class='no'>text</span>, <span class='kw'>bind_audio</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/testthat/topics/equality-expectations'>expect_equal</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>res</span>), <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>text</span>) + <span class='fl'>1</span>)
+<span class='no'>bound</span> <span class='kw'>=</span> <span class='fu'><a href='tts_bind_wav.html'>tts_bind_wav</a></span>(<span class='no'>res</span>)
+<span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/testthat/topics/equality-expectations'>expect_equal</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>bound</span>), <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>text</span>))
+}
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -187,7 +211,9 @@ service, such as `voice` for [aws.polly::get_synthesis], or</p>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#note">Note</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">text2speech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -54,9 +54,12 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/bad-vignette.html">bad-vignette</a>
+      <a href="articles/listing_voices.html">Listing out voices</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -91,14 +94,14 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of text2speech from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"text2speech"</span>)</a></code></pre></div>
+<p>You can install the GitHub version of <code>text2speech</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"muschellij2/text2speech"</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(text2speech)</a></code></pre></div>
 </div>
 <div id="authentication" class="section level2">
 <h2 class="hasAnchor">
 <a href="#authentication" class="anchor"></a>Authentication</h2>
-<p>This should allow for authentication, which still needs to be set up in each syervice separately, to be one function at least:</p>
+<p>This should allow for authentication, which still needs to be set up in each service separately, to be one function at least:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="reference/tts_auth.html">tts_auth</a></span>(<span class="st">"google"</span>)</a>
 <a class="sourceLine" id="cb3-2" title="2"><span class="co">#&gt; [1] TRUE</span></a>
 <a class="sourceLine" id="cb3-3" title="3"><span class="kw"><a href="reference/tts_auth.html">tts_auth</a></span>(<span class="st">"amazon"</span>)</a>
@@ -135,9 +138,9 @@
 <a class="sourceLine" id="cb4-23" title="23"><span class="co">#&gt; 1  ar-XA-Wavenet-A     &lt;NA&gt;         ar-XA FEMALE  google</span></a>
 <a class="sourceLine" id="cb4-24" title="24"><span class="co">#&gt; 2  ar-XA-Wavenet-B     &lt;NA&gt;         ar-XA   MALE  google</span></a>
 <a class="sourceLine" id="cb4-25" title="25"><span class="co">#&gt; 3  ar-XA-Wavenet-C     &lt;NA&gt;         ar-XA   MALE  google</span></a>
-<a class="sourceLine" id="cb4-26" title="26"><span class="co">#&gt; 4 ar-XA-Standard-A     &lt;NA&gt;         ar-XA FEMALE  google</span></a>
-<a class="sourceLine" id="cb4-27" title="27"><span class="co">#&gt; 5 ar-XA-Standard-B     &lt;NA&gt;         ar-XA   MALE  google</span></a>
-<a class="sourceLine" id="cb4-28" title="28"><span class="co">#&gt; 6 ar-XA-Standard-C     &lt;NA&gt;         ar-XA   MALE  google</span></a>
+<a class="sourceLine" id="cb4-26" title="26"><span class="co">#&gt; 4 ar-XA-Standard-C     &lt;NA&gt;         ar-XA   MALE  google</span></a>
+<a class="sourceLine" id="cb4-27" title="27"><span class="co">#&gt; 5 ar-XA-Standard-A     &lt;NA&gt;         ar-XA FEMALE  google</span></a>
+<a class="sourceLine" id="cb4-28" title="28"><span class="co">#&gt; 6 ar-XA-Standard-B     &lt;NA&gt;         ar-XA   MALE  google</span></a>
 <a class="sourceLine" id="cb4-29" title="29"><span class="cf">if</span> (<span class="kw"><a href="reference/tts_auth.html">tts_amazon_auth</a></span>()) {</a>
 <a class="sourceLine" id="cb4-30" title="30">  df =<span class="st"> </span><span class="kw"><a href="reference/tts_voices.html">tts_voices</a></span>(<span class="dt">service =</span> <span class="st">"amazon"</span>)</a>
 <a class="sourceLine" id="cb4-31" title="31">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(df))</a>
@@ -148,7 +151,25 @@
 <a class="sourceLine" id="cb4-36" title="36"><span class="co">#&gt; 3 Tatyana    Russian         ru-RU Female  amazon</span></a>
 <a class="sourceLine" id="cb4-37" title="37"><span class="co">#&gt; 4   Maxim    Russian         ru-RU   Male  amazon</span></a>
 <a class="sourceLine" id="cb4-38" title="38"><span class="co">#&gt; 5  Carmen   Romanian         ro-RO Female  amazon</span></a>
-<a class="sourceLine" id="cb4-39" title="39"><span class="co">#&gt; 6    Inês Portuguese         pt-PT Female  amazon</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-39" title="39"><span class="co">#&gt; 6    Inês Portuguese         pt-PT Female  amazon</span></a>
+<a class="sourceLine" id="cb4-40" title="40"><span class="cf">if</span> (<span class="kw"><a href="reference/tts_auth.html">tts_microsoft_auth</a></span>()) {</a>
+<a class="sourceLine" id="cb4-41" title="41">  df =<span class="st"> </span><span class="kw"><a href="reference/tts_voices.html">tts_voices</a></span>(<span class="dt">service =</span> <span class="st">"microsoft"</span>)</a>
+<a class="sourceLine" id="cb4-42" title="42">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(df))</a>
+<a class="sourceLine" id="cb4-43" title="43">}</a>
+<a class="sourceLine" id="cb4-44" title="44"><span class="co">#&gt;                                                             voice</span></a>
+<a class="sourceLine" id="cb4-45" title="45"><span class="co">#&gt; 1      Microsoft Server Speech Text to Speech Voice (ar-EG, Hoda)</span></a>
+<a class="sourceLine" id="cb4-46" title="46"><span class="co">#&gt; 2     Microsoft Server Speech Text to Speech Voice (ar-SA, Naayf)</span></a>
+<a class="sourceLine" id="cb4-47" title="47"><span class="co">#&gt; 3      Microsoft Server Speech Text to Speech Voice (bg-BG, Ivan)</span></a>
+<a class="sourceLine" id="cb4-48" title="48"><span class="co">#&gt; 4 Microsoft Server Speech Text to Speech Voice (ca-ES, HerenaRUS)</span></a>
+<a class="sourceLine" id="cb4-49" title="49"><span class="co">#&gt; 5     Microsoft Server Speech Text to Speech Voice (cs-CZ, Jakub)</span></a>
+<a class="sourceLine" id="cb4-50" title="50"><span class="co">#&gt; 6  Microsoft Server Speech Text to Speech Voice (da-DK, HelleRUS)</span></a>
+<a class="sourceLine" id="cb4-51" title="51"><span class="co">#&gt;                language language_code gender   service</span></a>
+<a class="sourceLine" id="cb4-52" title="52"><span class="co">#&gt; 1        Arabic (Egypt)         ar-EG Female microsoft</span></a>
+<a class="sourceLine" id="cb4-53" title="53"><span class="co">#&gt; 2 Arabic (Saudi Arabia)         ar-SA   Male microsoft</span></a>
+<a class="sourceLine" id="cb4-54" title="54"><span class="co">#&gt; 3             Bulgarian         bg-BG   Male microsoft</span></a>
+<a class="sourceLine" id="cb4-55" title="55"><span class="co">#&gt; 4       Catalan (Spain)         ca-ES Female microsoft</span></a>
+<a class="sourceLine" id="cb4-56" title="56"><span class="co">#&gt; 5                 Czech         cs-CZ   Male microsoft</span></a>
+<a class="sourceLine" id="cb4-57" title="57"><span class="co">#&gt; 6                Danish         da-DK Female microsoft</span></a></code></pre></div>
 </div>
 </div>
   </div>
