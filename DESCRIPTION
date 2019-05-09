@@ -33,4 +33,3 @@ Imports:
     mscstts (>= 0.5.1),
     tuneR,
     magrittr
-Remotes: muschellij2/mscstts
