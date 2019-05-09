@@ -43,6 +43,9 @@ tts = function(
   bind_audio = TRUE) {
 
   service = match.arg(service)
+  if (!tts_auth(service = service)) {
+    warning(paste0("Service ", service, " not authorized"))
+  }
   output_format = match.arg(output_format)
   if (service == "google") {
     res = tts_google(

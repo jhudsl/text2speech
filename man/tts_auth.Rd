@@ -13,7 +13,7 @@
 \usage{
 tts_amazon_auth(key_or_json_file = NULL, ...)
 
-tts_auth(type = c("amazon", "google", "microsoft"),
+tts_auth(service = c("amazon", "google", "microsoft"),
   key_or_json_file = NULL, ...)
 
 tts_google_authenticated()
@@ -33,7 +33,7 @@ or JSON file (for Google)}
 \item{...}{Additional arguments to pass to
 [aws.signature::use_credentials()] or [mscstts::ms_get_tts_token()]}
 
-\item{type}{type of synthesis engine}
+\item{service}{type of synthesis engine}
 }
 \value{
 A logical indicator of authorization
