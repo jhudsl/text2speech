@@ -1,0 +1,58 @@
+---
+title: "Listing out voices"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Listing out voices}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(text2speech)
+```
+
+# Amazon Polly
+
+```{r}
+if ( tts_auth("amazon")) {
+  df = tts_voices(service = "amazon")
+  knitr::kable(df)
+}
+```
+
+# Microsoft TTS/Bing
+
+```{r}
+if ( tts_auth("microsoft")) {
+  df = tts_voices(service = "microsoft")
+  knitr::kable(df)
+}
+```
+
+# Google Text to Speech
+
+```{r}
+if ( tts_auth("google")) {
+  df = tts_voices(service = "google")
+  knitr::kable(df)
+}
+```
+
+The output of `tts` is a `data.frame`/`tibble` that contains `Wave` elements with audio of the rendered speech.
+
+```{r}
+if (tts_auth("google")) {
+  df = tts("hey what's up?", service = "google")
+  print(df)
+  print(df$wav[[1]])
+}
+```
+
+

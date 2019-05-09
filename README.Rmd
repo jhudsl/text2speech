@@ -35,7 +35,7 @@ library(text2speech)
 
 ## Authentication
 
-This should allow for authentication, which still needs to be set up in each syervice separately, to be one function at least:
+This should allow for authentication, which still needs to be set up in each service separately, to be one function at least:
 
 ```{r example}
 tts_auth("google")
@@ -56,6 +56,10 @@ if (tts_google_auth()) {
 }
 if (tts_amazon_auth()) {
   df = tts_voices(service = "amazon")
+  print(head(df))
+}
+if (tts_microsoft_auth()) {
+  df = tts_voices(service = "microsoft")
   print(head(df))
 }
 ```

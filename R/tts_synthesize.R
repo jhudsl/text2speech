@@ -65,7 +65,7 @@ tts = function(
       bind_audio = bind_audio,
       ...)
   }
-
+  return(res)
 }
 
 #' Bind Wavs together
