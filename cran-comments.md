@@ -8,3 +8,9 @@
 0 errors | 0 warnings | 1 note
 
 * This is a new release.
+
+## CRAN Responses
+
+* Added small executable examples in all your exported function.
+* There are no references.
+* Removed `dontrun` from examples.
