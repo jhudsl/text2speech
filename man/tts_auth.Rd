@@ -45,4 +45,12 @@ Authorize Text-to-Speech Engine
 tts_auth("google")
 tts_auth("amazon")
 tts_auth("microsoft")
+
+tts_google_authenticated()
+tts_microsoft_authenticated()
+tts_amazon_authenticated()
+
+tts_google_auth()
+tts_microsoft_auth()
+tts_amazon_auth()
 }

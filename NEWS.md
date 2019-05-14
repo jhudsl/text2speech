@@ -1,4 +1,8 @@
 
+# text2speech 0.2.3
+
+* More examples added and `\dontrun` removed.
+
 # text2speech 0.2.1
 
 * Added to the vignette and the tests for translation.

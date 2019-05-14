@@ -28,13 +28,13 @@ and language names
 Text to Speech Voices
 }
 \examples{
+if (tts_microsoft_auth()) {
 tts_voices(service = "microsoft")
-\dontrun{
+}
 if (tts_google_auth()) {
 tts_voices(service = "google")
 }
 if (tts_amazon_auth()) {
 tts_voices(service = "amazon")
-}
 }
 }

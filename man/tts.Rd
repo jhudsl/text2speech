@@ -55,18 +55,18 @@ full voice name that can be passed to the
 service, such as `voice` for [aws.polly::get_synthesis]
 }
 \examples{
-\dontrun{
 
 if (requireNamespace("stringi", quietly = TRUE)) {
-set.seed(1)
-text = stringi::stri_rand_lipsum(10)
-text[3] = paste0(text[3:length(text)], collapse = " " )
-text = text[c(1,3)]
-nchar(text)
-res = tts_google(text, bind_audio = FALSE)
-testthat::expect_equal(nrow(res), length(text) + 1)
-bound = tts_bind_wav(res)
-testthat::expect_equal(nrow(bound), length(text))
-}
+    set.seed(1)
+    text = stringi::stri_rand_lipsum(10)
+    text[3] = paste0(text[3:length(text)], collapse = " " )
+    text = text[c(1,3)]
+    nchar(text)
+    if (tts_auth("google")) {
+        res = tts(text, service = "google", bind_audio = FALSE)
+        testthat::expect_equal(nrow(res), length(text) + 1)
+        bound = tts_bind_wav(res)
+        testthat::expect_equal(nrow(bound), length(text))
+    }
 }
 }
