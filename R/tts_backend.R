@@ -42,7 +42,9 @@ tts_google = function(
            wav = out, file = res)
     # out = do.call(tuneR::bind, out)
   })
-  res = dplyr::bind_rows(res)
+  names(res) = length(text)
+  res = dplyr::bind_rows(res, .id = "index")
+  res$index = as.numeric(res$index)
   res$audio_type = audio_type
 
   if (bind_audio) {
@@ -92,7 +94,9 @@ tts_amazon = function(
                        wav = out, file = res)
     df
   })
-  res = dplyr::bind_rows(res)
+  names(res) = length(text)
+  res = dplyr::bind_rows(res, .id = "index")
+  res$index = as.numeric(res$index)
   res$audio_type = audio_type
   if (bind_audio) {
     res = tts_bind_wav(res)
@@ -144,7 +148,10 @@ tts_microsoft = function(
     # out = do.call(tuneR::bind, out)
     df
   })
-  res = dplyr::bind_rows(res)
+  names(res) = length(text)
+  res = dplyr::bind_rows(res, .id = "index")
+  res$index = as.numeric(res$index)
+
   res$audio_type = audio_type
   if (bind_audio) {
     res = tts_bind_wav(res)

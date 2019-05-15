@@ -85,7 +85,11 @@ tts = function(
 #'
 #' @export
 tts_bind_wav = function(result) {
-  ss = split(result, result$original_text)
+  index = NULL
+  rm(list = "index")
+  result = result %>%
+    dplyr::arrange(index)
+  ss = split(result, result$index)
   ss = lapply(ss, function(x) {
     if (nrow(x) == 1) {
       return(x)
@@ -97,6 +101,7 @@ tts_bind_wav = function(result) {
     tuneR::writeWave(wav, output)
     dplyr::tibble(original_text = txt,
                   text = txt,
+                  index = unique(x$index),
                   wav = list(wav),
                   file = output,
                   audio_type = "wav")

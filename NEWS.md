@@ -1,3 +1,6 @@
+# text2speech 0.2.4
+
+* Fixed ordering problem of `tts`.
 
 # text2speech 0.2.3
 
