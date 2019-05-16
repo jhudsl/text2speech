@@ -11,6 +11,4 @@
 
 ## CRAN Responses
 
-* Added small executable examples in all your exported function.
-* There are no references.
-* Removed `dontrun` from examples.
+* Fixed small bug found after submission.
