@@ -1,7 +1,8 @@
 testthat::context("Translate")
 
-fixed_names = c("original_text", "text",
-                "wav", "file", "audio_type")
+fixed_names = c("index", "original_text", "text", "wav",
+                "file", "audio_type",
+                "service")
 
 testthat::test_that(
   "Google Translation", {
