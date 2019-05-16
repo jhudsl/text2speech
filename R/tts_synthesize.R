@@ -68,6 +68,7 @@ tts = function(
       bind_audio = bind_audio,
       ...)
   }
+  res$service = service
   return(res)
 }
 
