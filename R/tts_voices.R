@@ -33,7 +33,7 @@ tts_voices = function(
 #' @rdname tts_voices
 #' @export
 tts_amazon_voices = function() {
-  if (packageVersion("aws.polly") <= package_version("0.1.4")) {
+  if (utils::packageVersion("aws.polly") <= package_version("0.1.4")) {
     # as per https://docs.aws.amazon.com/polly/latest/dg/SupportedLanguage.html
 
     amazon_language_codes = c("arb", "cmn-CN", "da-DK", "nl-NL",
