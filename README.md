@@ -9,6 +9,8 @@
 status](https://travis-ci.com/muschellij2/text2speech.svg?branch=master)](https://travis-ci.com/muschellij2/text2speech)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/muschellij2/text2speech?branch=master&svg=true)](https://ci.appveyor.com/project/muschellij2/text2speech)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/text2speech)](https://cran.r-project.org/package=text2speech)
 <!-- badges: end -->
 
 The goal of text2speech is to unify different text to speech engines,
@@ -70,20 +72,20 @@ if (tts_google_auth()) {
 #> 1  ar-XA-Wavenet-A     <NA>         ar-XA FEMALE  google
 #> 2  ar-XA-Wavenet-B     <NA>         ar-XA   MALE  google
 #> 3  ar-XA-Wavenet-C     <NA>         ar-XA   MALE  google
-#> 4 ar-XA-Standard-C     <NA>         ar-XA   MALE  google
+#> 4 ar-XA-Standard-B     <NA>         ar-XA   MALE  google
 #> 5 ar-XA-Standard-A     <NA>         ar-XA FEMALE  google
-#> 6 ar-XA-Standard-B     <NA>         ar-XA   MALE  google
+#> 6 ar-XA-Standard-C     <NA>         ar-XA   MALE  google
 if (tts_amazon_auth()) {
   df = tts_voices(service = "amazon")
   print(head(df))
 }
-#>     voice   language language_code gender service
-#> 1   Filiz    Turkish         tr-TR Female  amazon
-#> 2  Astrid    Swedish         sv-SE Female  amazon
-#> 3 Tatyana    Russian         ru-RU Female  amazon
-#> 4   Maxim    Russian         ru-RU   Male  amazon
-#> 5  Carmen   Romanian         ro-RO Female  amazon
-#> 6    Inês Portuguese         pt-PT Female  amazon
+#>   voice         language language_code gender service
+#> 1 Zeina           Arabic           arb Female  amazon
+#> 2 Zhiyu Chinese Mandarin        cmn-CN Female  amazon
+#> 3  Naja           Danish         da-DK Female  amazon
+#> 4  Mads           Danish         da-DK   Male  amazon
+#> 5 Ruben            Dutch         nl-NL   Male  amazon
+#> 6 Lotte            Dutch         nl-NL Female  amazon
 if (tts_microsoft_auth()) {
   df = tts_voices(service = "microsoft")
   print(head(df))

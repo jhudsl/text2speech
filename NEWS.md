@@ -1,3 +1,7 @@
+# text2speech 0.2.5
+
+* Fixed small issue with `aws.polly::list_voices`.  Will fix with new version of `aws.polly`: https://github.com/cloudyr/aws.polly/pull/6.
+
 # text2speech 0.2.4
 
 * Fixed ordering problem of `tts`.
