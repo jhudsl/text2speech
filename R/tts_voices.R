@@ -33,7 +33,26 @@ tts_voices = function(
 #' @rdname tts_voices
 #' @export
 tts_amazon_voices = function() {
-  res = aws.polly::list_voices(language = NULL)
+  if (packageVersion("aws.polly") <= package_version("0.1.4")) {
+    # as per https://docs.aws.amazon.com/polly/latest/dg/SupportedLanguage.html
+
+    amazon_language_codes = c("arb", "cmn-CN", "da-DK", "nl-NL",
+                              "en-AU", "en-GB",
+                              "en-IN", "en-US", "en-GB-WLS",
+                              "fr-FR", "fr-CA", "hi-IN",
+                              "de-DE", "is-IS", "it-IT",
+                              "ja-JP", "ko-KR", "nb-NO", "pl-PL",
+                              "pt-BR", "pt-PT", "ro-RO", "ru-RU",
+                              "es-ES", "es-MX", "es-US",
+                              "sv-SE", "tr-TR", "cy-GB")
+    res = lapply(amazon_language_codes,
+                 function(x) {
+                   aws.polly::list_voices(language = x)
+                 })
+    res = do.call(rbind, res)
+  } else {
+    res = aws.polly::list_voices(language = NULL)
+  }
   cn = colnames(res)
   cn[ cn == "Gender" ] = "gender"
   cn[ cn == "LanguageCode" ] = "language_code"
