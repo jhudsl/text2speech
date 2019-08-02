@@ -1,3 +1,7 @@
+# text2speech 0.2.6
+
+* List voices allows passing of authentication down there.
+
 # text2speech 0.2.5
 
 * Fixed small issue with `aws.polly::list_voices`.  Will fix with new version of `aws.polly`: https://github.com/cloudyr/aws.polly/pull/6.
