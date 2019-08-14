@@ -90,6 +90,9 @@ tts_amazon = function(
         rate = sample_rate,
         ...)
       writeBin(out, con = output)
+      if (audio_type == "wav") {
+        output = pcm_to_wav(input = output)
+      }
       output
     }, FUN.VALUE = character(1L))
     out = lapply(res, tts_audio_read,
