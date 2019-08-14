@@ -67,6 +67,10 @@ tts_amazon = function(
   output_format = match.arg(output_format)
   audio_type = output_format
 
+  sample_rate = switch(
+    output_format,
+    "mp3" = 24000,
+    "wav" = 16000)
   output_format = switch(
     output_format,
     "mp3" = "mp3",
@@ -83,6 +87,7 @@ tts_amazon = function(
         tt,
         voice = voice,
         format = output_format,
+        rate = sample_rate,
         ...)
       writeBin(out, con = output)
       output

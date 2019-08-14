@@ -8,10 +8,10 @@ tts_bind_wav(result)
 }
 \arguments{
 \item{result}{A \code{data.frame} from
-[text2speech::tts()].}
+\code{\link[text2speech:tts]{text2speech::tts()}}.}
 }
 \value{
-A `data.frame` with the same structure as
+A \code{data.frame} with the same structure as
 that of \code{tts}
 }
 \description{

@@ -1,3 +1,7 @@
+# text2speech 0.2.7
+
+* Fixing bug with sample rate for Amazon.
+
 # text2speech 0.2.6
 
 * List voices allows passing of authentication down there.
@@ -18,7 +22,6 @@
 
 * Added to the vignette and the tests for translation.
 * Fixing errors with authentication if the keys are not set.
-
 
 # text2speech 0.2.0
 

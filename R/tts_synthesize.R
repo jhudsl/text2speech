@@ -74,11 +74,11 @@ tts = function(
 
 #' Bind Wavs together
 #'
-#' @param result A \code{data.frame} from
+#' @param result A `data.frame` from
 #' [text2speech::tts()].
 #'
 #' @return A `data.frame` with the same structure as
-#' that of \code{tts}
+#' that of `tts`
 #'
 #' @note As the data are split due to limits of the
 #' API, then this allows the text and the

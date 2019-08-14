@@ -21,7 +21,7 @@ tts_google_voices(...)
 \item{...}{Additional arguments to service voice listings.}
 }
 \value{
-A `data.frame` of language codes, voices, genders,
+A \code{data.frame} of language codes, voices, genders,
 and language names
 }
 \description{
