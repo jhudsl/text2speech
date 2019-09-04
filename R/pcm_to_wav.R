@@ -3,12 +3,13 @@
 #' @param input output from [aws.polly::get_synthesis] or PCM filename
 #' @param output output file for Wav file
 #' @param extensible passed to [tuneR::writeWave]
-#'
+#' @param sample_rate Sampling rate for [tuneR::Wave]
 #' @return A filename of the output
 #' @export
 pcm_to_wav = function(
   input,
   output = tempfile(fileext = ".wav"),
+  sample_rate = 16000,
   extensible = FALSE) {
 
 
@@ -23,7 +24,7 @@ pcm_to_wav = function(
   pcm <- readBin(input, what = integer(),
                  n = 2 * sz + buffer,
                  size = 2, endian = "little", signed = TRUE)
-  wav = tuneR::Wave(pcm, samp.rate = 16000, bit = 16, pcm = TRUE)
+  wav = tuneR::Wave(pcm, samp.rate = sample_rate, bit = 16, pcm = TRUE)
   tuneR::writeWave(object = wav, filename = output, extensible = extensible)
   return(output)
 }

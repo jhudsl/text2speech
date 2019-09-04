@@ -5,12 +5,14 @@
 \title{Convert PCM to Wav}
 \usage{
 pcm_to_wav(input, output = tempfile(fileext = ".wav"),
-  extensible = FALSE)
+  sample_rate = 16000, extensible = FALSE)
 }
 \arguments{
 \item{input}{output from \link[aws.polly:get_synthesis]{aws.polly::get_synthesis} or PCM filename}
 
 \item{output}{output file for Wav file}
+
+\item{sample_rate}{Sampling rate for \link[tuneR:Wave]{tuneR::Wave}}
 
 \item{extensible}{passed to \link[tuneR:writeWave]{tuneR::writeWave}}
 }

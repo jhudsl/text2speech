@@ -38,8 +38,8 @@ tts_google = function(
     out = lapply(res, tts_audio_read,
                  output_format = audio_type)
     df = dplyr::tibble(original_text = string,
-           text = strings,
-           wav = out, file = res)
+                       text = strings,
+                       wav = out, file = res)
     # out = do.call(tuneR::bind, out)
   })
   names(res) = length(text)
@@ -76,6 +76,10 @@ tts_amazon = function(
     "mp3" = "mp3",
     "wav" = "pcm")
 
+  args = list(...)
+  if (is.null(args$rate)) {
+    args$rate = sample_rate
+  }
   res = lapply(text, function(string) {
     strings = tts_split_text(string,
                              limit = limit)
@@ -83,15 +87,17 @@ tts_amazon = function(
     res = vapply(strings, function(tt) {
       output = tts_temp_audio(audio_type)
 
-      out = aws.polly::get_synthesis(
-        tt,
-        voice = voice,
-        format = output_format,
-        rate = sample_rate,
-        ...)
+      args$text = tt
+      args$voice = voice
+      args$format = output_format
+
+      out = do.call(
+        aws.polly::get_synthesis,
+        args = args)
+
       writeBin(out, con = output)
       if (audio_type == "wav") {
-        output = pcm_to_wav(input = output)
+        output = pcm_to_wav(input = output, sample_rate = args$rate)
       }
       output
     }, FUN.VALUE = character(1L))
