@@ -80,6 +80,14 @@ tts_amazon = function(
   if (is.null(args$rate)) {
     args$rate = sample_rate
   }
+  if (!is.null(args$format)) {
+    warning(
+      paste0(
+      "format was specified in ... for tts_amazon",
+      ", this should be specified in output_format argument, format",
+      " is overridden")
+    )
+  }
   res = lapply(text, function(string) {
     strings = tts_split_text(string,
                              limit = limit)

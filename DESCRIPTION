@@ -1,7 +1,7 @@
 Type: Package
 Package: text2speech
 Title: Text to Speech
-Version: 0.2.7
+Version: 0.2.8
 Authors@R: 
     person(given = "John",
            family = "Muschelli",
@@ -15,7 +15,6 @@ Description: Unifies different text to speech engines, such as
 License: GPL-3
 Suggests: 
     covr,
-    knitr,
     rmarkdown,
     testthat,
     stringi
@@ -34,5 +33,6 @@ Imports:
     httr,
     mscstts (>= 0.5.1),
     tuneR,
-    magrittr
+    magrittr,
+    knitr
 Roxygen: list(markdown = TRUE)
