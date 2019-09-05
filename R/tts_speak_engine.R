@@ -23,11 +23,7 @@ tts_speak_engine = function(options) {
     service = "google"
   }
   if (is.null(voice)) {
-    voice = switch(
-      service,
-      google = "en-US-Standard-C",
-      microsoft = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
-      amazon = "Joanna")
+    voice = tts_default_voice(service = service)
   }
   if (is.null(output_format)) {
     output_format = "mp3"
@@ -44,7 +40,8 @@ tts_speak_engine = function(options) {
 
   key_or_json_file = options$key_or_json_file
   if (!is.null(key_or_json_file)) {
-    text2speech::tts_auth(service = service, key_or_json_file = key_or_json_file)
+    text2speech::tts_auth(service = service,
+                          key_or_json_file = key_or_json_file)
   }
   text = paste0(options$code, collapse = " ")
   result = text2speech::tts(
@@ -54,7 +51,7 @@ tts_speak_engine = function(options) {
     voice = voice
   )
   file.copy(result$file, output, overwrite = TRUE)
-  out = capture.output(output)
+  out = utils::capture.output(output)
   if (knitr::is_html_output()) {
     options$results = "asis"
     out = c("<audio controls>",

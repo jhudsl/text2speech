@@ -4,6 +4,7 @@
 \alias{tts_google}
 \alias{tts_amazon}
 \alias{tts_microsoft}
+\alias{tts_default_voice}
 \alias{tts}
 \title{Text to Speech}
 \usage{
@@ -16,6 +17,8 @@ tts_amazon(text, output_format = c("mp3", "wav"), voice = "Joanna",
 tts_microsoft(text, output_format = c("mp3", "wav"),
   voice = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
   bind_audio = TRUE, ...)
+
+tts_default_voice(service = c("amazon", "google", "microsoft"))
 
 tts(text, output_format = c("mp3", "wav"), ..., service = c("amazon",
   "google", "microsoft"), bind_audio = TRUE)

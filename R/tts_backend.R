@@ -181,3 +181,16 @@ tts_microsoft = function(
 
   return(res)
 }
+
+#' @rdname tts
+#' @export
+tts_default_voice = function(
+  service = c("amazon", "google", "microsoft")
+) {
+  voice = switch(
+    service,
+    google = "en-US-Standard-C",
+    microsoft = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
+    amazon = "Joanna")
+  return(voice)
+}
