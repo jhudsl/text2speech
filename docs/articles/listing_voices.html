@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Listing out voices • text2speech</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Listing out voices">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
@@ -30,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">text2speech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.9</span>
       </span>
     </div>
 
@@ -38,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -64,7 +65,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/muschellij2/text2speech">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -77,7 +78,8 @@
 <!--/.navbar -->
 
       
-      </header><div class="row">
+
+      </header><script src="listing_voices_files/jquery-1.11.3/jquery.min.js"></script><script src="listing_voices_files/elevate-section-attrs-2.0/elevate-section-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Listing out voices</h1>
@@ -90,14 +92,18 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(text2speech)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(text2speech)</span></code></pre></div>
 <div id="amazon-polly" class="section level1">
 <h1 class="hasAnchor">
 <a href="#amazon-polly" class="anchor"></a>Amazon Polly</h1>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="cf">if</span> ( <span class="kw"><a href="../reference/tts_auth.html">tts_auth</a></span>(<span class="st">"amazon"</span>)) {</a>
-<a class="sourceLine" id="cb2-2" title="2">  df =<span class="st"> </span><span class="kw"><a href="../reference/tts_voices.html">tts_voices</a></span>(<span class="dt">service =</span> <span class="st">"amazon"</span>)</a>
-<a class="sourceLine" id="cb2-3" title="3">  knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(df)</a>
-<a class="sourceLine" id="cb2-4" title="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="cf">if</span> (<span class="kw"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span>(<span class="st">"aws.polly"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)) {</span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="cf">if</span> ( <span class="kw"><a href="../reference/tts_auth.html">tts_auth</a></span>(<span class="st">"amazon"</span>)) {</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    df =<span class="st"> </span><span class="kw"><a href="../reference/tts_voices.html">tts_voices</a></span>(<span class="dt">service =</span> <span class="st">"amazon"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(df)</span>
+<span id="cb2-5"><a href="#cb2-5"></a>  }</span>
+<span id="cb2-6"><a href="#cb2-6"></a>}</span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co">#&gt; Warning in structure(out[["Voices"]], NextToken = out[["NextToken"]]): Calling 'structure(NULL, *)' is deprecated, as NULL cannot have attributes.</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt;   Consider 'structure(list(), *)' instead.</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">voice</th>
@@ -122,31 +128,31 @@
 <td align="left">amazon</td>
 </tr>
 <tr class="odd">
-<td align="left">Naja</td>
-<td align="left">Danish</td>
-<td align="left">da-DK</td>
-<td align="left">Female</td>
-<td align="left">amazon</td>
-</tr>
-<tr class="even">
 <td align="left">Mads</td>
 <td align="left">Danish</td>
 <td align="left">da-DK</td>
 <td align="left">Male</td>
 <td align="left">amazon</td>
 </tr>
-<tr class="odd">
-<td align="left">Ruben</td>
-<td align="left">Dutch</td>
-<td align="left">nl-NL</td>
-<td align="left">Male</td>
+<tr class="even">
+<td align="left">Naja</td>
+<td align="left">Danish</td>
+<td align="left">da-DK</td>
+<td align="left">Female</td>
 <td align="left">amazon</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Lotte</td>
 <td align="left">Dutch</td>
 <td align="left">nl-NL</td>
 <td align="left">Female</td>
+<td align="left">amazon</td>
+</tr>
+<tr class="even">
+<td align="left">Ruben</td>
+<td align="left">Dutch</td>
+<td align="left">nl-NL</td>
+<td align="left">Male</td>
 <td align="left">amazon</td>
 </tr>
 <tr class="odd">
@@ -164,7 +170,7 @@
 <td align="left">amazon</td>
 </tr>
 <tr class="odd">
-<td align="left">Emma</td>
+<td align="left">Amy</td>
 <td align="left">British English</td>
 <td align="left">en-GB</td>
 <td align="left">Female</td>
@@ -178,7 +184,7 @@
 <td align="left">amazon</td>
 </tr>
 <tr class="odd">
-<td align="left">Amy</td>
+<td align="left">Emma</td>
 <td align="left">British English</td>
 <td align="left">en-GB</td>
 <td align="left">Female</td>
@@ -206,21 +212,21 @@
 <td align="left">amazon</td>
 </tr>
 <tr class="odd">
+<td align="left">Joanna</td>
+<td align="left">US English</td>
+<td align="left">en-US</td>
+<td align="left">Female</td>
+<td align="left">amazon</td>
+</tr>
+<tr class="even">
 <td align="left">Matthew</td>
 <td align="left">US English</td>
 <td align="left">en-US</td>
 <td align="left">Male</td>
 <td align="left">amazon</td>
 </tr>
-<tr class="even">
-<td align="left">Kimberly</td>
-<td align="left">US English</td>
-<td align="left">en-US</td>
-<td align="left">Female</td>
-<td align="left">amazon</td>
-</tr>
 <tr class="odd">
-<td align="left">Kendra</td>
+<td align="left">Ivy</td>
 <td align="left">US English</td>
 <td align="left">en-US</td>
 <td align="left">Female</td>
@@ -234,24 +240,24 @@
 <td align="left">amazon</td>
 </tr>
 <tr class="odd">
-<td align="left">Joey</td>
+<td align="left">Kendra</td>
 <td align="left">US English</td>
 <td align="left">en-US</td>
-<td align="left">Male</td>
+<td align="left">Female</td>
 <td align="left">amazon</td>
 </tr>
 <tr class="even">
-<td align="left">Joanna</td>
+<td align="left">Kimberly</td>
 <td align="left">US English</td>
 <td align="left">en-US</td>
 <td align="left">Female</td>
 <td align="left">amazon</td>
 </tr>
 <tr class="odd">
-<td align="left">Ivy</td>
+<td align="left">Joey</td>
 <td align="left">US English</td>
 <td align="left">en-US</td>
-<td align="left">Female</td>
+<td align="left">Male</td>
 <td align="left">amazon</td>
 </tr>
 <tr class="even">
@@ -262,21 +268,21 @@
 <td align="left">amazon</td>
 </tr>
 <tr class="odd">
+<td align="left">Céline</td>
+<td align="left">French</td>
+<td align="left">fr-FR</td>
+<td align="left">Female</td>
+<td align="left">amazon</td>
+</tr>
+<tr class="even">
 <td align="left">Mathieu</td>
 <td align="left">French</td>
 <td align="left">fr-FR</td>
 <td align="left">Male</td>
 <td align="left">amazon</td>
 </tr>
-<tr class="even">
-<td align="left">Léa</td>
-<td align="left">French</td>
-<td align="left">fr-FR</td>
-<td align="left">Female</td>
-<td align="left">amazon</td>
-</tr>
 <tr class="odd">
-<td align="left">Céline</td>
+<td align="left">Léa</td>
 <td align="left">French</td>
 <td align="left">fr-FR</td>
 <td align="left">Female</td>
@@ -290,14 +296,14 @@
 <td align="left">amazon</td>
 </tr>
 <tr class="odd">
-<td align="left">Vicki</td>
+<td align="left">Marlene</td>
 <td align="left">German</td>
 <td align="left">de-DE</td>
 <td align="left">Female</td>
 <td align="left">amazon</td>
 </tr>
 <tr class="even">
-<td align="left">Marlene</td>
+<td align="left">Vicki</td>
 <td align="left">German</td>
 <td align="left">de-DE</td>
 <td align="left">Female</td>
@@ -325,17 +331,17 @@
 <td align="left">amazon</td>
 </tr>
 <tr class="even">
-<td align="left">Bianca</td>
-<td align="left">Italian</td>
-<td align="left">it-IT</td>
-<td align="left">Female</td>
-<td align="left">amazon</td>
-</tr>
-<tr class="odd">
 <td align="left">Giorgio</td>
 <td align="left">Italian</td>
 <td align="left">it-IT</td>
 <td align="left">Male</td>
+<td align="left">amazon</td>
+</tr>
+<tr class="odd">
+<td align="left">Bianca</td>
+<td align="left">Italian</td>
+<td align="left">it-IT</td>
+<td align="left">Female</td>
 <td align="left">amazon</td>
 </tr>
 <tr class="even">
@@ -346,17 +352,17 @@
 <td align="left">amazon</td>
 </tr>
 <tr class="odd">
-<td align="left">Takumi</td>
-<td align="left">Japanese</td>
-<td align="left">ja-JP</td>
-<td align="left">Male</td>
-<td align="left">amazon</td>
-</tr>
-<tr class="even">
 <td align="left">Mizuki</td>
 <td align="left">Japanese</td>
 <td align="left">ja-JP</td>
 <td align="left">Female</td>
+<td align="left">amazon</td>
+</tr>
+<tr class="even">
+<td align="left">Takumi</td>
+<td align="left">Japanese</td>
+<td align="left">ja-JP</td>
+<td align="left">Male</td>
 <td align="left">amazon</td>
 </tr>
 <tr class="odd">
@@ -374,17 +380,17 @@
 <td align="left">amazon</td>
 </tr>
 <tr class="odd">
-<td align="left">Maja</td>
+<td align="left">Ewa</td>
 <td align="left">Polish</td>
 <td align="left">pl-PL</td>
 <td align="left">Female</td>
 <td align="left">amazon</td>
 </tr>
 <tr class="even">
-<td align="left">Jan</td>
+<td align="left">Maja</td>
 <td align="left">Polish</td>
 <td align="left">pl-PL</td>
-<td align="left">Male</td>
+<td align="left">Female</td>
 <td align="left">amazon</td>
 </tr>
 <tr class="odd">
@@ -395,10 +401,10 @@
 <td align="left">amazon</td>
 </tr>
 <tr class="even">
-<td align="left">Ewa</td>
+<td align="left">Jan</td>
 <td align="left">Polish</td>
 <td align="left">pl-PL</td>
-<td align="left">Female</td>
+<td align="left">Male</td>
 <td align="left">amazon</td>
 </tr>
 <tr class="odd">
@@ -409,37 +415,37 @@
 <td align="left">amazon</td>
 </tr>
 <tr class="even">
+<td align="left">Camila</td>
+<td align="left">Brazilian Portuguese</td>
+<td align="left">pt-BR</td>
+<td align="left">Female</td>
+<td align="left">amazon</td>
+</tr>
+<tr class="odd">
 <td align="left">Ricardo</td>
 <td align="left">Brazilian Portuguese</td>
 <td align="left">pt-BR</td>
 <td align="left">Male</td>
 <td align="left">amazon</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Inês</td>
 <td align="left">Portuguese</td>
 <td align="left">pt-PT</td>
 <td align="left">Female</td>
 <td align="left">amazon</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Cristiano</td>
 <td align="left">Portuguese</td>
 <td align="left">pt-PT</td>
 <td align="left">Male</td>
 <td align="left">amazon</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Carmen</td>
 <td align="left">Romanian</td>
 <td align="left">ro-RO</td>
-<td align="left">Female</td>
-<td align="left">amazon</td>
-</tr>
-<tr class="even">
-<td align="left">Tatyana</td>
-<td align="left">Russian</td>
-<td align="left">ru-RU</td>
 <td align="left">Female</td>
 <td align="left">amazon</td>
 </tr>
@@ -451,31 +457,45 @@
 <td align="left">amazon</td>
 </tr>
 <tr class="even">
+<td align="left">Tatyana</td>
+<td align="left">Russian</td>
+<td align="left">ru-RU</td>
+<td align="left">Female</td>
+<td align="left">amazon</td>
+</tr>
+<tr class="odd">
 <td align="left">Lucia</td>
 <td align="left">Castilian Spanish</td>
 <td align="left">es-ES</td>
 <td align="left">Female</td>
 <td align="left">amazon</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Enrique</td>
 <td align="left">Castilian Spanish</td>
 <td align="left">es-ES</td>
 <td align="left">Male</td>
 <td align="left">amazon</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Conchita</td>
 <td align="left">Castilian Spanish</td>
 <td align="left">es-ES</td>
 <td align="left">Female</td>
 <td align="left">amazon</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Mia</td>
 <td align="left">Mexican Spanish</td>
 <td align="left">es-MX</td>
 <td align="left">Female</td>
+<td align="left">amazon</td>
+</tr>
+<tr class="odd">
+<td align="left">Miguel</td>
+<td align="left">US Spanish</td>
+<td align="left">es-US</td>
+<td align="left">Male</td>
 <td align="left">amazon</td>
 </tr>
 <tr class="even">
@@ -486,10 +506,10 @@
 <td align="left">amazon</td>
 </tr>
 <tr class="odd">
-<td align="left">Miguel</td>
+<td align="left">Lupe</td>
 <td align="left">US Spanish</td>
 <td align="left">es-US</td>
-<td align="left">Male</td>
+<td align="left">Female</td>
 <td align="left">amazon</td>
 </tr>
 <tr class="even">
@@ -519,10 +539,10 @@
 <div id="microsoft-ttsbing" class="section level1">
 <h1 class="hasAnchor">
 <a href="#microsoft-ttsbing" class="anchor"></a>Microsoft TTS/Bing</h1>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="cf">if</span> ( <span class="kw"><a href="../reference/tts_auth.html">tts_auth</a></span>(<span class="st">"microsoft"</span>)) {</a>
-<a class="sourceLine" id="cb3-2" title="2">  df =<span class="st"> </span><span class="kw"><a href="../reference/tts_voices.html">tts_voices</a></span>(<span class="dt">service =</span> <span class="st">"microsoft"</span>)</a>
-<a class="sourceLine" id="cb3-3" title="3">  knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(df)</a>
-<a class="sourceLine" id="cb3-4" title="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="cf">if</span> ( <span class="kw"><a href="../reference/tts_auth.html">tts_auth</a></span>(<span class="st">"microsoft"</span>)) {</span>
+<span id="cb3-2"><a href="#cb3-2"></a>  df =<span class="st"> </span><span class="kw"><a href="../reference/tts_voices.html">tts_voices</a></span>(<span class="dt">service =</span> <span class="st">"microsoft"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a>  knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(df)</span>
+<span id="cb3-4"><a href="#cb3-4"></a>}</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">voice</th>
@@ -1105,10 +1125,10 @@
 <div id="google-text-to-speech" class="section level1">
 <h1 class="hasAnchor">
 <a href="#google-text-to-speech" class="anchor"></a>Google Text to Speech</h1>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="cf">if</span> ( <span class="kw"><a href="../reference/tts_auth.html">tts_auth</a></span>(<span class="st">"google"</span>)) {</a>
-<a class="sourceLine" id="cb4-2" title="2">  df =<span class="st"> </span><span class="kw"><a href="../reference/tts_voices.html">tts_voices</a></span>(<span class="dt">service =</span> <span class="st">"google"</span>)</a>
-<a class="sourceLine" id="cb4-3" title="3">  knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(df)</a>
-<a class="sourceLine" id="cb4-4" title="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="cf">if</span> ( <span class="kw"><a href="../reference/tts_auth.html">tts_auth</a></span>(<span class="st">"google"</span>)) {</span>
+<span id="cb4-2"><a href="#cb4-2"></a>  df =<span class="st"> </span><span class="kw"><a href="../reference/tts_voices.html">tts_voices</a></span>(<span class="dt">service =</span> <span class="st">"google"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3"></a>  knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(df)</span>
+<span id="cb4-4"><a href="#cb4-4"></a>}</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">voice</th>
@@ -1119,65 +1139,163 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">ar-XA-Wavenet-A</td>
-<td align="left">NA</td>
+<td align="left">ar-XA-Wavenet-C</td>
+<td align="left">Arabic</td>
+<td align="left">ar-XA</td>
+<td align="left">MALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
+<td align="left">ar-XA-Standard-A</td>
+<td align="left">Arabic</td>
 <td align="left">ar-XA</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
+<tr class="odd">
+<td align="left">ar-XA-Standard-B</td>
+<td align="left">Arabic</td>
+<td align="left">ar-XA</td>
+<td align="left">MALE</td>
+<td align="left">google</td>
+</tr>
 <tr class="even">
 <td align="left">ar-XA-Wavenet-B</td>
-<td align="left">NA</td>
+<td align="left">Arabic</td>
 <td align="left">ar-XA</td>
 <td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">ar-XA-Wavenet-C</td>
-<td align="left">NA</td>
-<td align="left">ar-XA</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">ar-XA-Standard-B</td>
-<td align="left">NA</td>
-<td align="left">ar-XA</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">ar-XA-Standard-A</td>
-<td align="left">NA</td>
+<td align="left">ar-XA-Wavenet-A</td>
+<td align="left">Arabic</td>
 <td align="left">ar-XA</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
 <td align="left">ar-XA-Standard-C</td>
-<td align="left">NA</td>
+<td align="left">Arabic</td>
 <td align="left">ar-XA</td>
 <td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
+<td align="left">ar-XA-Standard-D</td>
+<td align="left">Arabic</td>
+<td align="left">ar-XA</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
+<td align="left">cmn-CN-Wavenet-C</td>
+<td align="left">NA</td>
+<td align="left">cmn-CN</td>
+<td align="left">MALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="odd">
+<td align="left">cmn-CN-Wavenet-D</td>
+<td align="left">NA</td>
+<td align="left">cmn-CN</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
+<td align="left">cmn-CN-Wavenet-A</td>
+<td align="left">NA</td>
+<td align="left">cmn-CN</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="odd">
+<td align="left">cmn-CN-Wavenet-B</td>
+<td align="left">NA</td>
+<td align="left">cmn-CN</td>
+<td align="left">MALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
+<td align="left">cmn-CN-Standard-B</td>
+<td align="left">NA</td>
+<td align="left">cmn-CN</td>
+<td align="left">MALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="odd">
+<td align="left">cmn-CN-Standard-A</td>
+<td align="left">NA</td>
+<td align="left">cmn-CN</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
+<td align="left">cmn-CN-Standard-C</td>
+<td align="left">NA</td>
+<td align="left">cmn-CN</td>
+<td align="left">MALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="odd">
+<td align="left">cmn-CN-Standard-D</td>
+<td align="left">NA</td>
+<td align="left">cmn-CN</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
+<td align="left">cmn-TW-Standard-C-Alpha</td>
+<td align="left">NA</td>
+<td align="left">cmn-TW</td>
+<td align="left">MALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="odd">
+<td align="left">cmn-TW-Wavenet-C-Alpha</td>
+<td align="left">NA</td>
+<td align="left">cmn-TW</td>
+<td align="left">MALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
+<td align="left">cmn-TW-Wavenet-A-Alpha</td>
+<td align="left">NA</td>
+<td align="left">cmn-TW</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="odd">
+<td align="left">cmn-TW-Wavenet-B-Alpha</td>
+<td align="left">NA</td>
+<td align="left">cmn-TW</td>
+<td align="left">MALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
+<td align="left">cmn-TW-Standard-B-Alpha</td>
+<td align="left">NA</td>
+<td align="left">cmn-TW</td>
+<td align="left">MALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="odd">
+<td align="left">cmn-TW-Standard-A-Alpha</td>
+<td align="left">NA</td>
+<td align="left">cmn-TW</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
 <td align="left">cs-CZ-Standard-A</td>
 <td align="left">Czech</td>
 <td align="left">cs-CZ</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">cs-CZ-Wavenet-A</td>
 <td align="left">Czech</td>
 <td align="left">cs-CZ</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">da-DK-Standard-A</td>
-<td align="left">Danish</td>
-<td align="left">da-DK</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
@@ -1189,21 +1307,21 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">de-DE-Wavenet-B</td>
-<td align="left">German (Germany)</td>
-<td align="left">de-DE</td>
-<td align="left">MALE</td>
+<td align="left">da-DK-Standard-A</td>
+<td align="left">Danish</td>
+<td align="left">da-DK</td>
+<td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">de-DE-Wavenet-B</td>
+<td align="left">de-DE-Wavenet-D</td>
 <td align="left">German (Germany)</td>
 <td align="left">de-DE</td>
 <td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">de-DE-Wavenet-B</td>
+<td align="left">de-DE-Wavenet-E</td>
 <td align="left">German (Germany)</td>
 <td align="left">de-DE</td>
 <td align="left">MALE</td>
@@ -1217,66 +1335,10 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">de-DE-Wavenet-C</td>
-<td align="left">German (Germany)</td>
-<td align="left">de-DE</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">de-DE-Wavenet-C</td>
-<td align="left">German (Germany)</td>
-<td align="left">de-DE</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">de-DE-Standard-B</td>
+<td align="left">de-DE-Standard-E</td>
 <td align="left">German (Germany)</td>
 <td align="left">de-DE</td>
 <td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">de-DE-Standard-B</td>
-<td align="left">German (Germany)</td>
-<td align="left">de-DE</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">de-DE-Standard-B</td>
-<td align="left">German (Germany)</td>
-<td align="left">de-DE</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">de-DE-Wavenet-D</td>
-<td align="left">German (Germany)</td>
-<td align="left">de-DE</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">de-DE-Wavenet-D</td>
-<td align="left">German (Germany)</td>
-<td align="left">de-DE</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">de-DE-Wavenet-D</td>
-<td align="left">German (Germany)</td>
-<td align="left">de-DE</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">de-DE-Wavenet-A</td>
-<td align="left">German (Germany)</td>
-<td align="left">de-DE</td>
-<td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
@@ -1287,37 +1349,23 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">de-DE-Wavenet-A</td>
+<td align="left">de-DE-Wavenet-B</td>
 <td align="left">German (Germany)</td>
 <td align="left">de-DE</td>
-<td align="left">FEMALE</td>
+<td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">de-DE-Standard-A</td>
+<td align="left">de-DE-Standard-B</td>
 <td align="left">German (Germany)</td>
 <td align="left">de-DE</td>
-<td align="left">FEMALE</td>
+<td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
 <td align="left">de-DE-Standard-A</td>
 <td align="left">German (Germany)</td>
 <td align="left">de-DE</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">de-DE-Standard-A</td>
-<td align="left">German (Germany)</td>
-<td align="left">de-DE</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">el-GR-Standard-A</td>
-<td align="left">Greek</td>
-<td align="left">el-GR</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
@@ -1329,70 +1377,14 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">en-AU-Wavenet-D</td>
-<td align="left">English (Australia)</td>
-<td align="left">en-AU</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-AU-Wavenet-D</td>
-<td align="left">English (Australia)</td>
-<td align="left">en-AU</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-AU-Standard-C</td>
-<td align="left">English (Australia)</td>
-<td align="left">en-AU</td>
+<td align="left">el-GR-Standard-A</td>
+<td align="left">Greek</td>
+<td align="left">el-GR</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
 <td align="left">en-AU-Standard-C</td>
-<td align="left">English (Australia)</td>
-<td align="left">en-AU</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-AU-Standard-D</td>
-<td align="left">English (Australia)</td>
-<td align="left">en-AU</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-AU-Standard-D</td>
-<td align="left">English (Australia)</td>
-<td align="left">en-AU</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-AU-Wavenet-B</td>
-<td align="left">English (Australia)</td>
-<td align="left">en-AU</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-AU-Wavenet-B</td>
-<td align="left">English (Australia)</td>
-<td align="left">en-AU</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-AU-Standard-A</td>
-<td align="left">English (Australia)</td>
-<td align="left">en-AU</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-AU-Standard-A</td>
 <td align="left">English (Australia)</td>
 <td align="left">en-AU</td>
 <td align="left">FEMALE</td>
@@ -1406,24 +1398,24 @@
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">en-AU-Wavenet-C</td>
+<td align="left">en-AU-Standard-A</td>
 <td align="left">English (Australia)</td>
 <td align="left">en-AU</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">en-AU-Wavenet-A</td>
+<td align="left">en-AU-Standard-D</td>
 <td align="left">English (Australia)</td>
 <td align="left">en-AU</td>
-<td align="left">FEMALE</td>
+<td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">en-AU-Wavenet-A</td>
+<td align="left">en-AU-Wavenet-B</td>
 <td align="left">English (Australia)</td>
 <td align="left">en-AU</td>
-<td align="left">FEMALE</td>
+<td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
@@ -1434,59 +1426,17 @@
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">en-AU-Standard-B</td>
+<td align="left">en-AU-Wavenet-D</td>
 <td align="left">English (Australia)</td>
 <td align="left">en-AU</td>
 <td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">en-GB-Wavenet-C</td>
-<td align="left">English (UK)</td>
-<td align="left">en-GB</td>
+<td align="left">en-AU-Wavenet-A</td>
+<td align="left">English (Australia)</td>
+<td align="left">en-AU</td>
 <td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-GB-Wavenet-C</td>
-<td align="left">English (UK)</td>
-<td align="left">en-GB</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-GB-Wavenet-C</td>
-<td align="left">English (UK)</td>
-<td align="left">en-GB</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-GB-Standard-C</td>
-<td align="left">English (UK)</td>
-<td align="left">en-GB</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-GB-Standard-C</td>
-<td align="left">English (UK)</td>
-<td align="left">en-GB</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-GB-Standard-C</td>
-<td align="left">English (UK)</td>
-<td align="left">en-GB</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-GB-Standard-D</td>
-<td align="left">English (UK)</td>
-<td align="left">en-GB</td>
-<td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
@@ -1497,24 +1447,24 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">en-GB-Standard-D</td>
+<td align="left">en-GB-Standard-C</td>
 <td align="left">English (UK)</td>
 <td align="left">en-GB</td>
-<td align="left">MALE</td>
+<td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">en-GB-Standard-A</td>
+<td align="left">en-GB-Wavenet-A</td>
 <td align="left">English (UK)</td>
 <td align="left">en-GB</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">en-GB-Standard-A</td>
+<td align="left">en-GB-Wavenet-D</td>
 <td align="left">English (UK)</td>
 <td align="left">en-GB</td>
-<td align="left">FEMALE</td>
+<td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
@@ -1532,38 +1482,10 @@
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">en-GB-Standard-B</td>
+<td align="left">en-GB-Wavenet-C</td>
 <td align="left">English (UK)</td>
 <td align="left">en-GB</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-GB-Standard-B</td>
-<td align="left">English (UK)</td>
-<td align="left">en-GB</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-GB-Wavenet-D</td>
-<td align="left">English (UK)</td>
-<td align="left">en-GB</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-GB-Wavenet-D</td>
-<td align="left">English (UK)</td>
-<td align="left">en-GB</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-GB-Wavenet-D</td>
-<td align="left">English (UK)</td>
-<td align="left">en-GB</td>
-<td align="left">MALE</td>
+<td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
@@ -1574,49 +1496,21 @@
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">en-GB-Wavenet-B</td>
-<td align="left">English (UK)</td>
-<td align="left">en-GB</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-GB-Wavenet-B</td>
-<td align="left">English (UK)</td>
-<td align="left">en-GB</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-GB-Wavenet-A</td>
-<td align="left">English (UK)</td>
-<td align="left">en-GB</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-GB-Wavenet-A</td>
-<td align="left">English (UK)</td>
-<td align="left">en-GB</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-GB-Wavenet-A</td>
-<td align="left">English (UK)</td>
-<td align="left">en-GB</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-IN-Standard-C</td>
+<td align="left">en-IN-Wavenet-C</td>
 <td align="left">English (India)</td>
 <td align="left">en-IN</td>
 <td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
+<tr class="odd">
+<td align="left">en-IN-Wavenet-A</td>
+<td align="left">English (India)</td>
+<td align="left">en-IN</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
 <tr class="even">
-<td align="left">en-IN-Standard-C</td>
+<td align="left">en-IN-Wavenet-B</td>
 <td align="left">English (India)</td>
 <td align="left">en-IN</td>
 <td align="left">MALE</td>
@@ -1630,63 +1524,7 @@
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">en-IN-Wavenet-A</td>
-<td align="left">English (India)</td>
-<td align="left">en-IN</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-IN-Wavenet-A</td>
-<td align="left">English (India)</td>
-<td align="left">en-IN</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-IN-Wavenet-A</td>
-<td align="left">English (India)</td>
-<td align="left">en-IN</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
 <td align="left">en-IN-Standard-B</td>
-<td align="left">English (India)</td>
-<td align="left">en-IN</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-IN-Standard-B</td>
-<td align="left">English (India)</td>
-<td align="left">en-IN</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-IN-Standard-B</td>
-<td align="left">English (India)</td>
-<td align="left">en-IN</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-IN-Wavenet-B</td>
-<td align="left">English (India)</td>
-<td align="left">en-IN</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-IN-Wavenet-B</td>
-<td align="left">English (India)</td>
-<td align="left">en-IN</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-IN-Wavenet-B</td>
 <td align="left">English (India)</td>
 <td align="left">en-IN</td>
 <td align="left">MALE</td>
@@ -1700,105 +1538,7 @@
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">en-IN-Standard-A</td>
-<td align="left">English (India)</td>
-<td align="left">en-IN</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-IN-Standard-A</td>
-<td align="left">English (India)</td>
-<td align="left">en-IN</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-IN-Wavenet-C</td>
-<td align="left">English (India)</td>
-<td align="left">en-IN</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-IN-Wavenet-C</td>
-<td align="left">English (India)</td>
-<td align="left">en-IN</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-IN-Wavenet-C</td>
-<td align="left">English (India)</td>
-<td align="left">en-IN</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-US-Wavenet-B</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-US-Wavenet-B</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-US-Wavenet-B</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-US-Wavenet-B</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-US-Wavenet-B</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-US-Wavenet-C</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-US-Wavenet-C</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-US-Wavenet-C</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-US-Wavenet-C</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-US-Wavenet-C</td>
+<td align="left">en-US-Standard-C</td>
 <td align="left">English (US)</td>
 <td align="left">en-US</td>
 <td align="left">FEMALE</td>
@@ -1812,175 +1552,7 @@
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">en-US-Wavenet-D</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-US-Wavenet-D</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-US-Wavenet-D</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-US-Wavenet-D</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-US-Standard-C</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-US-Standard-C</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-US-Standard-C</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-US-Standard-C</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-US-Standard-C</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-US-Standard-D</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-US-Standard-D</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-US-Standard-D</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-US-Standard-D</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-US-Standard-D</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-US-Wavenet-E</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-US-Wavenet-E</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-US-Wavenet-E</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-US-Wavenet-E</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-US-Wavenet-E</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-US-Standard-E</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-US-Standard-E</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-US-Standard-E</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-US-Standard-E</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-US-Standard-E</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-US-Wavenet-A</td>
+<td align="left">en-US-Standard-B</td>
 <td align="left">English (US)</td>
 <td align="left">en-US</td>
 <td align="left">MALE</td>
@@ -1994,66 +1566,24 @@
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">en-US-Wavenet-A</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-US-Wavenet-A</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-US-Wavenet-A</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-US-Standard-B</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-US-Standard-B</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-US-Standard-B</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-US-Standard-B</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">en-US-Standard-B</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-US-Wavenet-F</td>
+<td align="left">en-US-Wavenet-C</td>
 <td align="left">English (US)</td>
 <td align="left">en-US</td>
 <td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="odd">
+<td align="left">en-US-Wavenet-E</td>
+<td align="left">English (US)</td>
+<td align="left">en-US</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
+<td align="left">en-US-Standard-D</td>
+<td align="left">English (US)</td>
+<td align="left">en-US</td>
+<td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
@@ -2064,30 +1594,16 @@
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">en-US-Wavenet-F</td>
+<td align="left">en-US-Wavenet-B</td>
 <td align="left">English (US)</td>
 <td align="left">en-US</td>
-<td align="left">FEMALE</td>
+<td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">en-US-Wavenet-F</td>
+<td align="left">en-US-Standard-E</td>
 <td align="left">English (US)</td>
 <td align="left">en-US</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">en-US-Wavenet-F</td>
-<td align="left">English (US)</td>
-<td align="left">en-US</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">es-ES-Standard-A</td>
-<td align="left">Spanish (Spain)</td>
-<td align="left">es-ES</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
@@ -2099,86 +1615,30 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">es-ES-Standard-A</td>
-<td align="left">Spanish (Spain)</td>
-<td align="left">es-ES</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
 <td align="left">fi-FI-Standard-A</td>
 <td align="left">Finnish</td>
 <td align="left">fi-FI</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">fi-FI-Wavenet-A</td>
 <td align="left">Finnish</td>
 <td align="left">fi-FI</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
-<tr class="even">
-<td align="left">fil-PH-Standard-A</td>
-<td align="left">NA</td>
-<td align="left">fil-PH</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
 <tr class="odd">
 <td align="left">fil-PH-Wavenet-A</td>
-<td align="left">NA</td>
+<td align="left">Filipino (Philippines)</td>
 <td align="left">fil-PH</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">fr-CA-Standard-A</td>
-<td align="left">French (Canada)</td>
-<td align="left">fr-CA</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">fr-CA-Standard-A</td>
-<td align="left">French (Canada)</td>
-<td align="left">fr-CA</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">fr-CA-Wavenet-C</td>
-<td align="left">French (Canada)</td>
-<td align="left">fr-CA</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">fr-CA-Wavenet-C</td>
-<td align="left">French (Canada)</td>
-<td align="left">fr-CA</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">fr-CA-Wavenet-D</td>
-<td align="left">French (Canada)</td>
-<td align="left">fr-CA</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">fr-CA-Wavenet-D</td>
-<td align="left">French (Canada)</td>
-<td align="left">fr-CA</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">fr-CA-Wavenet-A</td>
-<td align="left">French (Canada)</td>
-<td align="left">fr-CA</td>
+<td align="left">fil-PH-Standard-A</td>
+<td align="left">Filipino (Philippines)</td>
+<td align="left">fil-PH</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
@@ -2190,38 +1650,10 @@
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">fr-CA-Standard-D</td>
+<td align="left">fr-CA-Wavenet-D</td>
 <td align="left">French (Canada)</td>
 <td align="left">fr-CA</td>
 <td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">fr-CA-Standard-D</td>
-<td align="left">French (Canada)</td>
-<td align="left">fr-CA</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">fr-CA-Standard-B</td>
-<td align="left">French (Canada)</td>
-<td align="left">fr-CA</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">fr-CA-Standard-B</td>
-<td align="left">French (Canada)</td>
-<td align="left">fr-CA</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">fr-CA-Standard-C</td>
-<td align="left">French (Canada)</td>
-<td align="left">fr-CA</td>
-<td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
@@ -2239,73 +1671,31 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">fr-CA-Wavenet-B</td>
+<td align="left">fr-CA-Standard-B</td>
 <td align="left">French (Canada)</td>
 <td align="left">fr-CA</td>
 <td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">fr-FR-Wavenet-D</td>
-<td align="left">French (France)</td>
-<td align="left">fr-FR</td>
+<td align="left">fr-CA-Wavenet-C</td>
+<td align="left">French (Canada)</td>
+<td align="left">fr-CA</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="odd">
+<td align="left">fr-CA-Standard-A</td>
+<td align="left">French (Canada)</td>
+<td align="left">fr-CA</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
+<td align="left">fr-CA-Standard-D</td>
+<td align="left">French (Canada)</td>
+<td align="left">fr-CA</td>
 <td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">fr-FR-Wavenet-D</td>
-<td align="left">French (France)</td>
-<td align="left">fr-FR</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">fr-FR-Wavenet-D</td>
-<td align="left">French (France)</td>
-<td align="left">fr-FR</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">fr-FR-Wavenet-A</td>
-<td align="left">French (France)</td>
-<td align="left">fr-FR</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">fr-FR-Wavenet-A</td>
-<td align="left">French (France)</td>
-<td align="left">fr-FR</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">fr-FR-Wavenet-A</td>
-<td align="left">French (France)</td>
-<td align="left">fr-FR</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">fr-FR-Standard-A</td>
-<td align="left">French (France)</td>
-<td align="left">fr-FR</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">fr-FR-Standard-A</td>
-<td align="left">French (France)</td>
-<td align="left">fr-FR</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">fr-FR-Standard-A</td>
-<td align="left">French (France)</td>
-<td align="left">fr-FR</td>
-<td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
@@ -2313,76 +1703,6 @@
 <td align="left">French (France)</td>
 <td align="left">fr-FR</td>
 <td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">fr-FR-Wavenet-C</td>
-<td align="left">French (France)</td>
-<td align="left">fr-FR</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">fr-FR-Wavenet-C</td>
-<td align="left">French (France)</td>
-<td align="left">fr-FR</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">fr-FR-Standard-D</td>
-<td align="left">French (France)</td>
-<td align="left">fr-FR</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">fr-FR-Standard-D</td>
-<td align="left">French (France)</td>
-<td align="left">fr-FR</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">fr-FR-Standard-D</td>
-<td align="left">French (France)</td>
-<td align="left">fr-FR</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">fr-FR-Standard-C</td>
-<td align="left">French (France)</td>
-<td align="left">fr-FR</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">fr-FR-Standard-C</td>
-<td align="left">French (France)</td>
-<td align="left">fr-FR</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">fr-FR-Standard-C</td>
-<td align="left">French (France)</td>
-<td align="left">fr-FR</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">fr-FR-Standard-B</td>
-<td align="left">French (France)</td>
-<td align="left">fr-FR</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">fr-FR-Standard-B</td>
-<td align="left">French (France)</td>
-<td align="left">fr-FR</td>
-<td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
@@ -2400,38 +1720,52 @@
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">fr-FR-Wavenet-B</td>
+<td align="left">fr-FR-Standard-E</td>
+<td align="left">French (France)</td>
+<td align="left">fr-FR</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="odd">
+<td align="left">fr-FR-Standard-D</td>
+<td align="left">French (France)</td>
+<td align="left">fr-FR</td>
+<td align="left">MALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
+<td align="left">fr-FR-Wavenet-E</td>
+<td align="left">French (France)</td>
+<td align="left">fr-FR</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="odd">
+<td align="left">fr-FR-Standard-A</td>
+<td align="left">French (France)</td>
+<td align="left">fr-FR</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
+<td align="left">fr-FR-Wavenet-D</td>
 <td align="left">French (France)</td>
 <td align="left">fr-FR</td>
 <td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">fr-FR-Wavenet-B</td>
+<td align="left">fr-FR-Wavenet-A</td>
 <td align="left">French (France)</td>
 <td align="left">fr-FR</td>
-<td align="left">MALE</td>
+<td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">hi-IN-Standard-C</td>
-<td align="left">Hindi (India)</td>
-<td align="left">hi-IN</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">hi-IN-Standard-C</td>
-<td align="left">Hindi (India)</td>
-<td align="left">hi-IN</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">hi-IN-Standard-C</td>
-<td align="left">Hindi (India)</td>
-<td align="left">hi-IN</td>
-<td align="left">MALE</td>
+<td align="left">fr-FR-Standard-C</td>
+<td align="left">French (France)</td>
+<td align="left">fr-FR</td>
+<td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
@@ -2442,49 +1776,7 @@
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">hi-IN-Wavenet-C</td>
-<td align="left">Hindi (India)</td>
-<td align="left">hi-IN</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">hi-IN-Wavenet-C</td>
-<td align="left">Hindi (India)</td>
-<td align="left">hi-IN</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">hi-IN-Wavenet-A</td>
-<td align="left">Hindi (India)</td>
-<td align="left">hi-IN</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">hi-IN-Wavenet-A</td>
-<td align="left">Hindi (India)</td>
-<td align="left">hi-IN</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">hi-IN-Wavenet-A</td>
-<td align="left">Hindi (India)</td>
-<td align="left">hi-IN</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">hi-IN-Standard-B</td>
-<td align="left">Hindi (India)</td>
-<td align="left">hi-IN</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">hi-IN-Standard-B</td>
+<td align="left">hi-IN-Standard-C</td>
 <td align="left">Hindi (India)</td>
 <td align="left">hi-IN</td>
 <td align="left">MALE</td>
@@ -2505,20 +1797,6 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">hi-IN-Wavenet-B</td>
-<td align="left">Hindi (India)</td>
-<td align="left">hi-IN</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">hi-IN-Wavenet-B</td>
-<td align="left">Hindi (India)</td>
-<td align="left">hi-IN</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
 <td align="left">hi-IN-Standard-A</td>
 <td align="left">Hindi (India)</td>
 <td align="left">hi-IN</td>
@@ -2526,45 +1804,31 @@
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">hi-IN-Standard-A</td>
+<td align="left">hi-IN-Wavenet-A</td>
 <td align="left">Hindi (India)</td>
 <td align="left">hi-IN</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">hi-IN-Standard-A</td>
-<td align="left">Hindi (India)</td>
-<td align="left">hi-IN</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
 <td align="left">hu-HU-Standard-A</td>
 <td align="left">Hungarian</td>
 <td align="left">hu-HU</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">hu-HU-Wavenet-A</td>
 <td align="left">Hungarian</td>
 <td align="left">hu-HU</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
-<tr class="even">
-<td align="left">id-ID-Standard-B</td>
+<tr class="odd">
+<td align="left">id-ID-Wavenet-B</td>
 <td align="left">Indonesian</td>
 <td align="left">id-ID</td>
 <td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">id-ID-Standard-A</td>
-<td align="left">Indonesian</td>
-<td align="left">id-ID</td>
-<td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
@@ -2575,6 +1839,20 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
+<td align="left">id-ID-Standard-B</td>
+<td align="left">Indonesian</td>
+<td align="left">id-ID</td>
+<td align="left">MALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
+<td align="left">id-ID-Standard-C</td>
+<td align="left">Indonesian</td>
+<td align="left">id-ID</td>
+<td align="left">MALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="odd">
 <td align="left">id-ID-Wavenet-C</td>
 <td align="left">Indonesian</td>
 <td align="left">id-ID</td>
@@ -2582,31 +1860,31 @@
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">id-ID-Wavenet-B</td>
+<td align="left">id-ID-Standard-A</td>
 <td align="left">Indonesian</td>
 <td align="left">id-ID</td>
-<td align="left">MALE</td>
+<td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">id-ID-Standard-C</td>
-<td align="left">Indonesian</td>
-<td align="left">id-ID</td>
+<td align="left">it-IT-Standard-C</td>
+<td align="left">Italian</td>
+<td align="left">it-IT</td>
 <td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">it-IT-Wavenet-A</td>
+<td align="left">it-IT-Wavenet-C</td>
 <td align="left">Italian</td>
 <td align="left">it-IT</td>
-<td align="left">FEMALE</td>
+<td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">it-IT-Wavenet-A</td>
+<td align="left">it-IT-Wavenet-D</td>
 <td align="left">Italian</td>
 <td align="left">it-IT</td>
-<td align="left">FEMALE</td>
+<td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
@@ -2617,44 +1895,30 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">it-IT-Standard-A</td>
+<td align="left">it-IT-Standard-D</td>
+<td align="left">Italian</td>
+<td align="left">it-IT</td>
+<td align="left">MALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
+<td align="left">it-IT-Wavenet-B</td>
+<td align="left">Italian</td>
+<td align="left">it-IT</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="odd">
+<td align="left">it-IT-Standard-B</td>
 <td align="left">Italian</td>
 <td align="left">it-IT</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">ja-JP-Wavenet-B</td>
-<td align="left">Japanese</td>
-<td align="left">ja-JP</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">ja-JP-Wavenet-B</td>
-<td align="left">Japanese</td>
-<td align="left">ja-JP</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">ja-JP-Wavenet-B</td>
-<td align="left">Japanese</td>
-<td align="left">ja-JP</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">ja-JP-Standard-B</td>
-<td align="left">Japanese</td>
-<td align="left">ja-JP</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">ja-JP-Standard-B</td>
-<td align="left">Japanese</td>
-<td align="left">ja-JP</td>
+<td align="left">it-IT-Wavenet-A</td>
+<td align="left">Italian</td>
+<td align="left">it-IT</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
@@ -2673,52 +1937,24 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">ja-JP-Standard-C</td>
+<td align="left">ja-JP-Wavenet-B</td>
 <td align="left">Japanese</td>
 <td align="left">ja-JP</td>
-<td align="left">MALE</td>
+<td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">ja-JP-Standard-C</td>
+<td align="left">ja-JP-Wavenet-C</td>
 <td align="left">Japanese</td>
 <td align="left">ja-JP</td>
 <td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">ja-JP-Standard-D</td>
+<td align="left">ja-JP-Wavenet-A</td>
 <td align="left">Japanese</td>
 <td align="left">ja-JP</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">ja-JP-Standard-D</td>
-<td align="left">Japanese</td>
-<td align="left">ja-JP</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">ja-JP-Standard-D</td>
-<td align="left">Japanese</td>
-<td align="left">ja-JP</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">ja-JP-Wavenet-D</td>
-<td align="left">Japanese</td>
-<td align="left">ja-JP</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">ja-JP-Wavenet-D</td>
-<td align="left">Japanese</td>
-<td align="left">ja-JP</td>
-<td align="left">MALE</td>
+<td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
@@ -2736,66 +1972,10 @@
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">ja-JP-Standard-A</td>
-<td align="left">Japanese</td>
-<td align="left">ja-JP</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">ja-JP-Standard-A</td>
-<td align="left">Japanese</td>
-<td align="left">ja-JP</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">ja-JP-Wavenet-A</td>
-<td align="left">Japanese</td>
-<td align="left">ja-JP</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">ja-JP-Wavenet-A</td>
-<td align="left">Japanese</td>
-<td align="left">ja-JP</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">ja-JP-Wavenet-A</td>
-<td align="left">Japanese</td>
-<td align="left">ja-JP</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">ja-JP-Wavenet-C</td>
+<td align="left">ja-JP-Standard-D</td>
 <td align="left">Japanese</td>
 <td align="left">ja-JP</td>
 <td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">ja-JP-Wavenet-C</td>
-<td align="left">Japanese</td>
-<td align="left">ja-JP</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">ja-JP-Wavenet-C</td>
-<td align="left">Japanese</td>
-<td align="left">ja-JP</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">ko-KR-Standard-B</td>
-<td align="left">Korean</td>
-<td align="left">ko-KR</td>
-<td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
@@ -2813,20 +1993,6 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">ko-KR-Standard-A</td>
-<td align="left">Korean</td>
-<td align="left">ko-KR</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">ko-KR-Wavenet-D</td>
-<td align="left">Korean</td>
-<td align="left">ko-KR</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
 <td align="left">ko-KR-Standard-C</td>
 <td align="left">Korean</td>
 <td align="left">ko-KR</td>
@@ -2841,17 +2007,31 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">ko-KR-Wavenet-C</td>
+<td align="left">ko-KR-Wavenet-D</td>
 <td align="left">Korean</td>
 <td align="left">ko-KR</td>
 <td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">nb-NO-Wavenet-B</td>
-<td align="left">Norwegian</td>
-<td align="left">nb-NO</td>
+<td align="left">ko-KR-Wavenet-C</td>
+<td align="left">Korean</td>
+<td align="left">ko-KR</td>
 <td align="left">MALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="odd">
+<td align="left">ko-KR-Standard-B</td>
+<td align="left">Korean</td>
+<td align="left">ko-KR</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
+<td align="left">ko-KR-Standard-A</td>
+<td align="left">Korean</td>
+<td align="left">ko-KR</td>
+<td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
@@ -2869,7 +2049,35 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
+<td align="left">nb-no-Standard-E</td>
+<td align="left">Norwegian</td>
+<td align="left">nb-NO</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
 <td align="left">nb-NO-Standard-A</td>
+<td align="left">Norwegian</td>
+<td align="left">nb-NO</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="odd">
+<td align="left">nb-NO-Standard-D</td>
+<td align="left">Norwegian</td>
+<td align="left">nb-NO</td>
+<td align="left">MALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
+<td align="left">nb-NO-Wavenet-C</td>
+<td align="left">Norwegian</td>
+<td align="left">nb-NO</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="odd">
+<td align="left">nb-NO-Standard-C</td>
 <td align="left">Norwegian</td>
 <td align="left">nb-NO</td>
 <td align="left">FEMALE</td>
@@ -2883,24 +2091,10 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">nb-NO-Wavenet-C</td>
+<td align="left">nb-NO-Wavenet-B</td>
 <td align="left">Norwegian</td>
 <td align="left">nb-NO</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">nb-NO-Standard-C</td>
-<td align="left">Norwegian</td>
-<td align="left">nb-NO</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">nb-no-Standard-E</td>
-<td align="left">Norwegian</td>
-<td align="left">nb-NO</td>
-<td align="left">FEMALE</td>
+<td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
@@ -2911,9 +2105,23 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">nb-NO-Standard-D</td>
-<td align="left">Norwegian</td>
-<td align="left">nb-NO</td>
+<td align="left">nl-NL-Wavenet-E</td>
+<td align="left">Dutch</td>
+<td align="left">nl-NL</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
+<td align="left">nl-NL-Wavenet-D</td>
+<td align="left">Dutch</td>
+<td align="left">nl-NL</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="odd">
+<td align="left">nl-NL-Standard-C</td>
+<td align="left">Dutch</td>
+<td align="left">nl-NL</td>
 <td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
@@ -2932,7 +2140,7 @@
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">nl-NL-Standard-C</td>
+<td align="left">nl-NL-Standard-B</td>
 <td align="left">Dutch</td>
 <td align="left">nl-NL</td>
 <td align="left">MALE</td>
@@ -2953,10 +2161,10 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">nl-NL-Standard-B</td>
+<td align="left">nl-NL-Wavenet-A</td>
 <td align="left">Dutch</td>
 <td align="left">nl-NL</td>
-<td align="left">MALE</td>
+<td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
@@ -2967,38 +2175,10 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">nl-NL-Wavenet-D</td>
-<td align="left">Dutch</td>
-<td align="left">nl-NL</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">nl-NL-Wavenet-A</td>
-<td align="left">Dutch</td>
-<td align="left">nl-NL</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">nl-NL-Wavenet-E</td>
-<td align="left">Dutch</td>
-<td align="left">nl-NL</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">pl-PL-Standard-B</td>
+<td align="left">pl-PL-Standard-C</td>
 <td align="left">Polish</td>
 <td align="left">pl-PL</td>
 <td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">pl-PL-Wavenet-D</td>
-<td align="left">Polish</td>
-<td align="left">pl-PL</td>
-<td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
@@ -3010,6 +2190,34 @@
 </tr>
 <tr class="odd">
 <td align="left">pl-PL-Wavenet-B</td>
+<td align="left">Polish</td>
+<td align="left">pl-PL</td>
+<td align="left">MALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
+<td align="left">pl-PL-Wavenet-C</td>
+<td align="left">Polish</td>
+<td align="left">pl-PL</td>
+<td align="left">MALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="odd">
+<td align="left">pl-PL-Standard-D</td>
+<td align="left">Polish</td>
+<td align="left">pl-PL</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
+<td align="left">pl-PL-Standard-A</td>
+<td align="left">Polish</td>
+<td align="left">pl-PL</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="odd">
+<td align="left">pl-PL-Standard-B</td>
 <td align="left">Polish</td>
 <td align="left">pl-PL</td>
 <td align="left">MALE</td>
@@ -3030,51 +2238,9 @@
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">pl-PL-Standard-A</td>
+<td align="left">pl-PL-Wavenet-D</td>
 <td align="left">Polish</td>
 <td align="left">pl-PL</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">pl-PL-Wavenet-C</td>
-<td align="left">Polish</td>
-<td align="left">pl-PL</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">pl-PL-Standard-D</td>
-<td align="left">Polish</td>
-<td align="left">pl-PL</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">pl-PL-Standard-C</td>
-<td align="left">Polish</td>
-<td align="left">pl-PL</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">pt-BR-Wavenet-A</td>
-<td align="left">Portuguese (Brazil)</td>
-<td align="left">pt-BR</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">pt-BR-Wavenet-A</td>
-<td align="left">Portuguese (Brazil)</td>
-<td align="left">pt-BR</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">pt-BR-Standard-A</td>
-<td align="left">Portuguese (Brazil)</td>
-<td align="left">pt-BR</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
@@ -3086,23 +2252,9 @@
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">pt-PT-Standard-D</td>
-<td align="left">Portuguese (Portugal)</td>
-<td align="left">pt-PT</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">pt-PT-Wavenet-B</td>
-<td align="left">Portuguese (Portugal)</td>
-<td align="left">pt-PT</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">pt-PT-Wavenet-A</td>
-<td align="left">Portuguese (Portugal)</td>
-<td align="left">pt-PT</td>
+<td align="left">pt-BR-Wavenet-A</td>
+<td align="left">Portuguese (Brazil)</td>
+<td align="left">pt-BR</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
@@ -3114,20 +2266,6 @@
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">pt-PT-Standard-B</td>
-<td align="left">Portuguese (Portugal)</td>
-<td align="left">pt-PT</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">pt-PT-Standard-C</td>
-<td align="left">Portuguese (Portugal)</td>
-<td align="left">pt-PT</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
 <td align="left">pt-PT-Wavenet-D</td>
 <td align="left">Portuguese (Portugal)</td>
 <td align="left">pt-PT</td>
@@ -3135,70 +2273,56 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">pt-PT-Wavenet-C</td>
+<td align="left">pt-PT-Standard-B</td>
 <td align="left">Portuguese (Portugal)</td>
 <td align="left">pt-PT</td>
 <td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">ru-RU-Wavenet-C</td>
+<td align="left">pt-PT-Wavenet-C</td>
+<td align="left">Portuguese (Portugal)</td>
+<td align="left">pt-PT</td>
+<td align="left">MALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="odd">
+<td align="left">pt-PT-Wavenet-A</td>
+<td align="left">Portuguese (Portugal)</td>
+<td align="left">pt-PT</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
+<td align="left">pt-PT-Wavenet-B</td>
+<td align="left">Portuguese (Portugal)</td>
+<td align="left">pt-PT</td>
+<td align="left">MALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="odd">
+<td align="left">pt-PT-Standard-D</td>
+<td align="left">Portuguese (Portugal)</td>
+<td align="left">pt-PT</td>
+<td align="left">FEMALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
+<td align="left">pt-PT-Standard-C</td>
+<td align="left">Portuguese (Portugal)</td>
+<td align="left">pt-PT</td>
+<td align="left">MALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="odd">
+<td align="left">ru-RU-Standard-C</td>
 <td align="left">Russian</td>
 <td align="left">ru-RU</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
-<tr class="odd">
-<td align="left">ru-RU-Wavenet-C</td>
-<td align="left">Russian</td>
-<td align="left">ru-RU</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
 <tr class="even">
-<td align="left">ru-RU-Wavenet-C</td>
-<td align="left">Russian</td>
-<td align="left">ru-RU</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">ru-RU-Wavenet-B</td>
-<td align="left">Russian</td>
-<td align="left">ru-RU</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">ru-RU-Wavenet-B</td>
-<td align="left">Russian</td>
-<td align="left">ru-RU</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">ru-RU-Wavenet-B</td>
-<td align="left">Russian</td>
-<td align="left">ru-RU</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">ru-RU-Standard-D</td>
-<td align="left">Russian</td>
-<td align="left">ru-RU</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">ru-RU-Standard-D</td>
-<td align="left">Russian</td>
-<td align="left">ru-RU</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">ru-RU-Standard-D</td>
+<td align="left">ru-RU-Wavenet-D</td>
 <td align="left">Russian</td>
 <td align="left">ru-RU</td>
 <td align="left">MALE</td>
@@ -3212,42 +2336,28 @@
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">ru-RU-Standard-B</td>
+<td align="left">ru-RU-Standard-D</td>
 <td align="left">Russian</td>
 <td align="left">ru-RU</td>
 <td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">ru-RU-Standard-B</td>
+<td align="left">ru-RU-Wavenet-B</td>
 <td align="left">Russian</td>
 <td align="left">ru-RU</td>
 <td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">ru-RU-Standard-C</td>
+<td align="left">ru-RU-Wavenet-C</td>
 <td align="left">Russian</td>
 <td align="left">ru-RU</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">ru-RU-Standard-C</td>
-<td align="left">Russian</td>
-<td align="left">ru-RU</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">ru-RU-Standard-C</td>
-<td align="left">Russian</td>
-<td align="left">ru-RU</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">ru-RU-Wavenet-A</td>
+<td align="left">ru-RU-Wavenet-E</td>
 <td align="left">Russian</td>
 <td align="left">ru-RU</td>
 <td align="left">FEMALE</td>
@@ -3261,7 +2371,7 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">ru-RU-Wavenet-A</td>
+<td align="left">ru-RU-Standard-E</td>
 <td align="left">Russian</td>
 <td align="left">ru-RU</td>
 <td align="left">FEMALE</td>
@@ -3275,58 +2385,16 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">ru-RU-Standard-A</td>
-<td align="left">Russian</td>
-<td align="left">ru-RU</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">ru-RU-Standard-A</td>
-<td align="left">Russian</td>
-<td align="left">ru-RU</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">ru-RU-Wavenet-D</td>
-<td align="left">Russian</td>
-<td align="left">ru-RU</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">ru-RU-Wavenet-D</td>
-<td align="left">Russian</td>
-<td align="left">ru-RU</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">ru-RU-Wavenet-D</td>
-<td align="left">Russian</td>
-<td align="left">ru-RU</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
 <td align="left">sk-SK-Standard-A</td>
 <td align="left">Slovak</td>
 <td align="left">sk-SK</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">sk-SK-Wavenet-A</td>
 <td align="left">Slovak</td>
 <td align="left">sk-SK</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">sv-SE-Wavenet-A</td>
-<td align="left">Swedish</td>
-<td align="left">sv-SE</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
@@ -3338,23 +2406,9 @@
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">tr-TR-Wavenet-B</td>
-<td align="left">Turkish</td>
-<td align="left">tr-TR</td>
-<td align="left">MALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="odd">
-<td align="left">tr-TR-Standard-A</td>
-<td align="left">Turkish</td>
-<td align="left">tr-TR</td>
-<td align="left">FEMALE</td>
-<td align="left">google</td>
-</tr>
-<tr class="even">
-<td align="left">tr-TR-Wavenet-D</td>
-<td align="left">Turkish</td>
-<td align="left">tr-TR</td>
+<td align="left">sv-SE-Wavenet-A</td>
+<td align="left">Swedish</td>
+<td align="left">sv-SE</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
@@ -3373,7 +2427,7 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">tr-TR-Wavenet-C</td>
+<td align="left">tr-TR-Standard-A</td>
 <td align="left">Turkish</td>
 <td align="left">tr-TR</td>
 <td align="left">FEMALE</td>
@@ -3387,10 +2441,10 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">tr-TR-Wavenet-E</td>
+<td align="left">tr-TR-Standard-C</td>
 <td align="left">Turkish</td>
 <td align="left">tr-TR</td>
-<td align="left">MALE</td>
+<td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
@@ -3401,38 +2455,52 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">tr-TR-Standard-C</td>
+<td align="left">tr-TR-Wavenet-C</td>
 <td align="left">Turkish</td>
 <td align="left">tr-TR</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">uk-UA-Wavenet-A</td>
-<td align="left">NA</td>
-<td align="left">uk-UA</td>
+<td align="left">tr-TR-Wavenet-E</td>
+<td align="left">Turkish</td>
+<td align="left">tr-TR</td>
+<td align="left">MALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="odd">
+<td align="left">tr-TR-Wavenet-B</td>
+<td align="left">Turkish</td>
+<td align="left">tr-TR</td>
+<td align="left">MALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
+<td align="left">tr-TR-Wavenet-D</td>
+<td align="left">Turkish</td>
+<td align="left">tr-TR</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">uk-UA-Standard-A</td>
-<td align="left">NA</td>
+<td align="left">uk-UA-Wavenet-A</td>
+<td align="left">Ukrainian (Ukraine)</td>
 <td align="left">uk-UA</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">vi-VN-Wavenet-A</td>
-<td align="left">Vietnamese</td>
-<td align="left">vi-VN</td>
+<td align="left">uk-UA-Standard-A</td>
+<td align="left">Ukrainian (Ukraine)</td>
+<td align="left">uk-UA</td>
 <td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">vi-VN-Standard-D</td>
+<td align="left">vi-VN-Standard-A</td>
 <td align="left">Vietnamese</td>
 <td align="left">vi-VN</td>
-<td align="left">MALE</td>
+<td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
@@ -3443,10 +2511,10 @@
 <td align="left">google</td>
 </tr>
 <tr class="odd">
-<td align="left">vi-VN-Standard-B</td>
+<td align="left">vi-VN-Wavenet-A</td>
 <td align="left">Vietnamese</td>
 <td align="left">vi-VN</td>
-<td align="left">MALE</td>
+<td align="left">FEMALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="even">
@@ -3464,13 +2532,20 @@
 <td align="left">google</td>
 </tr>
 <tr class="even">
-<td align="left">vi-VN-Standard-A</td>
+<td align="left">vi-VN-Standard-D</td>
 <td align="left">Vietnamese</td>
 <td align="left">vi-VN</td>
-<td align="left">FEMALE</td>
+<td align="left">MALE</td>
 <td align="left">google</td>
 </tr>
 <tr class="odd">
+<td align="left">vi-VN-Standard-B</td>
+<td align="left">Vietnamese</td>
+<td align="left">vi-VN</td>
+<td align="left">MALE</td>
+<td align="left">google</td>
+</tr>
+<tr class="even">
 <td align="left">vi-VN-Standard-C</td>
 <td align="left">Vietnamese</td>
 <td align="left">vi-VN</td>
@@ -3480,28 +2555,29 @@
 </tbody>
 </table>
 <p>The output of <code>tts</code> is a <code>data.frame</code>/<code>tibble</code> that contains <code>Wave</code> elements with audio of the rendered speech.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="cf">if</span> (<span class="kw"><a href="../reference/tts_auth.html">tts_auth</a></span>(<span class="st">"google"</span>)) {</a>
-<a class="sourceLine" id="cb5-2" title="2">  df =<span class="st"> </span><span class="kw"><a href="../reference/tts.html">tts</a></span>(<span class="st">"hey what's up?"</span>, <span class="dt">service =</span> <span class="st">"google"</span>)</a>
-<a class="sourceLine" id="cb5-3" title="3">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(df)</a>
-<a class="sourceLine" id="cb5-4" title="4">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(df<span class="op">$</span>wav[[<span class="dv">1</span>]])</a>
-<a class="sourceLine" id="cb5-5" title="5">}</a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="co">#&gt; 2019-06-24 16:21:34 -- Calling text-to-speech API:hey what's up?</span></a>
-<a class="sourceLine" id="cb5-7" title="7"><span class="co">#&gt; # A tibble: 1 x 7</span></a>
-<a class="sourceLine" id="cb5-8" title="8"><span class="co">#&gt;   index original_text  text    wav   file                audio_type service</span></a>
-<a class="sourceLine" id="cb5-9" title="9"><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;   &lt;lis&gt; &lt;chr&gt;               &lt;chr&gt;      &lt;chr&gt;  </span></a>
-<a class="sourceLine" id="cb5-10" title="10"><span class="co">#&gt; 1     1 hey what's up? hey wh… &lt;Wav… /var/folders/1s/wr… mp3        google </span></a>
-<a class="sourceLine" id="cb5-11" title="11"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb5-12" title="12"><span class="co">#&gt; Wave Object</span></a>
-<a class="sourceLine" id="cb5-13" title="13"><span class="co">#&gt;  Number of Samples:      21312</span></a>
-<a class="sourceLine" id="cb5-14" title="14"><span class="co">#&gt;  Duration (seconds):     0.89</span></a>
-<a class="sourceLine" id="cb5-15" title="15"><span class="co">#&gt;  Samplingrate (Hertz):   24000</span></a>
-<a class="sourceLine" id="cb5-16" title="16"><span class="co">#&gt;  Channels (Mono/Stereo): Mono</span></a>
-<a class="sourceLine" id="cb5-17" title="17"><span class="co">#&gt;  PCM (integer format):   TRUE</span></a>
-<a class="sourceLine" id="cb5-18" title="18"><span class="co">#&gt;  Bit (8/16/24/32/64):    16</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="cf">if</span> (<span class="kw"><a href="../reference/tts_auth.html">tts_auth</a></span>(<span class="st">"google"</span>)) {</span>
+<span id="cb5-2"><a href="#cb5-2"></a>  df =<span class="st"> </span><span class="kw"><a href="../reference/tts.html">tts</a></span>(<span class="st">"hey what's up?"</span>, <span class="dt">service =</span> <span class="st">"google"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(df)</span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(df<span class="op">$</span>wav[[<span class="dv">1</span>]])</span>
+<span id="cb5-5"><a href="#cb5-5"></a>}</span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="co">#&gt; 2020-01-13 15:52:12 -- Calling text-to-speech API: hey what's up?</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co">#&gt; # A tibble: 1 x 7</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt;   index original_text  text    wav   file                     audio_type service</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;   &lt;lis&gt; &lt;chr&gt;                    &lt;chr&gt;      &lt;chr&gt;  </span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="co">#&gt; 1     1 hey what's up? hey wh… &lt;Wav… /var/folders/1s/wrtqcpx… mp3        google </span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="co">#&gt; </span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co">#&gt; Wave Object</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="co">#&gt;  Number of Samples:      22464</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="co">#&gt;  Duration (seconds):     0.94</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="co">#&gt;  Samplingrate (Hertz):   24000</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="co">#&gt;  Channels (Mono/Stereo): Mono</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a><span class="co">#&gt;  PCM (integer format):   TRUE</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a><span class="co">#&gt;  Bit (8/16/24/32/64):    16</span></span></code></pre></div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -3516,17 +2592,20 @@
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by John Muschelli.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>
