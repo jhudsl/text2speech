@@ -5,7 +5,10 @@
 #' argument `voice` for [aws.polly::get_synthesis], or
 #' or [mscstts::ms_synthesize()] or the
 #' `name` argument for [googleLanguageR::gl_talk()]
-#'
+#' @examples
+#' tts_default_voice("amazon")
+#' tts_default_voice("google")
+#' tts_default_voice("microsoft")
 tts_google = function(
   text,
   output_format = c("mp3", "wav"),

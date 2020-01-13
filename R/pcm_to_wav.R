@@ -6,6 +6,20 @@
 #' @param sample_rate Sampling rate for [tuneR::Wave]
 #' @return A filename of the output
 #' @export
+#' @examples
+#' fname = system.file("extdata", "pcm_file.wav", package = "text2speech")
+#' res = pcm_to_wav(fname)
+#' testthat::expect_error(tuneR::readWave(fname))
+#' testthat::expect_is(tuneR::readWave(res), "Wave")
+#'
+#' \dontrun{
+#' if (requireNamespace("aws.polly", quietly = TRUE)) {
+#' text = "hey, ho, let's go!"
+#' if (tts_amazon_auth()) {
+#'    res = tts_amazon(text, output_format = "wav")
+#' }
+#' }
+#' }
 pcm_to_wav = function(
   input,
   output = tempfile(fileext = ".wav"),

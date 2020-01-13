@@ -75,6 +75,9 @@ Text to Speech
 All functions have a  \verb{voice`` argument fro a full voice name that can be passed to the service, such as }voice` for \link[aws.polly:get_synthesis]{aws.polly::get_synthesis}
 }
 \examples{
+tts_default_voice("amazon")
+tts_default_voice("google")
+tts_default_voice("microsoft")
 
 if (requireNamespace("stringi", quietly = TRUE)) {
     set.seed(1)

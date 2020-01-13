@@ -26,3 +26,18 @@ A filename of the output
 \description{
 Convert PCM to Wav
 }
+\examples{
+fname = system.file("extdata", "pcm_file.wav", package = "text2speech")
+res = pcm_to_wav(fname)
+testthat::expect_error(tuneR::readWave(fname))
+testthat::expect_is(tuneR::readWave(res), "Wave")
+
+\dontrun{
+if (requireNamespace("aws.polly", quietly = TRUE)) {
+text = "hey, ho, let's go!"
+if (tts_amazon_auth()) {
+   res = tts_amazon(text, output_format = "wav")
+}
+}
+}
+}

@@ -20,4 +20,16 @@ Knitr Speak Enginge
 }
 \examples{
 knitr::knit_engines$set(speak = tts_speak_engine)
+options = list(
+code = "hey let's go to the park",
+eval = FALSE,
+label = "random",
+fig.path = tempdir(),
+echo = TRUE, results = "asis",
+engine = "speak")
+tts_speak_engine(options)
+    if (tts_auth("google")) {
+       options$eval = TRUE
+       tts_speak_engine(options)
+    }
 }
