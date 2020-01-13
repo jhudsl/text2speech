@@ -8,3 +8,5 @@
 0 errors | 0 warnings | 1 note
 
 * This is a new release.
+
+Moved aws.polly to Suggests as it is orphaned.
