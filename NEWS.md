@@ -1,3 +1,7 @@
+# text2speech 0.2.9
+
+* Making `aws.polly` a `Suggests` as Prof. Ripley states as `aws.polly` has been orphaned.
+
 # text2speech 0.2.7
 
 * Fixing bug with sample rate for Amazon.

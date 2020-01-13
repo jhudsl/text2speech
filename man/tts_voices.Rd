@@ -34,7 +34,9 @@ tts_voices(service = "microsoft")
 if (tts_google_auth()) {
 tts_voices(service = "google")
 }
+if (requireNamespace("aws.polly", quietly = TRUE)) {
 if (tts_amazon_auth()) {
 tts_voices(service = "amazon")
+}
 }
 }

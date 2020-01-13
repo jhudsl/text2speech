@@ -8,20 +8,39 @@
 \alias{tts}
 \title{Text to Speech}
 \usage{
-tts_google(text, output_format = c("mp3", "wav"),
-  voice = "en-US-Standard-C", bind_audio = TRUE, ...)
+tts_google(
+  text,
+  output_format = c("mp3", "wav"),
+  voice = "en-US-Standard-C",
+  bind_audio = TRUE,
+  ...
+)
 
-tts_amazon(text, output_format = c("mp3", "wav"), voice = "Joanna",
-  bind_audio = TRUE, ...)
+tts_amazon(
+  text,
+  output_format = c("mp3", "wav"),
+  voice = "Joanna",
+  bind_audio = TRUE,
+  ...
+)
 
-tts_microsoft(text, output_format = c("mp3", "wav"),
+tts_microsoft(
+  text,
+  output_format = c("mp3", "wav"),
   voice = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
-  bind_audio = TRUE, ...)
+  bind_audio = TRUE,
+  ...
+)
 
 tts_default_voice(service = c("amazon", "google", "microsoft"))
 
-tts(text, output_format = c("mp3", "wav"), ..., service = c("amazon",
-  "google", "microsoft"), bind_audio = TRUE)
+tts(
+  text,
+  output_format = c("mp3", "wav"),
+  ...,
+  service = c("amazon", "google", "microsoft"),
+  bind_audio = TRUE
+)
 }
 \arguments{
 \item{text}{A character vector of text to speak}
@@ -53,7 +72,7 @@ A \code{data.frame} of text and wav files
 Text to Speech
 }
 \note{
-All functions have a  \code{voice`` argument fro a full voice name that can be passed to the service, such as }voice` for \link[aws.polly:get_synthesis]{aws.polly::get_synthesis}
+All functions have a  \verb{voice`` argument fro a full voice name that can be passed to the service, such as }voice` for \link[aws.polly:get_synthesis]{aws.polly::get_synthesis}
 }
 \examples{
 

@@ -53,11 +53,15 @@ tts_speak_engine = function(options) {
   file.copy(result$file, output, overwrite = TRUE)
   out = utils::capture.output(output)
   if (knitr::is_html_output()) {
-    options$results = "asis"
-    out = c("<audio controls>",
-            paste0('<source src="', output, '">'),
-            "</audio>",
-            "")
+    if (options$results != "hide") {
+      options$results = "asis"
+      out = c("<audio controls>",
+              paste0('<source src="', output, '">'),
+              "</audio>",
+              "")
+    } else {
+      out = ""
+    }
   }
   print(out)
   knitr::engine_output(options, options$code, out)

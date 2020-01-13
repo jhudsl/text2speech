@@ -62,7 +62,13 @@ tts_amazon = function(
   voice = "Joanna",
   bind_audio = TRUE,
   ...) {
-
+  if (!requireNamespace("aws.polly", quietly = TRUE)) {
+    stop(paste0(
+      "This function requires aws.polly to operate",
+      " please use\n",
+      "install.packages('aws.polly')\n",
+      "to use these functions"))
+  }
   limit = 1500
   output_format = match.arg(output_format)
   audio_type = output_format

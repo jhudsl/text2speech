@@ -20,12 +20,15 @@ testthat::test_that(
     }
   }
 )
-testthat::test_that(
-  "Amazon Voices", {
-    if (tts_amazon_auth()) {
-      df = tts_voices(service = "amazon")
-      testthat::expect_is(df, "data.frame")
-      testthat::expect_named(df, fixed_names)
+
+if (requireNamespace("aws.polly", quietly = TRUE)) {
+  testthat::test_that(
+    "Amazon Voices", {
+      if (tts_amazon_auth()) {
+        df = tts_voices(service = "amazon")
+        testthat::expect_is(df, "data.frame")
+        testthat::expect_named(df, fixed_names)
+      }
     }
-  }
-)
+  )
+}

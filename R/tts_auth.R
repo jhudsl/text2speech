@@ -11,16 +11,18 @@
 #'
 #' @examples
 #' tts_auth("google")
-#' tts_auth("amazon")
 #' tts_auth("microsoft")
 #'
 #' tts_google_authenticated()
 #' tts_microsoft_authenticated()
-#' tts_amazon_authenticated()
 #'
 #' tts_google_auth()
 #' tts_microsoft_auth()
+#' if (requireNamespace("aws.polly", quietly = TRUE)) {
+#' tts_auth("amazon")
+#' tts_amazon_authenticated()
 #' tts_amazon_auth()
+#' }
 tts_auth = function(service = c("amazon", "google", "microsoft"),
                     key_or_json_file = NULL,
                     ...) {
@@ -53,6 +55,13 @@ tts_google_authenticated = function() {
 #' @rdname tts_auth
 #' @export
 tts_amazon_authenticated = function() {
+  if (!requireNamespace("aws.polly", quietly = TRUE)) {
+    stop(paste0(
+      "This function requires aws.polly to operate",
+      " please use\n",
+      "install.packages('aws.polly')\n",
+      "to use these functions"))
+  }
   L = try({
     aws.polly::list_voices()
   })

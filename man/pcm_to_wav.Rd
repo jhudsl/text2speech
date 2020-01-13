@@ -4,8 +4,12 @@
 \alias{pcm_to_wav}
 \title{Convert PCM to Wav}
 \usage{
-pcm_to_wav(input, output = tempfile(fileext = ".wav"),
-  sample_rate = 16000, extensible = FALSE)
+pcm_to_wav(
+  input,
+  output = tempfile(fileext = ".wav"),
+  sample_rate = 16000,
+  extensible = FALSE
+)
 }
 \arguments{
 \item{input}{output from \link[aws.polly:get_synthesis]{aws.polly::get_synthesis} or PCM filename}

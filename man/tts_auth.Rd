@@ -13,8 +13,11 @@
 \usage{
 tts_amazon_auth(key_or_json_file = NULL, ...)
 
-tts_auth(service = c("amazon", "google", "microsoft"),
-  key_or_json_file = NULL, ...)
+tts_auth(
+  service = c("amazon", "google", "microsoft"),
+  key_or_json_file = NULL,
+  ...
+)
 
 tts_google_authenticated()
 
@@ -43,14 +46,16 @@ Authorize Text-to-Speech Engine
 }
 \examples{
 tts_auth("google")
-tts_auth("amazon")
 tts_auth("microsoft")
 
 tts_google_authenticated()
 tts_microsoft_authenticated()
-tts_amazon_authenticated()
 
 tts_google_auth()
 tts_microsoft_auth()
+if (requireNamespace("aws.polly", quietly = TRUE)) {
+tts_auth("amazon")
+tts_amazon_authenticated()
 tts_amazon_auth()
+}
 }
