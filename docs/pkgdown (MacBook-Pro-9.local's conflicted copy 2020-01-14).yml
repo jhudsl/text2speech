@@ -1,0 +1,6 @@
+pandoc: 2.9.1.1
+pkgdown: 1.4.0
+pkgdown_sha: ~
+articles:
+  listing_voices: listing_voices.html
+

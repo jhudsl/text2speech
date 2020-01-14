@@ -1,7 +1,7 @@
 Type: Package
 Package: text2speech
 Title: Text to Speech
-Version: 0.2.8
+Version: 0.2.9
 Authors@R: 
     person(given = "John",
            family = "Muschelli",
@@ -14,6 +14,7 @@ Description: Unifies different text to speech engines, such as
     the service requested.
 License: GPL-3
 Suggests: 
+    aws.polly,
     covr,
     rmarkdown,
     testthat,
@@ -21,11 +22,10 @@ Suggests:
 Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.1
 URL: https://github.com/muschellij2/text2speech
 BugReports: https://github.com/muschellij2/text2speech/issues
 Imports: 
-    aws.polly,
     aws.signature,
     dplyr,
     googleAuthR,

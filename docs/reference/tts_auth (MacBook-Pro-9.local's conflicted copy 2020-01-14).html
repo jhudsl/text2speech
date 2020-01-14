@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pipe operator — %&gt;% • text2speech</title>
+<title>Authorize Text-to-Speech Engine — tts_amazon_auth • text2speech</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Pipe operator — %&gt;%" />
-<meta property="og:description" content="See magrittr::[\%&amp;gt;\%][magrittr::\%&amp;gt;\%] for details." />
+<meta property="og:title" content="Authorize Text-to-Speech Engine — tts_amazon_auth" />
+<meta property="og:description" content="Authorize Text-to-Speech Engine" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -123,23 +123,73 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pipe operator</h1>
-    <small class="dont-index">Source: <a href='https://github.com/muschellij2/text2speech/blob/master/R/utils-pipe.R'><code>R/utils-pipe.R</code></a></small>
-    <div class="hidden name"><code>pipe.Rd</code></div>
+    <h1>Authorize Text-to-Speech Engine</h1>
+    <small class="dont-index">Source: <a href='https://github.com/muschellij2/text2speech/blob/master/R/tts_amazon_auth.R'><code>R/tts_amazon_auth.R</code></a>, <a href='https://github.com/muschellij2/text2speech/blob/master/R/tts_auth.R'><code>R/tts_auth.R</code></a>, <a href='https://github.com/muschellij2/text2speech/blob/master/R/tts_google_auth.R'><code>R/tts_google_auth.R</code></a>, and 2 more</small>
+    <div class="hidden name"><code>tts_auth (MacBook-Pro-9.local's conflicted copy 2020-01-14).Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>See <code>magrittr::[\%&gt;\%][magrittr::\%&gt;\%]</code> for details.</p>
+    <p>Authorize Text-to-Speech Engine</p>
     </div>
 
-    <pre class="usage"><span class='no'>lhs</span> <span class='kw'>%&gt;%</span> <span class='no'>rhs</span></pre>
+    <pre class="usage"><span class='fu'>tts_amazon_auth</span>(<span class='kw'>key_or_json_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
 
+<span class='fu'>tts_auth</span>(
+  <span class='kw'>service</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"amazon"</span>, <span class='st'>"google"</span>, <span class='st'>"microsoft"</span>),
+  <span class='kw'>key_or_json_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>
+)
 
+<span class='fu'>tts_google_authenticated</span>()
 
+<span class='fu'>tts_amazon_authenticated</span>()
+
+<span class='fu'>tts_microsoft_authenticated</span>(<span class='no'>...</span>)
+
+<span class='fu'>tts_google_auth</span>(<span class='kw'>key_or_json_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
+
+<span class='fu'>tts_microsoft_auth</span>(<span class='kw'>key_or_json_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>key_or_json_file</th>
+      <td><p>Either an API key (for Microsoft)
+or JSON file (for Google)</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments to pass to
+<code><a href='https://rdrr.io/pkg/aws.signature/man/read_credentials.html'>aws.signature::use_credentials()</a></code> or <code><a href='https://rdrr.io/pkg/mscstts/man/ms_get_tts_token.html'>mscstts::ms_get_tts_token()</a></code></p></td>
+    </tr>
+    <tr>
+      <th>service</th>
+      <td><p>type of synthesis engine</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A logical indicator of authorization</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>tts_auth</span>(<span class='st'>"google"</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>tts_auth</span>(<span class='st'>"microsoft"</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='fu'>tts_google_authenticated</span>()</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>tts_microsoft_authenticated</span>()</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='fu'>tts_google_auth</span>()</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>tts_microsoft_auth</span>()
+<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"aws.polly"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
+<span class='fu'>tts_auth</span>(<span class='st'>"amazon"</span>)
+<span class='fu'>tts_amazon_authenticated</span>()
+<span class='fu'>tts_amazon_auth</span>()
+}</div><div class='output co'>#&gt; <span class='warning'>Warning: Calling 'structure(NULL, *)' is deprecated, as NULL cannot have attributes.</span>
+#&gt; <span class='warning'>  Consider 'structure(list(), *)' instead.</span></div><div class='output co'>#&gt; [1] TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

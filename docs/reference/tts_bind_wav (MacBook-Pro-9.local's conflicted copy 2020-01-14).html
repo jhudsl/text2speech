@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pipe operator — %&gt;% • text2speech</title>
+<title>Bind Wavs together — tts_bind_wav • text2speech</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Pipe operator — %&gt;%" />
-<meta property="og:description" content="See magrittr::[\%&amp;gt;\%][magrittr::\%&amp;gt;\%] for details." />
+<meta property="og:title" content="Bind Wavs together — tts_bind_wav" />
+<meta property="og:description" content="Bind Wavs together" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -92,9 +92,6 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/listing_voices (MacBook-Pro-9.local&#39;s conflicted copy 2020-01-14).html">Listing out voices</a>
-    </li>
-    <li>
       <a href="../articles/listing_voices.html">Listing out voices</a>
     </li>
   </ul>
@@ -123,23 +120,44 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pipe operator</h1>
-    <small class="dont-index">Source: <a href='https://github.com/muschellij2/text2speech/blob/master/R/utils-pipe.R'><code>R/utils-pipe.R</code></a></small>
-    <div class="hidden name"><code>pipe.Rd</code></div>
+    <h1>Bind Wavs together</h1>
+    <small class="dont-index">Source: <a href='https://github.com/muschellij2/text2speech/blob/master/R/tts_synthesize.R'><code>R/tts_synthesize.R</code></a></small>
+    <div class="hidden name"><code>tts_bind_wav.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>See <code>magrittr::[\%&gt;\%][magrittr::\%&gt;\%]</code> for details.</p>
+    <p>Bind Wavs together</p>
     </div>
 
-    <pre class="usage"><span class='no'>lhs</span> <span class='kw'>%&gt;%</span> <span class='no'>rhs</span></pre>
+    <pre class="usage"><span class='fu'>tts_bind_wav</span>(<span class='no'>result</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>result</th>
+      <td><p>A <code>data.frame</code> from
+<code><a href='tts.html'>text2speech::tts()</a></code>.</p></td>
+    </tr>
+    </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A <code>data.frame</code> with the same structure as
+that of <code>tts</code></p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>As the data are split due to limits of the
+API, then this allows the text and the
+results to be harmonized</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#note">Note</a></li>
     </ul>
 
   </div>

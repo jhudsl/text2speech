@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pipe operator — %&gt;% • text2speech</title>
+<title>Convert PCM to Wav — pcm_to_wav • text2speech</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Pipe operator — %&gt;%" />
-<meta property="og:description" content="See magrittr::[\%&amp;gt;\%][magrittr::\%&amp;gt;\%] for details." />
+<meta property="og:title" content="Convert PCM to Wav — pcm_to_wav" />
+<meta property="og:description" content="Convert PCM to Wav" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -123,23 +123,49 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pipe operator</h1>
-    <small class="dont-index">Source: <a href='https://github.com/muschellij2/text2speech/blob/master/R/utils-pipe.R'><code>R/utils-pipe.R</code></a></small>
-    <div class="hidden name"><code>pipe.Rd</code></div>
+    <h1>Convert PCM to Wav</h1>
+    <small class="dont-index">Source: <a href='https://github.com/muschellij2/text2speech/blob/master/R/pcm_to_wav.R'><code>R/pcm_to_wav.R</code></a></small>
+    <div class="hidden name"><code>pcm_to_wav.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>See <code>magrittr::[\%&gt;\%][magrittr::\%&gt;\%]</code> for details.</p>
+    <p>Convert PCM to Wav</p>
     </div>
 
-    <pre class="usage"><span class='no'>lhs</span> <span class='kw'>%&gt;%</span> <span class='no'>rhs</span></pre>
+    <pre class="usage"><span class='fu'>pcm_to_wav</span>(<span class='no'>input</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(<span class='kw'>fileext</span> <span class='kw'>=</span> <span class='st'>".wav"</span>),
+  <span class='kw'>sample_rate</span> <span class='kw'>=</span> <span class='fl'>16000</span>, <span class='kw'>extensible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>input</th>
+      <td><p>output from <a href='https://rdrr.io/pkg/aws.polly/man/synthesize.html'>aws.polly::get_synthesis</a> or PCM filename</p></td>
+    </tr>
+    <tr>
+      <th>output</th>
+      <td><p>output file for Wav file</p></td>
+    </tr>
+    <tr>
+      <th>sample_rate</th>
+      <td><p>Sampling rate for <a href='https://rdrr.io/pkg/tuneR/man/Wave.html'>tuneR::Wave</a></p></td>
+    </tr>
+    <tr>
+      <th>extensible</th>
+      <td><p>passed to <a href='https://rdrr.io/pkg/tuneR/man/writeWave.html'>tuneR::writeWave</a></p></td>
+    </tr>
+    </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A filename of the output</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
     </ul>
 
   </div>

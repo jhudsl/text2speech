@@ -125,7 +125,7 @@
     <div class="page-header">
     <h1>Text to Speech Voices</h1>
     <small class="dont-index">Source: <a href='https://github.com/muschellij2/text2speech/blob/master/R/tts_voices.R'><code>R/tts_voices.R</code></a></small>
-    <div class="hidden name"><code>tts_voices.Rd</code></div>
+    <div class="hidden name"><code>tts_voices (MacBook-Pro-9.local's conflicted copy 2020-01-14).Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -528,8 +528,10 @@ and language names</p>
 #&gt; 199         vi-VN-Wavenet-C             Vietnamese         vi-VN FEMALE  google
 #&gt; 200        vi-VN-Standard-D             Vietnamese         vi-VN   MALE  google
 #&gt; 201        vi-VN-Standard-B             Vietnamese         vi-VN   MALE  google
-#&gt; 202        vi-VN-Standard-C             Vietnamese         vi-VN FEMALE  google</div><div class='input'><span class='kw'>if</span> (<span class='fu'>tts_amazon_auth</span>()) {
+#&gt; 202        vi-VN-Standard-C             Vietnamese         vi-VN FEMALE  google</div><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"aws.polly"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
+<span class='kw'>if</span> (<span class='fu'>tts_amazon_auth</span>()) {
 <span class='fu'>tts_voices</span>(<span class='kw'>service</span> <span class='kw'>=</span> <span class='st'>"amazon"</span>)
+}
 }</div><div class='output co'>#&gt;        voice             language language_code gender service
 #&gt; 1      Zeina               Arabic           arb Female  amazon
 #&gt; 2      Zhiyu     Chinese Mandarin        cmn-CN Female  amazon
