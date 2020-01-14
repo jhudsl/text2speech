@@ -4,8 +4,12 @@
 \alias{pcm_to_wav}
 \title{Convert PCM to Wav}
 \usage{
-pcm_to_wav(input, output = tempfile(fileext = ".wav"),
-  sample_rate = 16000, extensible = FALSE)
+pcm_to_wav(
+  input,
+  output = tempfile(fileext = ".wav"),
+  sample_rate = 16000,
+  extensible = FALSE
+)
 }
 \arguments{
 \item{input}{output from \link[aws.polly:get_synthesis]{aws.polly::get_synthesis} or PCM filename}
@@ -21,4 +25,19 @@ A filename of the output
 }
 \description{
 Convert PCM to Wav
+}
+\examples{
+fname = system.file("extdata", "pcm_file.wav", package = "text2speech")
+res = pcm_to_wav(fname)
+testthat::expect_error(tuneR::readWave(fname))
+testthat::expect_is(tuneR::readWave(res), "Wave")
+
+\dontrun{
+if (requireNamespace("aws.polly", quietly = TRUE)) {
+text = "hey, ho, let's go!"
+if (tts_amazon_auth()) {
+   res = tts_amazon(text, output_format = "wav")
+}
+}
+}
 }

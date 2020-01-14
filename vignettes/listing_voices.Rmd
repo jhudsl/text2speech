@@ -21,9 +21,11 @@ library(text2speech)
 # Amazon Polly
 
 ```{r}
-if ( tts_auth("amazon")) {
-  df = tts_voices(service = "amazon")
-  knitr::kable(df)
+if (requireNamespace("aws.polly", quietly = TRUE)) {
+  if ( tts_auth("amazon")) {
+    df = tts_voices(service = "amazon")
+    knitr::kable(df)
+  }
 }
 ```
 

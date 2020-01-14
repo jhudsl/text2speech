@@ -5,7 +5,10 @@
 #' argument `voice` for [aws.polly::get_synthesis], or
 #' or [mscstts::ms_synthesize()] or the
 #' `name` argument for [googleLanguageR::gl_talk()]
-#'
+#' @examples
+#' tts_default_voice("amazon")
+#' tts_default_voice("google")
+#' tts_default_voice("microsoft")
 tts_google = function(
   text,
   output_format = c("mp3", "wav"),
@@ -62,7 +65,13 @@ tts_amazon = function(
   voice = "Joanna",
   bind_audio = TRUE,
   ...) {
-
+  if (!requireNamespace("aws.polly", quietly = TRUE)) {
+    stop(paste0(
+      "This function requires aws.polly to operate",
+      " please use\n",
+      "install.packages('aws.polly')\n",
+      "to use these functions"))
+  }
   limit = 1500
   output_format = match.arg(output_format)
   audio_type = output_format

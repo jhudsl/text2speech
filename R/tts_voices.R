@@ -42,8 +42,10 @@ tts_language_codes = function() {
 #' if (tts_google_auth()) {
 #' tts_voices(service = "google")
 #' }
+#' if (requireNamespace("aws.polly", quietly = TRUE)) {
 #' if (tts_amazon_auth()) {
 #' tts_voices(service = "amazon")
+#' }
 #' }
 tts_voices = function(
   service = c("amazon", "google", "microsoft"),
