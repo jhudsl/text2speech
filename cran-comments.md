@@ -9,4 +9,4 @@
 
 * This is a new release.
 
-Moved aws.polly to Suggests as it is orphaned.
+Removing `aws.polly` links as it is a `Suggests` field now as Prof. Ripley states as `aws.polly` has been orphaned.

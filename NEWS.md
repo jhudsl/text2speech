@@ -1,5 +1,9 @@
 # text2speech 0.2.9
 
+* Removing `aws.polly` links as it is a `Suggests` field now as Prof. Ripley states as `aws.polly` has been orphaned.
+
+# text2speech 0.2.9
+
 * Making `aws.polly` a `Suggests` as Prof. Ripley states as `aws.polly` has been orphaned.
 
 # text2speech 0.2.7

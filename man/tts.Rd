@@ -49,7 +49,7 @@ tts(
 
 \item{voice}{A full voice name that can be passed to the
 service, such as the
-argument \code{voice} for \link[aws.polly:get_synthesis]{aws.polly::get_synthesis}, or
+argument \code{voice} for \link{get_synthesis} from \code{aws.polly}, or
 or \code{\link[mscstts:ms_synthesize]{mscstts::ms_synthesize()}} or the
 \code{name} argument for \code{\link[googleLanguageR:gl_talk]{googleLanguageR::gl_talk()}}}
 
@@ -72,7 +72,7 @@ A \code{data.frame} of text and wav files
 Text to Speech
 }
 \note{
-All functions have a  \verb{voice`` argument fro a full voice name that can be passed to the service, such as }voice` for \link[aws.polly:get_synthesis]{aws.polly::get_synthesis}
+All functions have a  \verb{voice`` argument fro a full voice name that can be passed to the service, such as }voice` for \link{get_synthesis} from \code{aws.polly}
 }
 \examples{
 tts_default_voice("amazon")
