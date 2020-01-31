@@ -12,7 +12,7 @@ pcm_to_wav(
 )
 }
 \arguments{
-\item{input}{output from \link{get_synthesis} from \code{aws.polly} or
+\item{input}{output from `get_synthesis`` from \code{aws.polly} or
 PCM filename}
 
 \item{output}{output file for Wav file}

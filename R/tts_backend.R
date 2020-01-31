@@ -2,7 +2,7 @@
 #' @rdname tts
 #' @param voice A full voice name that can be passed to the
 #' service, such as the
-#' argument `voice` for [get_synthesis] from \code{aws.polly}, or
+#' argument `voice` for `get_synthesis`` from \code{aws.polly}, or
 #' or [mscstts::ms_synthesize()] or the
 #' `name` argument for [googleLanguageR::gl_talk()]
 #' @examples

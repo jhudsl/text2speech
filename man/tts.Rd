@@ -49,9 +49,7 @@ tts(
 
 \item{voice}{A full voice name that can be passed to the
 service, such as the
-argument \code{voice} for \link{get_synthesis} from \code{aws.polly}, or
-or \code{\link[mscstts:ms_synthesize]{mscstts::ms_synthesize()}} or the
-\code{name} argument for \code{\link[googleLanguageR:gl_talk]{googleLanguageR::gl_talk()}}}
+argument \code{voice} for \verb{get_synthesis`` from \code{aws.polly}, or or [mscstts::ms_synthesize()] or the }name` argument for \code{\link[googleLanguageR:gl_talk]{googleLanguageR::gl_talk()}}}
 
 \item{bind_audio}{Should the \code{\link[text2speech:tts_bind_wav]{text2speech::tts_bind_wav()}}
 be run on after the audio has been created, to ensure that
@@ -72,7 +70,7 @@ A \code{data.frame} of text and wav files
 Text to Speech
 }
 \note{
-All functions have a  \verb{voice`` argument fro a full voice name that can be passed to the service, such as }voice` for \link{get_synthesis} from \code{aws.polly}
+All functions have a  \verb{voice`` argument fro a full voice name that can be passed to the service, such as }voice\code{for}get_synthesis`` from \code{aws.polly}
 }
 \examples{
 tts_default_voice("amazon")

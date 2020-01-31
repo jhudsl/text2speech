@@ -10,7 +10,7 @@
 #'
 #' @note All functions have a  `voice`` argument fro a
 #' full voice name that can be passed to the
-#' service, such as `voice` for [get_synthesis] from \code{aws.polly}
+#' service, such as `voice` for `get_synthesis`` from \code{aws.polly}
 #'
 #' @param bind_audio Should the [text2speech::tts_bind_wav()]
 #' be run on after the audio has been created, to ensure that

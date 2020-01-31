@@ -1,6 +1,6 @@
 #' Convert PCM to Wav
 #'
-#' @param input output from [get_synthesis] from \code{aws.polly} or
+#' @param input output from `get_synthesis`` from \code{aws.polly} or
 #' PCM filename
 #' @param output output file for Wav file
 #' @param extensible passed to [tuneR::writeWave]
