@@ -11,7 +11,8 @@ Authors@R:
 Description: Unifies different text to speech engines, such as
     Google, Microsoft, and Amazon.  Text synthesis can be done
     in any engine with a simple switch of an argument denoting
-    the service requested.
+    the service requested.  The 'aws.polly' package has been
+    orphaned and can be found from the CRAN archives.
 License: GPL-3
 Suggests: 
     aws.polly,
