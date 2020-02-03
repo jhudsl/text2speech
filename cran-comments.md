@@ -9,4 +9,4 @@
 
 * This is a new release.
 
-Removing `aws.polly` links as it is a `Suggests` field now as Prof. Ripley states as `aws.polly` has been orphaned.
+Removing `aws.polly` links as it is a `Suggests` field now as Prof. Ripley states as `aws.polly` has been orphaned.  Declare in the Description field where aws.polly, in this case, the CRAN archives.
