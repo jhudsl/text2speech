@@ -1,7 +1,7 @@
 Type: Package
 Package: text2speech
 Title: Text to Speech
-Version: 0.2.10
+Version: 0.2.11
 Authors@R: 
     person(given = "John",
            family = "Muschelli",
@@ -23,7 +23,7 @@ Suggests:
 Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr
-RoxygenNote: 7.0.1
+RoxygenNote: 7.0.2
 URL: https://github.com/muschellij2/text2speech
 BugReports: https://github.com/muschellij2/text2speech/issues
 Imports: 
