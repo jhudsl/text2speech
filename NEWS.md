@@ -1,3 +1,7 @@
+# text2speech 0.2.12
+
+* Fix bug in `tts_bind_wav` when trying to bind audio together for named list.
+
 # text2speech 0.2.11
 
 * The `tts_speak_engine` is now enabled on attachment so that it works with `knitr` out of the box.

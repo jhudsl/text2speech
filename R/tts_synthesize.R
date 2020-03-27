@@ -96,6 +96,7 @@ tts_bind_wav = function(result) {
       return(x)
     }
     wav = x$wav
+    names(wav) = NULL
     wav = do.call(tuneR::bind, wav)
     txt = paste(x$text, collapse = " ")
     output = tempfile(fileext = ".wav")
