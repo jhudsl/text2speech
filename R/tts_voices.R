@@ -64,7 +64,11 @@ tts_voices = function(
 #' @export
 tts_amazon_voices = function(...) {
   tts_amazon_auth(...)
-  if (utils::packageVersion("aws.polly") <= package_version("0.1.4")) {
+  res =  try({
+    aws.polly::list_voices(language = NULL)
+    }, silent = TRUE)
+  if (utils::packageVersion("aws.polly") <= package_version("0.1.4") |
+      inherits(res, "try-error")) {
     # as per https://docs.aws.amazon.com/polly/latest/dg/SupportedLanguage.html
 
     amazon_language_codes = c("arb", "cmn-CN", "da-DK", "nl-NL",
@@ -81,9 +85,10 @@ tts_amazon_voices = function(...) {
                    aws.polly::list_voices(language = x)
                  })
     res = do.call(rbind, res)
-  } else {
-    res = aws.polly::list_voices(language = NULL)
   }
+  # else {
+  #   res = aws.polly::list_voices(language = NULL)
+  # }
   cn = colnames(res)
   cn[ cn == "Gender" ] = "gender"
   cn[ cn == "LanguageCode" ] = "language_code"
