@@ -1,27 +1,27 @@
 tts_language_codes = function() {
   df = data.frame(
-  language_code = c("ar-XA", "ar-EG", "ar-SA", "bg-BG", "ca-ES", "cs-CZ",
-           "da-DK", "de-AT", "de-CH", "de-DE", "el-GR", "en-AU", "en-CA",
-           "en-GB", "en-IE", "en-IN", "en-US", "es-ES", "es-MX", "fi-FI",
-           "fr-CA", "fr-CH", "fr-FR", "he-IL", "hi-IN", "hr-HR", "hu-HU",
-           "id-ID", "it-IT", "ja-JP", "ko-KR", "ms-MY", "nb-NO", "nl-NL",
-           "pl-PL", "pt-BR", "pt-PT", "ro-RO", "ru-RU", "sk-SK", "sl-SI",
-           "sv-SE", "ta-IN", "te-IN", "th-TH", "tr-TR", "vi-VN", "zh-CN",
-           "zh-HK", "zh-TW", "fil-PH", "uk-UA"),
-  language = c("Arabic", "Arabic (Egypt)", "Arabic (Saudi Arabia)",
-               "Bulgarian", "Catalan (Spain)", "Czech", "Danish", "German (Austria)",
-               "German (Switzerland)", "German (Germany)", "Greek", "English (Australia)",
-               "English (Canada)", "English (UK)", "English (Ireland)", "English (India)",
-               "English (US)", "Spanish (Spain)", "Spanish (Mexico)", "Finnish",
-               "French (Canada)", "French (Switzerland)", "French (France)",
-               "Hebrew (Israel)", "Hindi (India)", "Croatian", "Hungarian",
-               "Indonesian", "Italian", "Japanese", "Korean", "Malay", "Norwegian",
-               "Dutch", "Polish", "Portuguese (Brazil)", "Portuguese (Portugal)",
-               "Romanian", "Russian", "Slovak", "Slovenian", "Swedish", "Tamil (India)",
-               "Telugu (India)", "Thai", "Turkish", "Vietnamese", "Chinese (Mainland)",
-               "Chinese (Hong Kong)", "Chinese (Taiwan)",
-               "Filipino (Philippines)", "Ukrainian (Ukraine)"),
-  stringsAsFactors = FALSE)
+    language_code = c("ar-XA", "ar-EG", "ar-SA", "bg-BG", "ca-ES", "cs-CZ",
+                      "da-DK", "de-AT", "de-CH", "de-DE", "el-GR", "en-AU", "en-CA",
+                      "en-GB", "en-IE", "en-IN", "en-US", "es-ES", "es-MX", "fi-FI",
+                      "fr-CA", "fr-CH", "fr-FR", "he-IL", "hi-IN", "hr-HR", "hu-HU",
+                      "id-ID", "it-IT", "ja-JP", "ko-KR", "ms-MY", "nb-NO", "nl-NL",
+                      "pl-PL", "pt-BR", "pt-PT", "ro-RO", "ru-RU", "sk-SK", "sl-SI",
+                      "sv-SE", "ta-IN", "te-IN", "th-TH", "tr-TR", "vi-VN", "zh-CN",
+                      "zh-HK", "zh-TW", "fil-PH", "uk-UA"),
+    language = c("Arabic", "Arabic (Egypt)", "Arabic (Saudi Arabia)",
+                 "Bulgarian", "Catalan (Spain)", "Czech", "Danish", "German (Austria)",
+                 "German (Switzerland)", "German (Germany)", "Greek", "English (Australia)",
+                 "English (Canada)", "English (UK)", "English (Ireland)", "English (India)",
+                 "English (US)", "Spanish (Spain)", "Spanish (Mexico)", "Finnish",
+                 "French (Canada)", "French (Switzerland)", "French (France)",
+                 "Hebrew (Israel)", "Hindi (India)", "Croatian", "Hungarian",
+                 "Indonesian", "Italian", "Japanese", "Korean", "Malay", "Norwegian",
+                 "Dutch", "Polish", "Portuguese (Brazil)", "Portuguese (Portugal)",
+                 "Romanian", "Russian", "Slovak", "Slovenian", "Swedish", "Tamil (India)",
+                 "Telugu (India)", "Thai", "Turkish", "Vietnamese", "Chinese (Mainland)",
+                 "Chinese (Hong Kong)", "Chinese (Taiwan)",
+                 "Filipino (Philippines)", "Ukrainian (Ukraine)"),
+    stringsAsFactors = FALSE)
   df
 }
 
@@ -53,9 +53,9 @@ tts_voices = function(
 ) {
   service = match.arg(service)
   res = switch(service,
-         amazon = tts_amazon_voices(...),
-         google = tts_google_voices(...),
-         microsoft = tts_microsoft_voices(...)
+               amazon = tts_amazon_voices(...),
+               google = tts_google_voices(...),
+               microsoft = tts_microsoft_voices(...)
   )
   res
 }
@@ -65,10 +65,12 @@ tts_voices = function(
 tts_amazon_voices = function(...) {
   tts_amazon_auth(...)
   res =  try({
-    aws.polly::list_voices(language = NULL)
-    }, silent = TRUE)
+    suppressWarnings({
+      aws.polly::list_voices(language = NULL)
+    })
+  }, silent = TRUE)
   if (utils::packageVersion("aws.polly") <= package_version("0.1.4") |
-      inherits(res, "try-error")) {
+      inherits(res, "try-error") | length(res) == 0) {
     # as per https://docs.aws.amazon.com/polly/latest/dg/SupportedLanguage.html
 
     amazon_language_codes = c("arb", "cmn-CN", "da-DK", "nl-NL",

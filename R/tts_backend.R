@@ -53,6 +53,9 @@ tts_google = function(
   if (bind_audio) {
     res = tts_bind_wav(res)
   }
+  if ("wav" %in% colnames(res)) {
+    res$duration = vapply(res$wav, wav_duration, FUN.VALUE = numeric(1))
+  }
 
   return(res)
 }
@@ -141,6 +144,9 @@ tts_amazon = function(
   if (bind_audio) {
     res = tts_bind_wav(res)
   }
+  if ("wav" %in% colnames(res)) {
+    res$duration = vapply(res$wav, wav_duration, FUN.VALUE = numeric(1))
+  }
 
   return(res)
 
@@ -195,6 +201,9 @@ tts_microsoft = function(
   res$audio_type = audio_type
   if (bind_audio) {
     res = tts_bind_wav(res)
+  }
+  if ("wav" %in% colnames(res)) {
+    res$duration = vapply(res$wav, wav_duration, FUN.VALUE = numeric(1))
   }
 
   return(res)

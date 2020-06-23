@@ -1,3 +1,7 @@
+# text2speech 0.2.13
+
+* Added duration to the synthesis output.
+
 # text2speech 0.2.12
 
 * Fix bug in `tts_bind_wav` when trying to bind audio together for named list.
