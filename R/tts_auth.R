@@ -4,7 +4,7 @@
 #' @param key_or_json_file Either an API key (for Microsoft)
 #' or JSON file (for Google)
 #' @param ... Additional arguments to pass to
-#' [aws.signature::use_credentials()] or [mscstts::ms_get_tts_token()]
+#' \code{\link{use_credentials}} or \code{\link{ms_get_tts_token}}
 #'
 #' @return A logical indicator of authorization
 #' @export

@@ -34,7 +34,7 @@ tts_microsoft_auth(key_or_json_file = NULL, ...)
 or JSON file (for Google)}
 
 \item{...}{Additional arguments to pass to
-\code{\link[aws.signature:use_credentials]{aws.signature::use_credentials()}} or \code{\link[mscstts:ms_get_tts_token]{mscstts::ms_get_tts_token()}}}
+\code{\link{use_credentials}} or \code{\link{ms_get_tts_token}}}
 
 \item{service}{type of synthesis engine}
 }
