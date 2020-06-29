@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">text2speech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.12.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.13</span>
       </span>
     </div>
 
@@ -247,7 +247,7 @@ and language names</p>
 #&gt; 1                    Arabic (Egypt)         ar-EG Female microsoft
 #&gt; 2             Arabic (Saudi Arabia)         ar-SA   Male microsoft
 #&gt; 3                         Bulgarian         bg-BG   Male microsoft
-#&gt; 4                   Catalan (Spain)         ca-ES Female microsoft
+#&gt; 4                           Catalan         ca-ES Female microsoft
 #&gt; 5                             Czech         cs-CZ   Male microsoft
 #&gt; 6                            Danish         da-DK Female microsoft
 #&gt; 7                  German (Austria)         de-AT   Male microsoft
@@ -326,294 +326,309 @@ and language names</p>
 #&gt; 80     Chinese (Taiwanese Mandarin)         zh-TW Female microsoft
 #&gt; 81     Chinese (Taiwanese Mandarin)         zh-TW   Male microsoft</div><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='tts_auth.html'>tts_google_auth</a></span>()) {
 <span class='fu'>tts_voices</span>(<span class='kw'>service</span> <span class='kw'>=</span> <span class='st'>"google"</span>)
-}</div><div class='output co'>#&gt;                       voice               language language_code gender service
-#&gt; 1          ar-XA-Standard-B                 Arabic         ar-XA   MALE  google
-#&gt; 2           ar-XA-Wavenet-C                 Arabic         ar-XA   MALE  google
-#&gt; 3          ar-XA-Standard-A                 Arabic         ar-XA FEMALE  google
-#&gt; 4          ar-XA-Standard-D                 Arabic         ar-XA FEMALE  google
-#&gt; 5           ar-XA-Wavenet-A                 Arabic         ar-XA FEMALE  google
-#&gt; 6           ar-XA-Wavenet-B                 Arabic         ar-XA   MALE  google
-#&gt; 7          ar-XA-Standard-C                 Arabic         ar-XA   MALE  google
-#&gt; 8          bn-IN-Standard-B                   &lt;NA&gt;         bn-IN   MALE  google
-#&gt; 9          bn-IN-Standard-A                   &lt;NA&gt;         bn-IN FEMALE  google
-#&gt; 10        cmn-CN-Standard-A                   &lt;NA&gt;        cmn-CN FEMALE  google
-#&gt; 11        cmn-CN-Standard-B                   &lt;NA&gt;        cmn-CN   MALE  google
-#&gt; 12        cmn-CN-Standard-C                   &lt;NA&gt;        cmn-CN   MALE  google
-#&gt; 13         cmn-CN-Wavenet-A                   &lt;NA&gt;        cmn-CN FEMALE  google
-#&gt; 14         cmn-CN-Wavenet-B                   &lt;NA&gt;        cmn-CN   MALE  google
-#&gt; 15         cmn-CN-Wavenet-C                   &lt;NA&gt;        cmn-CN   MALE  google
-#&gt; 16         cmn-CN-Wavenet-D                   &lt;NA&gt;        cmn-CN FEMALE  google
-#&gt; 17        cmn-CN-Standard-D                   &lt;NA&gt;        cmn-CN FEMALE  google
-#&gt; 18  cmn-TW-Standard-A-Alpha                   &lt;NA&gt;        cmn-TW FEMALE  google
-#&gt; 19  cmn-TW-Standard-B-Alpha                   &lt;NA&gt;        cmn-TW   MALE  google
-#&gt; 20  cmn-TW-Standard-C-Alpha                   &lt;NA&gt;        cmn-TW   MALE  google
-#&gt; 21   cmn-TW-Wavenet-A-Alpha                   &lt;NA&gt;        cmn-TW FEMALE  google
-#&gt; 22   cmn-TW-Wavenet-B-Alpha                   &lt;NA&gt;        cmn-TW   MALE  google
-#&gt; 23   cmn-TW-Wavenet-C-Alpha                   &lt;NA&gt;        cmn-TW   MALE  google
-#&gt; 24          cs-CZ-Wavenet-A                  Czech         cs-CZ FEMALE  google
-#&gt; 25         cs-CZ-Standard-A                  Czech         cs-CZ FEMALE  google
-#&gt; 26          da-DK-Wavenet-A                 Danish         da-DK FEMALE  google
-#&gt; 27         da-DK-Standard-A                 Danish         da-DK FEMALE  google
-#&gt; 28          de-DE-Wavenet-F       German (Germany)         de-DE FEMALE  google
-#&gt; 29         de-DE-Standard-F       German (Germany)         de-DE FEMALE  google
-#&gt; 30          de-DE-Wavenet-E       German (Germany)         de-DE   MALE  google
-#&gt; 31         de-DE-Standard-E       German (Germany)         de-DE   MALE  google
-#&gt; 32          de-DE-Wavenet-A       German (Germany)         de-DE FEMALE  google
-#&gt; 33         de-DE-Standard-B       German (Germany)         de-DE   MALE  google
-#&gt; 34          de-DE-Wavenet-D       German (Germany)         de-DE   MALE  google
-#&gt; 35         de-DE-Standard-A       German (Germany)         de-DE FEMALE  google
-#&gt; 36          de-DE-Wavenet-B       German (Germany)         de-DE   MALE  google
-#&gt; 37          de-DE-Wavenet-C       German (Germany)         de-DE FEMALE  google
-#&gt; 38         el-GR-Standard-A                  Greek         el-GR FEMALE  google
-#&gt; 39          el-GR-Wavenet-A                  Greek         el-GR FEMALE  google
-#&gt; 40          en-AU-Wavenet-B    English (Australia)         en-AU   MALE  google
-#&gt; 41         en-AU-Standard-B    English (Australia)         en-AU   MALE  google
-#&gt; 42         en-AU-Standard-C    English (Australia)         en-AU FEMALE  google
-#&gt; 43          en-AU-Wavenet-C    English (Australia)         en-AU FEMALE  google
-#&gt; 44         en-AU-Standard-A    English (Australia)         en-AU FEMALE  google
-#&gt; 45          en-AU-Wavenet-A    English (Australia)         en-AU FEMALE  google
-#&gt; 46         en-AU-Standard-D    English (Australia)         en-AU   MALE  google
-#&gt; 47          en-AU-Wavenet-D    English (Australia)         en-AU   MALE  google
-#&gt; 48         en-GB-Standard-B           English (UK)         en-GB   MALE  google
-#&gt; 49         en-GB-Standard-A           English (UK)         en-GB FEMALE  google
-#&gt; 50          en-GB-Wavenet-A           English (UK)         en-GB FEMALE  google
-#&gt; 51         en-GB-Standard-D           English (UK)         en-GB   MALE  google
-#&gt; 52          en-GB-Wavenet-D           English (UK)         en-GB   MALE  google
-#&gt; 53         en-GB-Standard-C           English (UK)         en-GB FEMALE  google
-#&gt; 54          en-GB-Wavenet-B           English (UK)         en-GB   MALE  google
-#&gt; 55          en-GB-Wavenet-C           English (UK)         en-GB FEMALE  google
-#&gt; 56          en-IN-Wavenet-D        English (India)         en-IN FEMALE  google
-#&gt; 57         en-IN-Standard-C        English (India)         en-IN   MALE  google
-#&gt; 58         en-IN-Standard-B        English (India)         en-IN   MALE  google
-#&gt; 59         en-IN-Standard-A        English (India)         en-IN FEMALE  google
-#&gt; 60          en-IN-Wavenet-B        English (India)         en-IN   MALE  google
-#&gt; 61          en-IN-Wavenet-C        English (India)         en-IN   MALE  google
-#&gt; 62          en-IN-Wavenet-A        English (India)         en-IN FEMALE  google
-#&gt; 63         en-IN-Standard-D        English (India)         en-IN FEMALE  google
-#&gt; 64          en-US-Wavenet-A           English (US)         en-US   MALE  google
-#&gt; 65          en-US-Wavenet-E           English (US)         en-US FEMALE  google
-#&gt; 66          en-US-Wavenet-C           English (US)         en-US FEMALE  google
-#&gt; 67          en-US-Wavenet-F           English (US)         en-US FEMALE  google
-#&gt; 68         en-US-Standard-E           English (US)         en-US FEMALE  google
-#&gt; 69         en-US-Standard-B           English (US)         en-US   MALE  google
-#&gt; 70          en-US-Wavenet-D           English (US)         en-US   MALE  google
-#&gt; 71         en-US-Standard-C           English (US)         en-US FEMALE  google
-#&gt; 72         en-US-Standard-D           English (US)         en-US   MALE  google
-#&gt; 73          en-US-Wavenet-B           English (US)         en-US   MALE  google
-#&gt; 74         es-ES-Standard-A        Spanish (Spain)         es-ES FEMALE  google
-#&gt; 75         fi-FI-Standard-A                Finnish         fi-FI FEMALE  google
-#&gt; 76          fi-FI-Wavenet-A                Finnish         fi-FI FEMALE  google
-#&gt; 77        fil-PH-Standard-A Filipino (Philippines)        fil-PH FEMALE  google
-#&gt; 78         fil-PH-Wavenet-A Filipino (Philippines)        fil-PH FEMALE  google
-#&gt; 79         fr-CA-Standard-B        French (Canada)         fr-CA   MALE  google
-#&gt; 80          fr-CA-Wavenet-D        French (Canada)         fr-CA   MALE  google
-#&gt; 81          fr-CA-Wavenet-C        French (Canada)         fr-CA FEMALE  google
-#&gt; 82          fr-CA-Wavenet-B        French (Canada)         fr-CA   MALE  google
-#&gt; 83         fr-CA-Standard-A        French (Canada)         fr-CA FEMALE  google
-#&gt; 84          fr-CA-Wavenet-A        French (Canada)         fr-CA FEMALE  google
-#&gt; 85         fr-CA-Standard-C        French (Canada)         fr-CA FEMALE  google
-#&gt; 86         fr-CA-Standard-D        French (Canada)         fr-CA   MALE  google
-#&gt; 87          fr-FR-Wavenet-D        French (France)         fr-FR   MALE  google
-#&gt; 88          fr-FR-Wavenet-C        French (France)         fr-FR FEMALE  google
-#&gt; 89          fr-FR-Wavenet-A        French (France)         fr-FR FEMALE  google
-#&gt; 90          fr-FR-Wavenet-E        French (France)         fr-FR FEMALE  google
-#&gt; 91          fr-FR-Wavenet-B        French (France)         fr-FR   MALE  google
-#&gt; 92         fr-FR-Standard-D        French (France)         fr-FR   MALE  google
-#&gt; 93         fr-FR-Standard-C        French (France)         fr-FR FEMALE  google
-#&gt; 94         fr-FR-Standard-B        French (France)         fr-FR   MALE  google
-#&gt; 95         fr-FR-Standard-E        French (France)         fr-FR FEMALE  google
-#&gt; 96         fr-FR-Standard-A        French (France)         fr-FR FEMALE  google
-#&gt; 97         gu-IN-Standard-A                   &lt;NA&gt;         gu-IN FEMALE  google
-#&gt; 98         gu-IN-Standard-B                   &lt;NA&gt;         gu-IN   MALE  google
-#&gt; 99         hi-IN-Standard-C          Hindi (India)         hi-IN   MALE  google
-#&gt; 100        hi-IN-Standard-A          Hindi (India)         hi-IN FEMALE  google
-#&gt; 101         hi-IN-Wavenet-D          Hindi (India)         hi-IN FEMALE  google
-#&gt; 102         hi-IN-Wavenet-A          Hindi (India)         hi-IN FEMALE  google
-#&gt; 103         hi-IN-Wavenet-C          Hindi (India)         hi-IN   MALE  google
-#&gt; 104        hi-IN-Standard-D          Hindi (India)         hi-IN FEMALE  google
-#&gt; 105        hi-IN-Standard-B          Hindi (India)         hi-IN   MALE  google
-#&gt; 106         hi-IN-Wavenet-B          Hindi (India)         hi-IN   MALE  google
-#&gt; 107         hu-HU-Wavenet-A              Hungarian         hu-HU FEMALE  google
-#&gt; 108        hu-HU-Standard-A              Hungarian         hu-HU FEMALE  google
-#&gt; 109        id-ID-Standard-C             Indonesian         id-ID   MALE  google
-#&gt; 110        id-ID-Standard-D             Indonesian         id-ID FEMALE  google
-#&gt; 111         id-ID-Wavenet-B             Indonesian         id-ID   MALE  google
-#&gt; 112        id-ID-Standard-B             Indonesian         id-ID   MALE  google
-#&gt; 113         id-ID-Wavenet-D             Indonesian         id-ID FEMALE  google
-#&gt; 114         id-ID-Wavenet-A             Indonesian         id-ID FEMALE  google
-#&gt; 115         id-ID-Wavenet-C             Indonesian         id-ID   MALE  google
-#&gt; 116        id-ID-Standard-A             Indonesian         id-ID FEMALE  google
-#&gt; 117        it-IT-Standard-D                Italian         it-IT   MALE  google
-#&gt; 118        it-IT-Standard-B                Italian         it-IT FEMALE  google
-#&gt; 119        it-IT-Standard-C                Italian         it-IT   MALE  google
-#&gt; 120         it-IT-Wavenet-D                Italian         it-IT   MALE  google
-#&gt; 121         it-IT-Wavenet-C                Italian         it-IT   MALE  google
-#&gt; 122         it-IT-Wavenet-A                Italian         it-IT FEMALE  google
-#&gt; 123        it-IT-Standard-A                Italian         it-IT FEMALE  google
-#&gt; 124         it-IT-Wavenet-B                Italian         it-IT FEMALE  google
-#&gt; 125         ja-JP-Wavenet-B               Japanese         ja-JP FEMALE  google
-#&gt; 126        ja-JP-Standard-C               Japanese         ja-JP   MALE  google
-#&gt; 127        ja-JP-Standard-B               Japanese         ja-JP FEMALE  google
-#&gt; 128         ja-JP-Wavenet-C               Japanese         ja-JP   MALE  google
-#&gt; 129         ja-JP-Wavenet-D               Japanese         ja-JP   MALE  google
-#&gt; 130        ja-JP-Standard-A               Japanese         ja-JP FEMALE  google
-#&gt; 131         ja-JP-Wavenet-A               Japanese         ja-JP FEMALE  google
-#&gt; 132        ja-JP-Standard-D               Japanese         ja-JP   MALE  google
-#&gt; 133        kn-IN-Standard-A                   &lt;NA&gt;         kn-IN FEMALE  google
-#&gt; 134        kn-IN-Standard-B                   &lt;NA&gt;         kn-IN   MALE  google
-#&gt; 135        ko-KR-Standard-B                 Korean         ko-KR FEMALE  google
-#&gt; 136        ko-KR-Standard-D                 Korean         ko-KR   MALE  google
-#&gt; 137        ko-KR-Standard-A                 Korean         ko-KR FEMALE  google
-#&gt; 138        ko-KR-Standard-C                 Korean         ko-KR   MALE  google
-#&gt; 139         ko-KR-Wavenet-C                 Korean         ko-KR   MALE  google
-#&gt; 140         ko-KR-Wavenet-A                 Korean         ko-KR FEMALE  google
-#&gt; 141         ko-KR-Wavenet-D                 Korean         ko-KR   MALE  google
-#&gt; 142         ko-KR-Wavenet-B                 Korean         ko-KR FEMALE  google
-#&gt; 143        ml-IN-Standard-B                   &lt;NA&gt;         ml-IN   MALE  google
-#&gt; 144        ml-IN-Standard-A                   &lt;NA&gt;         ml-IN FEMALE  google
-#&gt; 145        nb-NO-Standard-B              Norwegian         nb-NO   MALE  google
-#&gt; 146         nb-NO-Wavenet-A              Norwegian         nb-NO FEMALE  google
-#&gt; 147         nb-no-Wavenet-E              Norwegian         nb-NO FEMALE  google
-#&gt; 148        nb-NO-Standard-A              Norwegian         nb-NO FEMALE  google
-#&gt; 149         nb-NO-Wavenet-C              Norwegian         nb-NO FEMALE  google
-#&gt; 150        nb-NO-Standard-C              Norwegian         nb-NO FEMALE  google
-#&gt; 151        nb-NO-Standard-D              Norwegian         nb-NO   MALE  google
-#&gt; 152        nb-no-Standard-E              Norwegian         nb-NO FEMALE  google
-#&gt; 153         nb-NO-Wavenet-B              Norwegian         nb-NO   MALE  google
-#&gt; 154         nb-NO-Wavenet-D              Norwegian         nb-NO   MALE  google
-#&gt; 155        nl-NL-Standard-B                  Dutch         nl-NL   MALE  google
-#&gt; 156        nl-NL-Standard-A                  Dutch         nl-NL FEMALE  google
-#&gt; 157         nl-NL-Wavenet-E                  Dutch         nl-NL FEMALE  google
-#&gt; 158         nl-NL-Wavenet-A                  Dutch         nl-NL FEMALE  google
-#&gt; 159         nl-NL-Wavenet-D                  Dutch         nl-NL FEMALE  google
-#&gt; 160         nl-NL-Wavenet-C                  Dutch         nl-NL   MALE  google
-#&gt; 161        nl-NL-Standard-E                  Dutch         nl-NL FEMALE  google
-#&gt; 162        nl-NL-Standard-D                  Dutch         nl-NL FEMALE  google
-#&gt; 163        nl-NL-Standard-C                  Dutch         nl-NL   MALE  google
-#&gt; 164         nl-NL-Wavenet-B                  Dutch         nl-NL   MALE  google
-#&gt; 165         pl-PL-Wavenet-C                 Polish         pl-PL   MALE  google
-#&gt; 166        pl-PL-Standard-C                 Polish         pl-PL   MALE  google
-#&gt; 167         pl-PL-Wavenet-B                 Polish         pl-PL   MALE  google
-#&gt; 168         pl-PL-Wavenet-E                 Polish         pl-PL FEMALE  google
-#&gt; 169        pl-PL-Standard-D                 Polish         pl-PL FEMALE  google
-#&gt; 170         pl-PL-Wavenet-A                 Polish         pl-PL FEMALE  google
-#&gt; 171         pl-PL-Wavenet-D                 Polish         pl-PL FEMALE  google
-#&gt; 172        pl-PL-Standard-B                 Polish         pl-PL   MALE  google
-#&gt; 173        pl-PL-Standard-A                 Polish         pl-PL FEMALE  google
-#&gt; 174        pl-PL-Standard-E                 Polish         pl-PL FEMALE  google
-#&gt; 175        pt-BR-Standard-A    Portuguese (Brazil)         pt-BR FEMALE  google
-#&gt; 176         pt-BR-Wavenet-A    Portuguese (Brazil)         pt-BR FEMALE  google
-#&gt; 177        pt-PT-Standard-D  Portuguese (Portugal)         pt-PT FEMALE  google
-#&gt; 178         pt-PT-Wavenet-C  Portuguese (Portugal)         pt-PT   MALE  google
-#&gt; 179        pt-PT-Standard-A  Portuguese (Portugal)         pt-PT FEMALE  google
-#&gt; 180         pt-PT-Wavenet-B  Portuguese (Portugal)         pt-PT   MALE  google
-#&gt; 181        pt-PT-Standard-B  Portuguese (Portugal)         pt-PT   MALE  google
-#&gt; 182         pt-PT-Wavenet-A  Portuguese (Portugal)         pt-PT FEMALE  google
-#&gt; 183         pt-PT-Wavenet-D  Portuguese (Portugal)         pt-PT FEMALE  google
-#&gt; 184        pt-PT-Standard-C  Portuguese (Portugal)         pt-PT   MALE  google
-#&gt; 185         ru-RU-Wavenet-E                Russian         ru-RU FEMALE  google
-#&gt; 186         ru-RU-Wavenet-D                Russian         ru-RU   MALE  google
-#&gt; 187        ru-RU-Standard-D                Russian         ru-RU   MALE  google
-#&gt; 188        ru-RU-Standard-C                Russian         ru-RU FEMALE  google
-#&gt; 189        ru-RU-Standard-A                Russian         ru-RU FEMALE  google
-#&gt; 190         ru-RU-Wavenet-C                Russian         ru-RU FEMALE  google
-#&gt; 191        ru-RU-Standard-B                Russian         ru-RU   MALE  google
-#&gt; 192        ru-RU-Standard-E                Russian         ru-RU FEMALE  google
-#&gt; 193         ru-RU-Wavenet-A                Russian         ru-RU FEMALE  google
-#&gt; 194         ru-RU-Wavenet-B                Russian         ru-RU   MALE  google
-#&gt; 195         sk-SK-Wavenet-A                 Slovak         sk-SK FEMALE  google
-#&gt; 196        sk-SK-Standard-A                 Slovak         sk-SK FEMALE  google
-#&gt; 197        sv-SE-Standard-A                Swedish         sv-SE FEMALE  google
-#&gt; 198         sv-SE-Wavenet-A                Swedish         sv-SE FEMALE  google
-#&gt; 199        ta-IN-Standard-B          Tamil (India)         ta-IN   MALE  google
-#&gt; 200        ta-IN-Standard-A          Tamil (India)         ta-IN FEMALE  google
-#&gt; 201        te-IN-Standard-A         Telugu (India)         te-IN FEMALE  google
-#&gt; 202        te-IN-Standard-B         Telugu (India)         te-IN   MALE  google
-#&gt; 203        th-TH-Standard-A                   Thai         th-TH FEMALE  google
-#&gt; 204         tr-TR-Wavenet-B                Turkish         tr-TR   MALE  google
-#&gt; 205        tr-TR-Standard-A                Turkish         tr-TR FEMALE  google
-#&gt; 206         tr-TR-Wavenet-D                Turkish         tr-TR FEMALE  google
-#&gt; 207        tr-TR-Standard-C                Turkish         tr-TR FEMALE  google
-#&gt; 208         tr-TR-Wavenet-A                Turkish         tr-TR FEMALE  google
-#&gt; 209        tr-TR-Standard-E                Turkish         tr-TR   MALE  google
-#&gt; 210        tr-TR-Standard-B                Turkish         tr-TR   MALE  google
-#&gt; 211        tr-TR-Standard-D                Turkish         tr-TR FEMALE  google
-#&gt; 212         tr-TR-Wavenet-E                Turkish         tr-TR   MALE  google
-#&gt; 213         tr-TR-Wavenet-C                Turkish         tr-TR FEMALE  google
-#&gt; 214        uk-UA-Standard-A    Ukrainian (Ukraine)         uk-UA FEMALE  google
-#&gt; 215         uk-UA-Wavenet-A    Ukrainian (Ukraine)         uk-UA FEMALE  google
-#&gt; 216         vi-VN-Wavenet-C             Vietnamese         vi-VN FEMALE  google
-#&gt; 217        vi-VN-Standard-D             Vietnamese         vi-VN   MALE  google
-#&gt; 218         vi-VN-Wavenet-B             Vietnamese         vi-VN   MALE  google
-#&gt; 219         vi-VN-Wavenet-A             Vietnamese         vi-VN FEMALE  google
-#&gt; 220        vi-VN-Standard-A             Vietnamese         vi-VN FEMALE  google
-#&gt; 221         vi-VN-Wavenet-D             Vietnamese         vi-VN   MALE  google
-#&gt; 222        vi-VN-Standard-C             Vietnamese         vi-VN FEMALE  google
-#&gt; 223        vi-VN-Standard-B             Vietnamese         vi-VN   MALE  google</div><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"aws.polly"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
+}</div><div class='output co'>#&gt;                 voice               language language_code gender service
+#&gt; 1     ar-XA-Wavenet-C                 Arabic         ar-XA   MALE  google
+#&gt; 2     ar-XA-Wavenet-B                 Arabic         ar-XA   MALE  google
+#&gt; 3     ar-XA-Wavenet-A                 Arabic         ar-XA FEMALE  google
+#&gt; 4    ar-XA-Standard-D                 Arabic         ar-XA FEMALE  google
+#&gt; 5    ar-XA-Standard-A                 Arabic         ar-XA FEMALE  google
+#&gt; 6    ar-XA-Standard-C                 Arabic         ar-XA   MALE  google
+#&gt; 7    ar-XA-Standard-B                 Arabic         ar-XA   MALE  google
+#&gt; 8    bn-IN-Standard-B                   &lt;NA&gt;         bn-IN   MALE  google
+#&gt; 9    bn-IN-Standard-A                   &lt;NA&gt;         bn-IN FEMALE  google
+#&gt; 10   cmn-CN-Wavenet-A                   &lt;NA&gt;        cmn-CN FEMALE  google
+#&gt; 11   cmn-CN-Wavenet-B                   &lt;NA&gt;        cmn-CN   MALE  google
+#&gt; 12  cmn-CN-Standard-D                   &lt;NA&gt;        cmn-CN FEMALE  google
+#&gt; 13  cmn-CN-Standard-C                   &lt;NA&gt;        cmn-CN   MALE  google
+#&gt; 14   cmn-CN-Wavenet-C                   &lt;NA&gt;        cmn-CN   MALE  google
+#&gt; 15   cmn-CN-Wavenet-D                   &lt;NA&gt;        cmn-CN FEMALE  google
+#&gt; 16  cmn-CN-Standard-B                   &lt;NA&gt;        cmn-CN   MALE  google
+#&gt; 17  cmn-CN-Standard-A                   &lt;NA&gt;        cmn-CN FEMALE  google
+#&gt; 18   cmn-TW-Wavenet-B                   &lt;NA&gt;        cmn-TW   MALE  google
+#&gt; 19   cmn-TW-Wavenet-C                   &lt;NA&gt;        cmn-TW   MALE  google
+#&gt; 20   cmn-TW-Wavenet-A                   &lt;NA&gt;        cmn-TW FEMALE  google
+#&gt; 21  cmn-TW-Standard-A                   &lt;NA&gt;        cmn-TW FEMALE  google
+#&gt; 22  cmn-TW-Standard-B                   &lt;NA&gt;        cmn-TW   MALE  google
+#&gt; 23  cmn-TW-Standard-C                   &lt;NA&gt;        cmn-TW   MALE  google
+#&gt; 24    cs-CZ-Wavenet-A                  Czech         cs-CZ FEMALE  google
+#&gt; 25   cs-CZ-Standard-A                  Czech         cs-CZ FEMALE  google
+#&gt; 26    da-DK-Wavenet-C                 Danish         da-DK   MALE  google
+#&gt; 27    da-DK-Wavenet-E                 Danish         da-DK FEMALE  google
+#&gt; 28    da-DK-Wavenet-A                 Danish         da-DK FEMALE  google
+#&gt; 29   da-DK-Standard-E                 Danish         da-DK FEMALE  google
+#&gt; 30   da-DK-Standard-D                 Danish         da-DK FEMALE  google
+#&gt; 31   da-DK-Standard-C                 Danish         da-DK   MALE  google
+#&gt; 32    da-DK-Wavenet-D                 Danish         da-DK FEMALE  google
+#&gt; 33   da-DK-Standard-A                 Danish         da-DK FEMALE  google
+#&gt; 34   de-DE-Standard-F       German (Germany)         de-DE FEMALE  google
+#&gt; 35   de-DE-Standard-A       German (Germany)         de-DE FEMALE  google
+#&gt; 36    de-DE-Wavenet-D       German (Germany)         de-DE   MALE  google
+#&gt; 37    de-DE-Wavenet-E       German (Germany)         de-DE   MALE  google
+#&gt; 38    de-DE-Wavenet-A       German (Germany)         de-DE FEMALE  google
+#&gt; 39    de-DE-Wavenet-C       German (Germany)         de-DE FEMALE  google
+#&gt; 40    de-DE-Wavenet-B       German (Germany)         de-DE   MALE  google
+#&gt; 41   de-DE-Standard-E       German (Germany)         de-DE   MALE  google
+#&gt; 42    de-DE-Wavenet-F       German (Germany)         de-DE FEMALE  google
+#&gt; 43   de-DE-Standard-B       German (Germany)         de-DE   MALE  google
+#&gt; 44   el-GR-Standard-A                  Greek         el-GR FEMALE  google
+#&gt; 45    el-GR-Wavenet-A                  Greek         el-GR FEMALE  google
+#&gt; 46    en-AU-Wavenet-C    English (Australia)         en-AU FEMALE  google
+#&gt; 47   en-AU-Standard-B    English (Australia)         en-AU   MALE  google
+#&gt; 48    en-AU-Wavenet-B    English (Australia)         en-AU   MALE  google
+#&gt; 49   en-AU-Standard-D    English (Australia)         en-AU   MALE  google
+#&gt; 50   en-AU-Standard-A    English (Australia)         en-AU FEMALE  google
+#&gt; 51    en-AU-Wavenet-D    English (Australia)         en-AU   MALE  google
+#&gt; 52    en-AU-Wavenet-A    English (Australia)         en-AU FEMALE  google
+#&gt; 53   en-AU-Standard-C    English (Australia)         en-AU FEMALE  google
+#&gt; 54   en-GB-Standard-A           English (UK)         en-GB FEMALE  google
+#&gt; 55    en-GB-Wavenet-A           English (UK)         en-GB FEMALE  google
+#&gt; 56    en-GB-Wavenet-F           English (UK)         en-GB FEMALE  google
+#&gt; 57   en-GB-Standard-F           English (UK)         en-GB FEMALE  google
+#&gt; 58    en-GB-Wavenet-B           English (UK)         en-GB   MALE  google
+#&gt; 59    en-GB-Wavenet-D           English (UK)         en-GB   MALE  google
+#&gt; 60    en-GB-Wavenet-C           English (UK)         en-GB FEMALE  google
+#&gt; 61   en-GB-Standard-C           English (UK)         en-GB FEMALE  google
+#&gt; 62   en-GB-Standard-D           English (UK)         en-GB   MALE  google
+#&gt; 63   en-GB-Standard-B           English (UK)         en-GB   MALE  google
+#&gt; 64   en-IN-Standard-B        English (India)         en-IN   MALE  google
+#&gt; 65   en-IN-Standard-C        English (India)         en-IN   MALE  google
+#&gt; 66    en-IN-Wavenet-C        English (India)         en-IN   MALE  google
+#&gt; 67   en-IN-Standard-A        English (India)         en-IN FEMALE  google
+#&gt; 68    en-IN-Wavenet-B        English (India)         en-IN   MALE  google
+#&gt; 69   en-IN-Standard-D        English (India)         en-IN FEMALE  google
+#&gt; 70    en-IN-Wavenet-A        English (India)         en-IN FEMALE  google
+#&gt; 71    en-IN-Wavenet-D        English (India)         en-IN FEMALE  google
+#&gt; 72   en-US-Standard-B           English (US)         en-US   MALE  google
+#&gt; 73   en-US-Standard-D           English (US)         en-US   MALE  google
+#&gt; 74    en-US-Wavenet-E           English (US)         en-US FEMALE  google
+#&gt; 75    en-US-Wavenet-B           English (US)         en-US   MALE  google
+#&gt; 76    en-US-Wavenet-F           English (US)         en-US FEMALE  google
+#&gt; 77    en-US-Wavenet-C           English (US)         en-US FEMALE  google
+#&gt; 78   en-US-Standard-C           English (US)         en-US FEMALE  google
+#&gt; 79    en-US-Wavenet-D           English (US)         en-US   MALE  google
+#&gt; 80    en-US-Wavenet-A           English (US)         en-US   MALE  google
+#&gt; 81   en-US-Standard-E           English (US)         en-US FEMALE  google
+#&gt; 82   es-ES-Standard-A        Spanish (Spain)         es-ES FEMALE  google
+#&gt; 83   fi-FI-Standard-A                Finnish         fi-FI FEMALE  google
+#&gt; 84    fi-FI-Wavenet-A                Finnish         fi-FI FEMALE  google
+#&gt; 85   fil-PH-Wavenet-B Filipino (Philippines)        fil-PH FEMALE  google
+#&gt; 86   fil-PH-Wavenet-A Filipino (Philippines)        fil-PH FEMALE  google
+#&gt; 87  fil-PH-Standard-D Filipino (Philippines)        fil-PH   MALE  google
+#&gt; 88   fil-PH-Wavenet-D Filipino (Philippines)        fil-PH   MALE  google
+#&gt; 89  fil-PH-Standard-C Filipino (Philippines)        fil-PH   MALE  google
+#&gt; 90  fil-PH-Standard-A Filipino (Philippines)        fil-PH FEMALE  google
+#&gt; 91   fil-PH-Wavenet-C Filipino (Philippines)        fil-PH   MALE  google
+#&gt; 92  fil-PH-Standard-B Filipino (Philippines)        fil-PH FEMALE  google
+#&gt; 93   fr-CA-Standard-D        French (Canada)         fr-CA   MALE  google
+#&gt; 94    fr-CA-Wavenet-A        French (Canada)         fr-CA FEMALE  google
+#&gt; 95   fr-CA-Standard-A        French (Canada)         fr-CA FEMALE  google
+#&gt; 96   fr-CA-Standard-B        French (Canada)         fr-CA   MALE  google
+#&gt; 97   fr-CA-Standard-C        French (Canada)         fr-CA FEMALE  google
+#&gt; 98    fr-CA-Wavenet-D        French (Canada)         fr-CA   MALE  google
+#&gt; 99    fr-CA-Wavenet-B        French (Canada)         fr-CA   MALE  google
+#&gt; 100   fr-CA-Wavenet-C        French (Canada)         fr-CA FEMALE  google
+#&gt; 101  fr-FR-Standard-A        French (France)         fr-FR FEMALE  google
+#&gt; 102  fr-FR-Standard-D        French (France)         fr-FR   MALE  google
+#&gt; 103   fr-FR-Wavenet-D        French (France)         fr-FR   MALE  google
+#&gt; 104  fr-FR-Standard-E        French (France)         fr-FR FEMALE  google
+#&gt; 105   fr-FR-Wavenet-C        French (France)         fr-FR FEMALE  google
+#&gt; 106  fr-FR-Standard-B        French (France)         fr-FR   MALE  google
+#&gt; 107   fr-FR-Wavenet-B        French (France)         fr-FR   MALE  google
+#&gt; 108  fr-FR-Standard-C        French (France)         fr-FR FEMALE  google
+#&gt; 109   fr-FR-Wavenet-E        French (France)         fr-FR FEMALE  google
+#&gt; 110   fr-FR-Wavenet-A        French (France)         fr-FR FEMALE  google
+#&gt; 111  gu-IN-Standard-A                   &lt;NA&gt;         gu-IN FEMALE  google
+#&gt; 112  gu-IN-Standard-B                   &lt;NA&gt;         gu-IN   MALE  google
+#&gt; 113   hi-IN-Wavenet-A          Hindi (India)         hi-IN FEMALE  google
+#&gt; 114  hi-IN-Standard-C          Hindi (India)         hi-IN   MALE  google
+#&gt; 115   hi-IN-Wavenet-D          Hindi (India)         hi-IN FEMALE  google
+#&gt; 116  hi-IN-Standard-D          Hindi (India)         hi-IN FEMALE  google
+#&gt; 117  hi-IN-Standard-A          Hindi (India)         hi-IN FEMALE  google
+#&gt; 118  hi-IN-Standard-B          Hindi (India)         hi-IN   MALE  google
+#&gt; 119   hi-IN-Wavenet-B          Hindi (India)         hi-IN   MALE  google
+#&gt; 120   hi-IN-Wavenet-C          Hindi (India)         hi-IN   MALE  google
+#&gt; 121   hu-HU-Wavenet-A              Hungarian         hu-HU FEMALE  google
+#&gt; 122  hu-HU-Standard-A              Hungarian         hu-HU FEMALE  google
+#&gt; 123  id-ID-Standard-A             Indonesian         id-ID FEMALE  google
+#&gt; 124   id-ID-Wavenet-D             Indonesian         id-ID FEMALE  google
+#&gt; 125  id-ID-Standard-D             Indonesian         id-ID FEMALE  google
+#&gt; 126  id-ID-Standard-B             Indonesian         id-ID   MALE  google
+#&gt; 127  id-ID-Standard-C             Indonesian         id-ID   MALE  google
+#&gt; 128   id-ID-Wavenet-B             Indonesian         id-ID   MALE  google
+#&gt; 129   id-ID-Wavenet-A             Indonesian         id-ID FEMALE  google
+#&gt; 130   id-ID-Wavenet-C             Indonesian         id-ID   MALE  google
+#&gt; 131  it-IT-Standard-B                Italian         it-IT FEMALE  google
+#&gt; 132   it-IT-Wavenet-A                Italian         it-IT FEMALE  google
+#&gt; 133   it-IT-Wavenet-C                Italian         it-IT   MALE  google
+#&gt; 134   it-IT-Wavenet-D                Italian         it-IT   MALE  google
+#&gt; 135  it-IT-Standard-D                Italian         it-IT   MALE  google
+#&gt; 136  it-IT-Standard-C                Italian         it-IT   MALE  google
+#&gt; 137   it-IT-Wavenet-B                Italian         it-IT FEMALE  google
+#&gt; 138  it-IT-Standard-A                Italian         it-IT FEMALE  google
+#&gt; 139  ja-JP-Standard-B               Japanese         ja-JP FEMALE  google
+#&gt; 140   ja-JP-Wavenet-C               Japanese         ja-JP   MALE  google
+#&gt; 141   ja-JP-Wavenet-B               Japanese         ja-JP FEMALE  google
+#&gt; 142  ja-JP-Standard-C               Japanese         ja-JP   MALE  google
+#&gt; 143   ja-JP-Wavenet-A               Japanese         ja-JP FEMALE  google
+#&gt; 144  ja-JP-Standard-D               Japanese         ja-JP   MALE  google
+#&gt; 145  ja-JP-Standard-A               Japanese         ja-JP FEMALE  google
+#&gt; 146   ja-JP-Wavenet-D               Japanese         ja-JP   MALE  google
+#&gt; 147  kn-IN-Standard-A                   &lt;NA&gt;         kn-IN FEMALE  google
+#&gt; 148  kn-IN-Standard-B                   &lt;NA&gt;         kn-IN   MALE  google
+#&gt; 149   ko-KR-Wavenet-D                 Korean         ko-KR   MALE  google
+#&gt; 150  ko-KR-Standard-C                 Korean         ko-KR   MALE  google
+#&gt; 151  ko-KR-Standard-A                 Korean         ko-KR FEMALE  google
+#&gt; 152  ko-KR-Standard-B                 Korean         ko-KR FEMALE  google
+#&gt; 153   ko-KR-Wavenet-C                 Korean         ko-KR   MALE  google
+#&gt; 154  ko-KR-Standard-D                 Korean         ko-KR   MALE  google
+#&gt; 155   ko-KR-Wavenet-B                 Korean         ko-KR FEMALE  google
+#&gt; 156   ko-KR-Wavenet-A                 Korean         ko-KR FEMALE  google
+#&gt; 157  ml-IN-Standard-B                   &lt;NA&gt;         ml-IN   MALE  google
+#&gt; 158  ml-IN-Standard-A                   &lt;NA&gt;         ml-IN FEMALE  google
+#&gt; 159   nb-NO-Wavenet-C              Norwegian         nb-NO FEMALE  google
+#&gt; 160  nb-NO-Standard-D              Norwegian         nb-NO   MALE  google
+#&gt; 161  nb-NO-Standard-A              Norwegian         nb-NO FEMALE  google
+#&gt; 162   nb-NO-Wavenet-D              Norwegian         nb-NO   MALE  google
+#&gt; 163   nb-NO-Wavenet-A              Norwegian         nb-NO FEMALE  google
+#&gt; 164  nb-no-Standard-E              Norwegian         nb-NO FEMALE  google
+#&gt; 165  nb-NO-Standard-B              Norwegian         nb-NO   MALE  google
+#&gt; 166  nb-NO-Standard-C              Norwegian         nb-NO FEMALE  google
+#&gt; 167   nb-NO-Wavenet-B              Norwegian         nb-NO   MALE  google
+#&gt; 168   nb-no-Wavenet-E              Norwegian         nb-NO FEMALE  google
+#&gt; 169  nl-NL-Standard-B                  Dutch         nl-NL   MALE  google
+#&gt; 170   nl-NL-Wavenet-C                  Dutch         nl-NL   MALE  google
+#&gt; 171  nl-NL-Standard-E                  Dutch         nl-NL FEMALE  google
+#&gt; 172   nl-NL-Wavenet-A                  Dutch         nl-NL FEMALE  google
+#&gt; 173  nl-NL-Standard-C                  Dutch         nl-NL   MALE  google
+#&gt; 174   nl-NL-Wavenet-E                  Dutch         nl-NL FEMALE  google
+#&gt; 175   nl-NL-Wavenet-D                  Dutch         nl-NL FEMALE  google
+#&gt; 176  nl-NL-Standard-A                  Dutch         nl-NL FEMALE  google
+#&gt; 177   nl-NL-Wavenet-B                  Dutch         nl-NL   MALE  google
+#&gt; 178  nl-NL-Standard-D                  Dutch         nl-NL FEMALE  google
+#&gt; 179  pl-PL-Standard-E                 Polish         pl-PL FEMALE  google
+#&gt; 180   pl-PL-Wavenet-D                 Polish         pl-PL FEMALE  google
+#&gt; 181  pl-PL-Standard-C                 Polish         pl-PL   MALE  google
+#&gt; 182  pl-PL-Standard-A                 Polish         pl-PL FEMALE  google
+#&gt; 183  pl-PL-Standard-B                 Polish         pl-PL   MALE  google
+#&gt; 184  pl-PL-Standard-D                 Polish         pl-PL FEMALE  google
+#&gt; 185   pl-PL-Wavenet-A                 Polish         pl-PL FEMALE  google
+#&gt; 186   pl-PL-Wavenet-C                 Polish         pl-PL   MALE  google
+#&gt; 187   pl-PL-Wavenet-B                 Polish         pl-PL   MALE  google
+#&gt; 188   pl-PL-Wavenet-E                 Polish         pl-PL FEMALE  google
+#&gt; 189  pt-BR-Standard-A    Portuguese (Brazil)         pt-BR FEMALE  google
+#&gt; 190   pt-BR-Wavenet-A    Portuguese (Brazil)         pt-BR FEMALE  google
+#&gt; 191  pt-PT-Standard-B  Portuguese (Portugal)         pt-PT   MALE  google
+#&gt; 192   pt-PT-Wavenet-A  Portuguese (Portugal)         pt-PT FEMALE  google
+#&gt; 193   pt-PT-Wavenet-B  Portuguese (Portugal)         pt-PT   MALE  google
+#&gt; 194  pt-PT-Standard-C  Portuguese (Portugal)         pt-PT   MALE  google
+#&gt; 195  pt-PT-Standard-D  Portuguese (Portugal)         pt-PT FEMALE  google
+#&gt; 196   pt-PT-Wavenet-D  Portuguese (Portugal)         pt-PT FEMALE  google
+#&gt; 197  pt-PT-Standard-A  Portuguese (Portugal)         pt-PT FEMALE  google
+#&gt; 198   pt-PT-Wavenet-C  Portuguese (Portugal)         pt-PT   MALE  google
+#&gt; 199  ru-RU-Standard-C                Russian         ru-RU FEMALE  google
+#&gt; 200  ru-RU-Standard-B                Russian         ru-RU   MALE  google
+#&gt; 201   ru-RU-Wavenet-E                Russian         ru-RU FEMALE  google
+#&gt; 202  ru-RU-Standard-D                Russian         ru-RU   MALE  google
+#&gt; 203   ru-RU-Wavenet-D                Russian         ru-RU   MALE  google
+#&gt; 204  ru-RU-Standard-E                Russian         ru-RU FEMALE  google
+#&gt; 205  ru-RU-Standard-A                Russian         ru-RU FEMALE  google
+#&gt; 206   ru-RU-Wavenet-A                Russian         ru-RU FEMALE  google
+#&gt; 207   ru-RU-Wavenet-B                Russian         ru-RU   MALE  google
+#&gt; 208   ru-RU-Wavenet-C                Russian         ru-RU FEMALE  google
+#&gt; 209   sk-SK-Wavenet-A                 Slovak         sk-SK FEMALE  google
+#&gt; 210  sk-SK-Standard-A                 Slovak         sk-SK FEMALE  google
+#&gt; 211  sv-SE-Standard-A                Swedish         sv-SE FEMALE  google
+#&gt; 212   sv-SE-Wavenet-A                Swedish         sv-SE FEMALE  google
+#&gt; 213  ta-IN-Standard-A          Tamil (India)         ta-IN FEMALE  google
+#&gt; 214  ta-IN-Standard-B          Tamil (India)         ta-IN   MALE  google
+#&gt; 215  te-IN-Standard-B         Telugu (India)         te-IN   MALE  google
+#&gt; 216  te-IN-Standard-A         Telugu (India)         te-IN FEMALE  google
+#&gt; 217  th-TH-Standard-A                   Thai         th-TH FEMALE  google
+#&gt; 218  tr-TR-Standard-A                Turkish         tr-TR FEMALE  google
+#&gt; 219   tr-TR-Wavenet-A                Turkish         tr-TR FEMALE  google
+#&gt; 220  tr-TR-Standard-E                Turkish         tr-TR   MALE  google
+#&gt; 221   tr-TR-Wavenet-D                Turkish         tr-TR FEMALE  google
+#&gt; 222   tr-TR-Wavenet-B                Turkish         tr-TR   MALE  google
+#&gt; 223   tr-TR-Wavenet-C                Turkish         tr-TR FEMALE  google
+#&gt; 224  tr-TR-Standard-B                Turkish         tr-TR   MALE  google
+#&gt; 225  tr-TR-Standard-D                Turkish         tr-TR FEMALE  google
+#&gt; 226  tr-TR-Standard-C                Turkish         tr-TR FEMALE  google
+#&gt; 227   tr-TR-Wavenet-E                Turkish         tr-TR   MALE  google
+#&gt; 228   uk-UA-Wavenet-A    Ukrainian (Ukraine)         uk-UA FEMALE  google
+#&gt; 229  uk-UA-Standard-A    Ukrainian (Ukraine)         uk-UA FEMALE  google
+#&gt; 230   vi-VN-Wavenet-B             Vietnamese         vi-VN   MALE  google
+#&gt; 231   vi-VN-Wavenet-C             Vietnamese         vi-VN FEMALE  google
+#&gt; 232  vi-VN-Standard-D             Vietnamese         vi-VN   MALE  google
+#&gt; 233  vi-VN-Standard-A             Vietnamese         vi-VN FEMALE  google
+#&gt; 234   vi-VN-Wavenet-D             Vietnamese         vi-VN   MALE  google
+#&gt; 235  vi-VN-Standard-C             Vietnamese         vi-VN FEMALE  google
+#&gt; 236   vi-VN-Wavenet-A             Vietnamese         vi-VN FEMALE  google
+#&gt; 237  vi-VN-Standard-B             Vietnamese         vi-VN   MALE  google</div><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"aws.polly"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
 <span class='kw'>if</span> (<span class='fu'><a href='tts_auth.html'>tts_amazon_auth</a></span>()) {
 <span class='fu'>tts_voices</span>(<span class='kw'>service</span> <span class='kw'>=</span> <span class='st'>"amazon"</span>)
 }
 }</div><div class='output co'>#&gt;        voice             language language_code gender service
-#&gt; 1      Lotte                Dutch         nl-NL Female  amazon
-#&gt; 2      Maxim              Russian         ru-RU   Male  amazon
-#&gt; 3      Salli           US English         en-US Female  amazon
-#&gt; 4    Geraint        Welsh English     en-GB-WLS   Male  amazon
-#&gt; 5     Miguel           US Spanish         es-US   Male  amazon
-#&gt; 6    Marlene               German         de-DE Female  amazon
-#&gt; 7    Giorgio              Italian         it-IT   Male  amazon
-#&gt; 8       Inês           Portuguese         pt-PT Female  amazon
-#&gt; 9      Zeina               Arabic           arb Female  amazon
-#&gt; 10     Zhiyu     Chinese Mandarin        cmn-CN Female  amazon
-#&gt; 11   Gwyneth                Welsh         cy-GB Female  amazon
-#&gt; 12      Karl            Icelandic         is-IS   Male  amazon
-#&gt; 13    Joanna           US English         en-US Female  amazon
-#&gt; 14     Lucia    Castilian Spanish         es-ES Female  amazon
-#&gt; 15 Cristiano           Portuguese         pt-PT   Male  amazon
-#&gt; 16    Astrid              Swedish         sv-SE Female  amazon
-#&gt; 17     Vicki               German         de-DE Female  amazon
-#&gt; 18       Mia      Mexican Spanish         es-MX Female  amazon
-#&gt; 19    Bianca              Italian         it-IT Female  amazon
-#&gt; 20   Vitória Brazilian Portuguese         pt-BR Female  amazon
-#&gt; 21   Raveena       Indian English         en-IN Female  amazon
-#&gt; 22   Chantal      Canadian French         fr-CA Female  amazon
-#&gt; 23       Amy      British English         en-GB Female  amazon
-#&gt; 24     Brian      British English         en-GB   Male  amazon
-#&gt; 25   Russell   Australian English         en-AU   Male  amazon
-#&gt; 26     Aditi       Indian English         en-IN Female  amazon
-#&gt; 27   Matthew           US English         en-US   Male  amazon
-#&gt; 28      Dóra            Icelandic         is-IS Female  amazon
-#&gt; 29   Enrique    Castilian Spanish         es-ES   Male  amazon
+#&gt; 1      Zeina               Arabic           arb Female  amazon
+#&gt; 2      Zhiyu     Chinese Mandarin        cmn-CN Female  amazon
+#&gt; 3       Mads               Danish         da-DK   Male  amazon
+#&gt; 4       Naja               Danish         da-DK Female  amazon
+#&gt; 5      Lotte                Dutch         nl-NL Female  amazon
+#&gt; 6      Ruben                Dutch         nl-NL   Male  amazon
+#&gt; 7    Russell   Australian English         en-AU   Male  amazon
+#&gt; 8     Nicole   Australian English         en-AU Female  amazon
+#&gt; 9        Amy      British English         en-GB Female  amazon
+#&gt; 10     Brian      British English         en-GB   Male  amazon
+#&gt; 11      Emma      British English         en-GB Female  amazon
+#&gt; 12   Raveena       Indian English         en-IN Female  amazon
+#&gt; 13     Aditi       Indian English         en-IN Female  amazon
+#&gt; 14     Salli           US English         en-US Female  amazon
+#&gt; 15    Joanna           US English         en-US Female  amazon
+#&gt; 16     Kevin           US English         en-US   Male  amazon
+#&gt; 17   Matthew           US English         en-US   Male  amazon
+#&gt; 18       Ivy           US English         en-US Female  amazon
+#&gt; 19    Justin           US English         en-US   Male  amazon
+#&gt; 20    Kendra           US English         en-US Female  amazon
+#&gt; 21  Kimberly           US English         en-US Female  amazon
+#&gt; 22      Joey           US English         en-US   Male  amazon
+#&gt; 23   Geraint        Welsh English     en-GB-WLS   Male  amazon
+#&gt; 24    Céline               French         fr-FR Female  amazon
+#&gt; 25   Mathieu               French         fr-FR   Male  amazon
+#&gt; 26       Léa               French         fr-FR Female  amazon
+#&gt; 27   Chantal      Canadian French         fr-CA Female  amazon
+#&gt; 28   Marlene               German         de-DE Female  amazon
+#&gt; 29     Vicki               German         de-DE Female  amazon
 #&gt; 30      Hans               German         de-DE   Male  amazon
-#&gt; 31    Carmen             Romanian         ro-RO Female  amazon
-#&gt; 32       Ivy           US English         en-US Female  amazon
-#&gt; 33       Ewa               Polish         pl-PL Female  amazon
-#&gt; 34      Maja               Polish         pl-PL Female  amazon
-#&gt; 35    Nicole   Australian English         en-AU Female  amazon
-#&gt; 36    Camila Brazilian Portuguese         pt-BR Female  amazon
-#&gt; 37     Filiz              Turkish         tr-TR Female  amazon
-#&gt; 38     Jacek               Polish         pl-PL   Male  amazon
-#&gt; 39    Justin           US English         en-US   Male  amazon
-#&gt; 40    Céline               French         fr-FR Female  amazon
-#&gt; 41    Kendra           US English         en-US Female  amazon
-#&gt; 42   Ricardo Brazilian Portuguese         pt-BR   Male  amazon
-#&gt; 43      Mads               Danish         da-DK   Male  amazon
-#&gt; 44   Mathieu               French         fr-FR   Male  amazon
-#&gt; 45       Léa               French         fr-FR Female  amazon
-#&gt; 46      Naja               Danish         da-DK Female  amazon
-#&gt; 47  Penélope           US Spanish         es-US Female  amazon
-#&gt; 48   Tatyana              Russian         ru-RU Female  amazon
-#&gt; 49     Ruben                Dutch         nl-NL   Male  amazon
-#&gt; 50    Mizuki             Japanese         ja-JP Female  amazon
-#&gt; 51    Takumi             Japanese         ja-JP   Male  amazon
-#&gt; 52  Conchita    Castilian Spanish         es-ES Female  amazon
-#&gt; 53     Carla              Italian         it-IT Female  amazon
-#&gt; 54  Kimberly           US English         en-US Female  amazon
-#&gt; 55       Jan               Polish         pl-PL   Male  amazon
-#&gt; 56       Liv            Norwegian         nb-NO Female  amazon
-#&gt; 57      Joey           US English         en-US   Male  amazon
+#&gt; 31      Karl            Icelandic         is-IS   Male  amazon
+#&gt; 32      Dóra            Icelandic         is-IS Female  amazon
+#&gt; 33   Giorgio              Italian         it-IT   Male  amazon
+#&gt; 34    Bianca              Italian         it-IT Female  amazon
+#&gt; 35     Carla              Italian         it-IT Female  amazon
+#&gt; 36    Mizuki             Japanese         ja-JP Female  amazon
+#&gt; 37    Takumi             Japanese         ja-JP   Male  amazon
+#&gt; 38   Seoyeon               Korean         ko-KR Female  amazon
+#&gt; 39       Liv            Norwegian         nb-NO Female  amazon
+#&gt; 40       Ewa               Polish         pl-PL Female  amazon
+#&gt; 41      Maja               Polish         pl-PL Female  amazon
+#&gt; 42     Jacek               Polish         pl-PL   Male  amazon
+#&gt; 43       Jan               Polish         pl-PL   Male  amazon
+#&gt; 44   Vitória Brazilian Portuguese         pt-BR Female  amazon
+#&gt; 45    Camila Brazilian Portuguese         pt-BR Female  amazon
+#&gt; 46   Ricardo Brazilian Portuguese         pt-BR   Male  amazon
+#&gt; 47      Inês           Portuguese         pt-PT Female  amazon
+#&gt; 48 Cristiano           Portuguese         pt-PT   Male  amazon
+#&gt; 49    Carmen             Romanian         ro-RO Female  amazon
+#&gt; 50     Maxim              Russian         ru-RU   Male  amazon
+#&gt; 51   Tatyana              Russian         ru-RU Female  amazon
+#&gt; 52     Lucia    Castilian Spanish         es-ES Female  amazon
+#&gt; 53   Enrique    Castilian Spanish         es-ES   Male  amazon
+#&gt; 54  Conchita    Castilian Spanish         es-ES Female  amazon
+#&gt; 55       Mia      Mexican Spanish         es-MX Female  amazon
+#&gt; 56    Miguel           US Spanish         es-US   Male  amazon
+#&gt; 57  Penélope           US Spanish         es-US Female  amazon
 #&gt; 58      Lupe           US Spanish         es-US Female  amazon
-#&gt; 59   Seoyeon               Korean         ko-KR Female  amazon
-#&gt; 60      Emma      British English         en-GB Female  amazon</div></pre>
+#&gt; 59    Astrid              Swedish         sv-SE Female  amazon
+#&gt; 60     Filiz              Turkish         tr-TR Female  amazon
+#&gt; 61   Gwyneth                Welsh         cy-GB Female  amazon</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
