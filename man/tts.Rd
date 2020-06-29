@@ -57,9 +57,9 @@ the length of text and the number of rows is consistent?
 This affects the output format of some audio.}
 
 \item{...}{Additional arguments to
-\code{\link[text2speech:tts_google]{text2speech::tts_google()}},
-\code{\link[text2speech:tts_amazon]{text2speech::tts_amazon()}}, or
-\code{\link[text2speech:tts_microsoft]{text2speech::tts_microsoft()}}}
+\code{text2speech::tts_google()},
+\code{text2speech::tts_amazon()}, or
+\code{text2speech::tts_microsoft()}}
 
 \item{service}{service to use}
 }

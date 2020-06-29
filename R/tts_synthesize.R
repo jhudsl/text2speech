@@ -12,9 +12,9 @@ wav_duration = function(object) {
 #' @param text A character vector of text to speak
 #' @param output_format Format of output files
 #' @param ... Additional arguments to
-#' [text2speech::tts_google()],
-#' [text2speech::tts_amazon()], or
-#' [text2speech::tts_microsoft()]
+#' `text2speech::tts_google()`,
+#' `text2speech::tts_amazon()`, or
+#' `text2speech::tts_microsoft()`
 #' @param service service to use
 #'
 #' @note All functions have a  `voice`` argument fro a
