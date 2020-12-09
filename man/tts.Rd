@@ -51,7 +51,7 @@ tts(
 service, such as the
 argument \code{voice} for \verb{get_synthesis`` from \code{aws.polly}, or or [mscstts::ms_synthesize()] or the }name` argument for \code{\link[googleLanguageR:gl_talk]{googleLanguageR::gl_talk()}}}
 
-\item{bind_audio}{Should the \code{\link[text2speech:tts_bind_wav]{text2speech::tts_bind_wav()}}
+\item{bind_audio}{Should the \code{\link[=tts_bind_wav]{tts_bind_wav()}}
 be run on after the audio has been created, to ensure that
 the length of text and the number of rows is consistent?
 This affects the output format of some audio.}

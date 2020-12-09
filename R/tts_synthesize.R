@@ -85,6 +85,7 @@ tts = function(
 #'
 #' @param result A \code{data.frame} from
 #' [text2speech::tts()].
+#' @param same_sample_rate force the same sample rate
 #'
 #' @return A `data.frame` with the same structure as
 #' that of \code{tts}
@@ -94,7 +95,7 @@ tts = function(
 #' results to be harmonized
 #'
 #' @export
-tts_bind_wav = function(result) {
+tts_bind_wav = function(result, same_sample_rate = TRUE) {
   index = NULL
   rm(list = "index")
   result = result %>%
@@ -118,5 +119,16 @@ tts_bind_wav = function(result) {
                   audio_type = "wav")
   })
   ss = dplyr::bind_rows(ss)
+  if (same_sample_rate && nrow(ss) > 0) {
+    sample_rate = sapply(ss$wav, function(r) r@samp.rate)
+    if (!all(sample_rate == sample_rate[[1]])) {
+      message("enforcing same sample rate, using minimum")
+    }
+    sample_rate = min(sample_rate, na.rm = TRUE)
+    ss$wav = lapply(ss$wav, function(x) {
+      if (x@samp.rate == sample_rate) return(x)
+      tuneR::downsample(x, samp.rate = sample_rate)
+    })
+  }
   return(ss)
 }

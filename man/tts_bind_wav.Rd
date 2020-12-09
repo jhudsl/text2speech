@@ -4,11 +4,13 @@
 \alias{tts_bind_wav}
 \title{Bind Wavs together}
 \usage{
-tts_bind_wav(result)
+tts_bind_wav(result, same_sample_rate = TRUE)
 }
 \arguments{
 \item{result}{A \code{data.frame} from
-\code{\link[text2speech:tts]{text2speech::tts()}}.}
+\code{\link[=tts]{tts()}}.}
+
+\item{same_sample_rate}{force the same sample rate}
 }
 \value{
 A \code{data.frame} with the same structure as
