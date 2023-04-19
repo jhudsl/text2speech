@@ -146,7 +146,12 @@ tts_google_voices = function(...) {
 #' @rdname tts_voices
 #' @export
 tts_coqui_voices = function(...) {
-  ## CHeck that Coqui is installed 
+  ## CHeck that Coqui is installed
+  ## TODO fix the template code below
+  if (!system("which tts-coqui")) {
+  message("ffmpeg not found. Please download and install from https://github.com/coqui-ai/TTS#install-tts")
+  quit(save = "no", status = 1)
+  }
   ## Specify options
   ## Build command
   ## Run tts command
