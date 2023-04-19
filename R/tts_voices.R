@@ -48,14 +48,15 @@ tts_language_codes = function() {
 #' }
 #' }
 tts_voices = function(
-  service = c("amazon", "google", "microsoft"),
+  service = c("amazon", "google", "microsoft", "coqui"),
   ...
 ) {
   service = match.arg(service)
   res = switch(service,
                amazon = tts_amazon_voices(...),
                google = tts_google_voices(...),
-               microsoft = tts_microsoft_voices(...)
+               microsoft = tts_microsoft_voices(...),
+               coqui = tts_coqui_voices(...),
   )
   res
 }
@@ -140,4 +141,14 @@ tts_google_voices = function(...) {
   res = res[, c("voice", "language", "language_code", "gender")]
   res$service = "google"
   res
+}
+
+#' @rdname tts_voices
+#' @export
+tts_coqui_voices = function(...) {
+  ## CHeck that Coqui is installed 
+  ## Specify options
+  ## Build command
+  ## Run tts command
+  ## Spit out result
 }

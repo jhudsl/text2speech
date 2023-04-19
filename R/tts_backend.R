@@ -212,12 +212,13 @@ tts_microsoft = function(
 #' @rdname tts
 #' @export
 tts_default_voice = function(
-  service = c("amazon", "google", "microsoft")
+  service = c("amazon", "google", "microsoft", "coqui")
 ) {
   voice = switch(
     service,
     google = "en-US-Standard-C",
     microsoft = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
-    amazon = "Joanna")
+    amazon = "Joanna",
+  # TODO update this  coqui = )
   return(voice)
 }
