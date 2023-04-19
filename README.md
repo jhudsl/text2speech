@@ -21,7 +21,7 @@ such as Google, Microsoft, and Amazon.
 You can install the GitHub version of `text2speech`:
 
 ``` r
-devtools::install_github("muschellij2/text2speech")
+devtools::install_github("jhudsl/text2speech")
 ```
 
 ``` r
