@@ -39,7 +39,7 @@ tts_auth = function(service = c("amazon", "google", "microsoft"),
   return(res)
 }
 
-
+#' Check Google Cloud Text-to-Speech API Authentication Status
 #' @rdname tts_auth
 #' @export
 tts_google_authenticated = function() {
@@ -51,7 +51,7 @@ tts_google_authenticated = function() {
   !inherits(res, "try-error")
 }
 
-
+#' Check Amazon Polly Text-to-Speech API Authentication Status
 #' @rdname tts_auth
 #' @export
 tts_amazon_authenticated = function() {
@@ -74,6 +74,8 @@ tts_amazon_authenticated = function() {
   return(TRUE)
 }
 
+
+#' Check Microsoft Cognitive Services Text to Speech REST API Authentication Status
 #' @rdname tts_auth
 #' @export
 tts_microsoft_authenticated = function(...) {

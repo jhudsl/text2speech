@@ -1,13 +1,4 @@
-wav_duration = function(object) {
-  if (inherits(object, "Wave")) {
-    l <- length(object@left)
-    return(round(l / object@samp.rate, 2))
-  } else {
-    return(NA_real_)
-  }
-}
-
-#' Text to Speech
+#' Convert Text to Speech
 #'
 #' @param text A character vector of text to speak
 #' @param output_format Format of output files

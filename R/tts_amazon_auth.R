@@ -1,3 +1,5 @@
+#' Authenticate the user's credentials for using the Amazon Polly Text-to-Speech (TTS) service
+#'
 #' @rdname tts_auth
 #' @export
 tts_amazon_auth = function(key_or_json_file = NULL, ...) {

@@ -1,3 +1,4 @@
+# Return a data frame of language codes and their corresponding names for text-to-speech services
 tts_language_codes = function() {
   df = data.frame(
     language_code = c("ar-XA", "ar-EG", "ar-SA", "bg-BG", "ca-ES", "cs-CZ",
@@ -27,7 +28,6 @@ tts_language_codes = function() {
 
 #' Text to Speech Voices
 #'
-
 #' @param ... Additional arguments to service voice listings.
 #' @param service service to use
 #'
@@ -61,6 +61,8 @@ tts_voices = function(
   res
 }
 
+
+#' Get Amazon Polly TTS voices
 #' @rdname tts_voices
 #' @export
 tts_amazon_voices = function(...) {
@@ -104,6 +106,7 @@ tts_amazon_voices = function(...) {
   res
 }
 
+#' Get Microsoft Cognitive Services Text to Speech voices
 #' @rdname tts_voices
 #' @export
 tts_microsoft_voices = function(...) {
@@ -121,6 +124,8 @@ tts_microsoft_voices = function(...) {
   res
 }
 
+
+#' Get Google Cloud TTS voices
 #' @rdname tts_voices
 #' @export
 tts_google_voices = function(...) {
@@ -143,6 +148,8 @@ tts_google_voices = function(...) {
   res
 }
 
+
+#' Get Coqui TTS voices (list models)
 #' @rdname tts_voices
 #' @export
 tts_coqui_voices = function(coqui_path) {

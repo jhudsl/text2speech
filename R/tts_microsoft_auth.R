@@ -1,3 +1,4 @@
+#' Authenticate the user's credentials for using the Microsoft Cognitive Services Text to Speech REST API,
 #' @rdname tts_auth
 #' @export
 tts_microsoft_auth = function(key_or_json_file = NULL, ...) {

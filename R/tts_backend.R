@@ -1,3 +1,4 @@
+#' Convert Text to Speech using Google Cloud Text-to-Speech API
 #' @export
 #' @rdname tts
 #' @param voice A full voice name that can be passed to the
@@ -60,6 +61,7 @@ tts_google = function(
   return(res)
 }
 
+#' Convert Text to Speech using Amazon Polly
 #' @export
 #' @rdname tts
 #' @examples \dontrun{
@@ -152,6 +154,8 @@ tts_amazon = function(
 
 }
 
+
+#' Convert Text to Speech using Microsoft Cognitive Services API
 #' @export
 #' @rdname tts
 tts_microsoft = function(
@@ -218,7 +222,8 @@ tts_default_voice = function(
     service,
     google = "en-US-Standard-C",
     microsoft = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
-    amazon = "Joanna")
-  # TODO update this  coqui = )
-  return(voice)
+    amazon = "Joanna",
+    coqui = "tacotron2-DDC")
+
+  voice
 }
