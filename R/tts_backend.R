@@ -218,7 +218,7 @@ tts_default_voice = function(
     service,
     google = "en-US-Standard-C",
     microsoft = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
-    amazon = "Joanna",
+    amazon = "Joanna")
   # TODO update this  coqui = )
   return(voice)
 }
