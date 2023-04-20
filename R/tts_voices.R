@@ -48,8 +48,8 @@ tts_language_codes = function() {
 #' }
 #' }
 tts_voices = function(
-  service = c("amazon", "google", "microsoft", "coqui"),
-  ...
+    service = c("amazon", "google", "microsoft", "coqui"),
+    ...
 ) {
   service = match.arg(service)
   res = switch(service,
@@ -145,15 +145,20 @@ tts_google_voices = function(...) {
 
 #' @rdname tts_voices
 #' @export
-tts_coqui_voices = function(...) {
-  ## CHeck that Coqui is installed
-  ## TODO fix the template code below
-  if (!system("which tts-coqui")) {
-  message("ffmpeg not found. Please download and install from https://github.com/coqui-ai/TTS#install-tts")
-  quit(save = "no", status = 1)
+tts_coqui_voices = function(coqui_path) {
+  # Run `which tts` system command with temporary system search path
+  # ignore.stdout: don't print to console
+  check_coqui <- withr::with_path(coqui_path,
+                                  system("which tts", intern = FALSE, ignore.stdout = TRUE))
+  # Check if coqui TTS is installed
+  if (check_coqui > 0) {
+    message("coqui TTS library not found. Please install from https://github.com/coqui-ai/TTS#install-tts")
   }
-  ## Specify options
-  ## Build command
-  ## Run tts command
-  ## Spit out result
+
+  # Run command
+  out <- withr::with_path(coqui_path, system("tts --list_models", intern = TRUE))
+  out <- trimws(out)
+  message("Test out different voices (models) at https://huggingface.co/spaces/coqui/CoquiTTS")
+  # Only show tts_models
+  out[grepl("tts_models", out)]
 }
