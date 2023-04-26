@@ -218,34 +218,31 @@ tts_coqui <- function(
     text,
     # Set Default as WAV and put it in Documentation
     output_format = c("wav", "mp3"),
-    voice = "tacotron2-DDC",
+    model_name = "tacotron2-DDC_ph", # CoquiTTS Demo of the different voices: https://huggingface.co/spaces/coqui/CoquiTTS
     bind_audio = TRUE,
     ...) {
   # Is there a max number of limits that coqui TTS takes? (https://github.com/coqui-ai/TTS/discussions/917)
   limit <- 2500
-  output_format = "wav"
+  output_format = match.arg(output_format)
   audio_type = output_format
-  bind_audio <- TRUE
-  # IF we don't need Linear16, we can delete this switch() chunk
-  output_format = switch(
-    output_format,
-    "wav" = "LINEAR16")
+  model_name <- switch(
+    model_name,
+    "tacotron2-DDC_ph" = "tts_models/en/ljspeech/tacotron2-DDC_ph",
+    "vits"             = "tts_models/en/ljspeech/vits",
+    "glow-tts"         = "tts_models/en/ljspeech/glow-tts",
+    "speedy-speech"    = "tts_models/en/ljspeech/speedy-speech",
+    "tacotron2-DCA"    = "tts_models/en/ljspeech/tacotron2-DCA",
+    "tacotron2-DDC"    = "tts_models/en/ljspeech/tacotron2-DDC",
+    "vits--neon"       = "tts_models/en/ljspeech/vits--neon",
+    "fast_pitch"       = "tts_models/en/ljspeech/fast_pitch",
+    "overflow"         = "tts_models/en/ljspeech/overflow",
+    "neural_hmm"       = "tts_models/en/ljspeech/neural_hmm",
+    "tacotron-DDC"     = "tts_models/en/sam/tacotron-DDC",
+    "capacitron-t2-c50"= "tts_models/en/blizzard2013/capacitron-t2-c50",
+    "capacitron-t2-c150_v2" = "tts_models/en/blizzard2013/capacitron-t2-c150_v2"
+  )
 
-  voice <- "en-US-Standard-C"
   # In ari::ari_stitch(), where tts_coqui() is called, only WAV is an option for audio file
-  # output_format = match.arg(output_format)
-  text <- c("Good evening, everyone. My name is Howard, and I'm here to talk to you about the exciting world of computer science. Computers have become an integral part of our lives, and the field of computer science is all about understanding how they work and how we can use them to solve real-world problems.
-In this lecture, we'll be covering some of the basics of computer science and what makes it such a fascinating and important field of study.",
-            "First, let's talk about what computer science is. At its core, computer science is all about understanding how computers work and how to use them to solve problems.
-          This includes everything from understanding the basics of programming languages to designing and building complex software systems.",
-            "One of the key concepts in computer science is algorithms. An algorithm is a set of instructions that a computer can follow to solve a problem. Algorithms can be simple or complex, and they're used in everything
-          from sorting data to powering search engines.",
-            "Data structures are the ways in which we organize and store data in a computer. Examples of data structures include arrays, linked lists, and trees.",
-            "Of course, one of the most important aspects of computer science is programming. Programming is the process of writing code that tells a computer what to do.
-          There are many different programming languages out there, from the classic languages like C++ and Java to newer languages like Python and Swift.",
-            "Finally, computer science is a field that's constantly evolving. As technology advances and new problems arise, computer scientists are always developing new tools and techniques to solve them.
-          Whether it's developing new programming languages, creating more efficient algorithms, or designing more powerful hardware, computer science is a field that's always on the cutting edge.")
-
   res = lapply(text, function(string) {
     string_processed = tts_split_text(string, limit = limit)
 
