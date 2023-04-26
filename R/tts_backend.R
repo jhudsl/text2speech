@@ -216,7 +216,6 @@ tts_microsoft = function(
 
 tts_coqui <- function(
     text,
-    # Set Default as WAV and put it in Documentation
     output_format = c("wav", "mp3"),
     model_name = "tacotron2-DDC_ph", # CoquiTTS Demo of the different voices: https://huggingface.co/spaces/coqui/CoquiTTS
     bind_audio = TRUE,
@@ -225,6 +224,7 @@ tts_coqui <- function(
   limit <- 2500
   output_format = match.arg(output_format)
   audio_type = output_format
+  # English models
   model_name <- switch(
     model_name,
     "tacotron2-DDC_ph" = "tts_models/en/ljspeech/tacotron2-DDC_ph",
@@ -242,14 +242,15 @@ tts_coqui <- function(
     "capacitron-t2-c150_v2" = "tts_models/en/blizzard2013/capacitron-t2-c150_v2"
   )
 
-  # In ari::ari_stitch(), where tts_coqui() is called, only WAV is an option for audio file
+  # Iterate coqui tts over text
   res = lapply(text, function(string) {
     string_processed = tts_split_text(string, limit = limit)
 
     res = vapply(string_processed, function(tt) {
       output_path = tts_temp_audio(audio_type)
-      tts_args <- paste0("--text ", shQuote(tt), " ",
-                         "--model_name tts_models/en/ljspeech/tacotron2-DDC_ph --vocoder_name vocoder_models/en/ljspeech/univnet",
+      tts_args <- paste0("--text", " ", shQuote(tt), " ",
+                         "--model_name", " ", model_name, " ",
+                         "--vocoder_name vocoder_models/en/ljspeech/univnet",
                          " ", "--out_path /private", output_path)
       # # Run command with temporary system search path
       res <- withr::with_path("/opt/homebrew/Caskroom/miniforge/base/bin",
@@ -263,7 +264,7 @@ tts_coqui <- function(
                        text = string_processed,
                        wav = out, file = res)
   })
-
+  # Post-processing
   names(res) = seq_along(text)
   res = dplyr::bind_rows(res, .id = "index")
   res$index = as.numeric(res$index)
@@ -275,9 +276,7 @@ tts_coqui <- function(
   if ("wav" %in% colnames(res)) {
     res$duration = vapply(res$wav, wav_duration, FUN.VALUE = numeric(1))
   }
-
-
-
+  res
 }
 
 #' @rdname tts
