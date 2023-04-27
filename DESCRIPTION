@@ -18,7 +18,7 @@ Suggests:
     aws.polly,
     covr,
     rmarkdown,
-    testthat,
+    testthat (>= 3.0.0),
     stringi
 Encoding: UTF-8
 LazyData: true
@@ -38,3 +38,4 @@ Imports:
     knitr,
     utils
 Roxygen: list(markdown = TRUE)
+Config/testthat/edition: 3
