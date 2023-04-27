@@ -216,6 +216,8 @@ tts_microsoft = function(
 
 tts_coqui <- function(
     text,
+    # path to tts
+    exec_path,
     output_format = c("wav", "mp3"),
     model_name = "tacotron2-DDC_ph", # CoquiTTS Demo of the different voices: https://huggingface.co/spaces/coqui/CoquiTTS
     bind_audio = TRUE,
@@ -253,7 +255,7 @@ tts_coqui <- function(
                          "--vocoder_name vocoder_models/en/ljspeech/univnet",
                          " ", "--out_path /private", output_path)
       # # Run command with temporary system search path
-      res <- withr::with_path("/opt/homebrew/Caskroom/miniforge/base/bin",
+      res <- withr::with_path(exec_path,
                               system2("tts", tts_args))
       # Output file path
       output_path
