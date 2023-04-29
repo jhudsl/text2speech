@@ -157,6 +157,12 @@ tts_coqui_voices = function(coqui_path) {
   # ignore.stdout: don't print to console
   check_coqui <- withr::with_path(coqui_path,
                                   system("which tts", intern = FALSE, ignore.stdout = TRUE))
+  # TODO: save coqui_path as an environment variable in the .Rprofile and use the env variable (if it exists, if it doesn't exist, complain)
+  # in tts_coqui_voices() or tts_coqui()
+
+  # TODO: Show message to user only if they attempt to use coqui, if you can't find coqui_path in the environment variable,
+  # then we tell user to run `which tts` and find where tts is, and save path to coqui_path
+
   # Check if coqui TTS is installed
   if (check_coqui > 0) {
     message("coqui TTS library not found. Please install from https://github.com/coqui-ai/TTS#install-tts")

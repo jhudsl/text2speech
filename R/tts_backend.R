@@ -214,19 +214,28 @@ tts_microsoft = function(
 }
 
 
+# TODO: Add https://huggingface.co/spaces/coqui/CoquiTTS to roxygen comments
+# Best tts and vocoder models: https://github.com/coqui-ai/TTS/discussions/1891
 tts_coqui <- function(
     text,
     # path to tts
     exec_path,
     output_format = c("wav", "mp3"),
-    model_name = "tacotron2-DDC_ph", # CoquiTTS Demo of the different voices: https://huggingface.co/spaces/coqui/CoquiTTS
+    model_name = "tacotron2-DDC_ph",
+    vocoder_name = "univnet",
     bind_audio = TRUE,
+    other_model = NULL,
     ...) {
   # Is there a max number of limits that coqui TTS takes? (https://github.com/coqui-ai/TTS/discussions/917)
   limit <- 2500
   output_format = match.arg(output_format)
   audio_type = output_format
-  # English models
+
+  # TODO: Give user option to save output in temporary file / local folder
+
+  # TODO: Include argument checks (model_name, vocoder_name)
+
+  # English models names
   model_name <- switch(
     model_name,
     "tacotron2-DDC_ph" = "tts_models/en/ljspeech/tacotron2-DDC_ph",
@@ -243,6 +252,19 @@ tts_coqui <- function(
     "capacitron-t2-c50"= "tts_models/en/blizzard2013/capacitron-t2-c50",
     "capacitron-t2-c150_v2" = "tts_models/en/blizzard2013/capacitron-t2-c150_v2"
   )
+  # Universal/English vocoder dataset/model
+  vocoder_name <- switch(
+    vocoder_name,
+    "libri-tts/wavegrad"        =  "vocoder_models/universal/libri-tts/wavegrad",
+    "libri-tts/fullband-melgan" =  "vocoder_models/universal/libri-tts/fullband-melgan",
+    "ek1/wavegrad"              =  "vocoder_models/en/ek1/wavegrad",
+    "ljspeech/multiband-melgan" =  "vocoder_models/en/ljspeech/multiband-melgan",
+    "ljspeech/hifigan_v2"       =  "vocoder_models/en/ljspeech/hifigan_v2",
+    "ljspeech/univnet"          =  "vocoder_models/en/ljspeech/univnet",
+    "blizzard2013/hifigan_v2"   =  "vocoder_models/en/blizzard2013/hifigan_v2",
+    "vctk/hifigan_v2"           =  "vocoder_models/en/vctk/hifigan_v2",
+    "sam/hifigan_v2"            = "vocoder_models/en/sam/hifigan_v2"
+  )
 
   # Iterate coqui tts over text
   res = lapply(text, function(string) {
@@ -252,7 +274,7 @@ tts_coqui <- function(
       output_path = tts_temp_audio(audio_type)
       tts_args <- paste0("--text", " ", shQuote(tt), " ",
                          "--model_name", " ", model_name, " ",
-                         "--vocoder_name vocoder_models/en/ljspeech/univnet",
+                         "--vocoder_name", " ", vocoder_name,
                          " ", "--out_path /private", output_path)
       # # Run command with temporary system search path
       res <- withr::with_path(exec_path,

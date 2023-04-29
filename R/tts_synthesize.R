@@ -39,13 +39,14 @@ tts = function(
   text,
   output_format = c("mp3", "wav"),
   ...,
-  service = c("amazon", "google", "microsoft"),
+  service = c("amazon", "google", "microsoft", "coqui"),
   bind_audio = TRUE) {
 
   service = match.arg(service)
   if (!tts_auth(service = service)) {
-    warning(paste0("Service ", service, " not authorized"))
+    warning(paste0("Service ", service, " not authorized/unavailable"))
   }
+  # TODO: Add coqui as an option
   output_format = match.arg(output_format)
   if (service == "google") {
     res = tts_google(
@@ -67,6 +68,11 @@ tts = function(
       output_format = output_format,
       bind_audio = bind_audio,
       ...)
+  }
+  if (service == "coqui") {
+    res <- tts_coqui(
+
+    )
   }
   res$service = service
   return(res)

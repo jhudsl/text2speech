@@ -23,7 +23,7 @@
 #' tts_amazon_authenticated()
 #' tts_amazon_auth()
 #' }
-tts_auth = function(service = c("amazon", "google", "microsoft"),
+tts_auth = function(service = c("amazon", "google", "microsoft", "coqui"),
                     key_or_json_file = NULL,
                     ...) {
   service = match.arg(service)
@@ -35,6 +35,9 @@ tts_auth = function(service = c("amazon", "google", "microsoft"),
   }
   if (service == "microsoft") {
     res = tts_microsoft_auth(key_or_json_file, ...)
+  }
+  if (service == "coqui") {
+    res = tts_coqui_ready()
   }
   return(res)
 }
