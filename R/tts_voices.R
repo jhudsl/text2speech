@@ -152,24 +152,14 @@ tts_google_voices = function(...) {
 #' Get Coqui TTS voices (list models)
 #' @rdname tts_voices
 #' @export
-tts_coqui_voices = function(coqui_path) {
-  # Run `which tts` system command with temporary system search path
-  # ignore.stdout: don't print to console
-  check_coqui <- withr::with_path(coqui_path,
-                                  system("which tts", intern = FALSE, ignore.stdout = TRUE))
-  # TODO: save coqui_path as an environment variable in the .Rprofile and use the env variable (if it exists, if it doesn't exist, complain)
-  # in tts_coqui_voices() or tts_coqui()
-
-  # TODO: Show message to user only if they attempt to use coqui, if you can't find coqui_path in the environment variable,
-  # then we tell user to run `which tts` and find where tts is, and save path to coqui_path
-
-  # Check if coqui TTS is installed
-  if (check_coqui > 0) {
-    message("coqui TTS library not found. Please install from https://github.com/coqui-ai/TTS#install-tts")
-  }
+tts_coqui_voices = function() {
+  # Look for coqui_path
+  res <- try(coqui_assert())
+  coqui_path <- getOption("path_to_coqui")
 
   # Run command
-  out <- withr::with_path(coqui_path, system("tts --list_models", intern = TRUE))
+  out <- withr::with_path(process_coqui_path(coqui_path),
+                          system("tts --list_models", intern = TRUE))
   out <- trimws(out)
   message("Test out different voices (models) at https://huggingface.co/spaces/coqui/CoquiTTS")
   # Only show tts_models
