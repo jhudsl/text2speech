@@ -37,7 +37,7 @@ tts_auth = function(service = c("amazon", "google", "microsoft", "coqui"),
     res = tts_microsoft_auth(key_or_json_file, ...)
   }
   if (service == "coqui") {
-    res = tts_coqui_ready()
+    res = tts_coqui_installed()
   }
   return(res)
 }
