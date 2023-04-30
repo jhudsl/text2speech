@@ -116,6 +116,10 @@ coqui_find <- function() {
   coqui_path
 }
 
+process_coqui_path <- function(coqui_path) {
+  gsub("/tts$", "", coqui_path)
+}
+
 
 # List obj containing known locations of coqui "tts"
 coqui_paths_to_check <- list(
