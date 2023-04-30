@@ -49,3 +49,87 @@ wav_duration = function(object) {
     return(NA_real_)
   }
 }
+
+
+#' Point to local coqui tts Executable File
+#'
+#' Function to set an option that points to the local coqui tts Executable File
+#' \code{tts}.
+#'
+#' @param path path to the local coqui tts Executable File
+#'
+#' @details For a list of possible file path locations for TODO
+#'  see TODO
+#'
+#' @return Returns nothing, function sets the option variable
+#'  \code{path_to_coqui}.
+#' @export
+#'
+#' @examples \dontrun{
+#' set_coqui_path("local/path/to/tts")
+#' }
+set_coqui_path <- function(path) {
+  stopifnot(is.character(path))
+
+  if (!file.exists(path)) stop(paste0("Cannot find ", "\"", path,"\""), call. = FALSE)
+  options("path_to_coqui" = path)
+}
+
+
+
+# Assert that coqui "tts" exists locally
+# Check env variable "path_to_coqui". If it's NULL, call coqui_find(), which
+# will try to determine the local path to file "tts". If
+# coqui_find() is successful, the path to "tts" will be assigned to env
+# variable "path_to_coqui", otherwise an error is thrown.
+coqui_assert <- function() {
+  coqui_path <- getOption("path_to_coqui")
+
+  if (is.null(coqui_path)) {
+    coqui_path <- coqui_find()
+    set_coqui_path(coqui_path)
+  }
+}
+
+# Returns the local path to "tts". Search is performed by
+# looking in the known file locations for the current OS. If OS is not Linux,
+# OSX, or Windows, an error is thrown. If path to "tts" is not found, an
+# error is thrown.
+coqui_find <- function() {
+  user_os <- Sys.info()["sysname"]
+  if (!user_os %in% names(coqui_paths_to_check)) {
+    stop(coqui_path_missing, call. = FALSE)
+  }
+
+  coqui_path <- NULL
+  for (path in coqui_paths_to_check[[user_os]]) {
+    if (file.exists(path)) {
+      coqui_path <- path
+      break
+    }
+  }
+
+  if (is.null(coqui_path)) {
+    stop(coqui_path_missing, call. = FALSE)
+  }
+
+  coqui_path
+}
+
+
+# List obj containing known locations of coqui "tts"
+coqui_paths_to_check <- list(
+  "Linux" = c("/usr/bin/tts",
+              "/usr/local/bin/tts"),
+  "Darwin" = c("/opt/homebrew/Caskroom/miniforge/base/bin/tts"),
+  "Windows" = c("C:\\Program Files\\tts")
+)
+
+# Error message thrown if coqui "tts" cannot be found
+coqui_path_missing <- paste(
+  "Coqui TTS software required for advanced Text-to-Speech generation.",
+  "Cannot determine file path to coqui TTS",
+  "To download coqui TTS, visit: https://github.com/coqui-ai/TTS#install-tts \n",
+  "If you've already downloaded the software, use function",
+  "'set_coqui_path()' to point R to your local coqui tts Executable File"
+)
