@@ -154,24 +154,24 @@ tts_google_voices = function(...) {
 #' @export
 tts_coqui_voices = function() {
   # Look for coqui_path
-  res <- try(coqui_assert())
+  coqui_assert()
   coqui_path <- getOption("path_to_coqui")
 
-  # Run command
+  # Run command to list models
   out <- withr::with_path(process_coqui_path(coqui_path),
                           system("tts --list_models", intern = TRUE))
   out <- trimws(out)
-  message("Test out different voices (models) at https://huggingface.co/spaces/coqui/CoquiTTS")
-  # Only show tts_models
-  # TODO: Format the output into a dataframe with 3 columns: language, dataset, voice
+  # Format the output into a dataframe with 3 columns: language, dataset, voice
   out <- out[grepl("tts_models", out)]
   # Extract out everything after [number]:
   out <- sub("^.*tts_models/", "", out)
-  # Create df
   out <- data.frame(out)
 
   # Separate by "//" using tidyr::separate()
-  out %>% tidyr::separate_wider_delim(out,
-                                      delim = "/",
-                                      names = c("language", "dataset", "model_name"))
+  out <- out %>% tidyr::separate_wider_delim(out,
+                                             delim = "/",
+                                             names = c("language", "dataset", "model_name"))
+
+  cli::cli_text("Test out different voices on the {.href [CoquiTTS Demo](https://huggingface.co/spaces/coqui/CoquiTTS)}")
+  out
 }

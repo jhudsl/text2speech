@@ -116,6 +116,7 @@ coqui_find <- function() {
   coqui_path
 }
 
+# Returns the path to the directory that contains coqui "tts"
 process_coqui_path <- function(coqui_path) {
   gsub("/tts$", "", coqui_path)
 }
@@ -135,5 +136,5 @@ coqui_path_missing <- paste(
   "Cannot determine file path to coqui TTS",
   "To download coqui TTS, visit: https://github.com/coqui-ai/TTS#install-tts \n",
   "If you've already downloaded the software, use function",
-  "'set_coqui_path()' to point R to your local coqui tts Executable File"
+  "'set_coqui_path(path = \"path/to/coqui/tts\")' to point R to your local coqui tts Executable File"
 )
