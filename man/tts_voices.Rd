@@ -5,15 +5,18 @@
 \alias{tts_amazon_voices}
 \alias{tts_microsoft_voices}
 \alias{tts_google_voices}
+\alias{tts_coqui_voices}
 \title{Text to Speech Voices}
 \usage{
-tts_voices(service = c("amazon", "google", "microsoft"), ...)
+tts_voices(service = c("amazon", "google", "microsoft", "coqui"), ...)
 
 tts_amazon_voices(...)
 
 tts_microsoft_voices(...)
 
 tts_google_voices(...)
+
+tts_coqui_voices()
 }
 \arguments{
 \item{service}{service to use}
@@ -26,6 +29,14 @@ and language names
 }
 \description{
 Text to Speech Voices
+
+Get Amazon Polly TTS voices
+
+Get Microsoft Cognitive Services Text to Speech voices
+
+Get Google Cloud TTS voices
+
+Get Coqui TTS voices (list models)
 }
 \examples{
 if (tts_microsoft_auth()) {

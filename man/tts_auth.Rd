@@ -9,12 +9,12 @@
 \alias{tts_microsoft_authenticated}
 \alias{tts_google_auth}
 \alias{tts_microsoft_auth}
-\title{Authorize Text-to-Speech Engine}
+\title{Authenticate the user's credentials for using the Amazon Polly Text-to-Speech (TTS) service}
 \usage{
 tts_amazon_auth(key_or_json_file = NULL, ...)
 
 tts_auth(
-  service = c("amazon", "google", "microsoft"),
+  service = c("amazon", "google", "microsoft", "coqui"),
   key_or_json_file = NULL,
   ...
 )
@@ -42,7 +42,19 @@ or JSON file (for Google)}
 A logical indicator of authorization
 }
 \description{
+Authenticate the user's credentials for using the Amazon Polly Text-to-Speech (TTS) service
+
 Authorize Text-to-Speech Engine
+
+Check Google Cloud Text-to-Speech API Authentication Status
+
+Check Amazon Polly Text-to-Speech API Authentication Status
+
+Check Microsoft Cognitive Services Text to Speech REST API Authentication Status
+
+Authenticate the user's Google Cloud credentials for using the Google Cloud Text-to-Speech (TTS) API
+
+Authenticate the user's credentials for using the Microsoft Cognitive Services Text to Speech REST API,
 }
 \examples{
 tts_auth("google")

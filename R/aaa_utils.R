@@ -58,8 +58,12 @@ wav_duration = function(object) {
 #'
 #' @param path path to the local coqui tts Executable File
 #'
-#' @details For a list of possible file path locations for TODO
-#'  see TODO
+#' @details List of possible file path locations for the local coqui tts Executable File
+#' \describe{
+#'    \item{Linux}{/usr/bin/tts, /usr/local/bin/tts}
+#'    \item{Mac}{/opt/homebrew/Caskroom/miniforge/base/bin/tts}
+#'    \item{Windows}{C:\\Program Files\\tts}
+#' }
 #'
 #' @return Returns nothing, function sets the option variable
 #'  \code{path_to_coqui}.

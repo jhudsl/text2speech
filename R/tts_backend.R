@@ -214,8 +214,6 @@ tts_microsoft = function(
 }
 
 
-# TODO: Add https://huggingface.co/spaces/coqui/CoquiTTS to roxygen comments
-# Best tts and vocoder models: https://github.com/coqui-ai/TTS/discussions/1891
 tts_coqui <- function(
     text,
     # path to tts
