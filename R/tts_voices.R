@@ -163,5 +163,15 @@ tts_coqui_voices = function() {
   out <- trimws(out)
   message("Test out different voices (models) at https://huggingface.co/spaces/coqui/CoquiTTS")
   # Only show tts_models
-  out[grepl("tts_models", out)]
+  # TODO: Format the output into a dataframe with 3 columns: language, dataset, voice
+  out <- out[grepl("tts_models", out)]
+  # Extract out everything after [number]:
+  out <- sub("^.*tts_models/", "", out)
+  # Create df
+  out <- data.frame(out)
+
+  # Separate by "//" using tidyr::separate()
+  out %>% tidyr::separate_wider_delim(out,
+                                      delim = "/",
+                                      names = c("language", "dataset", "model_name"))
 }
