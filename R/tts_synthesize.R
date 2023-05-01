@@ -46,7 +46,7 @@ tts = function(
   if (!tts_auth(service = service)) {
     warning(paste0("Service ", service, " not authorized/unavailable"))
   }
-  # TODO: Add coqui as an option
+
   output_format = match.arg(output_format)
   if (service == "google") {
     res = tts_google(
@@ -70,9 +70,15 @@ tts = function(
       ...)
   }
   if (service == "coqui") {
-    res <- tts_coqui(
+    coqui_assert()
+    coqui_path <- getOption("path_to_coqui")
 
-    )
+    res <- tts_coqui(
+      text = text,
+      exec_path = coqui_path,
+      output_format = output_format,
+      bind_audio = bind_audio,
+      ...)
   }
   res$service = service
   return(res)

@@ -216,23 +216,20 @@ tts_microsoft = function(
 
 tts_coqui <- function(
     text,
-    # path to tts
     exec_path,
     output_format = c("wav", "mp3"),
     model_name = "tacotron2-DDC_ph",
-    vocoder_name = "univnet",
+    vocoder_name = "ljspeech/univnet",
     bind_audio = TRUE,
-    other_model = NULL,
+    save_local = FALSE,
+    save_local_dest = NULL,
     ...) {
   # Is there a max number of limits that coqui TTS takes? (https://github.com/coqui-ai/TTS/discussions/917)
   limit <- 2500
   output_format = match.arg(output_format)
   audio_type = output_format
 
-  # TODO: Give user option to save output in temporary file / local folder
-
-  # TODO: Include argument checks (model_name, vocoder_name)
-
+  stopifnot(is.character(model_name), is.character(vocoder_name))
   # English models names
   model_name <- switch(
     model_name,
@@ -275,7 +272,7 @@ tts_coqui <- function(
                          "--vocoder_name", " ", vocoder_name,
                          " ", "--out_path /private", output_path)
       # # Run command with temporary system search path
-      res <- withr::with_path(exec_path,
+      res <- withr::with_path(process_coqui_path(exec_path),
                               system2("tts", tts_args))
       # Output file path
       output_path
@@ -298,6 +295,13 @@ tts_coqui <- function(
   if ("wav" %in% colnames(res)) {
     res$duration = vapply(res$wav, wav_duration, FUN.VALUE = numeric(1))
   }
+  # Copy and paste WAV file into local folder
+  if (save_local) {
+    if (!is.null(save_local_dest)) {
+      file.copy(normalizePath(res$file), save_local_dest)
+    }
+  }
+
   res
 }
 
