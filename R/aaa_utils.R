@@ -82,10 +82,10 @@ set_coqui_path <- function(path) {
 
 
 # Assert that coqui "tts" exists locally
-# Check env variable "path_to_coqui". If it's NULL, call coqui_find(), which
+# Check option "path_to_coqui". If it's NULL, call coqui_find(), which
 # will try to determine the local path to file "tts". If
-# coqui_find() is successful, the path to "tts" will be assigned to env
-# variable "path_to_coqui", otherwise an error is thrown.
+# coqui_find() is successful, the path to "tts" will be assigned to option
+# "path_to_coqui", otherwise an error is thrown.
 coqui_assert <- function() {
   coqui_path <- getOption("path_to_coqui")
 

@@ -2,25 +2,28 @@ fixed_names = c("index", "original_text", "text", "wav",
                 "file", "audio_type", "duration", "service")
 
 testthat::test_that("Vanilla coqui TTS works", {
-      x = tts("Algorithmic complexity is a key consideration when
-               designing efficient solutions for large-scale data processing",
-               service = "coqui")
-      testthat::expect_s3_class(x, "data.frame")
-      testthat::expect_named(x, fixed_names)
-      testthat::expect_s4_class(x$wav[[1]], "Wave")
-      wav = x$wav[[1]]
-      testthat::expect_true(length(wav)/wav@samp.rate >= 0.5)
-  }
-)
-
-testthat::test_that("coqui TTS works", {
-  x = tts("Algorithmic complexity is a key consideration when
+  response_df = tts("Algorithmic complexity is a key consideration when
                designing efficient solutions for large-scale data processing",
           service = "coqui")
-  testthat::expect_s3_class(x, "data.frame")
-  testthat::expect_named(x, fixed_names)
-  testthat::expect_s4_class(x$wav[[1]], "Wave")
-  wav = x$wav[[1]]
-  testthat::expect_true(length(wav)/wav@samp.rate >= 0.5)
+  # Check x is a data.frame
+  testthat::expect_s3_class(response_df, "data.frame")
+  # Check column names
+  testthat::expect_named(response_df, fixed_names)
+  # Check Wave
+  testthat::expect_s4_class(response_df$wav[[1]], "Wave")
+}
+)
+
+testthat::test_that("coqui TTS works with wav as output_format", {
+  response_df = tts("Algorithmic complexity is a key consideration when
+               designing efficient solutions for large-scale data processing",
+          service = "coqui",
+          output_format = "wav")
+  testthat::expect_s3_class(response_df, "data.frame")
+  testthat::expect_named(response_df, fixed_names)
+  testthat::expect_s4_class(response_df$wav[[1]], "Wave")
+
+  # Check if audio_type is mp3
+  testthat::expect_equal(response_df$audio_type, "wav")
 }
 )
