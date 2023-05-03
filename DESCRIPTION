@@ -7,7 +7,11 @@ Authors@R:
            family = "Muschelli",
            role = c("aut", "cre"),
            email = "muschellij2@gmail.com",
-           comment = c(ORCID = "0000-0001-6469-1750"))
+           comment = c(ORCID = "0000-0001-6469-1750")),
+    person(given = "Howard",
+           family = "Baek",
+           role = "ctb",
+           email = "howardbaek@fredhutch.org")
 Description: Unifies different text to speech engines, such as
     Google, Microsoft, and Amazon.  Text synthesis can be done
     in any engine with a simple switch of an argument denoting
