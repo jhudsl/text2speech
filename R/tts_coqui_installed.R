@@ -1,3 +1,7 @@
+#' Is coqui TTS installed on local system?
+#'
+#' @return `TRUE` or `FALSE`
+#' @export
 tts_coqui_installed <- function() {
   use_coqui()
   coqui_path <- getOption("path_to_coqui")

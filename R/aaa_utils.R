@@ -58,7 +58,8 @@ wav_duration = function(object) {
 #'
 #' @param path path to the local coqui tts Executable File
 #'
-#' @details List of possible file path locations for the local coqui tts Executable File
+#' @details List of possible file path locations for the local coqui tts
+#'   Executable File
 #' \describe{
 #'    \item{Linux}{/usr/bin/tts, /usr/local/bin/tts}
 #'    \item{Mac}{/opt/homebrew/Caskroom/miniforge/base/bin/tts}
@@ -66,11 +67,11 @@ wav_duration = function(object) {
 #' }
 #'
 #' @return Returns nothing, function sets the option variable
-#'  \code{path_to_coqui}.
+#'   \code{path_to_coqui}.
 #' @export
 #'
 #' @examples \dontrun{
-#' set_coqui_path("local/path/to/tts")
+#' set_coqui_path("~/path/to/tts")
 #' }
 set_coqui_path <- function(path) {
   stopifnot(is.character(path))
@@ -81,7 +82,7 @@ set_coqui_path <- function(path) {
 
 
 
-# Assert that coqui "tts" exists locally
+# Prepare to use coqui "tts" by checking if it exists locally.
 # Check option "path_to_coqui". If it's NULL, call coqui_find(), which
 # will try to determine the local path to file "tts". If
 # coqui_find() is successful, the path to "tts" will be assigned to option

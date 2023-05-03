@@ -149,8 +149,10 @@ tts_google_voices = function(...) {
 }
 
 
-#' Get Coqui TTS voices (list models)
-#' @rdname tts_voices
+
+#' Get Coqui TTS voices
+#'
+#' @return A `data.frame` of the language, dataset, and model name.
 #' @export
 tts_coqui_voices = function() {
   # Look for coqui_path
@@ -172,6 +174,7 @@ tts_coqui_voices = function() {
                                              delim = "/",
                                              names = c("language", "dataset", "model_name"))
 
-  cli::cli_text("Test out different voices on the {.href [CoquiTTS Demo](https://huggingface.co/spaces/coqui/CoquiTTS)}")
+  cli::cli_text("Test out different voices on the
+                {.href [CoquiTTS Demo](https://huggingface.co/spaces/coqui/CoquiTTS)}")
   out
 }
