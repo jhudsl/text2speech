@@ -1,5 +1,3 @@
-testthat::context("Translate")
-
 fixed_names = c("index", "original_text", "text", "wav",
                 "file", "audio_type",
                 "duration",

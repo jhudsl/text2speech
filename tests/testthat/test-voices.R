@@ -1,5 +1,3 @@
-testthat::context("List the Voices")
-
 fixed_names = c("voice", "language", "language_code",
                 "gender", "service")
 
