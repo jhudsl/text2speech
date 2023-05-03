@@ -70,7 +70,7 @@ tts = function(
       ...)
   }
   if (service == "coqui") {
-    coqui_assert()
+    use_coqui()
     coqui_path <- getOption("path_to_coqui")
 
     res <- tts_coqui(

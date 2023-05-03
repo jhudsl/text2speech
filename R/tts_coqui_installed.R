@@ -1,5 +1,5 @@
 tts_coqui_installed <- function() {
-  coqui_assert()
+  use_coqui()
   coqui_path <- getOption("path_to_coqui")
 
   res <- suppressWarnings(withr::with_path(process_coqui_path(coqui_path),

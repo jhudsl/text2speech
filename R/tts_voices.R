@@ -154,7 +154,7 @@ tts_google_voices = function(...) {
 #' @export
 tts_coqui_voices = function() {
   # Look for coqui_path
-  coqui_assert()
+  use_coqui()
   coqui_path <- getOption("path_to_coqui")
 
   # Run command to list models

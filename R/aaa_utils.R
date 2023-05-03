@@ -86,11 +86,11 @@ set_coqui_path <- function(path) {
 # will try to determine the local path to file "tts". If
 # coqui_find() is successful, the path to "tts" will be assigned to option
 # "path_to_coqui", otherwise an error is thrown.
-coqui_assert <- function() {
+use_coqui <- function() {
   coqui_path <- getOption("path_to_coqui")
 
   if (is.null(coqui_path)) {
-    coqui_path <- coqui_find()
+    coqui_path <- find_coqui()
     set_coqui_path(coqui_path)
   }
 }
@@ -99,7 +99,7 @@ coqui_assert <- function() {
 # looking in the known file locations for the current OS. If OS is not Linux,
 # OSX, or Windows, an error is thrown. If path to "tts" is not found, an
 # error is thrown.
-coqui_find <- function() {
+find_coqui <- function() {
   user_os <- Sys.info()["sysname"]
   if (!user_os %in% names(coqui_paths_to_check)) {
     stop(coqui_path_missing, call. = FALSE)
