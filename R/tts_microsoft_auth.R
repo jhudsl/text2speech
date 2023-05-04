@@ -6,5 +6,5 @@ tts_microsoft_auth = function(key_or_json_file = NULL, ...) {
     mscstts::ms_set_tts_key(api_key = key_or_json_file)
     res = mscstts::ms_have_tts_key()
   }
-  res = tts_microsoft_authenticated(...)
+  return(tts_microsoft_authenticated(...))
 }
