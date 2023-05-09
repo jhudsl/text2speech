@@ -1,3 +1,4 @@
+# Return a data frame of language codes and their corresponding names for text-to-speech services
 tts_language_codes = function() {
   df = data.frame(
     language_code = c("ar-XA", "ar-EG", "ar-SA", "bg-BG", "ca-ES", "cs-CZ",
@@ -27,7 +28,6 @@ tts_language_codes = function() {
 
 #' Text to Speech Voices
 #'
-
 #' @param ... Additional arguments to service voice listings.
 #' @param service service to use
 #'
@@ -48,18 +48,21 @@ tts_language_codes = function() {
 #' }
 #' }
 tts_voices = function(
-  service = c("amazon", "google", "microsoft"),
-  ...
+    service = c("amazon", "google", "microsoft", "coqui"),
+    ...
 ) {
   service = match.arg(service)
   res = switch(service,
                amazon = tts_amazon_voices(...),
                google = tts_google_voices(...),
-               microsoft = tts_microsoft_voices(...)
+               microsoft = tts_microsoft_voices(...),
+               coqui = tts_coqui_voices(...),
   )
   res
 }
 
+
+#' Get Amazon Polly TTS voices
 #' @rdname tts_voices
 #' @export
 tts_amazon_voices = function(...) {
@@ -103,6 +106,7 @@ tts_amazon_voices = function(...) {
   res
 }
 
+#' Get Microsoft Cognitive Services Text to Speech voices
 #' @rdname tts_voices
 #' @export
 tts_microsoft_voices = function(...) {
@@ -120,6 +124,8 @@ tts_microsoft_voices = function(...) {
   res
 }
 
+
+#' Get Google Cloud TTS voices
 #' @rdname tts_voices
 #' @export
 tts_google_voices = function(...) {
@@ -140,4 +146,32 @@ tts_google_voices = function(...) {
   res = res[, c("voice", "language", "language_code", "gender")]
   res$service = "google"
   res
+}
+
+
+#' Get Coqui TTS voices (list models)
+#' @rdname tts_voices
+#' @export
+tts_coqui_voices = function() {
+  # Look for coqui_path
+  coqui_assert()
+  coqui_path <- getOption("path_to_coqui")
+
+  # Run command to list models
+  out <- withr::with_path(process_coqui_path(coqui_path),
+                          system("tts --list_models", intern = TRUE))
+  out <- trimws(out)
+  # Format the output into a dataframe with 3 columns: language, dataset, voice
+  out <- out[grepl("tts_models", out)]
+  # Extract out everything after [number]:
+  out <- sub("^.*tts_models/", "", out)
+  out <- data.frame(out)
+
+  # Separate by "//" using tidyr::separate()
+  out <- out %>% tidyr::separate_wider_delim(out,
+                                             delim = "/",
+                                             names = c("language", "dataset", "model_name"))
+
+  cli::cli_text("Test out different voices on the {.href [CoquiTTS Demo](https://huggingface.co/spaces/coqui/CoquiTTS)}")
+  out
 }

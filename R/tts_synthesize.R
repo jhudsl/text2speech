@@ -1,13 +1,4 @@
-wav_duration = function(object) {
-  if (inherits(object, "Wave")) {
-    l <- length(object@left)
-    return(round(l / object@samp.rate, 2))
-  } else {
-    return(NA_real_)
-  }
-}
-
-#' Text to Speech
+#' Convert Text to Speech
 #'
 #' @param text A character vector of text to speak
 #' @param output_format Format of output files
@@ -48,13 +39,14 @@ tts = function(
   text,
   output_format = c("mp3", "wav"),
   ...,
-  service = c("amazon", "google", "microsoft"),
+  service = c("amazon", "google", "microsoft", "coqui"),
   bind_audio = TRUE) {
 
   service = match.arg(service)
   if (!tts_auth(service = service)) {
-    warning(paste0("Service ", service, " not authorized"))
+    warning(paste0("Service ", service, " not authorized/unavailable"))
   }
+
   output_format = match.arg(output_format)
   if (service == "google") {
     res = tts_google(
@@ -73,6 +65,17 @@ tts = function(
   if (service == "microsoft") {
     res = tts_microsoft(
       text = text,
+      output_format = output_format,
+      bind_audio = bind_audio,
+      ...)
+  }
+  if (service == "coqui") {
+    coqui_assert()
+    coqui_path <- getOption("path_to_coqui")
+
+    res <- tts_coqui(
+      text = text,
+      exec_path = coqui_path,
       output_format = output_format,
       bind_audio = bind_audio,
       ...)

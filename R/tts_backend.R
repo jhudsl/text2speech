@@ -1,3 +1,4 @@
+#' Convert Text to Speech using Google Cloud Text-to-Speech API
 #' @export
 #' @rdname tts
 #' @param voice A full voice name that can be passed to the
@@ -10,11 +11,11 @@
 #' tts_default_voice("google")
 #' tts_default_voice("microsoft")
 tts_google = function(
-  text,
-  output_format = c("mp3", "wav"),
-  voice = "en-US-Standard-C",
-  bind_audio = TRUE,
-  ...) {
+    text,
+    output_format = c("mp3", "wav"),
+    voice = "en-US-Standard-C",
+    bind_audio = TRUE,
+    ...) {
 
   limit = 5000
   output_format = match.arg(output_format)
@@ -60,6 +61,7 @@ tts_google = function(
   return(res)
 }
 
+#' Convert Text to Speech using Amazon Polly
 #' @export
 #' @rdname tts
 #' @examples \dontrun{
@@ -72,11 +74,11 @@ tts_google = function(
 #' </speak>'
 #' }
 tts_amazon = function(
-  text,
-  output_format = c("mp3", "wav"),
-  voice = "Joanna",
-  bind_audio = TRUE,
-  ...) {
+    text,
+    output_format = c("mp3", "wav"),
+    voice = "Joanna",
+    bind_audio = TRUE,
+    ...) {
   if (!requireNamespace("aws.polly", quietly = TRUE)) {
     stop(paste0(
       "This function requires aws.polly to operate",
@@ -104,9 +106,9 @@ tts_amazon = function(
   if (!is.null(args$format)) {
     warning(
       paste0(
-      "format was specified in ... for tts_amazon",
-      ", this should be specified in output_format argument, format",
-      " is overridden")
+        "format was specified in ... for tts_amazon",
+        ", this should be specified in output_format argument, format",
+        " is overridden")
     )
   }
   res = lapply(text, function(string) {
@@ -152,14 +154,16 @@ tts_amazon = function(
 
 }
 
+
+#' Convert Text to Speech using Microsoft Cognitive Services API
 #' @export
 #' @rdname tts
 tts_microsoft = function(
-  text,
-  output_format = c("mp3", "wav"),
-  voice = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
-  bind_audio = TRUE,
-  ...) {
+    text,
+    output_format = c("mp3", "wav"),
+    voice = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
+    bind_audio = TRUE,
+    ...) {
 
   limit = 800
   output_format = match.arg(output_format)
@@ -209,15 +213,109 @@ tts_microsoft = function(
   return(res)
 }
 
+
+tts_coqui <- function(
+    text,
+    exec_path,
+    output_format = c("wav", "mp3"),
+    model_name = "tacotron2-DDC_ph",
+    vocoder_name = "ljspeech/univnet",
+    bind_audio = TRUE,
+    save_local = FALSE,
+    save_local_dest = NULL,
+    ...) {
+  # Is there a max number of limits that coqui TTS takes? (https://github.com/coqui-ai/TTS/discussions/917)
+  limit <- 2500
+  output_format = match.arg(output_format)
+  audio_type = output_format
+
+  stopifnot(is.character(model_name), is.character(vocoder_name))
+  # English models names
+  model_name <- switch(
+    model_name,
+    "tacotron2-DDC_ph" = "tts_models/en/ljspeech/tacotron2-DDC_ph",
+    "vits"             = "tts_models/en/ljspeech/vits",
+    "glow-tts"         = "tts_models/en/ljspeech/glow-tts",
+    "speedy-speech"    = "tts_models/en/ljspeech/speedy-speech",
+    "tacotron2-DCA"    = "tts_models/en/ljspeech/tacotron2-DCA",
+    "tacotron2-DDC"    = "tts_models/en/ljspeech/tacotron2-DDC",
+    "vits--neon"       = "tts_models/en/ljspeech/vits--neon",
+    "fast_pitch"       = "tts_models/en/ljspeech/fast_pitch",
+    "overflow"         = "tts_models/en/ljspeech/overflow",
+    "neural_hmm"       = "tts_models/en/ljspeech/neural_hmm",
+    "tacotron-DDC"     = "tts_models/en/sam/tacotron-DDC",
+    "capacitron-t2-c50"= "tts_models/en/blizzard2013/capacitron-t2-c50",
+    "capacitron-t2-c150_v2" = "tts_models/en/blizzard2013/capacitron-t2-c150_v2"
+  )
+  # Universal/English vocoder dataset/model
+  vocoder_name <- switch(
+    vocoder_name,
+    "libri-tts/wavegrad"        =  "vocoder_models/universal/libri-tts/wavegrad",
+    "libri-tts/fullband-melgan" =  "vocoder_models/universal/libri-tts/fullband-melgan",
+    "ek1/wavegrad"              =  "vocoder_models/en/ek1/wavegrad",
+    "ljspeech/multiband-melgan" =  "vocoder_models/en/ljspeech/multiband-melgan",
+    "ljspeech/hifigan_v2"       =  "vocoder_models/en/ljspeech/hifigan_v2",
+    "ljspeech/univnet"          =  "vocoder_models/en/ljspeech/univnet",
+    "blizzard2013/hifigan_v2"   =  "vocoder_models/en/blizzard2013/hifigan_v2",
+    "vctk/hifigan_v2"           =  "vocoder_models/en/vctk/hifigan_v2",
+    "sam/hifigan_v2"            = "vocoder_models/en/sam/hifigan_v2"
+  )
+
+  # Iterate coqui tts over text
+  res = lapply(text, function(string) {
+    string_processed = tts_split_text(string, limit = limit)
+
+    res = vapply(string_processed, function(tt) {
+      output_path = tts_temp_audio(audio_type)
+      tts_args <- paste0("--text", " ", shQuote(tt), " ",
+                         "--model_name", " ", model_name, " ",
+                         "--vocoder_name", " ", vocoder_name,
+                         " ", "--out_path /private", output_path)
+      # # Run command with temporary system search path
+      res <- withr::with_path(process_coqui_path(exec_path),
+                              system2("tts", tts_args))
+      # Output file path
+      output_path
+    }, FUN.VALUE = character(1L), USE.NAMES = FALSE)
+    out = lapply(res, tts_audio_read,
+                 output_format = audio_type)
+    df = dplyr::tibble(original_text = string,
+                       text = string_processed,
+                       wav = out, file = res)
+  })
+  # Post-processing
+  names(res) = seq_along(text)
+  res = dplyr::bind_rows(res, .id = "index")
+  res$index = as.numeric(res$index)
+  res$audio_type = audio_type
+
+  if (bind_audio) {
+    res = tts_bind_wav(res)
+  }
+  if ("wav" %in% colnames(res)) {
+    res$duration = vapply(res$wav, wav_duration, FUN.VALUE = numeric(1))
+  }
+  # Copy and paste WAV file into local folder
+  if (save_local) {
+    if (!is.null(save_local_dest)) {
+      file.copy(normalizePath(res$file), save_local_dest)
+    }
+  }
+
+  res
+}
+
 #' @rdname tts
 #' @export
 tts_default_voice = function(
-  service = c("amazon", "google", "microsoft")
+    service = c("amazon", "google", "microsoft", "coqui")
 ) {
   voice = switch(
     service,
     google = "en-US-Standard-C",
     microsoft = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
-    amazon = "Joanna")
-  return(voice)
+    amazon = "Joanna",
+    coqui = "tacotron2-DDC")
+
+  voice
 }

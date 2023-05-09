@@ -18,12 +18,12 @@ Suggests:
     aws.polly,
     covr,
     rmarkdown,
-    testthat,
+    testthat (>= 3.0.0),
     stringi
 Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
 URL: https://github.com/muschellij2/text2speech
 BugReports: https://github.com/muschellij2/text2speech/issues
 Imports: 
@@ -38,3 +38,4 @@ Imports:
     knitr,
     utils
 Roxygen: list(markdown = TRUE)
+Config/testthat/edition: 3

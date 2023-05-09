@@ -1,5 +1,5 @@
 
-#' Speak Enginge for `knitr`
+#' Speak Engine for `knitr`
 #'
 #' @param options A list of chunk options. Usually this is just the
 #' object options passed to the engine function; see

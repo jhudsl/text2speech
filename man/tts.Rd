@@ -6,7 +6,7 @@
 \alias{tts_microsoft}
 \alias{tts_default_voice}
 \alias{tts}
-\title{Text to Speech}
+\title{Convert Text to Speech using Google Cloud Text-to-Speech API}
 \usage{
 tts_google(
   text,
@@ -32,13 +32,13 @@ tts_microsoft(
   ...
 )
 
-tts_default_voice(service = c("amazon", "google", "microsoft"))
+tts_default_voice(service = c("amazon", "google", "microsoft", "coqui"))
 
 tts(
   text,
   output_format = c("mp3", "wav"),
   ...,
-  service = c("amazon", "google", "microsoft"),
+  service = c("amazon", "google", "microsoft", "coqui"),
   bind_audio = TRUE
 )
 }
@@ -67,7 +67,13 @@ This affects the output format of some audio.}
 A \code{data.frame} of text and wav files
 }
 \description{
-Text to Speech
+Convert Text to Speech using Google Cloud Text-to-Speech API
+
+Convert Text to Speech using Amazon Polly
+
+Convert Text to Speech using Microsoft Cognitive Services API
+
+Convert Text to Speech
 }
 \note{
 All functions have a  \verb{voice`` argument fro a full voice name that can be passed to the service, such as }voice\code{for}get_synthesis`` from \code{aws.polly}

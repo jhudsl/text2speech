@@ -23,7 +23,7 @@
 #' tts_amazon_authenticated()
 #' tts_amazon_auth()
 #' }
-tts_auth = function(service = c("amazon", "google", "microsoft"),
+tts_auth = function(service = c("amazon", "google", "microsoft", "coqui"),
                     key_or_json_file = NULL,
                     ...) {
   service = match.arg(service)
@@ -36,10 +36,13 @@ tts_auth = function(service = c("amazon", "google", "microsoft"),
   if (service == "microsoft") {
     res = tts_microsoft_auth(key_or_json_file, ...)
   }
+  if (service == "coqui") {
+    res = tts_coqui_installed()
+  }
   return(res)
 }
 
-
+#' Check Google Cloud Text-to-Speech API Authentication Status
 #' @rdname tts_auth
 #' @export
 tts_google_authenticated = function() {
@@ -51,7 +54,7 @@ tts_google_authenticated = function() {
   !inherits(res, "try-error")
 }
 
-
+#' Check Amazon Polly Text-to-Speech API Authentication Status
 #' @rdname tts_auth
 #' @export
 tts_amazon_authenticated = function() {
@@ -74,6 +77,8 @@ tts_amazon_authenticated = function() {
   return(TRUE)
 }
 
+
+#' Check Microsoft Cognitive Services Text to Speech REST API Authentication Status
 #' @rdname tts_auth
 #' @export
 tts_microsoft_authenticated = function(...) {
