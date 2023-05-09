@@ -1,4 +1,3 @@
-<!--This PR Template was modified from https://github.com/AlexsLemonade/OpenPBTA-analysis/blob/master/.github/PULL_REQUEST_TEMPLATE.md-->
 
 ### Purpose/implementation Section
 
@@ -11,6 +10,9 @@
 
 
 #### What GitHub issue does your pull request address?
+
+
+### What should code or steps should the reviewer run to test and use the changes here? (if applicable. 
 
 
 
