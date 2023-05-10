@@ -5,7 +5,7 @@ fixed_names = c("index", "original_text", "text", "wav",
 
 test_that(
   "Amazon Polly Translation", {
-    if (tts_google_auth()) {
+    if (tts_amazon_auth()) {
       response_df = tts("Algorithmic complexity is a key consideration when
                designing efficient solutions for large-scale data processing",
                         service = "amazon")
