@@ -23,6 +23,7 @@ Suggests:
     rmarkdown,
     testthat (>= 3.0.0),
     stringi
+    patrick
 Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr
