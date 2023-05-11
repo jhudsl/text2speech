@@ -20,10 +20,10 @@ License: GPL-3
 Suggests: 
     aws.polly,
     covr,
+    patrick,
     rmarkdown,
-    testthat (>= 3.0.0),
     stringi
-    patrick
+    testthat (>= 3.0.0)
 Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr
