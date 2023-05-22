@@ -65,7 +65,7 @@ tts = function(
   if (service == "microsoft") {
     res = tts_microsoft(
       text = text,
-      output_format = output_format,
+      audio_type = output_format,
       bind_audio = bind_audio,
       ...)
   }

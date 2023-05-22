@@ -164,20 +164,12 @@ tts_amazon = function(
 #' @rdname tts
 tts_microsoft = function(
     text,
-    output_format = c("mp3", "wav"),
-    voice = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
+    audio_type = c("mp3", "wav"),
+    voice = NULL,
     bind_audio = TRUE,
     ...) {
-
+  # Set character limit
   limit = 800
-  output_format = match.arg(output_format)
-  audio_type = output_format
-
-  output_format = switch(
-    output_format,
-    "mp3" = "audio-24khz-160kbitrate-mono-mp3",
-    "wav" = "riff-24khz-16bit-mono-pcm")
-
 
   res = lapply(text, function(string) {
     strings = tts_split_text(string,
@@ -185,12 +177,11 @@ tts_microsoft = function(
 
     res = vapply(strings, function(tt) {
       output = tts_temp_audio(audio_type)
-      out = mscstts::ms_synthesize(
+      out = mscstts2::ms_synthesize(
         tt,
-        output_format = output_format,
         voice = voice,
         ...)
-      writeBin(out$content, con = output)
+      writeBin(out, con = output)
       output
     }, FUN.VALUE = character(1L))
     names(res) = NULL
