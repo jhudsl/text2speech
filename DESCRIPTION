@@ -39,7 +39,7 @@ Imports:
     httr,
     knitr,
     magrittr,
-    mscstts (>= 0.5.1),
+    mscstts2,
     tidyr,
     tuneR,
     utils,

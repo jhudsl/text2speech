@@ -26,8 +26,8 @@ tts_amazon(
 
 tts_microsoft(
   text,
-  output_format = c("mp3", "wav"),
-  voice = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
+  audio_type = c("mp3", "wav"),
+  voice = NULL,
   bind_audio = TRUE,
   ...
 )
