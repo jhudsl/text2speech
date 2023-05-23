@@ -109,15 +109,14 @@ tts_amazon_voices = function(...) {
 #' Get Microsoft Cognitive Services Text to Speech voices
 #' @rdname tts_voices
 #' @export
-tts_microsoft_voices = function(...) {
-  # tts_microsoft_auth(...)
-  res = mscstts::ms_locale_df()
+tts_microsoft_voices = function(region = "westus") {
+  res = mscstts2::ms_list_voice()
   cn = colnames(res)
-  cn[ cn == "Gender" ] = "gender"
-  cn[ cn == "code" ] = "language_code"
-  cn[ cn == "locale" ] = "voice"
-  cn[ cn == "language" ] = "language"
-  colnames(res) = cn
+  cn[ cn == "Name" ] <- "voice"
+  cn[ cn == "Locale" ] <- "language_code"
+  cn[ cn == "LocaleName" ] <- "language"
+  cn[ cn == "Gender" ] <- "gender"
+  colnames(res) <- cn
   res = res[, c("voice", "language", "language_code", "gender")]
   res$service = "microsoft"
 
@@ -149,12 +148,14 @@ tts_google_voices = function(...) {
 }
 
 
-#' Get Coqui TTS voices (list models)
-#' @rdname tts_voices
+
+#' Get Coqui TTS voices
+#'
+#' @return A `data.frame` of the language, dataset, and model name.
 #' @export
 tts_coqui_voices = function() {
   # Look for coqui_path
-  coqui_assert()
+  use_coqui()
   coqui_path <- getOption("path_to_coqui")
 
   # Run command to list models
@@ -172,6 +173,6 @@ tts_coqui_voices = function() {
                                              delim = "/",
                                              names = c("language", "dataset", "model_name"))
 
-  cli::cli_text("Test out different voices on the {.href [CoquiTTS Demo](https://huggingface.co/spaces/coqui/CoquiTTS)}")
+  cli::cli_alert_info("Test out different voices on the {.href [CoquiTTS Demo](https://huggingface.co/spaces/coqui/CoquiTTS)}")
   out
 }

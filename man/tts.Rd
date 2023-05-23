@@ -26,8 +26,8 @@ tts_amazon(
 
 tts_microsoft(
   text,
-  output_format = c("mp3", "wav"),
-  voice = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
+  audio_type = c("mp3", "wav"),
+  voice = NULL,
   bind_audio = TRUE,
   ...
 )
@@ -43,25 +43,23 @@ tts(
 )
 }
 \arguments{
-\item{text}{A character vector of text to speak}
+\item{text}{A character vector of text}
 
-\item{output_format}{Format of output files}
+\item{output_format}{Format of output files: "mp3" or "wav"}
 
-\item{voice}{A full voice name that can be passed to the
-service, such as the
-argument \code{voice} for \verb{get_synthesis`` from \code{aws.polly}, or or [mscstts::ms_synthesize()] or the }name` argument for \code{\link[googleLanguageR:gl_talk]{googleLanguageR::gl_talk()}}}
+\item{voice}{A full voice name that can be passed to the service, such as the
+argument \code{voice} for \verb{get_synthesis`` from \code{aws.polly}, or or [mscstts::ms_synthesize()] or the }name` argument for
+\code{\link[googleLanguageR:gl_talk]{googleLanguageR::gl_talk()}}}
 
-\item{bind_audio}{Should the \code{\link[=tts_bind_wav]{tts_bind_wav()}}
-be run on after the audio has been created, to ensure that
-the length of text and the number of rows is consistent?
-This affects the output format of some audio.}
+\item{bind_audio}{Should the \code{\link[=tts_bind_wav]{tts_bind_wav()}} be run on after
+the audio has been created, to ensure that the length of text and the
+number of rows is consistent? This affects the output format of some audio.}
 
-\item{...}{Additional arguments to
-\code{text2speech::tts_google()},
-\code{text2speech::tts_amazon()}, or
-\code{text2speech::tts_microsoft()}}
+\item{...}{Additional arguments to \code{text2speech::tts_google()},
+\code{text2speech::tts_amazon()}, \code{text2speech::tts_microsoft()}, or
+\code{text2speech::tts_coqui()}}
 
-\item{service}{service to use}
+\item{service}{Service to use (Google, Amazon, Microsoft, or Coqui)}
 }
 \value{
 A \code{data.frame} of text and wav files
@@ -76,12 +74,13 @@ Convert Text to Speech using Microsoft Cognitive Services API
 Convert Text to Speech
 }
 \note{
-All functions have a  \verb{voice`` argument fro a full voice name that can be passed to the service, such as }voice\code{for}get_synthesis`` from \code{aws.polly}
+\code{tts_google()}, \code{tts_amazon()}, and \code{tts_microsoft()} have a  \code{voice}
+argument for a full voice name that can be passed to the service, such as
+\code{voice} for \code{get_synthesis} from \code{aws.polly}. \code{tts_coqui()} has a
+\code{model_name} and \code{vocoder_name} argument which lets you choose the tts and
+vocoder model.
 }
 \examples{
-tts_default_voice("amazon")
-tts_default_voice("google")
-tts_default_voice("microsoft")
 \dontrun{
 text='<speak>
   He was caught up in the game.<break time="1s"/> In the middle of the

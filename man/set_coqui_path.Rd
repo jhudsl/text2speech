@@ -18,7 +18,8 @@ Function to set an option that points to the local coqui tts Executable File
 \code{tts}.
 }
 \details{
-List of possible file path locations for the local coqui tts Executable File
+List of possible file path locations for the local coqui tts
+Executable File
 \describe{
 \item{Linux}{/usr/bin/tts, /usr/local/bin/tts}
 \item{Mac}{/opt/homebrew/Caskroom/miniforge/base/bin/tts}
@@ -27,6 +28,6 @@ List of possible file path locations for the local coqui tts Executable File
 }
 \examples{
 \dontrun{
-set_coqui_path("local/path/to/tts")
+set_coqui_path("~/path/to/tts")
 }
 }

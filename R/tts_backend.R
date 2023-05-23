@@ -1,15 +1,17 @@
 #' Convert Text to Speech using Google Cloud Text-to-Speech API
-#' @export
+
+#' @param text A character vector of text to be spoken
+#' @param output_format Format of output files: "mp3" or "wav"
+#' @param voice A full voice name that can be passed to the service, such as the
+#'   argument `voice` for `get_synthesis`` from \code{aws.polly}, or or
+#'   [mscstts::ms_synthesize()] or the `name` argument for
+#'   [googleLanguageR::gl_talk()]
+#' @param bind_audio Should the [text2speech::tts_bind_wav()] be run on after
+#'   the audio has been created, to ensure that the length of text and the
+#'   number of rows is consistent? This affects the output format of some audio.
+#'   description
 #' @rdname tts
-#' @param voice A full voice name that can be passed to the
-#' service, such as the
-#' argument `voice` for `get_synthesis`` from \code{aws.polly}, or
-#' or [mscstts::ms_synthesize()] or the
-#' `name` argument for [googleLanguageR::gl_talk()]
-#' @examples
-#' tts_default_voice("amazon")
-#' tts_default_voice("google")
-#' tts_default_voice("microsoft")
+#' @export
 tts_google = function(
     text,
     output_format = c("mp3", "wav"),
@@ -62,6 +64,7 @@ tts_google = function(
 }
 
 #' Convert Text to Speech using Amazon Polly
+#'
 #' @export
 #' @rdname tts
 #' @examples \dontrun{
@@ -156,24 +159,17 @@ tts_amazon = function(
 
 
 #' Convert Text to Speech using Microsoft Cognitive Services API
+#'
 #' @export
 #' @rdname tts
 tts_microsoft = function(
     text,
-    output_format = c("mp3", "wav"),
-    voice = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
+    audio_type = c("mp3", "wav"),
+    voice = NULL,
     bind_audio = TRUE,
     ...) {
-
+  # Set character limit
   limit = 800
-  output_format = match.arg(output_format)
-  audio_type = output_format
-
-  output_format = switch(
-    output_format,
-    "mp3" = "audio-24khz-160kbitrate-mono-mp3",
-    "wav" = "riff-24khz-16bit-mono-pcm")
-
 
   res = lapply(text, function(string) {
     strings = tts_split_text(string,
@@ -181,12 +177,11 @@ tts_microsoft = function(
 
     res = vapply(strings, function(tt) {
       output = tts_temp_audio(audio_type)
-      out = mscstts::ms_synthesize(
+      out = mscstts2::ms_synthesize(
         tt,
-        output_format = output_format,
         voice = voice,
         ...)
-      writeBin(out$content, con = output)
+      writeBin(out, con = output)
       output
     }, FUN.VALUE = character(1L))
     names(res) = NULL
@@ -214,6 +209,23 @@ tts_microsoft = function(
 }
 
 
+
+#' Convert Text to Speech using Coqui TTS
+#'
+#' @param text A character vector of text to be spoken
+#' @param exec_path System path to Coqui TTS
+#' @param output_format Format of output files: "mp3" or "wav"
+#' @param model_name Deep Learning model for Text-to-Speech Conversion
+#' @param vocoder_name Model that generates audio
+#' @param bind_audio Should the [text2speech::tts_bind_wav()] be run on after
+#'   the audio has been created, to ensure that the length of text and the
+#'   number of rows is consistent? This affects the output format of some audio.
+#'   description
+#' @param save_local Should the output file be saved locally?
+#' @param save_local_dest Destination to save output file, if saved locally
+#' @param ... Additional arguments
+#'
+#' @export
 tts_coqui <- function(
     text,
     exec_path,
@@ -301,7 +313,6 @@ tts_coqui <- function(
       file.copy(normalizePath(res$file), save_local_dest)
     }
   }
-
   res
 }
 

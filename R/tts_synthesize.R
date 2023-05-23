@@ -1,21 +1,21 @@
 #' Convert Text to Speech
 #'
-#' @param text A character vector of text to speak
-#' @param output_format Format of output files
-#' @param ... Additional arguments to
-#' `text2speech::tts_google()`,
-#' `text2speech::tts_amazon()`, or
-#' `text2speech::tts_microsoft()`
-#' @param service service to use
+#' @param text A character vector of text
+#' @param output_format Format of output files: "mp3" or "wav"
+#' @param ... Additional arguments to `text2speech::tts_google()`,
+#'   `text2speech::tts_amazon()`, `text2speech::tts_microsoft()`, or
+#'   `text2speech::tts_coqui()`
+#' @param service Service to use (Google, Amazon, Microsoft, or Coqui)
 #'
-#' @note All functions have a  `voice`` argument fro a
-#' full voice name that can be passed to the
-#' service, such as `voice` for `get_synthesis`` from \code{aws.polly}
+#' @note `tts_google()`, `tts_amazon()`, and `tts_microsoft()` have a  `voice`
+#'   argument for a full voice name that can be passed to the service, such as
+#'   `voice` for `get_synthesis` from \code{aws.polly}. `tts_coqui()` has a
+#'   `model_name` and `vocoder_name` argument which lets you choose the tts and
+#'   vocoder model.
 #'
-#' @param bind_audio Should the [text2speech::tts_bind_wav()]
-#' be run on after the audio has been created, to ensure that
-#' the length of text and the number of rows is consistent?
-#' This affects the output format of some audio.
+#' @param bind_audio Should the [text2speech::tts_bind_wav()] be run on after
+#'   the audio has been created, to ensure that the length of text and the
+#'   number of rows is consistent? This affects the output format of some audio.
 #'
 #'
 #' @return A `data.frame` of text and wav files
@@ -65,12 +65,12 @@ tts = function(
   if (service == "microsoft") {
     res = tts_microsoft(
       text = text,
-      output_format = output_format,
+      audio_type = output_format,
       bind_audio = bind_audio,
       ...)
   }
   if (service == "coqui") {
-    coqui_assert()
+    use_coqui()
     coqui_path <- getOption("path_to_coqui")
 
     res <- tts_coqui(
