@@ -44,5 +44,6 @@ Imports:
     tuneR,
     utils,
     withr
+Remotes: howardbaek/mscstts2
 Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3
