@@ -10,7 +10,7 @@ The goal of text2speech is to harmonize various text-to-speech engines,
 including Amazon Polly, Coqui TTS, Google Cloud Text-to-Speech API, and
 Microsoft Cognitive Services Text to Speech REST API.
 
-All of these engines (except Coqui TTS) are made available as R
+With the exception of Coqui TTS, all these engines are accessible as R
 packages:
 
 - [aws.polly](https://github.com/cloudyr/aws.polly) is a client for
@@ -23,7 +23,7 @@ packages:
   [Microsoft Cognitive Services Text to Speech REST
   API](https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/rest-text-to-speech?tabs=streaming)
 
-Coqui TTS functionality is included directly in this package.
+text2speech directly incorporates the functionality of Coqui TTS.
 
 ## Installation
 
@@ -41,9 +41,8 @@ devtools::install_github("jhudsl/text2speech")
 
 ## Authentication
 
-Check for authentication (permission to use each of the different
-text-to-speech engines). If not authenticated, this needs to be set up
-in each service separately by the user.
+Check for authentication. If not already authenticated, users must
+individually configure it for each service.
 
 ``` r
 library(text2speech)
@@ -64,7 +63,7 @@ tts_auth("microsoft")
 
 ## Voices
 
-List out different voice options for each service
+List different voice options for each service.
 
 ``` r
 # Amazon Polly
@@ -97,11 +96,11 @@ voices_google <- tts_google_voices()
 head(voices_google)
 #>              voice language language_code gender service
 #> 1 af-ZA-Standard-A     <NA>         af-ZA FEMALE  google
-#> 2  ar-XA-Wavenet-C   Arabic         ar-XA   MALE  google
-#> 3  ar-XA-Wavenet-A   Arabic         ar-XA FEMALE  google
-#> 4  ar-XA-Wavenet-D   Arabic         ar-XA FEMALE  google
-#> 5 ar-XA-Standard-D   Arabic         ar-XA FEMALE  google
-#> 6  ar-XA-Wavenet-B   Arabic         ar-XA   MALE  google
+#> 2 ar-XA-Standard-D   Arabic         ar-XA FEMALE  google
+#> 3  ar-XA-Wavenet-D   Arabic         ar-XA FEMALE  google
+#> 4  ar-XA-Wavenet-C   Arabic         ar-XA   MALE  google
+#> 5  ar-XA-Wavenet-A   Arabic         ar-XA FEMALE  google
+#> 6 ar-XA-Standard-C   Arabic         ar-XA   MALE  google
 
 # Microsoft Cognitive Services Text to Speech REST API
 voices_microsoft <- tts_microsoft_voices()
@@ -124,6 +123,8 @@ head(voices_microsoft)
 
 ## Convert text to speech
 
+Synthesize speech with `tts(text = "TEXT", service = "ENGINE")`
+
 ``` r
 # Amazon Polly
 tts("Hello world!", service = "amazon")
@@ -137,3 +138,17 @@ tts("Hello world!", service = "google")
 # Microsoft Cognitive Services Text to Speech REST API
 tts("Hello world!", service = "microsoft")
 ```
+
+The resulting output will consist of a standardized tibble featuring the
+following columns:
+
+- `index`: Sequential identifier number
+- `original_text`: The text input provided by the user
+- `text`: In case `original_text` exceeds the character limit, `text`
+  represents the outcome of splitting `original_text`. Otherwise, `text`
+  remains the same as `original_text`.
+- `wav`: Wave object (S4 class)
+- `file`: File path to the audio file
+- `audio_type`: The audio format, either mp3 or wav
+- `duration` : The duration of the audio file
+- `service`: The text-to-speech engine used
