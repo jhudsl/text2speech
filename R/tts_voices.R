@@ -169,9 +169,11 @@ tts_coqui_voices = function() {
   out <- data.frame(out)
 
   # Separate by "//" using tidyr::separate()
-  out <- out %>% tidyr::separate_wider_delim(out,
-                                             delim = "/",
-                                             names = c("language", "dataset", "model_name"))
+  out <- out %>%
+    tidyr::separate_wider_delim(out,
+                                delim = "/",
+                                names = c("language", "dataset", "model_name")) %>%
+    dplyr::mutate(service = "coqui")
 
   cli::cli_alert_info("Test out different voices on the {.href [CoquiTTS Demo](https://huggingface.co/spaces/coqui/CoquiTTS)}")
   out
