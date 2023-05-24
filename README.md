@@ -97,11 +97,11 @@ voices_google <- tts_google_voices()
 head(voices_google)
 #>              voice language language_code gender service
 #> 1 af-ZA-Standard-A     <NA>         af-ZA FEMALE  google
-#> 2 ar-XA-Standard-D   Arabic         ar-XA FEMALE  google
-#> 3  ar-XA-Wavenet-D   Arabic         ar-XA FEMALE  google
-#> 4  ar-XA-Wavenet-C   Arabic         ar-XA   MALE  google
-#> 5  ar-XA-Wavenet-A   Arabic         ar-XA FEMALE  google
-#> 6 ar-XA-Standard-C   Arabic         ar-XA   MALE  google
+#> 2  ar-XA-Wavenet-C   Arabic         ar-XA   MALE  google
+#> 3  ar-XA-Wavenet-A   Arabic         ar-XA FEMALE  google
+#> 4  ar-XA-Wavenet-D   Arabic         ar-XA FEMALE  google
+#> 5 ar-XA-Standard-D   Arabic         ar-XA FEMALE  google
+#> 6  ar-XA-Wavenet-B   Arabic         ar-XA   MALE  google
 
 # Microsoft Cognitive Services Text to Speech REST API
 voices_microsoft <- tts_microsoft_voices()
@@ -123,3 +123,17 @@ head(voices_microsoft)
 ```
 
 ## Convert text to speech
+
+``` r
+# Amazon Polly
+tts("Hello world!", service = "amazon")
+
+# Coqui TTS
+tts("Hello world!", service = "coqui")
+
+# Google Cloud Text-to-Speech API 
+tts("Hello world!", service = "google")
+
+# Microsoft Cognitive Services Text to Speech REST API
+tts("Hello world!", service = "microsoft")
+```

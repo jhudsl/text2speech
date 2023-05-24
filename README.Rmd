@@ -84,7 +84,17 @@ head(voices_microsoft)
 
 ## Convert text to speech
 
-```{r}
+```r
+# Amazon Polly
+tts("Hello world!", service = "amazon")
 
+# Coqui TTS
+tts("Hello world!", service = "coqui")
+
+# Google Cloud Text-to-Speech API 
+tts("Hello world!", service = "google")
+
+# Microsoft Cognitive Services Text to Speech REST API
+tts("Hello world!", service = "microsoft")
 ```
 
