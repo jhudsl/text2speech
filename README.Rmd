@@ -13,28 +13,78 @@ knitr::opts_chunk$set(
 )
 ```
 
-# text2speech
+# Overview
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of text2speech is to ...
+The goal of text2speech is to harmonize various text-to-speech engines, including Amazon Polly, Coqui TTS, Google Cloud Text-to-Speech API, and Microsoft Cognitive Services Text to Speech REST API. 
+
+All of these engines (except Coqui TTS) are made available as R packages:
+
+- [aws.polly](https://github.com/cloudyr/aws.polly) is a client for [Amazon Polly](https://docs.aws.amazon.com/polly/latest/dg/what-is.html)
+- [googleLanguageR](https://github.com/ropensci/googleLanguageR) is a client to the [Google Cloud Text-to-Speech API](https://cloud.google.com/text-to-speech/) 
+- [mscstts2](https://github.com/howardbaek/mscstts2) is a client to the [Microsoft Cognitive Services Text to Speech REST API](https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/rest-text-to-speech?tabs=streaming)
+
+Coqui TTS functionality is included directly in this package.
+
 
 ## Installation
 
-You can install the development version of text2speech from [GitHub](https://github.com/) with:
+You can install this package from CRAN or the development version from GitHub with:
 
 ``` r
+# Install from CRAN
+install.packages("text2speech")
+
+# or the development version from GitHub
 # install.packages("devtools")
 devtools::install_github("jhudsl/text2speech")
 ```
 
-## Example
+## Authentication
 
-This is a basic example which shows you how to solve a common problem:
+Check for authentication (permission to use each of the different text-to-speech engines). If not authenticated, this needs to be set up in each service separately by the user.
 
 ```{r example}
 library(text2speech)
-## basic example code
+
+# Amazon Polly
+tts_auth("amazon")
+# Coqui TTS
+tts_auth("coqui")
+# Google Cloud Text-to-Speech API 
+tts_auth("google")
+# Microsoft Cognitive Services Text to Speech REST API
+tts_auth("microsoft")
+```
+
+
+## Voices
+
+List out different voice options for each service
+
+```{r}
+# Amazon Polly
+voices_amazon <- tts_amazon_voices()
+head(voices_amazon)
+
+# Coqui TTS
+voices_coqui <- tts_coqui_voices()
+head(voices_coqui)
+
+# Google Cloud Text-to-Speech API 
+voices_google <- tts_google_voices()
+head(voices_google)
+
+# Microsoft Cognitive Services Text to Speech REST API
+voices_microsoft <- tts_microsoft_voices()
+head(voices_microsoft)
+```
+
+## Convert text to speech
+
+```{r}
+
 ```
 
