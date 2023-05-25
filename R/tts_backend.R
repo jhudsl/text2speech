@@ -1,10 +1,11 @@
 #' Text-to-Speech (Speech Synthesis)
 #'
-#' @description
-#' Convert text-to-speech using various engines, including Amazon Polly, Coqui TTS,
-#' Google Cloud Text-to-Speech API, and Microsoft Cognitive Services Text to Speech REST API.
+#' @description Convert text-to-speech using various engines, including Amazon
+#' Polly, Coqui TTS, Google Cloud Text-to-Speech API, and Microsoft Cognitive
+#' Services Text to Speech REST API.
 #'
-#' With the exception of Coqui TTS, all these engines are accessible as R packages:
+#' With the exception of Coqui TTS, all these engines are accessible as R
+#' packages:
 #' * [aws.polly](https://github.com/cloudyr/aws.polly) is a client for Amazon Polly.
 #' * [googleLanguageR](https://github.com/ropensci/googleLanguageR) is a client to the Google Cloud Text-to-Speech API.
 #' * [mscstts2](https://github.com/howardbaek/mscstts2) is a client to the Microsoft Cognitive Services Text to Speech REST API
@@ -13,14 +14,17 @@
 #' @param exec_path System path to Coqui TTS executable
 #' @param output_format Format of output files: "mp3" or "wav"
 #' @param voice Full voice name
-#' @param model_name Deep Learning model for Text-to-Speech Conversion
-#' @param vocoder_name Model that generates audio
+#' @param model_name (Coqui TTS only) Deep Learning model for Text-to-Speech
+#'   Conversion
+#' @param vocoder_name (Coqui TTS only) Voice coder used for speech coding and
+#'   transmission
 #' @param bind_audio Should the [text2speech::tts_bind_wav()] be run on after
 #'   the audio has been created, to ensure that the length of text and the
 #'   number of rows is consistent?
 #' @param service Service to use (Amazon, Google, Microsoft, or Coqui)
 #' @param save_local Should the audio file be saved locally?
-#' @param save_local_dest If to be saved locally, destination where output file will be saved
+#' @param save_local_dest If to be saved locally, destination where output file
+#'   will be saved
 #' @param bind_audio Should the [text2speech::tts_bind_wav()] be run on after
 #'   the audio has been created, to ensure that the length of text and the
 #'   number of rows is consistent?
@@ -303,8 +307,6 @@ tts_microsoft = function(
 
   return(res)
 }
-
-
 
 #' @export
 #' @rdname tts

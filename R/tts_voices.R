@@ -1,52 +1,50 @@
-# Return a data frame of language codes and their corresponding names for text-to-speech services
-tts_language_codes = function() {
-  df = data.frame(
-    language_code = c("ar-XA", "ar-EG", "ar-SA", "bg-BG", "ca-ES", "cs-CZ",
-                      "da-DK", "de-AT", "de-CH", "de-DE", "el-GR", "en-AU", "en-CA",
-                      "en-GB", "en-IE", "en-IN", "en-US", "es-ES", "es-MX", "fi-FI",
-                      "fr-CA", "fr-CH", "fr-FR", "he-IL", "hi-IN", "hr-HR", "hu-HU",
-                      "id-ID", "it-IT", "ja-JP", "ko-KR", "ms-MY", "nb-NO", "nl-NL",
-                      "pl-PL", "pt-BR", "pt-PT", "ro-RO", "ru-RU", "sk-SK", "sl-SI",
-                      "sv-SE", "ta-IN", "te-IN", "th-TH", "tr-TR", "vi-VN", "zh-CN",
-                      "zh-HK", "zh-TW", "fil-PH", "uk-UA"),
-    language = c("Arabic", "Arabic (Egypt)", "Arabic (Saudi Arabia)",
-                 "Bulgarian", "Catalan (Spain)", "Czech", "Danish", "German (Austria)",
-                 "German (Switzerland)", "German (Germany)", "Greek", "English (Australia)",
-                 "English (Canada)", "English (UK)", "English (Ireland)", "English (India)",
-                 "English (US)", "Spanish (Spain)", "Spanish (Mexico)", "Finnish",
-                 "French (Canada)", "French (Switzerland)", "French (France)",
-                 "Hebrew (Israel)", "Hindi (India)", "Croatian", "Hungarian",
-                 "Indonesian", "Italian", "Japanese", "Korean", "Malay", "Norwegian",
-                 "Dutch", "Polish", "Portuguese (Brazil)", "Portuguese (Portugal)",
-                 "Romanian", "Russian", "Slovak", "Slovenian", "Swedish", "Tamil (India)",
-                 "Telugu (India)", "Thai", "Turkish", "Vietnamese", "Chinese (Mainland)",
-                 "Chinese (Hong Kong)", "Chinese (Taiwan)",
-                 "Filipino (Philippines)", "Ukrainian (Ukraine)"),
-    stringsAsFactors = FALSE)
-  df
-}
-
-#' Text to Speech Voices
+#'Text-to-Speech (Speech Synthesis) Voices
 #'
-#' @param ... Additional arguments to service voice listings.
-#' @param service service to use
+#'@description Various services offer a range of voice options:
+#' * Amazon Polly : <https://docs.aws.amazon.com/polly/latest/dg/voicelist.html>
+#' * Microsoft Cognitive Services Text to Speech REST API : <https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support?tabs=tts#voice-styles-and-roles>
+#' * Google Cloud Text-to-Speech API : <https://cloud.google.com/text-to-speech/docs/voices>
+#' * Coqui TTS : <https://huggingface.co/spaces/coqui/CoquiTTS>
 #'
-#' @return A `data.frame` of language codes, voices, genders,
-#' and language names
+#'@param service Service to use (Amazon, Google, Microsoft, or Coqui)
+#'@param ... Additional arguments to service voice listings.
+#
+#'@return (Amazon, Microsoft, and Google) A standardized `data.frame` featuring
+#'  the following columns:
+#' * `voice` : Name of the voice
+#' * `language` : Spoken language
+#' * `language_code` : Abbreviation for the language of the speaker
+#' * `gender` : Male or female
+#' * `service` : The text-to-speech engine used
+#'
+#'  (Coqui TTS) A `tibble` featuring the following columns:
+#' * `language` : Spoken language
+#' * `dataset` : Dataset the deep learning model was trained on
+#' * `model_name` : Name of deep learning model
+#' * `service` : The text-to-speech engine used
+#'
 #' @export
-#'
 #' @examples
-#' if (tts_microsoft_auth()) {
-#' tts_voices(service = "microsoft")
-#' }
-#' if (tts_google_auth()) {
-#' tts_voices(service = "google")
-#' }
+#'
+#' #' # Amazon Polly
 #' if (requireNamespace("aws.polly", quietly = TRUE)) {
 #' if (tts_amazon_auth()) {
 #' tts_voices(service = "amazon")
 #' }
 #' }
+#'
+#' # Microsoft Cognitive Services Text to Speech REST API
+#' if (tts_microsoft_auth()) {
+#' tts_voices(service = "microsoft")
+#' }
+#'
+#' # Google Cloud Text-to-Speech API
+#' if (tts_google_auth()) {
+#' tts_voices(service = "google")
+#' }
+#'
+#' # Coqui TTS
+#' tts_auth("coqui")
 tts_voices = function(
     service = c("amazon", "google", "microsoft", "coqui"),
     ...
@@ -62,11 +60,26 @@ tts_voices = function(
 }
 
 
-
-
-#' Get Amazon Polly TTS voices
-#' @rdname tts_voices
+#' Default voice for text-to-speech engine
+#'
+#' @param service Text-to-speech engine
+#'
 #' @export
+tts_default_voice = function(
+    service = c("amazon", "google", "microsoft", "coqui")
+) {
+  voice = switch(
+    service,
+    google = "en-US-Standard-C",
+    microsoft = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
+    amazon = "Joanna",
+    coqui = "tacotron2-DDC")
+
+  voice
+}
+
+#' @export
+#' @rdname tts_voices
 tts_amazon_voices = function(...) {
   tts_amazon_auth(...)
   res =  try({
@@ -108,9 +121,9 @@ tts_amazon_voices = function(...) {
   res
 }
 
-#' Get Microsoft Cognitive Services Text to Speech voices
-#' @rdname tts_voices
+
 #' @export
+#' @rdname tts_voices
 tts_microsoft_voices = function(region = "westus") {
   res = mscstts2::ms_list_voice()
   cn = colnames(res)
@@ -126,9 +139,9 @@ tts_microsoft_voices = function(region = "westus") {
 }
 
 
-#' Get Google Cloud TTS voices
-#' @rdname tts_voices
+
 #' @export
+#' @rdname tts_voices
 tts_google_voices = function(...) {
   tts_google_auth(...)
   res = googleLanguageR::gl_talk_languages()
@@ -139,8 +152,29 @@ tts_google_voices = function(...) {
   cn[ cn == "language" ] = "language"
   colnames(res) = cn
   if (!("language" %in% cn)) {
-    # df = tts_microsoft_voices()
-    df = tts_language_codes()
+    df <- data.frame(
+      language_code = c("ar-XA", "ar-EG", "ar-SA", "bg-BG", "ca-ES", "cs-CZ",
+                        "da-DK", "de-AT", "de-CH", "de-DE", "el-GR", "en-AU", "en-CA",
+                        "en-GB", "en-IE", "en-IN", "en-US", "es-ES", "es-MX", "fi-FI",
+                        "fr-CA", "fr-CH", "fr-FR", "he-IL", "hi-IN", "hr-HR", "hu-HU",
+                        "id-ID", "it-IT", "ja-JP", "ko-KR", "ms-MY", "nb-NO", "nl-NL",
+                        "pl-PL", "pt-BR", "pt-PT", "ro-RO", "ru-RU", "sk-SK", "sl-SI",
+                        "sv-SE", "ta-IN", "te-IN", "th-TH", "tr-TR", "vi-VN", "zh-CN",
+                        "zh-HK", "zh-TW", "fil-PH", "uk-UA"),
+      language = c("Arabic", "Arabic (Egypt)", "Arabic (Saudi Arabia)",
+                   "Bulgarian", "Catalan (Spain)", "Czech", "Danish", "German (Austria)",
+                   "German (Switzerland)", "German (Germany)", "Greek", "English (Australia)",
+                   "English (Canada)", "English (UK)", "English (Ireland)", "English (India)",
+                   "English (US)", "Spanish (Spain)", "Spanish (Mexico)", "Finnish",
+                   "French (Canada)", "French (Switzerland)", "French (France)",
+                   "Hebrew (Israel)", "Hindi (India)", "Croatian", "Hungarian",
+                   "Indonesian", "Italian", "Japanese", "Korean", "Malay", "Norwegian",
+                   "Dutch", "Polish", "Portuguese (Brazil)", "Portuguese (Portugal)",
+                   "Romanian", "Russian", "Slovak", "Slovenian", "Swedish", "Tamil (India)",
+                   "Telugu (India)", "Thai", "Turkish", "Vietnamese", "Chinese (Mainland)",
+                   "Chinese (Hong Kong)", "Chinese (Taiwan)",
+                   "Filipino (Philippines)", "Ukrainian (Ukraine)"),
+      stringsAsFactors = FALSE)
     df = df[, c("language_code", "language")]
     res = merge(res, df, all.x = TRUE, by = "language_code")
   }
@@ -151,10 +185,8 @@ tts_google_voices = function(...) {
 
 
 
-#' Get Coqui TTS voices
-#'
-#' @return A `data.frame` of the language, dataset, and model name.
 #' @export
+#' @rdname tts_voices
 tts_coqui_voices = function() {
   # Look for coqui_path
   use_coqui()

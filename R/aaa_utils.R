@@ -1,8 +1,8 @@
-
 #' Play audio in a browser
 #'
-#' This uses HTML5 audio tags to play audio in your browser. Borrowed from
-#' \code{googleLanguageR::gl_talk_player()}
+#' This uses HTML5 audio tags to play audio in your browser.
+#'
+#' Borrowed from \code{googleLanguageR::gl_talk_player()}
 #'
 #' @param audio The file location of the audio file.  Must be supported by HTML5
 #' @param html The html file location that will be created host the audio

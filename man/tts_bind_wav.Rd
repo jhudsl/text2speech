@@ -7,20 +7,14 @@
 tts_bind_wav(result, same_sample_rate = TRUE)
 }
 \arguments{
-\item{result}{A \code{data.frame} from
-\code{\link[=tts]{tts()}}.}
+\item{result}{A \code{data.frame} from \code{\link[=tts]{tts()}}.}
 
 \item{same_sample_rate}{force the same sample rate}
 }
 \value{
-A \code{data.frame} with the same structure as
-that of \code{tts}
+A \code{data.frame} with the same structure as that of \code{tts}
 }
 \description{
-Bind Wavs together
-}
-\note{
-As the data are split due to limits of the
-API, then this allows the text and the
-results to be harmonized
+As the data are split due to limits of the API, \code{tts_bind_wav()}
+allows the text and the results to be harmonized
 }

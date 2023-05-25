@@ -1,15 +1,12 @@
 #' Bind Wavs together
 #'
-#' @param result A \code{data.frame} from
-#' [text2speech::tts()].
+#' @description As the data are split due to limits of the API, `tts_bind_wav()`
+#'   allows the text and the results to be harmonized
+#'
+#' @param result A \code{data.frame} from [text2speech::tts()].
 #' @param same_sample_rate force the same sample rate
 #'
-#' @return A `data.frame` with the same structure as
-#' that of \code{tts}
-#'
-#' @note As the data are split due to limits of the
-#' API, then this allows the text and the
-#' results to be harmonized
+#' @return A `data.frame` with the same structure as that of \code{tts}
 #'
 #' @export
 tts_bind_wav = function(result, same_sample_rate = TRUE) {

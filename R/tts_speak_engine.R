@@ -1,12 +1,10 @@
-
 #' Speak Engine for `knitr`
 #'
-#' @param options A list of chunk options. Usually this is just the
-#' object options passed to the engine function; see
-#'  \code{\link{knit_engines}}
+#' @param options A list of chunk options. Usually this is just the object
+#'   options passed to the engine function; see \code{\link{knit_engines}}
 #'
-#' @return A character string generated from the source code and
-#' output using the appropriate output hooks.
+#' @return A character string generated from the source code and output using
+#'   the appropriate output hooks.
 #' @export
 #'
 #' @examples
@@ -77,22 +75,4 @@ tts_speak_engine = function(options) {
   }
   print(out)
   knitr::engine_output(options, options$code, out)
-}
-
-#' Default voice for text-to-speech engine
-#'
-#' @param service Text-to-speech engine
-#'
-#' @export
-tts_default_voice = function(
-    service = c("amazon", "google", "microsoft", "coqui")
-) {
-  voice = switch(
-    service,
-    google = "en-US-Standard-C",
-    microsoft = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
-    amazon = "Joanna",
-    coqui = "tacotron2-DDC")
-
-  voice
 }

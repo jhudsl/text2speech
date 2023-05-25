@@ -75,13 +75,16 @@ number of rows is consistent?}
 
 \item{save_local}{Should the audio file be saved locally?}
 
-\item{save_local_dest}{If to be saved locally, destination where output file will be saved}
+\item{save_local_dest}{If to be saved locally, destination where output file
+will be saved}
 
 \item{exec_path}{System path to Coqui TTS executable}
 
-\item{model_name}{Deep Learning model for Text-to-Speech Conversion}
+\item{model_name}{(Coqui TTS only) Deep Learning model for Text-to-Speech
+Conversion}
 
-\item{vocoder_name}{Model that generates audio}
+\item{vocoder_name}{(Coqui TTS only) Voice coder used for speech coding and
+transmission}
 }
 \value{
 A standardized \code{tibble} featuring the following columns:
@@ -97,10 +100,12 @@ A standardized \code{tibble} featuring the following columns:
 }
 }
 \description{
-Convert text-to-speech using various engines, including Amazon Polly, Coqui TTS,
-Google Cloud Text-to-Speech API, and Microsoft Cognitive Services Text to Speech REST API.
+Convert text-to-speech using various engines, including Amazon
+Polly, Coqui TTS, Google Cloud Text-to-Speech API, and Microsoft Cognitive
+Services Text to Speech REST API.
 
-With the exception of Coqui TTS, all these engines are accessible as R packages:
+With the exception of Coqui TTS, all these engines are accessible as R
+packages:
 \itemize{
 \item \href{https://github.com/cloudyr/aws.polly}{aws.polly} is a client for Amazon Polly.
 \item \href{https://github.com/ropensci/googleLanguageR}{googleLanguageR} is a client to the Google Cloud Text-to-Speech API.
