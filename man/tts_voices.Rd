@@ -11,7 +11,7 @@ tts_voices(service = c("amazon", "google", "microsoft", "coqui"), ...)
 
 tts_amazon_voices(...)
 
-tts_microsoft_voices(...)
+tts_microsoft_voices(region = "westus")
 
 tts_google_voices(...)
 }

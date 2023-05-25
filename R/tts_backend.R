@@ -1,86 +1,97 @@
-#' Convert Text to Speech using Google Cloud Text-to-Speech API
-
+#' Text-to-Speech (Speech Synthesis)
+#'
+#' @description
+#' Convert text-to-speech using various engines, including Amazon Polly, Coqui TTS,
+#' Google Cloud Text-to-Speech API, and Microsoft Cognitive Services Text to Speech REST API.
+#'
+#' With the exception of Coqui TTS, all these engines are accessible as R packages:
+#' * [aws.polly](https://github.com/cloudyr/aws.polly) is a client for Amazon Polly.
+#' * [googleLanguageR](https://github.com/ropensci/googleLanguageR) is a client to the Google Cloud Text-to-Speech API.
+#' * [mscstts2](https://github.com/howardbaek/mscstts2) is a client to the Microsoft Cognitive Services Text to Speech REST API
+#'
 #' @param text A character vector of text to be spoken
+#' @param exec_path System path to Coqui TTS executable
 #' @param output_format Format of output files: "mp3" or "wav"
-#' @param voice A full voice name that can be passed to the service, such as the
-#'   argument `voice` for `get_synthesis`` from \code{aws.polly}, or or
-#'   [mscstts::ms_synthesize()] or the `name` argument for
-#'   [googleLanguageR::gl_talk()]
+#' @param voice Full voice name
+#' @param model_name Deep Learning model for Text-to-Speech Conversion
+#' @param vocoder_name Model that generates audio
 #' @param bind_audio Should the [text2speech::tts_bind_wav()] be run on after
 #'   the audio has been created, to ensure that the length of text and the
-#'   number of rows is consistent? This affects the output format of some audio.
-#'   description
-#' @rdname tts
+#'   number of rows is consistent?
+#' @param service Service to use (Amazon, Google, Microsoft, or Coqui)
+#' @param save_local Should the audio file be saved locally?
+#' @param save_local_dest If to be saved locally, destination where output file will be saved
+#' @param bind_audio Should the [text2speech::tts_bind_wav()] be run on after
+#'   the audio has been created, to ensure that the length of text and the
+#'   number of rows is consistent?
+#' @param ... Additional arguments
+#'
+#' @note `tts_google()`, `tts_amazon()`, and `tts_microsoft()` have a  `voice`
+#'   argument for a full voice name that can be passed to the service, such as
+#'   `voice` for `get_synthesis` from \code{aws.polly}. `tts_coqui()` has a
+#'   `model_name` and `vocoder_name` argument which lets you choose the tts and
+#'   vocoder model.
+#'
+#' @return A `data.frame` of text and wav files
 #' @export
-tts_google = function(
+tts = function(
     text,
     output_format = c("mp3", "wav"),
-    voice = "en-US-Standard-C",
+    service = c("amazon", "google", "microsoft", "coqui"),
     bind_audio = TRUE,
     ...) {
 
-  limit = 5000
+  service = match.arg(service)
+  if (!tts_auth(service = service)) {
+    warning(paste0("Service ", service, " not authorized/unavailable"))
+  }
+
   output_format = match.arg(output_format)
-  audio_type = output_format
-
-  output_format = switch(
-    output_format,
-    "mp3" = "MP3",
-    "wav" = "LINEAR16")
-
-  res = lapply(text, function(string) {
-    strings = tts_split_text(string, limit = limit)
-
-    res = vapply(strings, function(tt) {
-      output = tts_temp_audio(audio_type)
-      out = googleLanguageR::gl_talk(
-        tt,
-        output = output,
-        audioEncoding = output_format,
-        name = voice,
-        ...)
-    }, FUN.VALUE = character(1L))
-    names(res) = NULL
-    out = lapply(res, tts_audio_read,
-                 output_format = audio_type)
-    df = dplyr::tibble(original_text = string,
-                       text = strings,
-                       wav = out, file = res)
-    # out = do.call(tuneR::bind, out)
-  })
-  names(res) = length(text)
-  res = dplyr::bind_rows(res, .id = "index")
-  res$index = as.numeric(res$index)
-  res$audio_type = audio_type
-
-  if (bind_audio) {
-    res = tts_bind_wav(res)
+  if (service == "google") {
+    res = tts_google(
+      text = text,
+      output_format = output_format,
+      bind_audio = bind_audio,
+      ...)
   }
-  if ("wav" %in% colnames(res)) {
-    res$duration = vapply(res$wav, wav_duration, FUN.VALUE = numeric(1))
+  if (service == "amazon") {
+    res = tts_amazon(
+      text = text,
+      output_format = output_format,
+      bind_audio = bind_audio,
+      ...)
   }
+  if (service == "microsoft") {
+    res = tts_microsoft(
+      text = text,
+      output_format = output_format,
+      bind_audio = bind_audio,
+      ...)
+  }
+  if (service == "coqui") {
+    use_coqui()
+    coqui_path <- getOption("path_to_coqui")
 
+    res <- tts_coqui(
+      text = text,
+      exec_path = coqui_path,
+      output_format = output_format,
+      bind_audio = bind_audio,
+      ...)
+  }
+  res$service = service
   return(res)
 }
 
-#' Convert Text to Speech using Amazon Polly
-#'
 #' @export
 #' @rdname tts
-#' @examples \dontrun{
-#' text='<speak>
-#'   He was caught up in the game.<break time="1s"/> In the middle of the
-#'   10/3/2014 <sub alias="World Wide Web Consortium">W3C</sub> meeting,
-#'   he shouted, "Nice job!" quite loudly. When his boss stared at him, he repeated
-#'   <amazon:effect name="whispered">"Nice job,"</amazon:effect> in a
-#'   whisper.
-#' </speak>'
-#' }
 tts_amazon = function(
     text,
     output_format = c("mp3", "wav"),
     voice = "Joanna",
     bind_audio = TRUE,
+    save_local = FALSE,
+    save_local_dest = NULL,
     ...) {
   if (!requireNamespace("aws.polly", quietly = TRUE)) {
     stop(paste0(
@@ -152,21 +163,93 @@ tts_amazon = function(
   if ("wav" %in% colnames(res)) {
     res$duration = vapply(res$wav, wav_duration, FUN.VALUE = numeric(1))
   }
+  # Copy and paste audio file into local destination
+  if (save_local) {
+    if (!is.null(save_local_dest)) {
+      file.copy(normalizePath(res$file), save_local_dest)
+    } else {
+      cli::cli_alert_danger("Provide local destination where audio file will be saved")
+    }
+  }
 
   return(res)
 
 }
 
 
-#' Convert Text to Speech using Microsoft Cognitive Services API
-#'
+#' @export
+#' @rdname tts
+tts_google = function(
+    text,
+    output_format = c("mp3", "wav"),
+    voice = "en-US-Standard-C",
+    bind_audio = TRUE,
+    save_local = FALSE,
+    save_local_dest = NULL,
+    ...) {
+
+  limit = 5000
+  output_format = match.arg(output_format)
+  audio_type = output_format
+
+  output_format = switch(
+    output_format,
+    "mp3" = "MP3",
+    "wav" = "LINEAR16")
+
+  res = lapply(text, function(string) {
+    strings = tts_split_text(string, limit = limit)
+
+    res = vapply(strings, function(tt) {
+      output = tts_temp_audio(audio_type)
+      out = googleLanguageR::gl_talk(
+        tt,
+        output = output,
+        audioEncoding = output_format,
+        name = voice,
+        ...)
+    }, FUN.VALUE = character(1L))
+    names(res) = NULL
+    out = lapply(res, tts_audio_read,
+                 output_format = audio_type)
+    df = dplyr::tibble(original_text = string,
+                       text = strings,
+                       wav = out, file = res)
+    # out = do.call(tuneR::bind, out)
+  })
+  names(res) = length(text)
+  res = dplyr::bind_rows(res, .id = "index")
+  res$index = as.numeric(res$index)
+  res$audio_type = audio_type
+
+  if (bind_audio) {
+    res = tts_bind_wav(res)
+  }
+  if ("wav" %in% colnames(res)) {
+    res$duration = vapply(res$wav, wav_duration, FUN.VALUE = numeric(1))
+  }
+  # Copy and paste audio file into local destination
+  if (save_local) {
+    if (!is.null(save_local_dest)) {
+      file.copy(normalizePath(res$file), save_local_dest)
+    } else {
+      cli::cli_alert_danger("Provide local destination where audio file will be saved")
+    }
+  }
+
+  return(res)
+}
+
+
 #' @export
 #' @rdname tts
 tts_microsoft = function(
     text,
-    audio_type = c("mp3", "wav"),
+    output_format = c("mp3", "wav"),
     voice = NULL,
     bind_audio = TRUE,
+    save_local = FALSE,
+    save_local_dest = NULL,
     ...) {
   # Set character limit
   limit = 800
@@ -176,7 +259,7 @@ tts_microsoft = function(
                              limit = limit)
 
     res = vapply(strings, function(tt) {
-      output = tts_temp_audio(audio_type)
+      output = tts_temp_audio(output_format)
       out = mscstts2::ms_synthesize(
         tt,
         voice = voice,
@@ -186,7 +269,7 @@ tts_microsoft = function(
     }, FUN.VALUE = character(1L))
     names(res) = NULL
     out = lapply(res, tts_audio_read,
-                 output_format = audio_type)
+                 output_format = output_format)
     df = dplyr::tibble(original_text = string,
                        text = strings,
                        wav = out, file = res)
@@ -197,12 +280,20 @@ tts_microsoft = function(
   res = dplyr::bind_rows(res, .id = "index")
   res$index = as.numeric(res$index)
 
-  res$audio_type = audio_type
+  res$audio_type = output_format
   if (bind_audio) {
     res = tts_bind_wav(res)
   }
   if ("wav" %in% colnames(res)) {
     res$duration = vapply(res$wav, wav_duration, FUN.VALUE = numeric(1))
+  }
+  # Copy and paste audio file into local destination
+  if (save_local) {
+    if (!is.null(save_local_dest)) {
+      file.copy(normalizePath(res$file), save_local_dest)
+    } else {
+      cli::cli_alert_danger("Provide local destination where audio file will be saved")
+    }
   }
 
   return(res)
@@ -210,22 +301,8 @@ tts_microsoft = function(
 
 
 
-#' Convert Text to Speech using Coqui TTS
-#'
-#' @param text A character vector of text to be spoken
-#' @param exec_path System path to Coqui TTS
-#' @param output_format Format of output files: "mp3" or "wav"
-#' @param model_name Deep Learning model for Text-to-Speech Conversion
-#' @param vocoder_name Model that generates audio
-#' @param bind_audio Should the [text2speech::tts_bind_wav()] be run on after
-#'   the audio has been created, to ensure that the length of text and the
-#'   number of rows is consistent? This affects the output format of some audio.
-#'   description
-#' @param save_local Should the output file be saved locally?
-#' @param save_local_dest Destination to save output file, if saved locally
-#' @param ... Additional arguments
-#'
 #' @export
+#' @rdname tts
 tts_coqui <- function(
     text,
     exec_path,
@@ -307,26 +384,13 @@ tts_coqui <- function(
   if ("wav" %in% colnames(res)) {
     res$duration = vapply(res$wav, wav_duration, FUN.VALUE = numeric(1))
   }
-  # Copy and paste WAV file into local folder
+  # Copy and paste audio file into local folder
   if (save_local) {
     if (!is.null(save_local_dest)) {
       file.copy(normalizePath(res$file), save_local_dest)
+    } else {
+      cli::cli_alert_danger("Provide local destination where audio file will be saved")
     }
   }
   res
-}
-
-#' @rdname tts
-#' @export
-tts_default_voice = function(
-    service = c("amazon", "google", "microsoft", "coqui")
-) {
-  voice = switch(
-    service,
-    google = "en-US-Standard-C",
-    microsoft = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
-    amazon = "Joanna",
-    coqui = "tacotron2-DDC")
-
-  voice
 }

@@ -78,3 +78,21 @@ tts_speak_engine = function(options) {
   print(out)
   knitr::engine_output(options, options$code, out)
 }
+
+#' Default voice for text-to-speech engine
+#'
+#' @param service Text-to-speech engine
+#'
+#' @export
+tts_default_voice = function(
+    service = c("amazon", "google", "microsoft", "coqui")
+) {
+  voice = switch(
+    service,
+    google = "en-US-Standard-C",
+    microsoft = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
+    amazon = "Joanna",
+    coqui = "tacotron2-DDC")
+
+  voice
+}

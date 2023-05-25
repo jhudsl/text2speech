@@ -2,6 +2,7 @@
 
 export("%>%")
 export(pcm_to_wav)
+export(play_audio)
 export(set_coqui_path)
 export(tts)
 export(tts_amazon)
@@ -27,4 +28,5 @@ export(tts_voices)
 importFrom(cli,cli_text)
 importFrom(magrittr,"%>%")
 importFrom(tidyr,separate_wider_delim)
+importFrom(utils,browseURL)
 importFrom(withr,with_path)

@@ -33,10 +33,9 @@ tts_microsoft_auth(key_or_json_file = NULL, ...)
 \item{key_or_json_file}{Either an API key (for Microsoft)
 or JSON file (for Google)}
 
-\item{...}{Additional arguments to pass to
-\code{\link{use_credentials}} or \code{\link{ms_get_tts_token}}}
+\item{...}{Additional arguments}
 
-\item{service}{type of synthesis engine}
+\item{service}{Type of text-to-speech engine}
 }
 \value{
 A logical indicator of authorization
@@ -57,17 +56,15 @@ Authenticate the user's Google Cloud credentials for using the Google Cloud Text
 Authenticate the user's credentials for using the Microsoft Cognitive Services Text to Speech REST API,
 }
 \examples{
-tts_auth("google")
-tts_auth("microsoft")
-
-tts_google_authenticated()
-tts_microsoft_authenticated()
-
-tts_google_auth()
-tts_microsoft_auth()
-if (requireNamespace("aws.polly", quietly = TRUE)) {
+# Amazon Polly
 tts_auth("amazon")
-tts_amazon_authenticated()
-tts_amazon_auth()
-}
+
+# Coqui TTS
+tts_auth("coqui")
+
+# Google Cloud Text-to-Speech API
+tts_auth("google")
+
+# Microsoft Cognitive Services Text to Speech REST API
+tts_auth("microsoft")
 }

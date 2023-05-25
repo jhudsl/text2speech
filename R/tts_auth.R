@@ -1,28 +1,23 @@
 #' Authorize Text-to-Speech Engine
 #'
-#' @param service type of synthesis engine
+#' @param service Type of text-to-speech engine
 #' @param key_or_json_file Either an API key (for Microsoft)
 #' or JSON file (for Google)
-#' @param ... Additional arguments to pass to
-#' \code{\link{use_credentials}} or \code{\link{ms_get_tts_token}}
-#'
+#' @param ... Additional arguments
 #' @return A logical indicator of authorization
 #' @export
-#'
 #' @examples
-#' tts_auth("google")
-#' tts_auth("microsoft")
-#'
-#' tts_google_authenticated()
-#' tts_microsoft_authenticated()
-#'
-#' tts_google_auth()
-#' tts_microsoft_auth()
-#' if (requireNamespace("aws.polly", quietly = TRUE)) {
+#' # Amazon Polly
 #' tts_auth("amazon")
-#' tts_amazon_authenticated()
-#' tts_amazon_auth()
-#' }
+#'
+#' # Coqui TTS
+#' tts_auth("coqui")
+#'
+#' # Google Cloud Text-to-Speech API
+#' tts_auth("google")
+#'
+#' # Microsoft Cognitive Services Text to Speech REST API
+#' tts_auth("microsoft")
 tts_auth = function(service = c("amazon", "google", "microsoft", "coqui"),
                     key_or_json_file = NULL,
                     ...) {
