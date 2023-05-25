@@ -26,13 +26,18 @@
 #'   number of rows is consistent?
 #' @param ... Additional arguments
 #'
-#' @note `tts_google()`, `tts_amazon()`, and `tts_microsoft()` have a  `voice`
-#'   argument for a full voice name that can be passed to the service, such as
-#'   `voice` for `get_synthesis` from \code{aws.polly}. `tts_coqui()` has a
-#'   `model_name` and `vocoder_name` argument which lets you choose the tts and
-#'   vocoder model.
+#' @return A standardized `tibble` featuring the following columns:
+#' * `index` : Sequential identifier number
+#' * `original_text` : The text input provided by the user
+#' * `text` : In case original_text exceeds the character limit, text represents the outcome of splitting original_text. Otherwise, text remains the same as original_text.
+#' * `wav` : Wave object (S4 class)
+#' * `file` : File path to the audio file
+#' * `audio_type` : The audio format, either mp3 or wav
+#' * `duration` : The duration of the audio file
+#' * `service` : The text-to-speech engine used
 #'
-#' @return A `data.frame` of text and wav files
+#'
+#'
 #' @export
 tts = function(
     text,

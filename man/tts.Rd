@@ -84,7 +84,17 @@ number of rows is consistent?}
 \item{vocoder_name}{Model that generates audio}
 }
 \value{
-A \code{data.frame} of text and wav files
+A standardized \code{tibble} featuring the following columns:
+\itemize{
+\item \code{index} : Sequential identifier number
+\item \code{original_text} : The text input provided by the user
+\item \code{text} : In case original_text exceeds the character limit, text represents the outcome of splitting original_text. Otherwise, text remains the same as original_text.
+\item \code{wav} : Wave object (S4 class)
+\item \code{file} : File path to the audio file
+\item \code{audio_type} : The audio format, either mp3 or wav
+\item \code{duration} : The duration of the audio file
+\item \code{service} : The text-to-speech engine used
+}
 }
 \description{
 Convert text-to-speech using various engines, including Amazon Polly, Coqui TTS,
@@ -96,11 +106,4 @@ With the exception of Coqui TTS, all these engines are accessible as R packages:
 \item \href{https://github.com/ropensci/googleLanguageR}{googleLanguageR} is a client to the Google Cloud Text-to-Speech API.
 \item \href{https://github.com/howardbaek/mscstts2}{mscstts2} is a client to the Microsoft Cognitive Services Text to Speech REST API
 }
-}
-\note{
-\code{tts_google()}, \code{tts_amazon()}, and \code{tts_microsoft()} have a  \code{voice}
-argument for a full voice name that can be passed to the service, such as
-\code{voice} for \code{get_synthesis} from \code{aws.polly}. \code{tts_coqui()} has a
-\code{model_name} and \code{vocoder_name} argument which lets you choose the tts and
-vocoder model.
 }
