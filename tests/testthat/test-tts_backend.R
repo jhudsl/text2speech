@@ -1,4 +1,4 @@
-patrick::with_parameters_test_that("test tts() on Amazon, Google, and Microsoft engines) ",
+patrick::with_parameters_test_that("test tts() on Amazon, Google, Microsoft, and Coqui TTS) ",
                                    {
                                      if (tts_auth) {
                                        response_df = tts("Algorithmic complexity is a key consideration
@@ -13,7 +13,9 @@ patrick::with_parameters_test_that("test tts() on Amazon, Google, and Microsoft 
                                      }
                                    },
                                    # tts_auth(key_or_json_file = getOption("api_key")))
-                                   tts_auth = c(tts_amazon_auth(), tts_google_auth(), tts_microsoft_auth(region = "westus"), TRUE),
+                                   tts_auth = c(tts_amazon_auth(getOption("aws_access_key")),
+                                                tts_google_auth(getOption("google_api_key")),
+                                                tts_microsoft_auth(key_or_json_file = region = "westus"), TRUE),
                                    company  = c("amazon", "google", "microsoft", "coqui")
 )
 
