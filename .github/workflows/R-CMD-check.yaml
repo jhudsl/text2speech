@@ -46,7 +46,10 @@ jobs:
       - name: Supply API keys to R environment
         env:
           MS_TTS_API_KEY: ${{ secrets.MS_TTS_API_KEY }}
-
+          GL_AUTH: ${{ secrets.GL_AUTH }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
         run: |
           Rscript -e "options(api_key = ${MS_TTS_API_KEY},\
                               amazon_api_key = ${},\
