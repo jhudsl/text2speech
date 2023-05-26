@@ -1,0 +1,56 @@
+---
+title: "Coqui TTS"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Coqui TTS}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(text2speech)
+```
+
+## Introduction
+
+Coqui TTS is a text-to-speech (TTS) library that enables the conversion of regular text into speech. It provides pre-trained models and vocoders as part of its package.
+
+The underlying technology of text-to-speech is highly intricate. However, if you're interested in delving deeper into the subject, here are some recommended talks:
+
+- [Pushing the frontier of neural text to speech](https://youtu.be/MA8PCvmr8B0), a webinar by Xu Tan at Microsoft Research Asia
+- [Text to Speech Deep Dive](https://www.youtube.com/watch?v=aLBedWj-5CQ), a talk given during the ML for Audio Study Group hosted by Hugging Face.
+
+
+
+
+## Authentication
+
+```{r}
+
+```
+
+
+## List Voices
+
+```{r}
+
+```
+
+
+## Text-to-Speech
+
+```{r}
+
+```
+
+
+
+
+
