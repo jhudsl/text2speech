@@ -43,6 +43,14 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
+      - name: Supply API keys to R environment
+        env:
+          MS_TTS_API_KEY: ${{ secrets.MS_TTS_API_KEY }}
+
+        run: |
+          Rscript -e "options(api_key = ${MS_TTS_API_KEY},\
+                              amazon_api_key = ${},\
+                              )"
 
       - uses: r-lib/actions/check-r-package@v2
         with:

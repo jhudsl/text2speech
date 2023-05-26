@@ -12,6 +12,12 @@ patrick::with_parameters_test_that("test tts() on Amazon, Google, and Microsoft 
                                        testthat::expect_equal(file.exists(audio_path), TRUE)
                                      }
                                    },
+                                   # tts_auth(key_or_json_file = getOption("api_key")))
                                    tts_auth = c(tts_amazon_auth(), tts_google_auth(), tts_microsoft_auth(region = "westus"), TRUE),
                                    company  = c("amazon", "google", "microsoft", "coqui")
 )
+
+
+# patrick::with_parameters_test_that("Coqui TTS test")
+# Right now, we don't wanna run coqui test if installed. Next week, we can find time to store coqui TTS exectuable on Docker
+# if company == coqui then if coqui_test_path(), run this test, if not, then don't run this test.
