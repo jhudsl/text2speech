@@ -5,44 +5,71 @@
 \alias{tts_amazon_voices}
 \alias{tts_microsoft_voices}
 \alias{tts_google_voices}
-\title{Text to Speech Voices}
+\alias{tts_coqui_voices}
+\title{Text-to-Speech (Speech Synthesis) Voices}
 \usage{
 tts_voices(service = c("amazon", "google", "microsoft", "coqui"), ...)
 
 tts_amazon_voices(...)
 
-tts_microsoft_voices(...)
+tts_microsoft_voices(region = "westus")
 
 tts_google_voices(...)
+
+tts_coqui_voices()
 }
 \arguments{
-\item{service}{service to use}
+\item{service}{Service to use (Amazon, Google, Microsoft, or Coqui)}
 
 \item{...}{Additional arguments to service voice listings.}
 }
 \value{
-A \code{data.frame} of language codes, voices, genders,
-and language names
+(Amazon, Microsoft, and Google) A standardized \code{data.frame} featuring
+the following columns:
+\itemize{
+\item \code{voice} : Name of the voice
+\item \code{language} : Spoken language
+\item \code{language_code} : Abbreviation for the language of the speaker
+\item \code{gender} : Male or female
+\item \code{service} : The text-to-speech engine used
+}
+
+(Coqui TTS) A \code{tibble} featuring the following columns:
+\itemize{
+\item \code{language} : Spoken language
+\item \code{dataset} : Dataset the deep learning model was trained on
+\item \code{model_name} : Name of deep learning model
+\item \code{service} : The text-to-speech engine used
+}
 }
 \description{
-Text to Speech Voices
-
-Get Amazon Polly TTS voices
-
-Get Microsoft Cognitive Services Text to Speech voices
-
-Get Google Cloud TTS voices
+Various services offer a range of voice options:
+\itemize{
+\item Amazon Polly : \url{https://docs.aws.amazon.com/polly/latest/dg/voicelist.html}
+\item Microsoft Cognitive Services Text to Speech REST API : \url{https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support?tabs=tts#voice-styles-and-roles}
+\item Google Cloud Text-to-Speech API : \url{https://cloud.google.com/text-to-speech/docs/voices}
+\item Coqui TTS : \url{https://huggingface.co/spaces/coqui/CoquiTTS}
+}
 }
 \examples{
-if (tts_microsoft_auth()) {
-tts_voices(service = "microsoft")
-}
-if (tts_google_auth()) {
-tts_voices(service = "google")
-}
+
+#' # Amazon Polly
 if (requireNamespace("aws.polly", quietly = TRUE)) {
 if (tts_amazon_auth()) {
 tts_voices(service = "amazon")
 }
 }
+
+# Microsoft Cognitive Services Text to Speech REST API
+if (tts_microsoft_auth()) {
+tts_voices(service = "microsoft")
+}
+
+# Google Cloud Text-to-Speech API
+if (tts_google_auth()) {
+tts_voices(service = "google")
+}
+
+# Coqui TTS
+tts_auth("coqui")
 }

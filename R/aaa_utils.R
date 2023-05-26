@@ -1,3 +1,28 @@
+#' Play audio in a browser
+#'
+#' This uses HTML5 audio tags to play audio in your browser.
+#'
+#' Borrowed from \code{googleLanguageR::gl_talk_player()}
+#'
+#' @param audio The file location of the audio file.  Must be supported by HTML5
+#' @param html The html file location that will be created host the audio
+#'
+#' @export
+#' @importFrom utils browseURL
+play_audio <- function(audio = "output.wav",
+                       html = "player.html"){
+  # Write html code to a html file
+  writeLines(sprintf('<html><body>
+    <audio controls autoplay>
+                     <source src="%s">
+                     </audio>
+                     </body></html>',
+                     audio),
+             html)
+  # Load URL into browser
+  utils::browseURL(html)
+}
+
 # Read WAV or MP3 files in and store as a Wave object
 tts_audio_read <- function(file,
                           output_format = c("wav", "mp3")) {
@@ -49,7 +74,6 @@ wav_duration = function(object) {
     return(NA_real_)
   }
 }
-
 
 #' Point to local coqui tts Executable File
 #'
