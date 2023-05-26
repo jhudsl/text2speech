@@ -51,11 +51,11 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
         run: |
-          Rscript -e "options(ms_api_key = ${{ env.MS_TTS_API_KEY }});
-                      options(google_api_key = ${{ env.GL_AUTH }});
-                      options(aws_access_key = ${{ env.AWS_ACCESS_KEY_ID }});
-                      options(aws_secret_access_key = ${{ env.AWS_SECRET_ACCESS_KEY }});
-                      options(aws_default_region = ${{ env.AWS_DEFAULT_REGION }})"
+          Rscript -e "options(ms_api_key = ${{ secrets.MS_TTS_API_KEY }});
+                      options(google_api_key = ${{ secrets.GL_AUTH }});
+                      options(aws_access_key = ${{ secrets.AWS_ACCESS_KEY_ID }});
+                      options(aws_secret_access_key = ${{ secrets.AWS_SECRET_ACCESS_KEY }});
+                      options(aws_default_region = ${{ secrets.AWS_DEFAULT_REGION }})"
 
       - uses: r-lib/actions/check-r-package@v2
         with:
