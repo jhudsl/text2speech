@@ -107,9 +107,9 @@ set_coqui_path <- function(path) {
 
 
 # Prepare to use coqui "tts" by checking if it exists locally.
-# Check option "path_to_coqui". If it's NULL, call coqui_find(), which
+# Check option "path_to_coqui". If it's NULL, call find_coqui(), which
 # will try to determine the local path to file "tts". If
-# coqui_find() is successful, the path to "tts" will be assigned to option
+# find_coqui() is successful, the path to "tts" will be assigned to option
 # "path_to_coqui", otherwise an error is thrown.
 use_coqui <- function() {
   coqui_path <- getOption("path_to_coqui")
