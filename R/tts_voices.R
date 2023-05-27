@@ -24,8 +24,7 @@
 #' * `service` : The text-to-speech engine used
 #'
 #' @export
-#' @examples
-#'
+#' @examples \dontrun{
 #' #' # Amazon Polly
 #' if (requireNamespace("aws.polly", quietly = TRUE)) {
 #' if (tts_amazon_auth()) {
@@ -45,6 +44,7 @@
 #'
 #' # Coqui TTS
 #' tts_auth("coqui")
+#' }
 tts_voices = function(
     service = c("amazon", "google", "microsoft", "coqui"),
     ...

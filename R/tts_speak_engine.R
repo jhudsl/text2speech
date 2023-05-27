@@ -7,7 +7,7 @@
 #'   the appropriate output hooks.
 #' @export
 #'
-#' @examples
+#' @examples \dontrun{
 #' knitr::knit_engines$set(speak = tts_speak_engine)
 #' options = list(
 #' code = "hey let's go to the park",
@@ -21,6 +21,7 @@
 #'        options$eval = TRUE
 #'        tts_speak_engine(options)
 #'     }
+#' }
 tts_speak_engine = function(options) {
   # print(options)
   if (!options$eval) {
