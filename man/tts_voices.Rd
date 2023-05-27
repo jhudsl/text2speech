@@ -52,7 +52,7 @@ Various services offer a range of voice options:
 }
 }
 \examples{
-
+\dontrun{
 #' # Amazon Polly
 if (requireNamespace("aws.polly", quietly = TRUE)) {
 if (tts_amazon_auth()) {
@@ -72,4 +72,5 @@ tts_voices(service = "google")
 
 # Coqui TTS
 tts_auth("coqui")
+}
 }

@@ -14,6 +14,7 @@ patrick::with_parameters_test_that("test tts() on Amazon, Google, Microsoft, and
                                        }
                                      } else {
                                        # company == "coqui"
+                                       tts_auth <- try(find_coqui())
                                        if (!inherits(tts_auth, "try-error")) {
                                          response_df = tts("Algorithmic complexity is a key consideration
                                                 when designing efficient solutions for large-scale data processing",
@@ -32,7 +33,7 @@ patrick::with_parameters_test_that("test tts() on Amazon, Google, Microsoft, and
                                                 tts_google_auth(getOption("google_api_key")),
                                                 tts_microsoft_auth(key_or_json_file = getOption("ms_api_key"),
                                                                    region = "westus"),
-                                                try(find_coqui())
+                                                TRUE
                                    ),
                                    company  = c("amazon", "google", "microsoft", "coqui")
 )

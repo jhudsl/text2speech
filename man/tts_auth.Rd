@@ -43,6 +43,7 @@ To determine the availability of Coqui TTS, \code{tts_auth()} examines whether t
 executable exists on local system.
 }
 \examples{
+\dontrun{
 # Amazon Polly
 tts_auth("amazon")
 
@@ -54,4 +55,5 @@ tts_auth("microsoft")
 
 # Coqui TTS
 tts_auth("coqui")
+}
 }
