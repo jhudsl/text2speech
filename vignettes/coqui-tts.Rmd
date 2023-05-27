@@ -96,14 +96,22 @@ The functions `tts_auth(service = "coqui")`, `tts(service = "coqui")`, and `tts_
 
 ## List Voices
 
-`tts_voices(service = "coqui")` is a wrapper for the system command `tts --list_models`. 
+The function `tts_voices(service = "coqui")` is a wrapper for the system command `tts --list_models`, which lists the released Coqui TTS models.
 
 
-```{r}
+```{r, eval = FALSE}
 tts_voices(service = "coqui")
 ```
 
-TODO: Explain output
+The result is a tibble with the following columns: `language`, `dataset`, and `model_name`. 
+
+- `language` column contains the language code associated with the speaker. 
+- `dataset` column indicates the specific dataset on which the text-to-speech model, denoted by `model_name`, was trained.
+- `model_name` column refers to the name of the text-to-speech model.
+
+You can find a list of papers associated with some of the implemented models for Coqui TTS [here](https://github.com/coqui-ai/TTS#implemented-models)
+
+By providing the values from this tibble (`language`, `dataset`, and `model_name`) in `tts()`, you can select the specific voice you want for text-to-speech synthesis.
 
 
 
