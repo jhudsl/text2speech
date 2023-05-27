@@ -20,35 +20,100 @@ library(text2speech)
 
 ## Introduction
 
-Coqui TTS is a text-to-speech (TTS) library that enables the conversion of regular text into speech. It provides pre-trained models and vocoders as part of its package.
+Coqui TTS is a text-to-speech (TTS) library that enables the conversion of regular text into speech. It provides pre-trained models and vocoders as part of its package. Coqui TTS was built by the founders of [Coqui](https://coqui.ai/), a company dedicated to open speech technology.
 
-The underlying technology of text-to-speech is highly intricate. However, if you're interested in delving deeper into the subject, here are some recommended talks:
+The underlying technology of text-to-speech is highly intricate. If you're interested in delving deeper into the subject, here are some recommended talks:
 
 - [Pushing the frontier of neural text to speech](https://youtu.be/MA8PCvmr8B0), a webinar by Xu Tan at Microsoft Research Asia
 - [Text to Speech Deep Dive](https://www.youtube.com/watch?v=aLBedWj-5CQ), a talk given during the ML for Audio Study Group hosted by Hugging Face.
 
+Coqui TTS includes pre-trained models like [Spectogram models](https://github.com/coqui-ai/TTS#spectrogram-models) (such as Tacotron2 and FastSpeech2), [End-to-End Models](https://github.com/coqui-ai/TTS#end-to-end-models) (including VITS and YourTTS), and [Vocoder models](https://github.com/coqui-ai/TTS#vocoders) (like MelGAN and WaveGRAD).   
+
+## Usage
+
+You can utilize its CLI (Command-Line Interface) to generate speech using pre-trained models. This means you can run Coqui TTS commands in the terminal and observe the resulting output.
+
+List pre-trained Coqui TTS models:
+
+```
+$ tts --list_models
+```
+
+Run a pre-trained model from the [release models list](https://github.com/coqui-ai/TTS#implemented-models), with its default vocoder:
+
+```
+tts --text "Text for TTS" \
+    --model_name "<type>/<language>/<dataset>/<model_name>" \
+    --out_path folder/to/save/output.wav
+```
+
+text2speech provides several wrapper functions for these system commands using `system()` and `system2()`. 
+
+- `tts --list_models` system command is wrapped in `tts_voices(service = "coqui")`. 
+- `tts --text "Text to convert to speech"` system command is wrapped in `tts(service = "coqui")`.
+
+## Installation
+
+To install Coqui TTS, you will need to enter the following command in the terminal:
+
+```
+$ pip install TTS
+```
+
+<br>
+
+ **Note**: If you are using a Mac with an M1 chip, initial step is to execute the following command in terminal:
+
+```
+$ brew install mecab
+```
+
+Afterward, you can proceed to install TTS by executing the following command:
+
+```
+$ pip install TTS
+```
 
 ## Authentication
 
-```{r}
+For text2speech to use Coqui TTS, it needs to have correct knowledge of the path to the coqui tts executable. It acquires this knowledge in two ways: manual and automatic.
 
+### Manual
+
+To use Coqui TTS, you can manually point R to the path of the coqui tts executable. You can set a global option to the path using `set_coqui_path()`:
+
+```{r, eval = FALSE}
+set_coqui_path("your/path/to/tts")
 ```
+
+Under the hood, this function runs `options("path_to_coqui" = path)`, if tts indeed exists on the provided path.
+
+### Automatic
+
+`tts_auth(service = "coqui")`, `tts(service = "coqui")`, and `tts_voices(service = "coqui")` all contain a mechanism to look through a pre-defined path of known locations of the coqui TTS exeuctable. If it fails to find a tts executable in this list of paths, it will throw an error message instructing you to use `set_coqui_path()` to set the path manually.
 
 
 ## List Voices
 
-```{r}
+`tts_voices(service = "coqui")` is a wrapper for the system command `tts --list_models`. 
 
+
+```{r}
+tts_voices(service = "coqui")
 ```
+
+TODO: Explain output
+
 
 
 ## Text-to-Speech
 
-```{r}
+Convert text to speech using `tts(text = "Hello world!", service = "coqui")`
 
+```{r, eval = FALSE}
+tts(text = "Hello world!", service = "coqui")
 ```
 
-
-
+TODO: Explain output of `tts()`
 
 
