@@ -20,7 +20,8 @@ library(text2speech)
 
 ## Introduction
 
-Coqui TTS is a text-to-speech (TTS) library that enables the conversion of regular text into speech. It provides pre-trained models and vocoders as part of its package. Coqui TTS was built by the founders of [Coqui](https://coqui.ai/), a company dedicated to open speech technology.
+Coqui TTS is a text-to-speech (TTS) library that enables the conversion of regular text into speech. It provides pre-trained tts and vocoder models as part of its package. To get a sense of the best tts and vocoder models, take a look at this [GitHub Discussion post](https://github.com/coqui-ai/TTS/discussions/1891). In the [Coqui TTS Hugging Face Space](https://huggingface.co/spaces/coqui/CoquiTTS), you have the opportunity to experiment with a few of these models by inputting text and receiving corresponding audio output. 
+
 
 The underlying technology of text-to-speech is highly intricate. If you're interested in delving deeper into the subject, here are some recommended talks:
 
@@ -76,21 +77,21 @@ $ pip install TTS
 
 ## Authentication
 
-For text2speech to use Coqui TTS, it needs to have correct knowledge of the path to the coqui tts executable. It acquires this knowledge in two ways: manual and automatic.
+To use Coqui TTS, text2speech needs to know the correct path to the Coqui TTS executable. This path can be obtained through two methods: manual and automatic.
 
 ### Manual
 
-To use Coqui TTS, you can manually point R to the path of the coqui tts executable. You can set a global option to the path using `set_coqui_path()`:
+You have the option to manually specify the path to the Coqui TTS executable in R. This can be done by setting a global option using the `set_coqui_path()` function:
 
 ```{r, eval = FALSE}
 set_coqui_path("your/path/to/tts")
 ```
 
-Under the hood, this function runs `options("path_to_coqui" = path)`, if tts indeed exists on the provided path.
+Internally, the `set_coqui_path()` function runs `options("path_to_coqui" = path)` to set the provided path as the value for the `path_to_coqui` global option, as long as the Coqui TTS executable exists at that location. 
 
 ### Automatic
 
-`tts_auth(service = "coqui")`, `tts(service = "coqui")`, and `tts_voices(service = "coqui")` all contain a mechanism to look through a pre-defined path of known locations of the coqui TTS exeuctable. If it fails to find a tts executable in this list of paths, it will throw an error message instructing you to use `set_coqui_path()` to set the path manually.
+The functions `tts_auth(service = "coqui")`, `tts(service = "coqui")`, and `tts_voices(service = "coqui")` incorporate a way to search through a predetermined list of known locations for the Coqui TTS executable. If none of these paths yield a valid TTS executable, an error message will be generated, directing you to use `set_coqui_path()` to manually set the correct path.
 
 
 ## List Voices
