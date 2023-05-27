@@ -22,6 +22,8 @@ tts_coqui_voices()
 \item{service}{Service to use (Amazon, Google, Microsoft, or Coqui)}
 
 \item{...}{Additional arguments to service voice listings.}
+
+\item{region}{(Microsoft only) Region of your Microsoft Speech Service API Key}
 }
 \value{
 (Amazon, Microsoft, and Google) A standardized \code{data.frame} featuring

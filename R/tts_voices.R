@@ -7,6 +7,7 @@
 #' * Coqui TTS : <https://huggingface.co/spaces/coqui/CoquiTTS>
 #'
 #'@param service Service to use (Amazon, Google, Microsoft, or Coqui)
+#'@param region (Microsoft only) Region of your Microsoft Speech Service API Key
 #'@param ... Additional arguments to service voice listings.
 #
 #'@return (Amazon, Microsoft, and Google) A standardized `data.frame` featuring
