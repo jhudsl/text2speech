@@ -14,14 +14,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(text2speech)
-```
-
 ## Introduction
 
 Coqui TTS is a text-to-speech (TTS) library that enables the conversion of regular text into speech. It provides pre-trained tts and vocoder models as part of its package. To get a sense of the best tts and vocoder models, take a look at this [GitHub Discussion post](https://github.com/coqui-ai/TTS/discussions/1891). In the [Coqui TTS Hugging Face Space](https://huggingface.co/spaces/coqui/CoquiTTS), you have the opportunity to experiment with a few of these models by inputting text and receiving corresponding audio output. 
-
 
 The underlying technology of text-to-speech is highly intricate and will not be the focus of this vignette. However, if you're interested in delving deeper into the subject, here are some recommended talks:
 
@@ -29,6 +24,7 @@ The underlying technology of text-to-speech is highly intricate and will not be 
 - [Text to Speech Deep Dive](https://www.youtube.com/watch?v=aLBedWj-5CQ), a talk given during the ML for Audio Study Group hosted by Hugging Face.
 
 Coqui TTS includes pre-trained models like [Spectogram models](https://github.com/coqui-ai/TTS#spectrogram-models) (such as Tacotron2 and FastSpeech2), [End-to-End Models](https://github.com/coqui-ai/TTS#end-to-end-models) (including VITS and YourTTS), and [Vocoder models](https://github.com/coqui-ai/TTS#vocoders) (like MelGAN and WaveGRAD).   
+
 
 ## Usage
 
@@ -76,6 +72,10 @@ $ pip install TTS
 ```
 
 ## Authentication
+
+```{r setup}
+library(text2speech)
+```
 
 To use Coqui TTS, text2speech needs to know the correct path to the Coqui TTS executable. This path can be obtained through two methods: manual and automatic.
 
