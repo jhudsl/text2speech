@@ -23,7 +23,7 @@ library(text2speech)
 Coqui TTS is a text-to-speech (TTS) library that enables the conversion of regular text into speech. It provides pre-trained tts and vocoder models as part of its package. To get a sense of the best tts and vocoder models, take a look at this [GitHub Discussion post](https://github.com/coqui-ai/TTS/discussions/1891). In the [Coqui TTS Hugging Face Space](https://huggingface.co/spaces/coqui/CoquiTTS), you have the opportunity to experiment with a few of these models by inputting text and receiving corresponding audio output. 
 
 
-The underlying technology of text-to-speech is highly intricate. If you're interested in delving deeper into the subject, here are some recommended talks:
+The underlying technology of text-to-speech is highly intricate and will not be the focus of this vignette. However, if you're interested in delving deeper into the subject, here are some recommended talks:
 
 - [Pushing the frontier of neural text to speech](https://youtu.be/MA8PCvmr8B0), a webinar by Xu Tan at Microsoft Research Asia
 - [Text to Speech Deep Dive](https://www.youtube.com/watch?v=aLBedWj-5CQ), a talk given during the ML for Audio Study Group hosted by Hugging Face.
@@ -91,7 +91,7 @@ Internally, the `set_coqui_path()` function runs `options("path_to_coqui" = path
 
 ### Automatic
 
-The functions `tts_auth(service = "coqui")`, `tts(service = "coqui")`, and `tts_voices(service = "coqui")` incorporate a way to search through a predetermined list of known locations for the Coqui TTS executable. If none of these paths yield a valid TTS executable, an error message will be generated, directing you to use `set_coqui_path()` to manually set the correct path.
+The functions `tts_auth(service = "coqui")`, `tts_voices(service = "coqui")`, and `tts(service = "coqui")` incorporate a way to search through a predetermined list of known locations for the Coqui TTS executable. If none of these paths yield a valid TTS executable, an error message will be generated, directing you to use `set_coqui_path()` to manually set the correct path.
 
 
 ## List Voices
@@ -103,13 +103,14 @@ The function `tts_voices(service = "coqui")` is a wrapper for the system command
 tts_voices(service = "coqui")
 ```
 
-The result is a tibble with the following columns: `language`, `dataset`, and `model_name`. 
+The result is a tibble with the following columns: `language`, `dataset`, `model_name`, and `service`. 
 
 - `language` column contains the language code associated with the speaker. 
 - `dataset` column indicates the specific dataset on which the text-to-speech model, denoted by `model_name`, was trained.
 - `model_name` column refers to the name of the text-to-speech model.
+- `service` column refers to the specific TTS service used (Amazon, Google, Microsoft, or Coqui TTS)
 
-You can find a list of papers associated with some of the implemented models for Coqui TTS [here](https://github.com/coqui-ai/TTS#implemented-models)
+You can find a list of papers associated with some of the implemented models for Coqui TTS [here](https://github.com/coqui-ai/TTS#implemented-models).
 
 By providing the values from this tibble (`language`, `dataset`, and `model_name`) in `tts()`, you can select the specific voice you want for text-to-speech synthesis.
 
@@ -117,12 +118,41 @@ By providing the values from this tibble (`language`, `dataset`, and `model_name
 
 ## Text-to-Speech
 
-Convert text to speech using `tts(text = "Hello world!", service = "coqui")`
+To convert text to speech, you can use the function `tts(text = "Hello world!", service = "coqui")`. 
 
 ```{r, eval = FALSE}
 tts(text = "Hello world!", service = "coqui")
 ```
 
-TODO: Explain output of `tts()`
+The result is a tibble with the following columns: `index`, `original_text`, `text`, `wav`, `file`, `audio_type`, `duration`, and `service`. Some of the noteworthy ones are:
+
+- `text`: If the `original_text` exceeds the character limit, `text` represents the outcome of splitting `original_text`. Otherwise, `text` remains the same as `original_text`.
+- `file`: The location where the audio output is saved. 
+- `audio_type`: The format of the audio file, either mp3 or wav.
+
+
+By default, the function `tts(service = "coqui")` uses the `tacotron2-DDC_ph` model and the `ljspeech/univnet` vocoder. You can specify a different model with the argument `model_name`, or a different vocoder with the argument `vocoder_name`.
+
+```{r, eval = FALSE}
+tts(text = "Hello world, using a different voice!",
+    service = "coqui",
+    model_name = "fast_pitch",
+    vocoder_name = "ljspeech/hifigan_v2")
+```
+
+Another default is that `tts(service = "coqui")` saves the audio output in a temporary folder and its path is shown in the `file` column of the resulting tibble. However, a temporary directory lasts only as long as the current R session, which means that when you restart your R session, that path will not exist! 
+
+A more sustainable workflow would be to save the audio output in a local folder. To save the audio output in a local folder, set the arguments `save_local = TRUE` and `save_local_dest = /full/path/to/local/folder`. Make sure to provide the full path to the local folder.
+
+```{r, eval = FALSE}
+tts(text = "Hello world! I am saving the audio output in a local folder",
+    service = "coqui",
+    save_local = TRUE,
+    save_local_dest = "/full/path/to/local/folder")
+```
+
+
+
+
 
 
