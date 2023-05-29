@@ -21,6 +21,7 @@ Coqui TTS is a text-to-speech (TTS) library that enables the conversion of regul
 The underlying technology of text-to-speech is highly intricate and will not be the focus of this vignette. However, if you're interested in delving deeper into the subject, here are some recommended talks:
 
 - [Pushing the frontier of neural text to speech](https://youtu.be/MA8PCvmr8B0), a webinar by Xu Tan at Microsoft Research Asia
+- [Towards End-to-end Speech Synthesis](https://youtu.be/tHAdlv7ThjA), a talk given by Yu Zhang, Research Scientist at Google
 - [Text to Speech Deep Dive](https://www.youtube.com/watch?v=aLBedWj-5CQ), a talk given during the ML for Audio Study Group hosted by Hugging Face.
 
 Coqui TTS includes pre-trained models like [Spectogram models](https://github.com/coqui-ai/TTS#spectrogram-models) (such as Tacotron2 and FastSpeech2), [End-to-End Models](https://github.com/coqui-ai/TTS#end-to-end-models) (including VITS and YourTTS), and [Vocoder models](https://github.com/coqui-ai/TTS#vocoders) (like MelGAN and WaveGRAD).   
