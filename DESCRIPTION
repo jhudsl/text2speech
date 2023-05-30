@@ -14,8 +14,8 @@ Authors@R: c(
     person(given = "Howard",
            family = "Baek",
            role = "ctb",
-           email = "howardbaek@fredhutch.org")
-           )
+           email = "howardbaek@fredhutch.org",
+           comment = c(ORCID = "0009-0000-8942-1618"))
 License: GPL-3
 Suggests: 
     aws.polly,
@@ -36,7 +36,6 @@ Imports:
     dplyr,
     googleAuthR,
     googleLanguageR,
-    httr,
     knitr,
     magrittr,
     mscstts2,

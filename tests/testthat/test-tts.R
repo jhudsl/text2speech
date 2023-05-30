@@ -28,6 +28,7 @@ patrick::with_parameters_test_that("test tts() on Amazon, Google, Microsoft, and
                                        }
                                      }
                                    },
+                                   # tts_auth(key_or_json_file = getOption("api_key")))
                                    tts_auth = c(tts_amazon_auth(getOption("aws_access_key")),
                                                 tts_google_auth(getOption("google_api_key")),
                                                 tts_microsoft_auth(key_or_json_file = getOption("ms_api_key"),

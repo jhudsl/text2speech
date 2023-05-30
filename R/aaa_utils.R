@@ -120,10 +120,9 @@ use_coqui <- function() {
   }
 }
 
-# Returns the local path to "tts". Search is performed by
-# looking in the known file locations for the current OS. If OS is not Linux,
-# OSX, or Windows, an error is thrown. If path to "tts" is not found, an
-# error is thrown.
+# Returns the local path to "tts". Search is performed by looking in the known
+# file locations for the current OS. If OS is not Linux, OSX, or Windows, an
+# error is thrown. If path to "tts" is not found, an error is thrown.
 find_coqui <- function() {
   user_os <- Sys.info()["sysname"]
   if (!user_os %in% names(coqui_paths_to_check)) {

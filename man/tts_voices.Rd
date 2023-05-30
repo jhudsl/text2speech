@@ -22,6 +22,8 @@ tts_coqui_voices()
 \item{service}{Service to use (Amazon, Google, Microsoft, or Coqui)}
 
 \item{...}{Additional arguments to service voice listings.}
+
+\item{region}{(Microsoft only) Region of your Microsoft Speech Service API Key}
 }
 \value{
 (Amazon, Microsoft, and Google) A standardized \code{data.frame} featuring
@@ -52,7 +54,7 @@ Various services offer a range of voice options:
 }
 }
 \examples{
-
+\dontrun{
 #' # Amazon Polly
 if (requireNamespace("aws.polly", quietly = TRUE)) {
 if (tts_amazon_auth()) {
@@ -72,4 +74,5 @@ tts_voices(service = "google")
 
 # Coqui TTS
 tts_auth("coqui")
+}
 }
