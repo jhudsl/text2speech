@@ -18,6 +18,7 @@ the appropriate output hooks.
 Speak Engine for \code{knitr}
 }
 \examples{
+\dontrun{
 knitr::knit_engines$set(speak = tts_speak_engine)
 options = list(
 code = "hey let's go to the park",
@@ -31,4 +32,5 @@ tts_speak_engine(options)
        options$eval = TRUE
        tts_speak_engine(options)
     }
+}
 }

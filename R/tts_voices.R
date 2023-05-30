@@ -7,6 +7,7 @@
 #' * Coqui TTS : <https://huggingface.co/spaces/coqui/CoquiTTS>
 #'
 #'@param service Service to use (Amazon, Google, Microsoft, or Coqui)
+#'@param region (Microsoft only) Region of your Microsoft Speech Service API Key
 #'@param ... Additional arguments to service voice listings.
 #
 #'@return (Amazon, Microsoft, and Google) A standardized `data.frame` featuring
@@ -24,8 +25,7 @@
 #' * `service` : The text-to-speech engine used
 #'
 #' @export
-#' @examples
-#'
+#' @examples \dontrun{
 #' #' # Amazon Polly
 #' if (requireNamespace("aws.polly", quietly = TRUE)) {
 #' if (tts_amazon_auth()) {
@@ -45,6 +45,7 @@
 #'
 #' # Coqui TTS
 #' tts_auth("coqui")
+#' }
 tts_voices = function(
     service = c("amazon", "google", "microsoft", "coqui"),
     ...

@@ -13,13 +13,17 @@ patrick::with_parameters_test_that("test tts_voices() on Amazon, Google, and Mic
                                    company  = c("amazon", "google", "microsoft")
 )
 
-fixed_names_coqui <- c("language", "dataset", "model_name")
+fixed_names_coqui <- c("language", "dataset", "model_name", "service")
 
-test_that("test tts_voices() on Coqui engine", {
-  response_df = tts_voices(service = "coqui")
-  # Check x is a data.frame
-  expect_s3_class(response_df, "data.frame")
-  # Check column names
-  expect_named(response_df, fixed_names_coqui)
-}
+test_that("test tts_voices() on Coqui engine",
+          {
+            tts_auth <- try(find_coqui())
+            if (!inherits(tts_auth, "try-error")) {
+              response_df = tts_voices(service = "coqui")
+              # Check x is a data.frame
+              expect_s3_class(response_df, "data.frame")
+              # Check column names
+              expect_named(response_df, fixed_names_coqui)
+            }
+          }
 )
