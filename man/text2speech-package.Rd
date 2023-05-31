@@ -21,7 +21,7 @@ Useful links:
 
 Other contributors:
 \itemize{
-  \item Howard Baek \email{howardbaek@fredhutch.org} [contributor]
+  \item Howard Baek \email{howardbaek@fredhutch.org} (\href{https://orcid.org/0009-0000-8942-1618}{ORCID}) [contributor]
 }
 
 }

@@ -377,7 +377,7 @@ tts_coqui <- function(
                  output_format = audio_type)
     df = dplyr::tibble(original_text = string,
                        text = string_processed,
-                       wav = out, file = res)
+                       wav = out, file = normalizePath(res))
   })
   # Post-processing
   names(res) = seq_along(text)
