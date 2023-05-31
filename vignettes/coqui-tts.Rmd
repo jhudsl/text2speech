@@ -16,7 +16,9 @@ knitr::opts_chunk$set(
 
 ## Introduction
 
-Coqui TTS is a text-to-speech (TTS) library that enables the conversion of regular text into speech. It provides pre-trained tts and vocoder models as part of its package. To get a sense of the best tts and vocoder models, take a look at this [GitHub Discussion post](https://github.com/coqui-ai/TTS/discussions/1891). In the [Coqui TTS Hugging Face Space](https://huggingface.co/spaces/coqui/CoquiTTS), you have the opportunity to experiment with a few of these models by inputting text and receiving corresponding audio output. 
+Coqui TTS is a text-to-speech (TTS) library that enables the conversion of regular text into speech and is completely free to use (this is not true of the other text to speech converters used by `text2speech`. 
+
+Coqui TTS provides pre-trained tts and vocoder models as part of its package. To get a sense of the best tts and vocoder models, take a look at this [GitHub Discussion post](https://github.com/coqui-ai/TTS/discussions/1891). In the [Coqui TTS Hugging Face Space](https://huggingface.co/spaces/coqui/CoquiTTS), you have the opportunity to experiment with a few of these models by inputting text and receiving corresponding audio output. 
 
 The underlying technology of text-to-speech is highly intricate and will not be the focus of this vignette. However, if you're interested in delving deeper into the subject, here are some recommended talks:
 
@@ -153,7 +155,7 @@ tts(text = "Hello world! I am saving the audio output in a local folder",
 ```
 
 
-
+sessionInfo()
 
 
 
