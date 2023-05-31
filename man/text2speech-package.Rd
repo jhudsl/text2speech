@@ -16,13 +16,4 @@ Useful links:
 }
 
 }
-\author{
-\strong{Maintainer}: John Muschelli \email{muschellij2@gmail.com} (\href{https://orcid.org/0000-0001-6469-1750}{ORCID})
-
-Other contributors:
-\itemize{
-  \item Howard Baek \email{howardbaek@fredhutch.org} [contributor]
-}
-
-}
 \keyword{internal}
