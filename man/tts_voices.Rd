@@ -53,3 +53,28 @@ Various services offer a range of voice options:
 \item Coqui TTS : \url{https://huggingface.co/spaces/coqui/CoquiTTS}
 }
 }
+\examples{
+\dontrun{
+#' # Amazon Polly
+if (requireNamespace("aws.polly", quietly = TRUE)) {
+if (tts_auth(service = "amazon") {
+tts_voices(service = "amazon")
+}
+}
+
+# Microsoft Cognitive Services Text to Speech REST API
+if (tts_auth(service = "microsoft")) {
+tts_voices(service = "microsoft")
+}
+
+# Google Cloud Text-to-Speech API
+if (tts_auth(service = "google")) {
+tts_voices(service = "google")
+}
+
+# Coqui TTS
+if (tts_auth(service = "coqui")) {
+tts_voices(service = "coqui")
+}
+}
+}
