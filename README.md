@@ -6,6 +6,15 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
+<div class="figure">
+
+<img src="man/figures/ibm7094.jpg" alt="IBM 7094, the First Computer to Sing" width="35%" height="30%" />
+<p class="caption">
+IBM 7094, the First Computer to Sing
+</p>
+
+</div>
+
 The goal of text2speech is to harmonize various text-to-speech engines,
 including Amazon Polly, Coqui TTS, Google Cloud Text-to-Speech API, and
 Microsoft Cognitive Services Text to Speech REST API.
@@ -57,8 +66,7 @@ tts_auth("coqui")
 tts_auth("google")
 #> [1] TRUE
 # Microsoft Cognitive Services Text to Speech REST API
-tts_auth("microsoft")
-#> [1] TRUE
+# tts_auth("microsoft")
 ```
 
 ## Voices
@@ -81,15 +89,15 @@ head(voices_amazon)
 voices_coqui <- tts_coqui_voices()
 #> ℹ Test out different voices on the CoquiTTS Demo (<https://huggingface.co/spaces/coqui/CoquiTTS>)
 head(voices_coqui)
-#> # A tibble: 6 × 3
-#>   language     dataset       model_name                   
-#>   <chr>        <chr>         <chr>                        
-#> 1 multilingual multi-dataset your_tts [already downloaded]
-#> 2 bg           cv            vits                         
-#> 3 cs           cv            vits                         
-#> 4 da           cv            vits                         
-#> 5 et           cv            vits                         
-#> 6 ga           cv            vits
+#> # A tibble: 6 × 4
+#>   language     dataset       model_name                    service
+#>   <chr>        <chr>         <chr>                         <chr>  
+#> 1 multilingual multi-dataset your_tts [already downloaded] coqui  
+#> 2 bg           cv            vits                          coqui  
+#> 3 cs           cv            vits                          coqui  
+#> 4 da           cv            vits                          coqui  
+#> 5 et           cv            vits                          coqui  
+#> 6 ga           cv            vits                          coqui
 
 # Google Cloud Text-to-Speech API 
 voices_google <- tts_google_voices()
@@ -100,25 +108,11 @@ head(voices_google)
 #> 3  ar-XA-Wavenet-D   Arabic         ar-XA FEMALE  google
 #> 4  ar-XA-Wavenet-C   Arabic         ar-XA   MALE  google
 #> 5  ar-XA-Wavenet-A   Arabic         ar-XA FEMALE  google
-#> 6 ar-XA-Standard-C   Arabic         ar-XA   MALE  google
+#> 6 ar-XA-Standard-B   Arabic         ar-XA   MALE  google
 
 # Microsoft Cognitive Services Text to Speech REST API
-voices_microsoft <- tts_microsoft_voices()
-head(voices_microsoft)
-#>                                                                voice
-#> 1   Microsoft Server Speech Text to Speech Voice (af-ZA, AdriNeural)
-#> 2 Microsoft Server Speech Text to Speech Voice (af-ZA, WillemNeural)
-#> 3  Microsoft Server Speech Text to Speech Voice (am-ET, AmehaNeural)
-#> 4 Microsoft Server Speech Text to Speech Voice (am-ET, MekdesNeural)
-#> 5 Microsoft Server Speech Text to Speech Voice (ar-AE, FatimaNeural)
-#> 6 Microsoft Server Speech Text to Speech Voice (ar-AE, HamdanNeural)
-#>                        language language_code gender   service
-#> 1      Afrikaans (South Africa)         af-ZA Female microsoft
-#> 2      Afrikaans (South Africa)         af-ZA   Male microsoft
-#> 3            Amharic (Ethiopia)         am-ET   Male microsoft
-#> 4            Amharic (Ethiopia)         am-ET Female microsoft
-#> 5 Arabic (United Arab Emirates)         ar-AE Female microsoft
-#> 6 Arabic (United Arab Emirates)         ar-AE   Male microsoft
+# voices_microsoft <- tts_microsoft_voices()
+# head(voices_microsoft)
 ```
 
 ## Convert text to speech

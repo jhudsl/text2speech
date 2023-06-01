@@ -18,6 +18,11 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
+
+```{r, echo=FALSE, out.width="35%", out.height="30%", fig.cap="IBM 7094, the First Computer to Sing"}
+knitr::include_graphics("man/figures/ibm7094.jpg")
+```
+ 
 The goal of text2speech is to harmonize various text-to-speech engines, including Amazon Polly, Coqui TTS, Google Cloud Text-to-Speech API, and Microsoft Cognitive Services Text to Speech REST API. 
 
 With the exception of Coqui TTS, all these engines are accessible as R packages:
@@ -57,7 +62,7 @@ tts_auth("coqui")
 # Google Cloud Text-to-Speech API 
 tts_auth("google")
 # Microsoft Cognitive Services Text to Speech REST API
-tts_auth("microsoft")
+# tts_auth("microsoft")
 ```
 
 
@@ -79,8 +84,8 @@ voices_google <- tts_google_voices()
 head(voices_google)
 
 # Microsoft Cognitive Services Text to Speech REST API
-voices_microsoft <- tts_microsoft_voices()
-head(voices_microsoft)
+# voices_microsoft <- tts_microsoft_voices()
+# head(voices_microsoft)
 ```
 
 ## Convert text to speech
