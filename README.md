@@ -6,7 +6,16 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-<img src="man/figures/ibm7094.jpg" width="35%" height="30%" />
+<div class="figure">
+
+<img src="man/figures/ibm7094.jpg" alt="IBM 7094, The First Computer to Sing" width="35%" height="30%" />
+<p class="caption">
+IBM 7094, The First Computer to Sing
+</p>
+
+</div>
+
+*Source: <https://www.historyofinformation.com/detail.php?entryid=4445>*
 
 The goal of text2speech is to harmonize various text-to-speech engines,
 including Amazon Polly, Coqui TTS, Google Cloud Text-to-Speech API, and
@@ -97,11 +106,11 @@ voices_google <- tts_google_voices()
 head(voices_google)
 #>              voice language language_code gender service
 #> 1 af-ZA-Standard-A     <NA>         af-ZA FEMALE  google
-#> 2  ar-XA-Wavenet-D   Arabic         ar-XA FEMALE  google
-#> 3 ar-XA-Standard-B   Arabic         ar-XA   MALE  google
+#> 2 ar-XA-Standard-D   Arabic         ar-XA FEMALE  google
+#> 3  ar-XA-Wavenet-D   Arabic         ar-XA FEMALE  google
 #> 4  ar-XA-Wavenet-C   Arabic         ar-XA   MALE  google
 #> 5  ar-XA-Wavenet-A   Arabic         ar-XA FEMALE  google
-#> 6 ar-XA-Standard-A   Arabic         ar-XA FEMALE  google
+#> 6 ar-XA-Standard-B   Arabic         ar-XA   MALE  google
 
 # Microsoft Cognitive Services Text to Speech REST API
 # voices_microsoft <- tts_microsoft_voices()
