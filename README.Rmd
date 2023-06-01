@@ -18,8 +18,10 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-![](man/figures/ibm7094.jpg){width=40%}
 
+```{r, echo=FALSE, out.width="35%", out.height="30%"}
+knitr::include_graphics("man/figures/ibm7094.jpg")
+```
 
 The goal of text2speech is to harmonize various text-to-speech engines, including Amazon Polly, Coqui TTS, Google Cloud Text-to-Speech API, and Microsoft Cognitive Services Text to Speech REST API. 
 
