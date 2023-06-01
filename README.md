@@ -8,14 +8,12 @@
 
 <div class="figure">
 
-<img src="man/figures/ibm7094.jpg" alt="IBM 7094, The First Computer to Sing" width="35%" height="30%" />
+<img src="man/figures/ibm7094.jpg" alt="IBM 7094, the First Computer to Sing" width="35%" height="30%" />
 <p class="caption">
-IBM 7094, The First Computer to Sing
+IBM 7094, the First Computer to Sing
 </p>
 
 </div>
-
-*Source: <https://www.historyofinformation.com/detail.php?entryid=4445>*
 
 The goal of text2speech is to harmonize various text-to-speech engines,
 including Amazon Polly, Coqui TTS, Google Cloud Text-to-Speech API, and
