@@ -13,7 +13,7 @@ patrick::with_parameters_test_that("test tts_voices() on Amazon, Google, and Mic
                                    company  = c("amazon", "google", "microsoft")
 )
 
-fixed_names_coqui <- c("language", "dataset", "model_name", "service")
+fixed_names_coqui <- c("type", "language", "dataset", "model_name", "service")
 
 test_that("test tts_voices() on Coqui engine",
           {
