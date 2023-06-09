@@ -200,17 +200,19 @@ tts_coqui_voices = function() {
   out <- withr::with_path(process_coqui_path(coqui_path),
                           system("tts --list_models", intern = TRUE))
   out <- trimws(out)
-  # Format the output into a dataframe with 3 columns: language, dataset, voice
-  out <- out[grepl("tts_models", out)]
+  # Grab tts_models and vocoder_models
+  out <- out[grepl("tts_models|vocoder_models", out)]
   # Extract out everything after [number]:
-  out <- sub("^.*tts_models/", "", out)
+  out <- sub("^\\d+:\\s*", "", out)
+  # Remove [already downloaded]
+  out <- gsub("\\s*\\[already downloaded\\]", "", out)
   out <- data.frame(out)
 
   # Separate by "//" using tidyr::separate()
   out <- out %>%
     tidyr::separate_wider_delim(out,
                                 delim = "/",
-                                names = c("language", "dataset", "model_name")) %>%
+                                names = c("type", "language", "dataset", "model_name")) %>%
     dplyr::mutate(service = "coqui")
 
   cli::cli_alert_info("Test out different voices on the {.href [CoquiTTS Demo](https://huggingface.co/spaces/coqui/CoquiTTS)}")
