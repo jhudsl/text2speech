@@ -86,6 +86,7 @@ tts = function(
       exec_path = coqui_path,
       output_format = output_format,
       bind_audio = bind_audio,
+      model_name = voice,
       ...)
   }
   res$service = service
