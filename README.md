@@ -6,15 +6,6 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-<div class="figure">
-
-<img src="man/figures/ibm7094.jpg" alt="IBM 7094, the First Computer to Sing" width="35%" height="30%" />
-<p class="caption">
-IBM 7094, the First Computer to Sing
-</p>
-
-</div>
-
 The goal of text2speech is to harmonize various text-to-speech engines,
 including Amazon Polly, Coqui TTS, Google Cloud Text-to-Speech API, and
 Microsoft Cognitive Services Text to Speech REST API.
@@ -89,15 +80,15 @@ head(voices_amazon)
 voices_coqui <- tts_coqui_voices()
 #> ℹ Test out different voices on the CoquiTTS Demo (<https://huggingface.co/spaces/coqui/CoquiTTS>)
 head(voices_coqui)
-#> # A tibble: 6 × 4
-#>   language     dataset       model_name                    service
-#>   <chr>        <chr>         <chr>                         <chr>  
-#> 1 multilingual multi-dataset your_tts [already downloaded] coqui  
-#> 2 bg           cv            vits                          coqui  
-#> 3 cs           cv            vits                          coqui  
-#> 4 da           cv            vits                          coqui  
-#> 5 et           cv            vits                          coqui  
-#> 6 ga           cv            vits                          coqui
+#> # A tibble: 6 × 5
+#>   type       language     dataset       model_name service
+#>   <chr>      <chr>        <chr>         <chr>      <chr>  
+#> 1 tts_models multilingual multi-dataset your_tts   coqui  
+#> 2 tts_models bg           cv            vits       coqui  
+#> 3 tts_models cs           cv            vits       coqui  
+#> 4 tts_models da           cv            vits       coqui  
+#> 5 tts_models et           cv            vits       coqui  
+#> 6 tts_models ga           cv            vits       coqui
 
 # Google Cloud Text-to-Speech API 
 voices_google <- tts_google_voices()
