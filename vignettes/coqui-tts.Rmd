@@ -37,8 +37,6 @@ To install Coqui TTS, you will need to enter the following command in the termin
 $ pip install TTS
 ```
 
-<br>
-
  **Note**: If you are using a Mac with an M1 chip, initial step is to execute the following command in terminal:
 
 ```
@@ -133,6 +131,7 @@ tts(text = "Hello world! I am saving the audio output in a local folder",
     save_local_dest = "/full/path/to/local/folder")
 ```
 
+<br>
 
 ## Session Info
 
