@@ -1,5 +1,9 @@
 ---
 title: "Coqui TTS"
+resource_files:
+  - audio/sample1.wav
+  - audio/sample2.wav
+  - audio/sample3.wav
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Coqui TTS}
@@ -104,6 +108,10 @@ To convert text to speech, you can use the function `tts(text = "Hello world!", 
 tts(text = "Hello world!", service = "coqui")
 ```
 
+<audio controls>
+    <source src="audio/sample1.wav" type="audio/wav"/>
+</audio>
+
 The result is a tibble with the following columns: `index`, `original_text`, `text`, `wav`, `file`, `audio_type`, `duration`, and `service`. Some of the noteworthy ones are:
 
 - `text`: If the `original_text` exceeds the character limit, `text` represents the outcome of splitting `original_text`. Otherwise, `text` remains the same as `original_text`.
@@ -120,6 +128,11 @@ tts(text = "Hello world, using a different voice!",
     vocoder_name = "ljspeech/hifigan_v2")
 ```
 
+<audio controls>
+    <source src="audio/sample2.wav" type="audio/wav"/>
+</audio>
+
+
 Another default is that `tts(service = "coqui")` saves the audio output in a temporary folder and its path is shown in the `file` column of the resulting tibble. However, a temporary directory lasts only as long as the current R session, which means that when you restart your R session, that path will not exist! 
 
 A more sustainable workflow would be to save the audio output in a local folder. To save the audio output in a local folder, set the arguments `save_local = TRUE` and `save_local_dest = /full/path/to/local/folder`. Make sure to provide the full path to the local folder.
@@ -130,6 +143,10 @@ tts(text = "Hello world! I am saving the audio output in a local folder",
     save_local = TRUE,
     save_local_dest = "/full/path/to/local/folder")
 ```
+
+<audio controls>
+    <source src="audio/sample3.wav" type="audio/wav"/>
+</audio>
 
 <br>
 
