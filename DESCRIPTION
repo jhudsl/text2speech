@@ -39,11 +39,11 @@ Imports:
     googleLanguageR,
     knitr,
     magrittr,
-    mscstts2,
+    conrad,
     tidyr,
     tuneR,
     utils,
     withr
-Remotes: howardbaek/mscstts2
+Remotes: fhdsl/conrad
 Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3

@@ -109,6 +109,6 @@ packages:
 \itemize{
 \item \href{https://github.com/cloudyr/aws.polly}{aws.polly} is a client for Amazon Polly.
 \item \href{https://github.com/ropensci/googleLanguageR}{googleLanguageR} is a client to the Google Cloud Text-to-Speech API.
-\item \href{https://github.com/howardbaek/mscstts2}{mscstts2} is a client to the Microsoft Cognitive Services Text to Speech REST API
+\item \href{https://github.com/fhdsl/conrad}{conrad} is a client to the Microsoft Cognitive Services Text to Speech REST API
 }
 }

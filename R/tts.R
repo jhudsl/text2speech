@@ -8,7 +8,7 @@
 #' packages:
 #' * [aws.polly](https://github.com/cloudyr/aws.polly) is a client for Amazon Polly.
 #' * [googleLanguageR](https://github.com/ropensci/googleLanguageR) is a client to the Google Cloud Text-to-Speech API.
-#' * [mscstts2](https://github.com/howardbaek/mscstts2) is a client to the Microsoft Cognitive Services Text to Speech REST API
+#' * [conrad](https://github.com/fhdsl/conrad) is a client to the Microsoft Cognitive Services Text to Speech REST API
 #'
 #' @param text A character vector of text to be spoken
 #' @param exec_path System path to Coqui TTS executable
@@ -269,7 +269,7 @@ tts_microsoft = function(
 
     res = vapply(strings, function(tt) {
       output = tts_temp_audio(output_format)
-      out = mscstts2::ms_synthesize(
+      out = conrad::ms_synthesize(
         tt,
         voice = voice,
         ...)

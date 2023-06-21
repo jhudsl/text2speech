@@ -129,7 +129,7 @@ tts_amazon_voices = function(...) {
 #' @export
 #' @rdname tts_voices
 tts_microsoft_voices = function(region = "westus") {
-  res = mscstts2::ms_list_voice()
+  res = conrad::ms_list_voice()
   cn = colnames(res)
   cn[ cn == "Name" ] <- "voice"
   cn[ cn == "Locale" ] <- "language_code"

@@ -132,9 +132,9 @@ tts_google_check = function() {
 #' @export
 #' @rdname tts_auth
 tts_microsoft_auth = function(key_or_json_file = NULL, ...) {
-  if (!mscstts2::ms_exist_key()) {
-    mscstts2::ms_set_key(api_key = key_or_json_file)
-    res = mscstts2::ms_exist_key()
+  if (!conrad::ms_exist_key()) {
+    conrad::ms_set_key(api_key = key_or_json_file)
+    res = conrad::ms_exist_key()
   }
   return(tts_microsoft_check(...))
 }
@@ -143,7 +143,7 @@ tts_microsoft_auth = function(key_or_json_file = NULL, ...) {
 # Check Microsoft Cognitive Services Text to Speech REST API Authentication Status
 tts_microsoft_check = function(...) {
   res = try({
-    mscstts2::ms_get_token(...)
+    conrad::ms_get_token(...)
   })
   if (inherits(res, "try-error")) {
     return(FALSE)

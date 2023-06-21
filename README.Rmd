@@ -24,7 +24,7 @@ With the exception of Coqui TTS, all these engines are accessible as R packages:
 
 - [aws.polly](https://github.com/cloudyr/aws.polly) is a client for [Amazon Polly](https://docs.aws.amazon.com/polly/latest/dg/what-is.html)
 - [googleLanguageR](https://github.com/ropensci/googleLanguageR) is a client to the [Google Cloud Text-to-Speech API](https://cloud.google.com/text-to-speech/) 
-- [mscstts2](https://github.com/howardbaek/mscstts2) is a client to the [Microsoft Cognitive Services Text to Speech REST API](https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/rest-text-to-speech?tabs=streaming)
+- [conrad](https://github.com/fhdsl/conrad) is a client to the [Microsoft Cognitive Services Text to Speech REST API](https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/rest-text-to-speech?tabs=streaming)
 
 
 text2speech directly incorporates the functionality of Coqui TTS.
