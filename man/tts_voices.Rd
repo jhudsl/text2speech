@@ -55,12 +55,11 @@ Various services offer a range of voice options:
 }
 \examples{
 \dontrun{
-#' # Amazon Polly
-if (requireNamespace("aws.polly", quietly = TRUE)) {
-if (tts_auth(service = "amazon") {
+# Amazon Polly
+if (tts_auth(service = "amazon")) {
 tts_voices(service = "amazon")
 }
-}
+
 
 # Microsoft Cognitive Services Text to Speech REST API
 if (tts_auth(service = "microsoft")) {
@@ -76,5 +75,6 @@ tts_voices(service = "google")
 if (tts_auth(service = "coqui")) {
 tts_voices(service = "coqui")
 }
+
 }
 }

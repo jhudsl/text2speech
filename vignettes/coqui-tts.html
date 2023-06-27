@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Coqui TTS</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Coqui TTS</h1>
+
+
+
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>Coqui TTS is a text-to-speech (TTS) library that enables the
+conversion of regular text into speech and is completely free to use.
+This is not true of the other text to speech engines used by
+<code>text2speech</code>.</p>
+<p>Coqui TTS provides pre-trained tts and vocoder models as part of its
+package. To get a sense of the best tts and vocoder models, take a look
+at this <a href="https://github.com/coqui-ai/TTS/discussions/1891">GitHub
+Discussion post</a>. In the <a href="https://huggingface.co/spaces/coqui/CoquiTTS">Coqui TTS Hugging
+Face Space</a>, you have the opportunity to experiment with a few of
+these models by inputting text and receiving corresponding audio
+output.</p>
+<p>The underlying technology of text-to-speech is highly intricate and
+will not be the focus of this vignette. However, if you’re interested in
+delving deeper into the subject, here are some recommended talks:</p>
+<ul>
+<li><a href="https://youtu.be/MA8PCvmr8B0">Pushing the frontier of
+neural text to speech</a>, a webinar by Xu Tan at Microsoft Research
+Asia</li>
+<li><a href="https://youtu.be/tHAdlv7ThjA">Towards End-to-end Speech
+Synthesis</a>, a talk given by Yu Zhang, Research Scientist at
+Google</li>
+<li><a href="https://www.youtube.com/watch?v=aLBedWj-5CQ">Text to Speech
+Deep Dive</a>, a talk given during the ML for Audio Study Group hosted
+by Hugging Face.</li>
+</ul>
+<p>Coqui TTS includes pre-trained models like <a href="https://github.com/coqui-ai/TTS#spectrogram-models">Spectogram
+models</a> (such as Tacotron2 and FastSpeech2), <a href="https://github.com/coqui-ai/TTS#end-to-end-models">End-to-End
+Models</a> (including VITS and YourTTS), and <a href="https://github.com/coqui-ai/TTS#vocoders">Vocoder models</a> (like
+MelGAN and WaveGRAD).</p>
+</div>
+<div id="installation" class="section level2">
+<h2>Installation</h2>
+<p>To install Coqui TTS, you will need to enter the following command in
+the terminal:</p>
+<pre><code>$ pip install TTS</code></pre>
+<p><strong>Note</strong>: If you are using a Mac with an M1 chip,
+initial step is to execute the following command in terminal:</p>
+<pre><code>$ brew install mecab</code></pre>
+<p>Afterward, you can proceed to install TTS by executing the following
+command:</p>
+<pre><code>$ pip install TTS</code></pre>
+</div>
+<div id="authentication" class="section level2">
+<h2>Authentication</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">library</span>(text2speech)</span></code></pre></div>
+<p>To use Coqui TTS, text2speech needs to know the correct path to the
+Coqui TTS executable. This path can be obtained through two methods:
+manual and automatic.</p>
+<div id="manual" class="section level3">
+<h3>Manual</h3>
+<p>You have the option to manually specify the path to the Coqui TTS
+executable in R. This can be done by setting a global option using the
+<code>set_coqui_path()</code> function:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">set_coqui_path</span>(<span class="st">&quot;your/path/to/tts&quot;</span>)</span></code></pre></div>
+<p>To determine the location of the Coqui TTS executable, you can enter
+the command <code>which tts</code> in the terminal.</p>
+<p>Internally, the <code>set_coqui_path()</code> function runs
+<code>options(&quot;path_to_coqui&quot; = path)</code> to set the provided path as
+the value for the <code>path_to_coqui</code> global option, as long as
+the Coqui TTS executable exists at that location.</p>
+</div>
+<div id="automatic" class="section level3">
+<h3>Automatic</h3>
+<p>The functions <code>tts_auth(service = &quot;coqui&quot;)</code>,
+<code>tts_voices(service = &quot;coqui&quot;)</code>, and
+<code>tts(service = &quot;coqui&quot;)</code> incorporate a way to search through
+a predetermined list of known locations for the Coqui TTS executable. If
+none of these paths yield a valid TTS executable, an error message will
+be generated, directing you to use <code>set_coqui_path()</code> to
+manually set the correct path.</p>
+</div>
+</div>
+<div id="list-voices" class="section level2">
+<h2>List Voices</h2>
+<p>The function <code>tts_voices(service = &quot;coqui&quot;)</code> is a wrapper
+for the system command <code>tts --list_models</code>, which lists the
+released Coqui TTS models.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">tts_voices</span>(<span class="at">service =</span> <span class="st">&quot;coqui&quot;</span>)</span></code></pre></div>
+<p>The result is a tibble with the following columns:
+<code>language</code>, <code>dataset</code>, <code>model_name</code>,
+and <code>service</code>.</p>
+<ul>
+<li><code>language</code> column contains the language code associated
+with the speaker.</li>
+<li><code>dataset</code> column indicates the specific dataset on which
+the text-to-speech model, denoted by <code>model_name</code>, was
+trained.</li>
+<li><code>model_name</code> column refers to the name of the
+text-to-speech model.</li>
+<li><code>service</code> column refers to the specific TTS service used
+(Amazon, Google, Microsoft, or Coqui TTS)</li>
+</ul>
+<p>You can find a list of papers associated with some of the implemented
+models for Coqui TTS <a href="https://github.com/coqui-ai/TTS#implemented-models">here</a>.</p>
+<p>By providing the values from this tibble (<code>language</code>,
+<code>dataset</code>, and <code>model_name</code>) in
+<code>tts()</code>, you can select the specific voice you want for
+text-to-speech synthesis.</p>
+</div>
+<div id="text-to-speech" class="section level2">
+<h2>Text-to-Speech</h2>
+<p>To convert text to speech, you can use the function
+<code>tts(text = &quot;Hello world!&quot;, service = &quot;coqui&quot;)</code>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">tts</span>(<span class="at">text =</span> <span class="st">&quot;Hello world!&quot;</span>, <span class="at">service =</span> <span class="st">&quot;coqui&quot;</span>)</span></code></pre></div>
+<p>The result is a tibble with the following columns:
+<code>index</code>, <code>original_text</code>, <code>text</code>,
+<code>wav</code>, <code>file</code>, <code>audio_type</code>,
+<code>duration</code>, and <code>service</code>. Some of the noteworthy
+ones are:</p>
+<ul>
+<li><code>text</code>: If the <code>original_text</code> exceeds the
+character limit, <code>text</code> represents the outcome of splitting
+<code>original_text</code>. Otherwise, <code>text</code> remains the
+same as <code>original_text</code>.</li>
+<li><code>file</code>: The location where the audio output is
+saved.</li>
+<li><code>audio_type</code>: The format of the audio file, either mp3 or
+wav.</li>
+</ul>
+<p>By default, the function <code>tts(service = &quot;coqui&quot;)</code> uses the
+<code>tacotron2-DDC_ph</code> model and the
+<code>ljspeech/univnet</code> vocoder. You can specify a different model
+with the argument <code>model_name</code>, or a different vocoder with
+the argument <code>vocoder_name</code>.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">tts</span>(<span class="at">text =</span> <span class="st">&quot;Hello world, using a different voice!&quot;</span>,</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>    <span class="at">service =</span> <span class="st">&quot;coqui&quot;</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>    <span class="at">model_name =</span> <span class="st">&quot;fast_pitch&quot;</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>    <span class="at">vocoder_name =</span> <span class="st">&quot;ljspeech/hifigan_v2&quot;</span>)</span></code></pre></div>
+<p>Another default is that <code>tts(service = &quot;coqui&quot;)</code> saves the
+audio output in a temporary folder and its path is shown in the
+<code>file</code> column of the resulting tibble. However, a temporary
+directory lasts only as long as the current R session, which means that
+when you restart your R session, that path will not exist!</p>
+<p>A more sustainable workflow would be to save the audio output in a
+local folder. To save the audio output in a local folder, set the
+arguments <code>save_local = TRUE</code> and
+<code>save_local_dest = /full/path/to/local/folder</code>. Make sure to
+provide the full path to the local folder.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">tts</span>(<span class="at">text =</span> <span class="st">&quot;Hello world! I am saving the audio output in a local folder&quot;</span>,</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>    <span class="at">service =</span> <span class="st">&quot;coqui&quot;</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>    <span class="at">save_local =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>    <span class="at">save_local_dest =</span> <span class="st">&quot;/full/path/to/local/folder&quot;</span>)</span></code></pre></div>
+<p><br></p>
+</div>
+<div id="session-info" class="section level2">
+<h2>Session Info</h2>
+<pre><code>#&gt; R version 4.2.3 (2023-03-15)
+#&gt; Platform: aarch64-apple-darwin20 (64-bit)
+#&gt; Running under: macOS Ventura 13.4
+#&gt; 
+#&gt; Matrix products: default
+#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRblas.0.dylib
+#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRlapack.dylib
+#&gt; 
+#&gt; locale:
+#&gt; [1] C/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+#&gt; 
+#&gt; attached base packages:
+#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
+#&gt; 
+#&gt; other attached packages:
+#&gt; [1] text2speech_0.3.0
+#&gt; 
+#&gt; loaded via a namespace (and not attached):
+#&gt;  [1] Rcpp_1.0.10           tidyr_1.3.0           prettyunits_1.1.1    
+#&gt;  [4] ps_1.7.5              assertthat_0.2.1      rprojroot_2.0.3      
+#&gt;  [7] digest_0.6.31         utf8_1.2.3            aws.signature_0.6.0  
+#&gt; [10] mime_0.12             R6_2.5.1              signal_0.7-7         
+#&gt; [13] evaluate_0.21         httr_1.4.6            mscstts2_0.0.0.9000  
+#&gt; [16] pillar_1.9.0          rlang_1.1.1           rstudioapi_0.14      
+#&gt; [19] miniUI_0.1.1.1        jquerylib_0.1.4       googleLanguageR_0.3.0
+#&gt; [22] googleAuthR_2.0.1     callr_3.7.3           urlchecker_1.0.1     
+#&gt; [25] rmarkdown_2.22        desc_1.4.2            devtools_2.4.5       
+#&gt; [28] tuneR_1.4.4           stringr_1.5.0         htmlwidgets_1.6.2    
+#&gt; [31] shiny_1.7.4           compiler_4.2.3        httpuv_1.6.11        
+#&gt; [34] xfun_0.39             pkgconfig_2.0.3       base64enc_0.1-3      
+#&gt; [37] pkgbuild_1.4.0        htmltools_0.5.5       tidyselect_1.2.0     
+#&gt; [40] tibble_3.2.1          roxygen2_7.2.3        fansi_1.0.4          
+#&gt; [43] crayon_1.5.2          dplyr_1.1.2           withr_2.5.0          
+#&gt; [46] later_1.3.1           MASS_7.3-60           commonmark_1.9.0     
+#&gt; [49] jsonlite_1.8.5        xtable_1.8-4          lifecycle_1.0.3      
+#&gt; [52] magrittr_2.0.3        cli_3.6.1             stringi_1.7.12       
+#&gt; [55] cachem_1.0.8          fs_1.6.2              promises_1.2.0.1     
+#&gt; [58] remotes_2.4.2         bslib_0.4.2           xml2_1.3.4           
+#&gt; [61] ellipsis_0.3.2        generics_0.1.3        vctrs_0.6.2          
+#&gt; [64] tools_4.2.3           glue_1.6.2            purrr_1.0.1          
+#&gt; [67] yaml_2.3.7            processx_3.8.1        pkgload_1.3.2        
+#&gt; [70] fastmap_1.1.1         gargle_1.4.0          sessioninfo_1.2.2    
+#&gt; [73] memoise_2.0.1         knitr_1.43            sass_0.4.6           
+#&gt; [76] profvis_0.3.8         usethis_2.1.6</code></pre>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
