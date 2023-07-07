@@ -85,7 +85,7 @@
 <a href="https://github.com/ropensci/googleLanguageR" class="external-link">googleLanguageR</a> is a client to the <a href="https://cloud.google.com/text-to-speech/" class="external-link">Google Cloud Text-to-Speech API</a>
 </li>
 <li>
-<a href="https://github.com/howardbaek/mscstts2" class="external-link">mscstts2</a> is a client to the <a href="https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/rest-text-to-speech?tabs=streaming" class="external-link">Microsoft Cognitive Services Text to Speech REST API</a>
+<a href="https://github.com/fhdsl/conrad" class="external-link">conrad</a> is a client to the <a href="https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/rest-text-to-speech?tabs=streaming" class="external-link">Microsoft Cognitive Services Text to Speech REST API</a>
 </li>
 </ul>
 <p>text2speech directly incorporates the functionality of Coqui TTS.</p>
@@ -140,15 +140,15 @@
 <span><span class="va">voices_coqui</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/tts_voices.html">tts_coqui_voices</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ℹ Test out different voices on the CoquiTTS Demo (&lt;https://huggingface.co/spaces/coqui/CoquiTTS&gt;)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">voices_coqui</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 6 × 5</span></span>
-<span><span class="co">#&gt;   type       language     dataset       model_name service</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt;  </span></span>
-<span><span class="co">#&gt; 1 tts_models multilingual multi-dataset your_tts   coqui  </span></span>
-<span><span class="co">#&gt; 2 tts_models bg           cv            vits       coqui  </span></span>
-<span><span class="co">#&gt; 3 tts_models cs           cv            vits       coqui  </span></span>
-<span><span class="co">#&gt; 4 tts_models da           cv            vits       coqui  </span></span>
-<span><span class="co">#&gt; 5 tts_models et           cv            vits       coqui  </span></span>
-<span><span class="co">#&gt; 6 tts_models ga           cv            vits       coqui</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 4</span></span>
+<span><span class="co">#&gt;   language     dataset       model_name                    service</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;         &lt;chr&gt;                         &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt; 1 multilingual multi-dataset your_tts [already downloaded] coqui  </span></span>
+<span><span class="co">#&gt; 2 bg           cv            vits                          coqui  </span></span>
+<span><span class="co">#&gt; 3 cs           cv            vits                          coqui  </span></span>
+<span><span class="co">#&gt; 4 da           cv            vits                          coqui  </span></span>
+<span><span class="co">#&gt; 5 et           cv            vits                          coqui  </span></span>
+<span><span class="co">#&gt; 6 ga           cv            vits                          coqui</span></span>
 <span></span>
 <span><span class="co"># Google Cloud Text-to-Speech API </span></span>
 <span><span class="va">voices_google</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/tts_voices.html">tts_google_voices</a></span><span class="op">(</span><span class="op">)</span></span>
