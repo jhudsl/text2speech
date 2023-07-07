@@ -329,6 +329,7 @@ tts_coqui <- function(
   # English models names
   model_name <- switch(
     model_name,
+    "jenny"            = "tts_models/en/jenny/jenny",
     "tacotron2-DDC_ph" = "tts_models/en/ljspeech/tacotron2-DDC_ph",
     "vits"             = "tts_models/en/ljspeech/vits",
     "glow-tts"         = "tts_models/en/ljspeech/glow-tts",
@@ -346,6 +347,7 @@ tts_coqui <- function(
   # Universal/English vocoder dataset/model
   vocoder_name <- switch(
     vocoder_name,
+    "jenny"                     =   NULL,
     "libri-tts/wavegrad"        =  "vocoder_models/universal/libri-tts/wavegrad",
     "libri-tts/fullband-melgan" =  "vocoder_models/universal/libri-tts/fullband-melgan",
     "ek1/wavegrad"              =  "vocoder_models/en/ek1/wavegrad",
@@ -357,28 +359,55 @@ tts_coqui <- function(
     "sam/hifigan_v2"            = "vocoder_models/en/sam/hifigan_v2"
   )
 
-  # Iterate coqui tts over text
-  res = lapply(text, function(string) {
-    string_processed = tts_split_text(string, limit = limit)
+  # Vocoder is provided
+  if(!is.null(vocoder_name)) {
+    # Iterate coqui tts over text
+    res = lapply(text, function(string) {
+      string_processed = tts_split_text(string, limit = limit)
 
-    res = vapply(string_processed, function(tt) {
-      output_path = tts_temp_audio(audio_type)
-      tts_args <- paste0("--text", " ", shQuote(tt), " ",
-                         "--model_name", " ", model_name, " ",
-                         "--vocoder_name", " ", vocoder_name,
-                         " ", "--out_path /private", output_path)
-      # # Run command with temporary system search path
-      res <- withr::with_path(process_coqui_path(exec_path),
-                              system2("tts", tts_args))
-      # Output file path
-      output_path
-    }, FUN.VALUE = character(1L), USE.NAMES = FALSE)
-    out = lapply(res, tts_audio_read,
-                 output_format = audio_type)
-    df = dplyr::tibble(original_text = string,
-                       text = string_processed,
-                       wav = out, file = normalizePath(res))
-  })
+      res = vapply(string_processed, function(tt) {
+        output_path = tts_temp_audio(audio_type)
+        tts_args <- paste0("--text", " ", shQuote(tt), " ",
+                           "--model_name", " ", model_name, " ",
+                           "--vocoder_name", " ", vocoder_name,
+                           " ", "--out_path /private", output_path)
+        # # Run command with temporary system search path
+        res <- withr::with_path(process_coqui_path(exec_path),
+                                system2("tts", tts_args))
+        # Output file path
+        output_path
+      }, FUN.VALUE = character(1L), USE.NAMES = FALSE)
+      out = lapply(res, tts_audio_read,
+                   output_format = audio_type)
+      df = dplyr::tibble(original_text = string,
+                         text = string_processed,
+                         wav = out, file = normalizePath(res))
+    })
+    # Vocoder not provided (in case of Jenny)
+  } else {
+    # Iterate coqui tts over text
+    res = lapply(text, function(string) {
+      string_processed = tts_split_text(string, limit = limit)
+
+      res = vapply(string_processed, function(tt) {
+        output_path = tts_temp_audio(audio_type)
+        tts_args <- paste0("--text", " ", shQuote(tt), " ",
+                           "--model_name", " ", model_name, " ",
+                           " ", "--out_path /private", output_path)
+        # # Run command with temporary system search path
+        res <- withr::with_path(process_coqui_path(exec_path),
+                                system2("tts", tts_args))
+        # Output file path
+        output_path
+      }, FUN.VALUE = character(1L), USE.NAMES = FALSE)
+      out = lapply(res, tts_audio_read,
+                   output_format = audio_type)
+      df = dplyr::tibble(original_text = string,
+                         text = string_processed,
+                         wav = out, file = normalizePath(res))
+    })
+  }
+
   # Post-processing
   names(res) = seq_along(text)
   res = dplyr::bind_rows(res, .id = "index")
