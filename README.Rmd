@@ -27,7 +27,7 @@ With the exception of Coqui TTS, all these engines are accessible as R packages:
 - [conrad](https://github.com/fhdsl/conrad) is a client to the [Microsoft Cognitive Services Text to Speech REST API](https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/rest-text-to-speech?tabs=streaming)
 
 
-text2speech directly incorporates the functionality of Coqui TTS.
+You might notice Coqui TTS doesn't have its own R package. This is because, at this time, text2speech directly incorporates the functionality of Coqui TTS. The R wrapper of Coqui is [under development](https://github.com/howardbaek/ribbit).
 
 
 ## Installation
@@ -57,7 +57,7 @@ tts_auth("coqui")
 # Google Cloud Text-to-Speech API 
 tts_auth("google")
 # Microsoft Cognitive Services Text to Speech REST API
-# tts_auth("microsoft")
+tts_auth("microsoft")
 ```
 
 
@@ -79,8 +79,8 @@ voices_google <- tts_google_voices()
 head(voices_google)
 
 # Microsoft Cognitive Services Text to Speech REST API
-# voices_microsoft <- tts_microsoft_voices()
-# head(voices_microsoft)
+voices_microsoft <- tts_microsoft_voices()
+head(voices_microsoft)
 ```
 
 ## Convert text to speech
