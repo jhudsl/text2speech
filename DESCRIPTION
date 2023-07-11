@@ -3,7 +3,7 @@ Package: text2speech
 Title: Text to Speech Conversion
 Description: Converts text into speech using various text-to-speech (TTS) engines and provides an unified interface for accessing their functionality.
   With this package, users can easily generate audio files of spoken words, phrases, or sentences from plain text data. The package supports multiple TTS engines, 
-  including Google's 'Cloud Text-to-Speech API', 'Amazon Polly', Microsoft's 'Cognitive Services Text to Speech REST API',  and a free TTS engine called 'coqui TTS'.
+  including Google's 'Cloud Text-to-Speech API', 'Amazon Polly', Microsoft's 'Cognitive Services Text to Speech REST API',  and a free TTS engine called 'Coqui TTS'.
 Version: 0.3.0
 Authors@R: c( 
     person(given = "John",
@@ -26,7 +26,6 @@ Suggests:
     stringi,
     testthat (>= 3.0.0)
 Encoding: UTF-8
-LazyData: true
 VignetteBuilder: knitr
 RoxygenNote: 7.2.3
 URL: https://github.com/jhudsl/text2speech
