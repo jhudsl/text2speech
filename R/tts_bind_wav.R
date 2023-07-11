@@ -10,11 +10,14 @@
 #'
 #' @export
 #' @examples
+#' \dontrun{
 #' # Same sample rate
 #' tts_bind_wav(res, same_sample_rate = TRUE)
 #'
 #' # Different sample rate
 #' tts_bind_wav(res, same_sample_rate = FALSE)
+#'
+#' }
 tts_bind_wav = function(result, same_sample_rate = TRUE) {
   index = NULL
   rm(list = "index")

@@ -19,9 +19,12 @@ As the data are split due to limits of the API, \code{tts_bind_wav()}
 allows the text and the results to be harmonized
 }
 \examples{
+\dontrun{
 # Same sample rate
 tts_bind_wav(res, same_sample_rate = TRUE)
 
 # Different sample rate
 tts_bind_wav(res, same_sample_rate = FALSE)
+
+}
 }
