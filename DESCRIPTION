@@ -43,6 +43,5 @@ Imports:
     tuneR,
     utils,
     withr
-Remotes: fhdsl/conrad
 Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3
