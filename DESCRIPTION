@@ -14,7 +14,7 @@ Authors@R: c(
     person(given = "Howard",
            family = "Baek",
            role = "cre",
-           email = "howardbaek@fredhutch.org",
+           email = "howardbaek.fh@gmail.com",
            comment = c(ORCID = "0009-0000-8942-1618"))
            )
 License: GPL-3
