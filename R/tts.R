@@ -90,13 +90,14 @@ tts = function(
       ...)
   }
   if (service == "coqui") {
+    cli::cli_alert_info("Coqui TTS does not support MP3 format; will produce a WAV audio output.")
     use_coqui()
     coqui_path <- getOption("path_to_coqui")
 
     res <- tts_coqui(
       text = text,
       exec_path = coqui_path,
-      output_format = output_format,
+      output_format = "wav",
       bind_audio = bind_audio,
       ...)
   }

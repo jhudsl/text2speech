@@ -17,7 +17,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Howard Baek \email{howardbaek@fredhutch.org} (\href{https://orcid.org/0009-0000-8942-1618}{ORCID})
+\strong{Maintainer}: Howard Baek \email{howardbaek.fh@gmail.com} (\href{https://orcid.org/0009-0000-8942-1618}{ORCID})
 
 Authors:
 \itemize{
