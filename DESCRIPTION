@@ -5,17 +5,17 @@ Description: Converts text into speech using various text-to-speech (TTS) engine
   With this package, users can easily generate audio files of spoken words, phrases, or sentences from plain text data. The package supports multiple TTS engines, 
   including Google's 'Cloud Text-to-Speech API', 'Amazon Polly', Microsoft's 'Cognitive Services Text to Speech REST API',  and a free TTS engine called 'Coqui TTS'.
 Version: 0.3.0
-Authors@R: c( 
-    person(given = "John",
-           family = "Muschelli",
-           role = c("aut", "cph"),
-           email = "muschellij2@gmail.com",
-           comment = c(ORCID = "0000-0001-6469-1750")),
+Authors@R: c(
     person(given = "Howard",
            family = "Baek",
            role = "cre",
            email = "howardbaek.fh@gmail.com",
-           comment = c(ORCID = "0009-0000-8942-1618"))
+           comment = c(ORCID = "0009-0000-8942-1618")),
+    person(given = "John",
+           family = "Muschelli",
+           role = "ctb",
+           email = "muschellij2@gmail.com",
+           comment = c(ORCID = "0000-0001-6469-1750"))
            )
 License: GPL-3
 Suggests: 
