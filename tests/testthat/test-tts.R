@@ -1,5 +1,6 @@
 patrick::with_parameters_test_that("test tts() on Amazon, Google, Microsoft, and Coqui TTS) ",
                                    {
+                                     testthat::skip_on_cran()
                                      if (company != "coqui") {
                                        if (tts_auth) {
                                          response_df = tts("Algorithmic complexity is a key consideration

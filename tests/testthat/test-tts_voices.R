@@ -3,6 +3,7 @@ fixed_names = c("voice", "language", "language_code",
 
 patrick::with_parameters_test_that("test tts_voices() on Amazon, Google, and Microsoft engines",
                                    {
+                                     testthat::skip_on_cran()
                                      if (tts_auth) {
                                        response_df = tts_voices(service = company)
                                        testthat::expect_s3_class(response_df, "data.frame")
@@ -17,6 +18,7 @@ fixed_names_coqui <- c("type", "language", "dataset", "model_name", "service")
 
 test_that("test tts_voices() on Coqui engine",
           {
+            testthat::skip_on_cran()
             tts_auth <- try(find_coqui())
             if (!inherits(tts_auth, "try-error")) {
               response_df = tts_voices(service = "coqui")

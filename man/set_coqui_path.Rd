@@ -27,7 +27,7 @@ Executable File
 }
 }
 \examples{
-\dontrun{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 set_coqui_path("~/path/to/tts")
-}
+\dontshow{\}) # examplesIf}
 }

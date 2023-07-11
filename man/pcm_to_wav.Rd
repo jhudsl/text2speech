@@ -2,7 +2,7 @@
 % Please edit documentation in R/pcm_to_wav.R
 \name{pcm_to_wav}
 \alias{pcm_to_wav}
-\title{Convert PCM to Wav}
+\title{Convert PCM to WAV}
 \usage{
 pcm_to_wav(
   input,
@@ -25,7 +25,7 @@ PCM filename}
 A filename of the output
 }
 \description{
-Convert PCM to Wav
+Accepts PCM audio data as input and generates a corresponding WAV file
 }
 \examples{
 \dontrun{

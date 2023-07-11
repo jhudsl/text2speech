@@ -2,14 +2,14 @@
 % Please edit documentation in R/tts_bind_wav.R
 \name{tts_bind_wav}
 \alias{tts_bind_wav}
-\title{Bind Wavs together}
+\title{Bind WAVs together}
 \usage{
 tts_bind_wav(result, same_sample_rate = TRUE)
 }
 \arguments{
 \item{result}{A \code{data.frame} from \code{\link[=tts]{tts()}}.}
 
-\item{same_sample_rate}{force the same sample rate}
+\item{same_sample_rate}{A logical value indicating whether to force the same sample rate.}
 }
 \value{
 A \code{data.frame} with the same structure as that of \code{tts}
@@ -17,4 +17,14 @@ A \code{data.frame} with the same structure as that of \code{tts}
 \description{
 As the data are split due to limits of the API, \code{tts_bind_wav()}
 allows the text and the results to be harmonized
+}
+\examples{
+\dontrun{
+# Same sample rate
+tts_bind_wav(res, same_sample_rate = TRUE)
+
+# Different sample rate
+tts_bind_wav(res, same_sample_rate = FALSE)
+
+}
 }

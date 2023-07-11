@@ -6,22 +6,22 @@
 \alias{text2speech-package}
 \title{text2speech: Text to Speech Conversion}
 \description{
-Converts text into speech using various text-to-speech (TTS) engines and provides an unified interface for accessing their functionality. With this package, users can easily generate audio files of spoken words, phrases, or sentences from plain text data. The package supports multiple TTS engines, including Google's 'Cloud Text-to-Speech API', 'Amazon Polly', Microsoft's 'Cognitive Services Text to Speech REST API', and a free TTS engine called 'coqui TTS'.
+Converts text into speech using various text-to-speech (TTS) engines and provides an unified interface for accessing their functionality. With this package, users can easily generate audio files of spoken words, phrases, or sentences from plain text data. The package supports multiple TTS engines, including Google's 'Cloud Text-to-Speech API', 'Amazon Polly', Microsoft's 'Cognitive Services Text to Speech REST API', and a free TTS engine called 'Coqui TTS'.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/muschellij2/text2speech}
-  \item Report bugs at \url{https://github.com/muschellij2/text2speech/issues}
+  \item \url{https://github.com/jhudsl/text2speech}
+  \item Report bugs at \url{https://github.com/jhudsl/text2speech}
 }
 
 }
 \author{
-\strong{Maintainer}: John Muschelli \email{muschellij2@gmail.com} (\href{https://orcid.org/0000-0001-6469-1750}{ORCID})
+\strong{Maintainer}: Howard Baek \email{howardbaek.fh@gmail.com} (\href{https://orcid.org/0009-0000-8942-1618}{ORCID})
 
-Other contributors:
+Authors:
 \itemize{
-  \item Howard Baek \email{howardbaek@fredhutch.org} (\href{https://orcid.org/0009-0000-8942-1618}{ORCID}) [contributor]
+  \item John Muschelli \email{muschellij2@gmail.com} (\href{https://orcid.org/0000-0001-6469-1750}{ORCID}) [copyright holder]
 }
 
 }

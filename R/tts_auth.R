@@ -1,4 +1,4 @@
-#' Authentication for Text-to-Speech (Speech Synthesis) engines
+#' Authentication for Text-to-Speech (Speech Synthesis) Engines
 #'
 #' @description Verify the authentication status of different text-to-speech
 #' engines, including Amazon Polly, Coqui TTS, Google Cloud Text-to-Speech API,
@@ -6,7 +6,6 @@
 #'
 #' @details To determine the availability of Coqui TTS, `tts_auth()` examines whether the tts
 #' executable exists on local system.
-#'
 #'
 #' @param service Service to use (Amazon, Google, Microsoft, or Coqui)
 #' @param key_or_json_file Either an API key (for Microsoft) or JSON file (for
@@ -17,7 +16,7 @@
 #'
 #' @export
 #'
-#' @examples \dontrun{
+#' @examplesIf interactive()
 #' # Amazon Polly
 #' tts_auth("amazon")
 #'
@@ -29,7 +28,6 @@
 #'
 #' # Coqui TTS
 #' tts_auth("coqui")
-#' }
 tts_auth = function(service = c("amazon",
                                 "google",
                                 "microsoft",

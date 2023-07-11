@@ -6,7 +6,7 @@
 \alias{tts_google_auth}
 \alias{tts_microsoft_auth}
 \alias{tts_coqui_auth}
-\title{Authentication for Text-to-Speech (Speech Synthesis) engines}
+\title{Authentication for Text-to-Speech (Speech Synthesis) Engines}
 \usage{
 tts_auth(
   service = c("amazon", "google", "microsoft", "coqui"),
@@ -43,7 +43,7 @@ To determine the availability of Coqui TTS, \code{tts_auth()} examines whether t
 executable exists on local system.
 }
 \examples{
-\dontrun{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Amazon Polly
 tts_auth("amazon")
 
@@ -55,5 +55,5 @@ tts_auth("microsoft")
 
 # Coqui TTS
 tts_auth("coqui")
-}
+\dontshow{\}) # examplesIf}
 }

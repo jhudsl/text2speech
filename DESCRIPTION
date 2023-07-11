@@ -3,19 +3,19 @@ Package: text2speech
 Title: Text to Speech Conversion
 Description: Converts text into speech using various text-to-speech (TTS) engines and provides an unified interface for accessing their functionality.
   With this package, users can easily generate audio files of spoken words, phrases, or sentences from plain text data. The package supports multiple TTS engines, 
-  including Google's 'Cloud Text-to-Speech API', 'Amazon Polly', Microsoft's 'Cognitive Services Text to Speech REST API',  and a free TTS engine called 'coqui TTS'.
+  including Google's 'Cloud Text-to-Speech API', 'Amazon Polly', Microsoft's 'Cognitive Services Text to Speech REST API',  and a free TTS engine called 'Coqui TTS'.
 Version: 0.3.0
-Authors@R: c( 
-    person(given = "John",
-           family = "Muschelli",
-           role = c("aut", "cre"),
-           email = "muschellij2@gmail.com",
-           comment = c(ORCID = "0000-0001-6469-1750")),
+Authors@R: c(
     person(given = "Howard",
            family = "Baek",
+           role = "cre",
+           email = "howardbaek.fh@gmail.com",
+           comment = c(ORCID = "0009-0000-8942-1618")),
+    person(given = "John",
+           family = "Muschelli",
            role = "ctb",
-           email = "howardbaek@fredhutch.org",
-           comment = c(ORCID = "0009-0000-8942-1618"))
+           email = "muschellij2@gmail.com",
+           comment = c(ORCID = "0000-0001-6469-1750"))
            )
 License: GPL-3
 Suggests: 
@@ -26,11 +26,10 @@ Suggests:
     stringi,
     testthat (>= 3.0.0)
 Encoding: UTF-8
-LazyData: true
 VignetteBuilder: knitr
 RoxygenNote: 7.2.3
-URL: https://github.com/muschellij2/text2speech
-BugReports: https://github.com/muschellij2/text2speech/issues
+URL: https://github.com/jhudsl/text2speech
+BugReports: https://github.com/jhudsl/text2speech/issues
 Imports: 
     aws.signature,
     cli,
@@ -44,6 +43,5 @@ Imports:
     tuneR,
     utils,
     withr
-Remotes: fhdsl/conrad
 Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3

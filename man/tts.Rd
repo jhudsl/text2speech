@@ -112,3 +112,15 @@ packages:
 \item \href{https://github.com/fhdsl/conrad}{conrad} is a client to the Microsoft Cognitive Services Text to Speech REST API
 }
 }
+\examples{
+\dontrun{
+# Amazon Polly
+tts("Hello world! This is Amazon Polly", service = "amazon")
+
+tts("Hello world! This is Coqui TTS", service = "coqui")
+
+tts("Hello world! This is Google Cloud", service = "google")
+
+tts("Hello world! This is Microsoft", service = "microsoft")
+}
+}

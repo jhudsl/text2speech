@@ -40,9 +40,21 @@
 #' * `duration` : The duration of the audio file
 #' * `service` : The text-to-speech engine used
 #'
-#'
-#'
 #' @export
+#' @examples
+#' \dontrun{
+#' # Amazon Polly
+#' tts("Hello world! This is Amazon Polly", service = "amazon")
+#'
+# Coqui TTS
+#' tts("Hello world! This is Coqui TTS", service = "coqui")
+#'
+# Google Cloud Text-to-Speech API
+#' tts("Hello world! This is Google Cloud", service = "google")
+#'
+# Microsoft Cognitive Services Text to Speech REST API
+#' tts("Hello world! This is Microsoft", service = "microsoft")
+#' }
 tts = function(
     text,
     output_format = c("mp3", "wav"),
@@ -78,13 +90,14 @@ tts = function(
       ...)
   }
   if (service == "coqui") {
+    cli::cli_alert_info("Coqui TTS does not support MP3 format; will produce a WAV audio output.")
     use_coqui()
     coqui_path <- getOption("path_to_coqui")
 
     res <- tts_coqui(
       text = text,
       exec_path = coqui_path,
-      output_format = output_format,
+      output_format = "wav",
       bind_audio = bind_audio,
       ...)
   }

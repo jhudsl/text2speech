@@ -1,4 +1,4 @@
-#'Text-to-Speech (Speech Synthesis) Voices
+#' Text-to-Speech (Speech Synthesis) Voices
 #'
 #'@description Various services offer a range of voice options:
 #' * Amazon Polly : <https://docs.aws.amazon.com/polly/latest/dg/voicelist.html>
@@ -25,8 +25,7 @@
 #' * `service` : The text-to-speech engine used
 #'
 #' @export
-#' @examples
-#' \dontrun{
+#' @examplesIf interactive()
 #' # Amazon Polly
 #' if (tts_auth(service = "amazon")) {
 #' tts_voices(service = "amazon")
@@ -46,8 +45,6 @@
 #' # Coqui TTS
 #' if (tts_auth(service = "coqui")) {
 #' tts_voices(service = "coqui")
-#' }
-#'
 #' }
 tts_voices = function(
     service = c("amazon", "google", "microsoft", "coqui"),

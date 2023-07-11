@@ -7,13 +7,18 @@
 play_audio(audio = "output.wav", html = "player.html")
 }
 \arguments{
-\item{audio}{The file location of the audio file.  Must be supported by HTML5}
+\item{audio}{The file location of the audio file.  Must be supported by HTML5.}
 
-\item{html}{The html file location that will be created host the audio}
+\item{html}{The html file location that will be created to host the audio file.}
 }
 \description{
 This uses HTML5 audio tags to play audio in your browser.
 }
 \details{
 Borrowed from \code{googleLanguageR::gl_talk_player()}
+}
+\examples{
+\dontrun{
+  play_audio(audio = "audio.wav", html = "player.html")
+}
 }
