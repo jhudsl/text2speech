@@ -4,11 +4,14 @@
 #'
 #' Borrowed from \code{googleLanguageR::gl_talk_player()}
 #'
-#' @param audio The file location of the audio file.  Must be supported by HTML5
-#' @param html The html file location that will be created host the audio
+#' @param audio The file location of the audio file.  Must be supported by HTML5.
+#' @param html The html file location that will be created to host the audio file.
 #'
 #' @export
-#' @importFrom utils browseURL
+#' @examples
+#' \dontrun{
+#'   play_audio(audio = "audio.wav", html = "player.html")
+#' }
 play_audio <- function(audio = "output.wav",
                        html = "player.html"){
   # Write html code to a html file
@@ -23,9 +26,8 @@ play_audio <- function(audio = "output.wav",
   utils::browseURL(html)
 }
 
-# Read WAV or MP3 files in and store as a Wave object
-tts_audio_read <- function(file,
-                          output_format = c("wav", "mp3")) {
+# Read WAV or MP3 file as a Wave object
+tts_audio_read <- function(file, output_format = c("wav", "mp3")) {
   output_format = match.arg(output_format)
   out = switch(
     output_format,
@@ -42,7 +44,7 @@ tts_temp_audio = function(output_format = c("mp3", "wav") ) {
   tempfile(fileext = ext)
 }
 
-# Split text into groups if nchar(text) exceeds limit
+# Split text into groups if number of characters exceeds limit
 tts_split_text = function(text, limit = 50) {
   stopifnot(is.character(text) & length(text) == 1)
   num_char = nchar(text)

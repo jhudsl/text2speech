@@ -11,17 +11,17 @@ Converts text into speech using various text-to-speech (TTS) engines and provide
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/muschellij2/text2speech}
-  \item Report bugs at \url{https://github.com/muschellij2/text2speech/issues}
+  \item \url{https://github.com/jhudsl/text2speech}
+  \item Report bugs at \url{https://github.com/jhudsl/text2speech}
 }
 
 }
 \author{
-\strong{Maintainer}: John Muschelli \email{muschellij2@gmail.com} (\href{https://orcid.org/0000-0001-6469-1750}{ORCID})
+\strong{Maintainer}: Howard Baek \email{howardbaek@fredhutch.org} (\href{https://orcid.org/0009-0000-8942-1618}{ORCID})
 
-Other contributors:
+Authors:
 \itemize{
-  \item Howard Baek \email{howardbaek@fredhutch.org} (\href{https://orcid.org/0009-0000-8942-1618}{ORCID}) [contributor]
+  \item John Muschelli \email{muschellij2@gmail.com} (\href{https://orcid.org/0000-0001-6469-1750}{ORCID}) [copyright holder]
 }
 
 }

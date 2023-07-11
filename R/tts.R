@@ -40,9 +40,21 @@
 #' * `duration` : The duration of the audio file
 #' * `service` : The text-to-speech engine used
 #'
-#'
-#'
 #' @export
+#' @examples
+#' \dontrun{
+#' # Amazon Polly
+#' tts("Hello world! This is Amazon Polly", service = "amazon")
+#'
+# Coqui TTS
+#' tts("Hello world! This is Coqui TTS", service = "coqui")
+#'
+# Google Cloud Text-to-Speech API
+#' tts("Hello world! This is Google Cloud", service = "google")
+#'
+# Microsoft Cognitive Services Text to Speech REST API
+#' tts("Hello world! This is Microsoft", service = "microsoft")
+#' }
 tts = function(
     text,
     output_format = c("mp3", "wav"),

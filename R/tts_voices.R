@@ -1,4 +1,4 @@
-#'Text-to-Speech (Speech Synthesis) Voices
+#' Text-to-Speech (Speech Synthesis) Voices
 #'
 #'@description Various services offer a range of voice options:
 #' * Amazon Polly : <https://docs.aws.amazon.com/polly/latest/dg/voicelist.html>

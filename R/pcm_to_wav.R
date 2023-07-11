@@ -1,4 +1,6 @@
-#' Convert PCM to Wav
+#' Convert PCM to WAV
+#'
+#' Accepts PCM audio data as input and generates a corresponding WAV file
 #'
 #' @param input output from `get_synthesis`` from \code{aws.polly} or
 #' PCM filename
@@ -21,13 +23,10 @@
 #' }
 #' }
 #' }
-pcm_to_wav = function(
-  input,
-  output = tempfile(fileext = ".wav"),
-  sample_rate = 16000,
-  extensible = FALSE) {
-
-
+pcm_to_wav = function(input,
+                      output = tempfile(fileext = ".wav"),
+                      sample_rate = 16000,
+                      extensible = FALSE) {
   tfile = tempfile(fileext = ".pcm")
   if (is.raw(input)) {
     writeBin(input, con = tfile)

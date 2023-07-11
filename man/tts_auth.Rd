@@ -6,7 +6,7 @@
 \alias{tts_google_auth}
 \alias{tts_microsoft_auth}
 \alias{tts_coqui_auth}
-\title{Authentication for Text-to-Speech (Speech Synthesis) engines}
+\title{Authentication for Text-to-Speech (Speech Synthesis) Engines}
 \usage{
 tts_auth(
   service = c("amazon", "google", "microsoft", "coqui"),
