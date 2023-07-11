@@ -96,9 +96,8 @@ wav_duration = function(object) {
 #'   \code{path_to_coqui}.
 #' @export
 #'
-#' @examples \dontrun{
+#' @examplesIf interactive()
 #' set_coqui_path("~/path/to/tts")
-#' }
 set_coqui_path <- function(path) {
   stopifnot(is.character(path))
 

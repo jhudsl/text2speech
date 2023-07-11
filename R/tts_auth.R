@@ -16,7 +16,7 @@
 #'
 #' @export
 #'
-#' @examples \dontrun{
+#' @examplesIf interactive()
 #' # Amazon Polly
 #' tts_auth("amazon")
 #'
@@ -28,7 +28,6 @@
 #'
 #' # Coqui TTS
 #' tts_auth("coqui")
-#' }
 tts_auth = function(service = c("amazon",
                                 "google",
                                 "microsoft",
