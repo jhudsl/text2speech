@@ -12,7 +12,7 @@ Converts text into speech using various text-to-speech (TTS) engines and provide
 Useful links:
 \itemize{
   \item \url{https://github.com/jhudsl/text2speech}
-  \item Report bugs at \url{https://github.com/jhudsl/text2speech}
+  \item Report bugs at \url{https://github.com/jhudsl/text2speech/issues}
 }
 
 }
@@ -21,7 +21,7 @@ Useful links:
 
 Authors:
 \itemize{
-  \item John Muschelli \email{muschellij2@gmail.com} (\href{https://orcid.org/0000-0001-6469-1750}{ORCID}) [copyright holder]
+  \item John Muschelli \email{muschellij2@gmail.com} (\href{https://orcid.org/0000-0001-6469-1750}{ORCID}) [contributor]
 }
 
 }
