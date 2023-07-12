@@ -8,7 +8,7 @@ Version: 0.3.0
 Authors@R: c(
     person(given = "Howard",
            family = "Baek",
-           role = "cre",
+           role = c("cre", "cph"),
            email = "howardbaek.fh@gmail.com",
            comment = c(ORCID = "0009-0000-8942-1618")),
     person(given = "John",
