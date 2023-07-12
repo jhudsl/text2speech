@@ -1,3 +1,11 @@
+# text2speech 1.0.0
+
+* Added Coqui TTS as a text-to-speech engine to `tts()` and `tts_voices()`
+
+# text2speech 0.3.0
+
+* Updated the binding wavs so that they have the same sample rate
+
 # text2speech 0.2.13
 
 * Added duration to the synthesis output.
