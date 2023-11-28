@@ -415,9 +415,11 @@ tts_coqui <- function(
       }, FUN.VALUE = character(1L), USE.NAMES = FALSE)
       out = lapply(res, tts_audio_read,
                    output_format = audio_type)
-      df = dplyr::tibble(original_text = string,
-                         text = string_processed,
-                         wav = out, file = normalizePath(res))
+
+      # Output
+      dplyr::tibble(original_text = string,
+                    text = string_processed,
+                    wav = out, file = normalizePath(res))
     })
   }
 
@@ -493,10 +495,10 @@ tts_coqui_vc <- function(
   })
 
   # Post-processing
-  names(res) = seq_along(text)
-  res = dplyr::bind_rows(res, .id = "index")
-  res$index = as.numeric(res$index)
-  res$audio_type = "wav"
+  names(res) <- seq_along(text)
+  res <- dplyr::bind_rows(res, .id = "index")
+  res$index <- as.numeric(res$index)
+  res$audio_type <- "wav"
 
   if (bind_audio) {
     res = tts_bind_wav(res)
