@@ -443,3 +443,74 @@ tts_coqui <- function(
   }
   res
 }
+
+
+#' @export
+#' @rdname tts
+tts_coqui_vc <- function(
+    text,
+    speaker_wav,
+    language = "en",
+    gpu = FALSE,
+    bind_audio = TRUE,
+    save_local = FALSE,
+    save_local_dest = NULL,
+    ...) {
+  # TODO: Read Managing an R Package’s Python Dependencies
+  # https://rstudio.github.io/reticulate/articles/python_dependencies.html
+
+  # Specify version of Python to be used by reticulate
+  reticulate::use_python("/opt/homebrew/Caskroom/miniforge/base/bin/python")
+  # Import TTS
+  TTS_api <- reticulate::import("TTS.api")
+  # Model name
+  model_name <- "tts_models/multilingual/multi-dataset/xtts_v2"
+  # TTS
+  tts <- TTS_api$TTS(model_name, gpu = gpu)
+
+
+  # Execute model
+  res = lapply(text, function(string) {
+    string_processed = tts_split_text(string, limit = 600)
+
+    res = vapply(string_processed, function(tt) {
+      output_path = tts_temp_audio("wav")
+      tts$tts_to_file(text = tt,
+                      max_new_tokens = 600,
+                      file_path = output_path,
+                      speaker_wav = speaker_wav,
+                      language = language)
+      # Output file path
+      output_path
+    }, FUN.VALUE = character(1L), USE.NAMES = FALSE)
+    out = lapply(res, tts_audio_read,
+                 output_format = "wav")
+
+    # Output
+    dplyr::tibble(original_text = string,
+                  text = string_processed,
+                  wav = out, file = normalizePath(res))
+  })
+
+  # Post-processing
+  names(res) = seq_along(text)
+  res = dplyr::bind_rows(res, .id = "index")
+  res$index = as.numeric(res$index)
+  res$audio_type = "wav"
+
+  if (bind_audio) {
+    res = tts_bind_wav(res)
+  }
+  if ("wav" %in% colnames(res)) {
+    res$duration = vapply(res$wav, wav_duration, FUN.VALUE = numeric(1))
+  }
+  # Copy and paste audio file into local folder
+  if (save_local) {
+    if (!is.null(save_local_dest)) {
+      file.copy(normalizePath(res$file), save_local_dest)
+    } else {
+      cli::cli_alert_danger("Provide local destination where audio file will be saved")
+    }
+  }
+  res
+}
