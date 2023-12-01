@@ -1,7 +1,7 @@
 #' Text-to-Speech (Speech Synthesis)
 #'
 #' @description Convert text-to-speech using various engines, including Amazon
-#' Polly, Coqui TTS, Google Cloud Text-to-Speech API, and Microsoft Cognitive
+#' Polly, Coqui TTS and XTTS (Voice-Cloning), Google Cloud Text-to-Speech API, and Microsoft Cognitive
 #' Services Text to Speech REST API.
 #'
 #' With the exception of Coqui TTS, all these engines are accessible as R
@@ -49,6 +49,10 @@
 # Coqui TTS
 #' tts("Hello world! This is Coqui TTS", service = "coqui")
 #'
+#' Coqui Voice Cloning (XTTS)
+#' TODO
+#'
+#'
 # Google Cloud Text-to-Speech API
 #' tts("Hello world! This is Google Cloud", service = "google")
 #'
@@ -58,7 +62,7 @@
 tts = function(
     text,
     output_format = c("mp3", "wav"),
-    service = c("amazon", "google", "microsoft", "coqui"),
+    service = c("coqui", "coqui-vc", "amazon", "google", "microsoft"),
     bind_audio = TRUE,
     ...) {
 
