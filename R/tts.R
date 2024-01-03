@@ -462,9 +462,6 @@ tts_coqui_vc <- function(
     save_local = FALSE,
     save_local_dest = NULL,
     ...) {
-  # TODO: Read Managing an R Package’s Python Dependencies
-  # https://rstudio.github.io/reticulate/articles/python_dependencies.html
-
   # Specify version of Python to be used by reticulate
   reticulate::use_python("/opt/homebrew/Caskroom/miniforge/base/bin/python")
   # Import TTS
@@ -473,7 +470,6 @@ tts_coqui_vc <- function(
   model_name <- "tts_models/multilingual/multi-dataset/xtts_v2"
   # TTS
   tts <- TTS_api$TTS(model_name, gpu = gpu)
-
 
   # Execute model
   res = lapply(text, function(string) {
