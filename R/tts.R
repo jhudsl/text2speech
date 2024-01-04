@@ -462,7 +462,6 @@ tts_coqui <- function(
   res
 }
 
-
 #' @export
 #' @rdname tts
 tts_coqui_vc <- function(
