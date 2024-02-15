@@ -167,3 +167,10 @@ coqui_path_missing <- paste(
   "If you've already downloaded the software, use function",
   "'set_coqui_path(path = \"path/to/coqui/tts\")' to point R to your local coqui tts Executable File"
 )
+
+# Open private audio (.wav, .mp3) or video (.mp4) files
+system_open <- function(path) {
+  system(paste0("open ", path))
+}
+
+

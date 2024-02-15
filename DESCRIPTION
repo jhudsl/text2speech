@@ -39,6 +39,7 @@ Imports:
     knitr,
     magrittr,
     conrad,
+    reticulate,
     tidyr,
     tuneR,
     utils,

@@ -1,7 +1,7 @@
 #' Text-to-Speech (Speech Synthesis)
 #'
 #' @description Convert text-to-speech using various engines, including Amazon
-#' Polly, Coqui TTS, Google Cloud Text-to-Speech API, and Microsoft Cognitive
+#' Polly, Coqui TTS and XTTS (Voice-Cloning), Google Cloud Text-to-Speech API, and Microsoft Cognitive
 #' Services Text to Speech REST API.
 #'
 #' With the exception of Coqui TTS, all these engines are accessible as R
@@ -11,6 +11,7 @@
 #' * [conrad](https://github.com/fhdsl/conrad) is a client to the Microsoft Cognitive Services Text to Speech REST API
 #'
 #' @param text A character vector of text to be spoken
+#' @param speaker_wav (Coqui Voice Cloning only) Speaker voice to clone
 #' @param exec_path System path to Coqui TTS executable
 #' @param output_format Format of output files: "mp3" or "wav"
 #' @param voice Full voice name
@@ -49,6 +50,10 @@
 # Coqui TTS
 #' tts("Hello world! This is Coqui TTS", service = "coqui")
 #'
+#' Coqui Voice Cloning (XTTS)
+#' TODO
+#'
+#'
 # Google Cloud Text-to-Speech API
 #' tts("Hello world! This is Google Cloud", service = "google")
 #'
@@ -57,8 +62,9 @@
 #' }
 tts = function(
     text,
+    speaker_wav = "speaker.wav",
     output_format = c("mp3", "wav"),
-    service = c("amazon", "google", "microsoft", "coqui"),
+    service = c("coqui", "coqui-vc", "amazon", "google", "microsoft"),
     bind_audio = TRUE,
     ...) {
 
@@ -66,12 +72,27 @@ tts = function(
   if (!tts_auth(service = service)) {
     warning(paste0("Service ", service, " not authorized/unavailable"))
   }
-
   output_format = match.arg(output_format)
-  if (service == "google") {
-    res = tts_google(
+
+  if (service == "coqui") {
+    cli::cli_alert_info("This service does not support MP3 format; will produce a WAV audio output.")
+    use_coqui()
+    coqui_path <- getOption("path_to_coqui")
+
+    res <- tts_coqui(
       text = text,
-      output_format = output_format,
+      exec_path = coqui_path,
+      output_format = "wav",
+      bind_audio = bind_audio,
+      ...)
+  }
+  if (service == "coqui-vc") {
+    cli::cli_alert_info("This service does not support MP3 format; will produce a WAV audio output.")
+    # TODO: Specify Python version, just as we specify path to coqui above
+
+    res <- tts_coqui_vc(
+      text = text,
+      speaker_wav = speaker_wav,
       bind_audio = bind_audio,
       ...)
   }
@@ -82,22 +103,17 @@ tts = function(
       bind_audio = bind_audio,
       ...)
   }
-  if (service == "microsoft") {
-    res = tts_microsoft(
+  if (service == "google") {
+    res = tts_google(
       text = text,
       output_format = output_format,
       bind_audio = bind_audio,
       ...)
   }
-  if (service == "coqui") {
-    cli::cli_alert_info("Coqui TTS does not support MP3 format; will produce a WAV audio output.")
-    use_coqui()
-    coqui_path <- getOption("path_to_coqui")
-
-    res <- tts_coqui(
+  if (service == "microsoft") {
+    res = tts_microsoft(
       text = text,
-      exec_path = coqui_path,
-      output_format = "wav",
+      output_format = output_format,
       bind_audio = bind_audio,
       ...)
   }
@@ -415,9 +431,11 @@ tts_coqui <- function(
       }, FUN.VALUE = character(1L), USE.NAMES = FALSE)
       out = lapply(res, tts_audio_read,
                    output_format = audio_type)
-      df = dplyr::tibble(original_text = string,
-                         text = string_processed,
-                         wav = out, file = normalizePath(res))
+
+      # Output
+      dplyr::tibble(original_text = string,
+                    text = string_processed,
+                    wav = out, file = normalizePath(res))
     })
   }
 
@@ -426,6 +444,73 @@ tts_coqui <- function(
   res = dplyr::bind_rows(res, .id = "index")
   res$index = as.numeric(res$index)
   res$audio_type = audio_type
+
+  if (bind_audio) {
+    res = tts_bind_wav(res)
+  }
+  if ("wav" %in% colnames(res)) {
+    res$duration = vapply(res$wav, wav_duration, FUN.VALUE = numeric(1))
+  }
+  # Copy and paste audio file into local folder
+  if (save_local) {
+    if (!is.null(save_local_dest)) {
+      file.copy(normalizePath(res$file), save_local_dest)
+    } else {
+      cli::cli_alert_danger("Provide local destination where audio file will be saved")
+    }
+  }
+  res
+}
+
+#' @export
+#' @rdname tts
+tts_coqui_vc <- function(
+    text,
+    speaker_wav,
+    language = "en",
+    python_version = "/opt/homebrew/Caskroom/miniforge/base/bin/python",
+    gpu = FALSE,
+    bind_audio = TRUE,
+    save_local = FALSE,
+    save_local_dest = NULL,
+    ...) {
+  # Specify version of Python to be used by reticulate
+  reticulate::use_python(python_version)
+  # Import TTS
+  TTS_api <- reticulate::import("TTS.api")
+  # Model name
+  model_name = "tts_models/multilingual/multi-dataset/xtts_v2"
+  # TTS
+  tts <- TTS_api$TTS(model_name, gpu = gpu)
+
+  # Execute model
+  res = lapply(text, function(string) {
+    string_processed = tts_split_text(string, limit = 600)
+
+    res = vapply(string_processed, function(tt) {
+      output_path = tts_temp_audio("wav")
+      tts$tts_to_file(text = tt,
+                      max_new_tokens = 600,
+                      file_path = output_path,
+                      speaker_wav = speaker_wav,
+                      language = language)
+      # Output file path
+      output_path
+    }, FUN.VALUE = character(1L), USE.NAMES = FALSE)
+    out = lapply(res, tts_audio_read,
+                 output_format = "wav")
+
+    # Output
+    dplyr::tibble(original_text = string,
+                  text = string_processed,
+                  wav = out, file = normalizePath(res))
+  })
+
+  # Post-processing
+  names(res) <- seq_along(text)
+  res <- dplyr::bind_rows(res, .id = "index")
+  res$index <- as.numeric(res$index)
+  res$audio_type <- "wav"
 
   if (bind_audio) {
     res = tts_bind_wav(res)

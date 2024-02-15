@@ -6,12 +6,14 @@
 \alias{tts_google}
 \alias{tts_microsoft}
 \alias{tts_coqui}
+\alias{tts_coqui_vc}
 \title{Text-to-Speech (Speech Synthesis)}
 \usage{
 tts(
   text,
+  speaker_wav = "speaker.wav",
   output_format = c("mp3", "wav"),
-  service = c("amazon", "google", "microsoft", "coqui"),
+  service = c("coqui", "coqui-vc", "amazon", "google", "microsoft"),
   bind_audio = TRUE,
   ...
 )
@@ -57,9 +59,23 @@ tts_coqui(
   save_local_dest = NULL,
   ...
 )
+
+tts_coqui_vc(
+  text,
+  speaker_wav,
+  language = "en",
+  python_version = "/opt/homebrew/Caskroom/miniforge/base/bin/python",
+  gpu = FALSE,
+  bind_audio = TRUE,
+  save_local = FALSE,
+  save_local_dest = NULL,
+  ...
+)
 }
 \arguments{
 \item{text}{A character vector of text to be spoken}
+
+\item{speaker_wav}{(Coqui Voice Cloning only) Speaker voice to clone}
 
 \item{output_format}{Format of output files: "mp3" or "wav"}
 
@@ -101,7 +117,7 @@ A standardized \code{tibble} featuring the following columns:
 }
 \description{
 Convert text-to-speech using various engines, including Amazon
-Polly, Coqui TTS, Google Cloud Text-to-Speech API, and Microsoft Cognitive
+Polly, Coqui TTS and XTTS (Voice-Cloning), Google Cloud Text-to-Speech API, and Microsoft Cognitive
 Services Text to Speech REST API.
 
 With the exception of Coqui TTS, all these engines are accessible as R
@@ -118,6 +134,10 @@ packages:
 tts("Hello world! This is Amazon Polly", service = "amazon")
 
 tts("Hello world! This is Coqui TTS", service = "coqui")
+
+Coqui Voice Cloning (XTTS)
+TODO
+
 
 tts("Hello world! This is Google Cloud", service = "google")
 

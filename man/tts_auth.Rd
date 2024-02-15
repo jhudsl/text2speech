@@ -9,7 +9,7 @@
 \title{Authentication for Text-to-Speech (Speech Synthesis) Engines}
 \usage{
 tts_auth(
-  service = c("amazon", "google", "microsoft", "coqui"),
+  service = c("amazon", "google", "microsoft", "coqui", "coqui-vc"),
   key_or_json_file = NULL,
   ...
 )

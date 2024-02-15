@@ -31,7 +31,8 @@
 tts_auth = function(service = c("amazon",
                                 "google",
                                 "microsoft",
-                                "coqui"),
+                                "coqui",
+                                "coqui-vc"),
                     key_or_json_file = NULL,
                     ...) {
   service = match.arg(service)
