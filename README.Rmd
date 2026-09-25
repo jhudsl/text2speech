@@ -85,7 +85,9 @@ head(voices_google)
 # Microsoft Cognitive Services Text to Speech REST API
 voices_microsoft <- tts_microsoft_voices()
 head(voices_microsoft)
+```
 
+```{r, eval = nzchar(Sys.getenv("SPEECHIFY_API_KEY"))}
 # Speechify Text-to-Speech API
 voices_speechify <- tts_speechify_voices()
 head(voices_speechify)
