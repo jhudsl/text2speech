@@ -1,4 +1,4 @@
-patrick::with_parameters_test_that("test tts() on Amazon, Google, Microsoft, and Coqui TTS) ",
+patrick::with_parameters_test_that("test tts() on Amazon, Google, Microsoft, Coqui TTS, and Speechify) ",
                                    {
                                      testthat::skip_on_cran()
                                      if (company != "coqui") {
@@ -34,7 +34,14 @@ patrick::with_parameters_test_that("test tts() on Amazon, Google, Microsoft, and
                                                 tts_google_auth(getOption("google_api_key")),
                                                 tts_microsoft_auth(key_or_json_file = getOption("ms_api_key"),
                                                                    region = "westus"),
-                                                TRUE
+                                                TRUE,
+                                                tts_speechify_auth()
                                    ),
-                                   company  = c("amazon", "google", "microsoft", "coqui")
+                                   company  = c("amazon", "google", "microsoft", "coqui", "speechify")
 )
+
+test_that("tts_speechify_auth() is FALSE without an API key", {
+  withr::with_envvar(c(SPEECHIFY_API_KEY = ""), {
+    expect_false(tts_speechify_auth())
+  })
+})

@@ -7,11 +7,12 @@
 <!-- badges: end -->
 
 The goal of text2speech is to harmonize various text-to-speech engines,
-including Amazon Polly, Coqui TTS, Google Cloud Text-to-Speech API, and
-Microsoft Cognitive Services Text to Speech REST API.
+including Amazon Polly, Coqui TTS, Google Cloud Text-to-Speech API,
+Microsoft Cognitive Services Text to Speech REST API, and Speechify
+Text-to-Speech API.
 
-With the exception of Coqui TTS, all these engines are accessible as R
-packages:
+With the exception of Coqui TTS and Speechify, all these engines are
+accessible as R packages:
 
 - [aws.polly](https://github.com/cloudyr/aws.polly) is a client for
   [Amazon
@@ -27,6 +28,13 @@ You might notice Coqui TTS doesn’t have its own R package. This is
 because, at this time, text2speech directly incorporates the
 functionality of Coqui TTS. The R wrapper of Coqui is [under
 development](https://github.com/howardbaek/ribbit).
+
+Speechify is called directly through the [Speechify Text-to-Speech
+API](https://docs.speechify.ai). Create an API key at
+<https://platform.speechify.ai/api-keys> and store it in the
+`SPEECHIFY_API_KEY` environment variable (for example in your
+`.Renviron`), or pass it with
+`tts_auth("speechify", key_or_json_file = "YOUR_KEY")`.
 
 ## Installation
 
@@ -61,6 +69,9 @@ tts_auth("google")
 #> [1] TRUE
 # Microsoft Cognitive Services Text to Speech REST API
 tts_auth("microsoft")
+#> [1] TRUE
+# Speechify Text-to-Speech API
+tts_auth("speechify")
 #> [1] TRUE
 ```
 
@@ -122,6 +133,17 @@ head(voices_microsoft)
 #> 4            Amharic (Ethiopia)         am-ET   Male microsoft
 #> 5 Arabic (United Arab Emirates)         ar-AE Female microsoft
 #> 6 Arabic (United Arab Emirates)         ar-AE   Male microsoft
+
+# Speechify Text-to-Speech API
+voices_speechify <- tts_speechify_voices()
+head(voices_speechify)
+#>     voice language language_code gender   service
+#> 1    aadi    Hindi         hi-IN   male speechify
+#> 2  aaliya     Urdu         ur-IN female speechify
+#> 3   aamir     Urdu         ur-IN   male speechify
+#> 4   abhay    Hindi         hi-IN   male speechify
+#> 5 abhijit  Bengali         bn-IN   male speechify
+#> 6 abirami    Tamil         ta-IN female speechify
 ```
 
 ## Convert text to speech
@@ -140,6 +162,9 @@ tts("Hello world!", service = "google")
 
 # Microsoft Cognitive Services Text to Speech REST API
 tts("Hello world!", service = "microsoft")
+
+# Speechify Text-to-Speech API
+tts("Hello world!", service = "speechify")
 ```
 
 The resulting output will consist of a standardized tibble featuring the
