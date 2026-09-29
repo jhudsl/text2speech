@@ -1,6 +1,6 @@
 #' Convert PCM to WAV
 #'
-#' Accepts PCM audio data as input and generates a corresponding WAV file
+#' Accepts PCM audio data as input and generates a corresponding Wav file
 #'
 #' @param input output from `get_synthesis`` from \code{aws.polly} or
 #' PCM filename

@@ -1,6 +1,7 @@
 # text2speech 1.2.0
 
 * Added speechify.
+* Putting back on CRAN.
 
 # text2speech 1.1.0
 

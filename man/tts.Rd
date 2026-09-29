@@ -107,9 +107,9 @@ Services Text to Speech REST API.
 With the exception of Coqui TTS, all these engines are accessible as R
 packages:
 \itemize{
-\item \href{https://github.com/cloudyr/aws.polly}{aws.polly} is a client for Amazon Polly.
-\item \href{https://github.com/ropensci/googleLanguageR}{googleLanguageR} is a client to the Google Cloud Text-to-Speech API.
-\item \href{https://github.com/fhdsl/conrad}{conrad} is a client to the Microsoft Cognitive Services Text to Speech REST API
+\item \href{https://github.com/cloudyr/aws.polly}{\code{aws.polly}} is a client for Amazon Polly.
+\item \href{https://github.com/ropensci/googleLanguageR}{\code{googleLanguageR}} is a client to the Google Cloud Text-to-Speech API.
+\item \href{https://github.com/fhdsl/conrad}{\code{conrad}} is a client to the Microsoft Cognitive Services Text to Speech REST API
 }
 }
 \examples{

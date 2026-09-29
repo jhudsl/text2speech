@@ -87,7 +87,7 @@ The function `tts_voices(service = "coqui")` is a wrapper for the system command
 tts_voices(service = "coqui")
 ```
 
-The result is a tibble with the following columns: `language`, `dataset`, `model_name`, and `service`. 
+The result is a `tibble` with the following columns: `language`, `dataset`, `model_name`, and `service`. 
 
 - `language` column contains the language code associated with the speaker. 
 - `dataset` column indicates the specific dataset on which the text-to-speech model, denoted by `model_name`, was trained.

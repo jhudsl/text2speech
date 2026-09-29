@@ -15,13 +15,13 @@ API, and Microsoft Cognitive Services Text to Speech REST API.
 With the exception of Coqui TTS, all these engines are accessible as R
 packages:
 
-- [aws.polly](https://github.com/cloudyr/aws.polly) is a client for
+- [`aws.polly`](https://github.com/cloudyr/aws.polly) is a client for
   [Amazon
   Polly](https://docs.aws.amazon.com/polly/latest/dg/what-is.html)
-- [googleLanguageR](https://github.com/ropensci/googleLanguageR) is a
+- [`googleLanguageR`](https://github.com/ropensci/googleLanguageR) is a
   client to the [Google Cloud Text-to-Speech
   API](https://cloud.google.com/text-to-speech)
-- [conrad](https://github.com/fhdsl/conrad) is a client to the
+- [`conrad`](https://github.com/fhdsl/conrad) is a client to the
   [Microsoft Cognitive Services Text to Speech REST
   API](https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/rest-text-to-speech?tabs=streaming)
 
@@ -87,6 +87,8 @@ head(voices_amazon)
 
 # Coqui TTS
 voices_coqui <- tts_coqui_voices()
+#> Warning in system("tts --list_models", intern = TRUE): running command 'tts
+#> --list_models' had status 1
 #> ℹ Test out different voices on the CoquiTTS Demo (<https://huggingface.co/spaces/coqui/CoquiTTS>)
 head(voices_coqui)
 #> # A tibble: 0 × 5
@@ -96,13 +98,13 @@ head(voices_coqui)
 # Google Cloud Text-to-Speech API 
 voices_google <- tts_google_voices()
 head(voices_google)
-#>                  voice language language_code gender service
-#> 1     af-ZA-Standard-A     <NA>         af-ZA FEMALE  google
-#> 2     am-ET-Standard-A     <NA>         am-ET FEMALE  google
-#> 3     am-ET-Standard-B     <NA>         am-ET   MALE  google
-#> 4      am-ET-Wavenet-A     <NA>         am-ET FEMALE  google
-#> 5      am-ET-Wavenet-B     <NA>         am-ET   MALE  google
-#> 6 ar-XA-Chirp3-HD-Orus   Arabic         ar-XA   MALE  google
+#>                   voice language language_code gender service
+#> 1      af-ZA-Standard-A     <NA>         af-ZA FEMALE  google
+#> 2      am-ET-Standard-A     <NA>         am-ET FEMALE  google
+#> 3      am-ET-Standard-B     <NA>         am-ET   MALE  google
+#> 4       am-ET-Wavenet-A     <NA>         am-ET FEMALE  google
+#> 5       am-ET-Wavenet-B     <NA>         am-ET   MALE  google
+#> 6 ar-XA-Chirp3-HD-Aoede   Arabic         ar-XA FEMALE  google
 
 # Microsoft Cognitive Services Text to Speech REST API
 voices_microsoft <- tts_microsoft_voices()
@@ -141,8 +143,8 @@ tts("Hello world!", service = "google")
 tts("Hello world!", service = "microsoft")
 ```
 
-The resulting output will consist of a standardized tibble featuring the
-following columns:
+The resulting output will consist of a standardized `tibble` featuring
+the following columns:
 
 - `index`: Sequential identifier number
 - `original_text`: The text input provided by the user

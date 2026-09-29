@@ -6,9 +6,9 @@
 #'
 #' With the exception of Coqui TTS, all these engines are accessible as R
 #' packages:
-#' * [aws.polly](https://github.com/cloudyr/aws.polly) is a client for Amazon Polly.
-#' * [googleLanguageR](https://github.com/ropensci/googleLanguageR) is a client to the Google Cloud Text-to-Speech API.
-#' * [conrad](https://github.com/fhdsl/conrad) is a client to the Microsoft Cognitive Services Text to Speech REST API
+#' * [`aws.polly`](https://github.com/cloudyr/aws.polly) is a client for Amazon Polly.
+#' * [`googleLanguageR`](https://github.com/ropensci/googleLanguageR) is a client to the Google Cloud Text-to-Speech API.
+#' * [`conrad`](https://github.com/fhdsl/conrad) is a client to the Microsoft Cognitive Services Text to Speech REST API
 #'
 #' @param text A character vector of text to be spoken
 #' @param exec_path System path to Coqui TTS executable

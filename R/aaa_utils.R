@@ -79,17 +79,17 @@ wav_duration = function(object) {
 
 #' Point to local coqui tts Executable File
 #'
-#' Function to set an option that points to the local coqui tts Executable File
+#' Function to set an option that points to the local `coqui` tts Executable File
 #' \code{tts}.
 #'
-#' @param path path to the local coqui tts Executable File
+#' @param path path to the local `coqui` tts Executable File
 #'
-#' @details List of possible file path locations for the local coqui tts
+#' @details List of possible file path locations for the `local` coqui tts
 #'   Executable File
 #' \describe{
-#'    \item{Linux}{/usr/bin/tts, /usr/local/bin/tts}
-#'    \item{Mac}{/opt/homebrew/Caskroom/miniforge/base/bin/tts}
-#'    \item{Windows}{C:\\Program Files\\tts}
+#'    \item{Linux}{`/usr/bin/tts`, `/usr/local/bin/tts`}
+#'    \item{Mac}{`/opt/homebrew/Caskroom/miniforge/base/bin/tts`}
+#'    \item{Windows}{`C:\\Program Files\\tts`}
 #' }
 #'
 #' @return Returns nothing, function sets the option variable

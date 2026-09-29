@@ -31,9 +31,9 @@ The goal of `text2speech` is to harmonize various text-to-speech engines, includ
 
 With the exception of Coqui TTS, all these engines are accessible as R packages:
 
-- [aws.polly](https://github.com/cloudyr/aws.polly) is a client for [Amazon Polly](https://docs.aws.amazon.com/polly/latest/dg/what-is.html)
-- [googleLanguageR](https://github.com/ropensci/googleLanguageR) is a client to the [Google Cloud Text-to-Speech API](https://cloud.google.com/text-to-speech) 
-- [conrad](https://github.com/fhdsl/conrad) is a client to the [Microsoft Cognitive Services Text to Speech REST API](https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/rest-text-to-speech?tabs=streaming)
+- [`aws.polly`](https://github.com/cloudyr/aws.polly) is a client for [Amazon Polly](https://docs.aws.amazon.com/polly/latest/dg/what-is.html)
+- [`googleLanguageR`](https://github.com/ropensci/googleLanguageR) is a client to the [Google Cloud Text-to-Speech API](https://cloud.google.com/text-to-speech) 
+- [`conrad`](https://github.com/fhdsl/conrad) is a client to the [Microsoft Cognitive Services Text to Speech REST API](https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/rest-text-to-speech?tabs=streaming)
 
 
 You might notice Coqui TTS doesn't have its own R package. This is because, at this time, text2speech directly incorporates the functionality of Coqui TTS.
@@ -110,7 +110,7 @@ tts("Hello world!", service = "google")
 tts("Hello world!", service = "microsoft")
 ```
 
-The resulting output will consist of a standardized tibble featuring the following columns:
+The resulting output will consist of a standardized `tibble` featuring the following columns:
 
 - `index`: Sequential identifier number
 - `original_text`: The text input provided by the user

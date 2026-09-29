@@ -4,4 +4,5 @@
 
 * This is a new release.
 ---
-Fixing links and re-uploading
+Fixing links (archived as result) and re-uploading.
+Taking back over maintainership from a previous student.
