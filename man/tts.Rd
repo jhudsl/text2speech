@@ -6,12 +6,13 @@
 \alias{tts_google}
 \alias{tts_microsoft}
 \alias{tts_coqui}
+\alias{tts_speechify}
 \title{Text-to-Speech (Speech Synthesis)}
 \usage{
 tts(
   text,
   output_format = c("mp3", "wav"),
-  service = c("amazon", "google", "microsoft", "coqui"),
+  service = c("amazon", "google", "microsoft", "coqui", "speechify"),
   bind_audio = TRUE,
   ...
 )
@@ -57,13 +58,25 @@ tts_coqui(
   save_local_dest = NULL,
   ...
 )
+
+tts_speechify(
+  text,
+  output_format = c("mp3", "wav"),
+  voice = "geffen_32",
+  model = "simba-3.2",
+  bind_audio = TRUE,
+  save_local = FALSE,
+  save_local_dest = NULL,
+  ...
+)
 }
 \arguments{
 \item{text}{A character vector of text to be spoken}
 
 \item{output_format}{Format of output files: "mp3" or "wav"}
 
-\item{service}{Service to use (Amazon, Google, Microsoft, or Coqui)}
+\item{service}{Service to use (Amazon, Google, Microsoft, Coqui, or
+Speechify)}
 
 \item{bind_audio}{Should the \code{\link[=tts_bind_wav]{tts_bind_wav()}} be run on after
 the audio has been created, to ensure that the length of text and the
@@ -85,6 +98,10 @@ Conversion}
 
 \item{vocoder_name}{(Coqui TTS only) Voice coder used for speech coding and
 transmission}
+
+\item{model}{(Speechify only) Model used for synthesis. The default,
+"simba-3.2", is English only; use "simba-3.0" for voices in other
+languages}
 }
 \value{
 A standardized \code{tibble} featuring the following columns:
@@ -101,16 +118,20 @@ A standardized \code{tibble} featuring the following columns:
 }
 \description{
 Convert text-to-speech using various engines, including Amazon
-Polly, Coqui TTS, Google Cloud Text-to-Speech API, and Microsoft Cognitive
-Services Text to Speech REST API.
+Polly, Coqui TTS, Google Cloud Text-to-Speech API, Microsoft Cognitive
+Services Text to Speech REST API, and Speechify Text-to-Speech API.
 
-With the exception of Coqui TTS, all these engines are accessible as R
-packages:
+With the exception of Coqui TTS and Speechify, all these engines are
+accessible as R packages:
 \itemize{
 \item \href{https://github.com/cloudyr/aws.polly}{aws.polly} is a client for Amazon Polly.
 \item \href{https://github.com/ropensci/googleLanguageR}{googleLanguageR} is a client to the Google Cloud Text-to-Speech API.
 \item \href{https://github.com/fhdsl/conrad}{conrad} is a client to the Microsoft Cognitive Services Text to Speech REST API
 }
+
+Speechify is called directly through its REST API
+(\url{https://docs.speechify.ai}) using the key in the \code{SPEECHIFY_API_KEY}
+environment variable.
 }
 \examples{
 \dontrun{
@@ -122,5 +143,7 @@ tts("Hello world! This is Coqui TTS", service = "coqui")
 tts("Hello world! This is Google Cloud", service = "google")
 
 tts("Hello world! This is Microsoft", service = "microsoft")
+
+tts("Hello world! This is Speechify", service = "speechify")
 }
 }

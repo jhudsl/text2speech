@@ -2,14 +2,20 @@
 #'
 #' @description Verify the authentication status of different text-to-speech
 #' engines, including Amazon Polly, Coqui TTS, Google Cloud Text-to-Speech API,
-#' and Microsoft Cognitive Services Text to Speech REST API.
+#' Microsoft Cognitive Services Text to Speech REST API, and Speechify
+#' Text-to-Speech API.
 #'
 #' @details To determine the availability of Coqui TTS, `tts_auth()` examines whether the tts
 #' executable exists on local system.
 #'
-#' @param service Service to use (Amazon, Google, Microsoft, or Coqui)
-#' @param key_or_json_file Either an API key (for Microsoft) or JSON file (for
-#'   Google)
+#' For Speechify, the API key is read from the `SPEECHIFY_API_KEY` environment
+#' variable. Passing a key as `key_or_json_file` sets that variable for the
+#' session. Keys are created at <https://platform.speechify.ai/api-keys>.
+#'
+#' @param service Service to use (Amazon, Google, Microsoft, Coqui, or
+#'   Speechify)
+#' @param key_or_json_file Either an API key (for Microsoft or Speechify) or
+#'   JSON file (for Google)
 #' @param ... Additional arguments
 #'
 #' @return A logical indicator of authorization
@@ -28,10 +34,14 @@
 #'
 #' # Coqui TTS
 #' tts_auth("coqui")
+#'
+#' # Speechify Text-to-Speech API
+#' tts_auth("speechify")
 tts_auth = function(service = c("amazon",
                                 "google",
                                 "microsoft",
-                                "coqui"),
+                                "coqui",
+                                "speechify"),
                     key_or_json_file = NULL,
                     ...) {
   service = match.arg(service)
@@ -46,6 +56,9 @@ tts_auth = function(service = c("amazon",
   }
   if (service == "coqui") {
     res = tts_coqui_auth()
+  }
+  if (service == "speechify") {
+    res = tts_speechify_auth(key_or_json_file, ...)
   }
   return(res)
 }
@@ -164,4 +177,51 @@ tts_coqui_auth <- function() {
   } else {
     return(TRUE)
   }
+}
+
+#' @export
+#' @rdname tts_auth
+tts_speechify_auth = function(key_or_json_file = NULL, ...) {
+  if (!is.null(key_or_json_file)) {
+    Sys.setenv(SPEECHIFY_API_KEY = key_or_json_file)
+  }
+  return(tts_speechify_check())
+}
+
+# Check Speechify Text-to-Speech API Authentication Status
+tts_speechify_check = function() {
+  if (!nzchar(Sys.getenv("SPEECHIFY_API_KEY"))) {
+    return(FALSE)
+  }
+  res = try({
+    speechify_request("v1/voices") %>%
+      httr2::req_url_query(limit = 1) %>%
+      httr2::req_error(is_error = function(resp) FALSE) %>%
+      httr2::req_perform()
+  }, silent = TRUE)
+  if (inherits(res, "try-error")) {
+    return(FALSE)
+  }
+  httr2::resp_status(res) < 400
+}
+
+# Build a request to the Speechify API using the key in SPEECHIFY_API_KEY
+speechify_request = function(path) {
+  httr2::request("https://api.speechify.ai") %>%
+    httr2::req_url_path_append(path) %>%
+    httr2::req_auth_bearer_token(Sys.getenv("SPEECHIFY_API_KEY")) %>%
+    httr2::req_headers(
+      "Speechify-Caller" = "text2speech",
+      "Speechify-Caller-Version" = as.character(utils::packageVersion("text2speech"))
+    ) %>%
+    httr2::req_error(body = speechify_error_message)
+}
+
+# Pull the error message out of a Speechify error response
+speechify_error_message = function(resp) {
+  body = try(httr2::resp_body_json(resp), silent = TRUE)
+  if (inherits(body, "try-error") || is.null(body$error$message)) {
+    return(NULL)
+  }
+  body$error$message
 }

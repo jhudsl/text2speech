@@ -1,3 +1,7 @@
+# text2speech (development version)
+
+* Added Speechify as a text-to-speech engine to `tts()`, `tts_auth()`, and `tts_voices()` (#46)
+
 # text2speech 1.0.0
 
 * Added Coqui TTS as a text-to-speech engine to `tts()` and `tts_voices()`

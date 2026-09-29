@@ -1,14 +1,18 @@
 #' Text-to-Speech (Speech Synthesis)
 #'
 #' @description Convert text-to-speech using various engines, including Amazon
-#' Polly, Coqui TTS, Google Cloud Text-to-Speech API, and Microsoft Cognitive
-#' Services Text to Speech REST API.
+#' Polly, Coqui TTS, Google Cloud Text-to-Speech API, Microsoft Cognitive
+#' Services Text to Speech REST API, and Speechify Text-to-Speech API.
 #'
-#' With the exception of Coqui TTS, all these engines are accessible as R
-#' packages:
+#' With the exception of Coqui TTS and Speechify, all these engines are
+#' accessible as R packages:
 #' * [aws.polly](https://github.com/cloudyr/aws.polly) is a client for Amazon Polly.
 #' * [googleLanguageR](https://github.com/ropensci/googleLanguageR) is a client to the Google Cloud Text-to-Speech API.
 #' * [conrad](https://github.com/fhdsl/conrad) is a client to the Microsoft Cognitive Services Text to Speech REST API
+#'
+#' Speechify is called directly through its REST API
+#' (<https://docs.speechify.ai>) using the key in the `SPEECHIFY_API_KEY`
+#' environment variable.
 #'
 #' @param text A character vector of text to be spoken
 #' @param exec_path System path to Coqui TTS executable
@@ -18,10 +22,14 @@
 #'   Conversion
 #' @param vocoder_name (Coqui TTS only) Voice coder used for speech coding and
 #'   transmission
+#' @param model (Speechify only) Model used for synthesis. The default,
+#'   "simba-3.2", is English only; use "simba-3.0" for voices in other
+#'   languages
 #' @param bind_audio Should the [text2speech::tts_bind_wav()] be run on after
 #'   the audio has been created, to ensure that the length of text and the
 #'   number of rows is consistent?
-#' @param service Service to use (Amazon, Google, Microsoft, or Coqui)
+#' @param service Service to use (Amazon, Google, Microsoft, Coqui, or
+#'   Speechify)
 #' @param save_local Should the audio file be saved locally?
 #' @param save_local_dest If to be saved locally, destination where output file
 #'   will be saved
@@ -54,11 +62,14 @@
 #'
 # Microsoft Cognitive Services Text to Speech REST API
 #' tts("Hello world! This is Microsoft", service = "microsoft")
+#'
+# Speechify Text-to-Speech API
+#' tts("Hello world! This is Speechify", service = "speechify")
 #' }
 tts = function(
     text,
     output_format = c("mp3", "wav"),
-    service = c("amazon", "google", "microsoft", "coqui"),
+    service = c("amazon", "google", "microsoft", "coqui", "speechify"),
     bind_audio = TRUE,
     ...) {
 
@@ -98,6 +109,13 @@ tts = function(
       text = text,
       exec_path = coqui_path,
       output_format = "wav",
+      bind_audio = bind_audio,
+      ...)
+  }
+  if (service == "speechify") {
+    res = tts_speechify(
+      text = text,
+      output_format = output_format,
       bind_audio = bind_audio,
       ...)
   }
@@ -442,4 +460,69 @@ tts_coqui <- function(
     }
   }
   res
+}
+
+#' @export
+#' @rdname tts
+tts_speechify = function(
+    text,
+    output_format = c("mp3", "wav"),
+    voice = "geffen_32",
+    model = "simba-3.2",
+    bind_audio = TRUE,
+    save_local = FALSE,
+    save_local_dest = NULL,
+    ...) {
+  # Character limit of the /v1/audio/speech endpoint
+  limit = 2000
+  output_format = match.arg(output_format)
+  audio_type = output_format
+
+  res = lapply(text, function(string) {
+    strings = tts_split_text(string, limit = limit)
+
+    res = vapply(strings, function(tt) {
+      output = tts_temp_audio(audio_type)
+      body = list(
+        input = tt,
+        voice_id = voice,
+        model = model,
+        audio_format = audio_type,
+        ...)
+      out = speechify_request("v1/audio/speech") %>%
+        httr2::req_body_json(body) %>%
+        httr2::req_perform() %>%
+        httr2::resp_body_json()
+      writeBin(jsonlite::base64_dec(out$audio_data), con = output)
+      output
+    }, FUN.VALUE = character(1L))
+    names(res) = NULL
+    out = lapply(res, tts_audio_read,
+                 output_format = audio_type)
+    df = dplyr::tibble(original_text = string,
+                       text = strings,
+                       wav = out, file = res)
+    df
+  })
+  names(res) = seq_along(text)
+  res = dplyr::bind_rows(res, .id = "index")
+  res$index = as.numeric(res$index)
+  res$audio_type = audio_type
+
+  if (bind_audio) {
+    res = tts_bind_wav(res)
+  }
+  if ("wav" %in% colnames(res)) {
+    res$duration = vapply(res$wav, wav_duration, FUN.VALUE = numeric(1))
+  }
+  # Copy and paste audio file into local destination
+  if (save_local) {
+    if (!is.null(save_local_dest)) {
+      file.copy(normalizePath(res$file), save_local_dest)
+    } else {
+      cli::cli_alert_danger("Provide local destination where audio file will be saved")
+    }
+  }
+
+  return(res)
 }
