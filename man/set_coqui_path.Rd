@@ -18,7 +18,7 @@ Function to set an option that points to the local \code{coqui} tts Executable F
 \code{tts}.
 }
 \details{
-List of possible file path locations for the \code{local} coqui tts
+List of possible file path locations for the local \code{coqui} tts
 Executable File
 \describe{
 \item{Linux}{\verb{/usr/bin/tts}, \verb{/usr/local/bin/tts}}

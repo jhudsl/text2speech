@@ -84,7 +84,7 @@ wav_duration = function(object) {
 #'
 #' @param path path to the local `coqui` tts Executable File
 #'
-#' @details List of possible file path locations for the `local` coqui tts
+#' @details List of possible file path locations for the local `coqui` tts
 #'   Executable File
 #' \describe{
 #'    \item{Linux}{`/usr/bin/tts`, `/usr/local/bin/tts`}
