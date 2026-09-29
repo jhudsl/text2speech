@@ -2,6 +2,7 @@
 
 * Added speechify.
 * Putting back on CRAN.
+* Added Speechify as a text-to-speech engine to `tts()`, `tts_auth()`, and `tts_voices()` (#46)
 
 # text2speech 1.1.0
 
