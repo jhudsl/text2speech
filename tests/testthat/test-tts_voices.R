@@ -1,7 +1,7 @@
 fixed_names = c("voice", "language", "language_code",
                 "gender", "service")
 
-patrick::with_parameters_test_that("test tts_voices() on Amazon, Google, and Microsoft engines",
+patrick::with_parameters_test_that("test tts_voices() on Amazon, Google, Microsoft, and Speechify engines",
                                    {
                                      testthat::skip_on_cran()
                                      if (tts_auth) {
@@ -10,8 +10,8 @@ patrick::with_parameters_test_that("test tts_voices() on Amazon, Google, and Mic
                                        testthat::expect_named(response_df, fixed_names)
                                      }
                                    },
-                                   tts_auth = c(tts_amazon_auth(), tts_google_auth(), tts_microsoft_auth(region = "westus")),
-                                   company  = c("amazon", "google", "microsoft")
+                                   tts_auth = c(tts_amazon_auth(), tts_google_auth(), tts_microsoft_auth(region = "westus"), tts_speechify_auth()),
+                                   company  = c("amazon", "google", "microsoft", "speechify")
 )
 
 fixed_names_coqui <- c("type", "language", "dataset", "model_name", "service")

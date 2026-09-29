@@ -5,12 +5,14 @@
 #' * Microsoft Cognitive Services Text to Speech REST API : <https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support?tabs=tts#voice-styles-and-roles>
 #' * Google Cloud Text-to-Speech API : <https://cloud.google.com/text-to-speech/docs/voices>
 #' * Coqui TTS : <https://huggingface.co/spaces/coqui/CoquiTTS>
+#' * Speechify Text-to-Speech API : <https://docs.speechify.ai/build/api-reference/v1/voices/get>
 #'
-#'@param service Service to use (Amazon, Google, Microsoft, or Coqui)
+#'@param service Service to use (Amazon, Google, Microsoft, Coqui, or
+#'  Speechify)
 #'@param region (Microsoft only) Region of your Microsoft Speech Service API Key
 #'@param ... Additional arguments to service voice listings.
 #
-#'@return (Amazon, Microsoft, and Google) A standardized `data.frame` featuring
+#'@return (Amazon, Microsoft, Google, and Speechify) A standardized `data.frame` featuring
 #'  the following columns:
 #' * `voice` : Name of the voice
 #' * `language` : Spoken language
@@ -46,8 +48,13 @@
 #' if (tts_auth(service = "coqui")) {
 #' tts_voices(service = "coqui")
 #' }
+#'
+#' # Speechify Text-to-Speech API
+#' if (tts_auth(service = "speechify")) {
+#' tts_voices(service = "speechify")
+#' }
 tts_voices = function(
-    service = c("amazon", "google", "microsoft", "coqui"),
+    service = c("amazon", "google", "microsoft", "coqui", "speechify"),
     ...
 ) {
   service = match.arg(service)
@@ -56,6 +63,7 @@ tts_voices = function(
                google = tts_google_voices(...),
                microsoft = tts_microsoft_voices(...),
                coqui = tts_coqui_voices(...),
+               speechify = tts_speechify_voices(...),
   )
   res
 }
@@ -67,14 +75,15 @@ tts_voices = function(
 #'
 #' @export
 tts_default_voice = function(
-    service = c("amazon", "google", "microsoft", "coqui")
+    service = c("amazon", "google", "microsoft", "coqui", "speechify")
 ) {
   voice = switch(
     service,
     google = "en-US-Standard-C",
     microsoft = "Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)",
     amazon = "Joanna",
-    coqui = "tacotron2-DDC")
+    coqui = "tacotron2-DDC",
+    speechify = "geffen_32")
 
   voice
 }
@@ -215,3 +224,53 @@ tts_coqui_voices = function() {
   cli::cli_alert_info("Test out different voices on the {.href [CoquiTTS Demo](https://huggingface.co/spaces/coqui/CoquiTTS)}")
   out
 }
+
+
+
+#' @export
+#' @rdname tts_voices
+tts_speechify_voices = function(...) {
+  tts_speechify_auth(...)
+  voices = list()
+  cursor = NULL
+  repeat {
+    req = speechify_request("v1/voices") %>%
+      httr2::req_url_query(limit = 200)
+    if (!is.null(cursor)) {
+      req = httr2::req_url_query(req, cursor = cursor)
+    }
+    res = httr2::resp_body_json(httr2::req_perform(req))
+    # Older API versions return every voice as a plain list, newer ones page
+    if (is.null(res$voices)) {
+      voices = c(voices, res)
+      break
+    }
+    voices = c(voices, res$voices)
+    if (!isTRUE(res$has_more) || is.null(res$next_cursor)) {
+      break
+    }
+    cursor = res$next_cursor
+  }
+
+  language_code = vapply(voices, function(x) x$locale, FUN.VALUE = character(1))
+  res = data.frame(
+    voice = vapply(voices, function(x) x$id, FUN.VALUE = character(1)),
+    language = unname(speechify_languages[sub("-.*", "", language_code)]),
+    language_code = language_code,
+    gender = vapply(voices, function(x) x$gender, FUN.VALUE = character(1)),
+    stringsAsFactors = FALSE)
+  res$service = "speechify"
+
+  res
+}
+
+# Speechify only returns a locale, so map its language subtag to a name
+speechify_languages = c(
+  ar = "Arabic", bn = "Bengali", da = "Danish", de = "German", el = "Greek",
+  en = "English", es = "Spanish", et = "Estonian", fi = "Finnish",
+  fr = "French", gu = "Gujarati", he = "Hebrew", hi = "Hindi",
+  it = "Italian", ja = "Japanese", ko = "Korean", mr = "Marathi",
+  nb = "Norwegian", nl = "Dutch", pl = "Polish", pt = "Portuguese",
+  ru = "Russian", sv = "Swedish", ta = "Tamil", te = "Telugu",
+  tr = "Turkish", uk = "Ukrainian", ur = "Urdu", vi = "Vietnamese",
+  yue = "Cantonese")

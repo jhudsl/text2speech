@@ -6,9 +6,13 @@
 \alias{tts_microsoft_voices}
 \alias{tts_google_voices}
 \alias{tts_coqui_voices}
+\alias{tts_speechify_voices}
 \title{Text-to-Speech (Speech Synthesis) Voices}
 \usage{
-tts_voices(service = c("amazon", "google", "microsoft", "coqui"), ...)
+tts_voices(
+  service = c("amazon", "google", "microsoft", "coqui", "speechify"),
+  ...
+)
 
 tts_amazon_voices(...)
 
@@ -17,16 +21,19 @@ tts_microsoft_voices(region = "westus")
 tts_google_voices(...)
 
 tts_coqui_voices()
+
+tts_speechify_voices(...)
 }
 \arguments{
-\item{service}{Service to use (Amazon, Google, Microsoft, or Coqui)}
+\item{service}{Service to use (Amazon, Google, Microsoft, Coqui, or
+Speechify)}
 
 \item{...}{Additional arguments to service voice listings.}
 
 \item{region}{(Microsoft only) Region of your Microsoft Speech Service API Key}
 }
 \value{
-(Amazon, Microsoft, and Google) A standardized \code{data.frame} featuring
+(Amazon, Microsoft, Google, and Speechify) A standardized \code{data.frame} featuring
 the following columns:
 \itemize{
 \item \code{voice} : Name of the voice
@@ -51,6 +58,7 @@ Various services offer a range of voice options:
 \item Microsoft Cognitive Services Text to Speech REST API : \url{https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support?tabs=tts#voice-styles-and-roles}
 \item Google Cloud Text-to-Speech API : \url{https://cloud.google.com/text-to-speech/docs/voices}
 \item Coqui TTS : \url{https://huggingface.co/spaces/coqui/CoquiTTS}
+\item Speechify Text-to-Speech API : \url{https://docs.speechify.ai/build/api-reference/v1/voices/get}
 }
 }
 \examples{
@@ -74,6 +82,11 @@ tts_voices(service = "google")
 # Coqui TTS
 if (tts_auth(service = "coqui")) {
 tts_voices(service = "coqui")
+}
+
+# Speechify Text-to-Speech API
+if (tts_auth(service = "speechify")) {
+tts_voices(service = "speechify")
 }
 \dontshow{\}) # examplesIf}
 }

@@ -6,10 +6,11 @@
 \alias{tts_google_auth}
 \alias{tts_microsoft_auth}
 \alias{tts_coqui_auth}
+\alias{tts_speechify_auth}
 \title{Authentication for Text-to-Speech (Speech Synthesis) Engines}
 \usage{
 tts_auth(
-  service = c("amazon", "google", "microsoft", "coqui"),
+  service = c("amazon", "google", "microsoft", "coqui", "speechify"),
   key_or_json_file = NULL,
   ...
 )
@@ -21,12 +22,15 @@ tts_google_auth(key_or_json_file = NULL, ...)
 tts_microsoft_auth(key_or_json_file = NULL, ...)
 
 tts_coqui_auth()
+
+tts_speechify_auth(key_or_json_file = NULL, ...)
 }
 \arguments{
-\item{service}{Service to use (Amazon, Google, Microsoft, or Coqui)}
+\item{service}{Service to use (Amazon, Google, Microsoft, Coqui, or
+Speechify)}
 
-\item{key_or_json_file}{Either an API key (for Microsoft) or JSON file (for
-Google)}
+\item{key_or_json_file}{Either an API key (for Microsoft or Speechify) or
+JSON file (for Google)}
 
 \item{...}{Additional arguments}
 }
@@ -36,11 +40,16 @@ A logical indicator of authorization
 \description{
 Verify the authentication status of different text-to-speech
 engines, including Amazon Polly, Coqui TTS, Google Cloud Text-to-Speech API,
-and Microsoft Cognitive Services Text to Speech REST API.
+Microsoft Cognitive Services Text to Speech REST API, and Speechify
+Text-to-Speech API.
 }
 \details{
 To determine the availability of Coqui TTS, \code{tts_auth()} examines whether the tts
 executable exists on local system.
+
+For Speechify, the API key is read from the \code{SPEECHIFY_API_KEY} environment
+variable. Passing a key as \code{key_or_json_file} sets that variable for the
+session. Keys are created at \url{https://platform.speechify.ai/api-keys}.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
@@ -55,5 +64,8 @@ tts_auth("microsoft")
 
 # Coqui TTS
 tts_auth("coqui")
+
+# Speechify Text-to-Speech API
+tts_auth("speechify")
 \dontshow{\}) # examplesIf}
 }

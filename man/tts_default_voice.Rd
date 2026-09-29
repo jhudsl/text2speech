@@ -4,7 +4,9 @@
 \alias{tts_default_voice}
 \title{Default voice for text-to-speech engine}
 \usage{
-tts_default_voice(service = c("amazon", "google", "microsoft", "coqui"))
+tts_default_voice(
+  service = c("amazon", "google", "microsoft", "coqui", "speechify")
+)
 }
 \arguments{
 \item{service}{Text-to-speech engine}
