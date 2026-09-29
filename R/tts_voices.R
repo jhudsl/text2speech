@@ -234,7 +234,8 @@ tts_speechify_voices = function(...) {
   voices = list()
   cursor = NULL
   repeat {
-    req = speechify_request("v1/voices")
+    req = speechify_request("v1/voices") %>%
+      httr2::req_url_query(limit = 200)
     if (!is.null(cursor)) {
       req = httr2::req_url_query(req, cursor = cursor)
     }
