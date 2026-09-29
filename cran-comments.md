@@ -4,4 +4,4 @@
 
 * This is a new release.
 ---
-Fixing links for CRAN.
+Fixing links and re-uploading

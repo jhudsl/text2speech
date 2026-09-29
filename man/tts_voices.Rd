@@ -54,7 +54,7 @@ Various services offer a range of voice options:
 }
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Amazon Polly
 if (tts_auth(service = "amazon")) {
 tts_voices(service = "amazon")

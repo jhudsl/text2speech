@@ -43,7 +43,7 @@ To determine the availability of Coqui TTS, \code{tts_auth()} examines whether t
 executable exists on local system.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Amazon Polly
 tts_auth("amazon")
 
