@@ -46,25 +46,35 @@ tts_temp_audio = function(output_format = c("mp3", "wav") ) {
 
 # Split text into groups if number of characters exceeds limit
 tts_split_text = function(text, limit = 50) {
-  stopifnot(is.character(text) & length(text) == 1)
-  num_char = nchar(text)
-
-  # If number of characters exceeds the limit,
-  # divide text into groups
-  if (any(num_char > limit)) {
-    # Number of pieces
-    pieces <- ceiling(nchar(text) / limit)
-    # Split text into words
-    words <- strsplit(text, " ")[[1]]
-
-    indices = ceiling(seq_along(words) / (length(words) / pieces))
-    # Divide words into groups defined by indices
-    chunks <- split(words, indices)
-    # Concatenate chunks into a string, separated by a space
-    text = vapply(chunks, paste, collapse = " ",
-                  FUN.VALUE = character(1))
+  stopifnot(
+    is.character(text) && length(text) == 1,
+    is.numeric(limit) && length(limit) == 1 && is.finite(limit) &&
+      limit >= 1 && limit == floor(limit)
+  )
+  if (nchar(text, type = "chars") <= limit) {
+    return(text)
   }
-  return(text)
+
+  chunks <- character()
+  remaining <- text
+  while (nchar(remaining, type = "chars") > limit) {
+    candidate <- substr(remaining, 1L, limit)
+    next_char <- substr(remaining, limit + 1L, limit + 1L)
+    last_char <- substr(candidate, limit, limit)
+
+    if (grepl("[[:space:]]", last_char) ||
+        grepl("[[:space:]]", next_char)) {
+      split_at <- limit
+    } else {
+      spaces <- gregexpr("[[:space:]]", candidate, perl = TRUE)[[1]]
+      spaces <- spaces[spaces > 0L]
+      split_at <- if (length(spaces)) max(spaces) else limit
+    }
+
+    chunks <- c(chunks, substr(remaining, 1L, split_at))
+    remaining <- substr(remaining, split_at + 1L, nchar(remaining, type = "chars"))
+  }
+  c(chunks, remaining)
 }
 
 # Calculate WAV audio duration
