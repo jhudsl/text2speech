@@ -8,7 +8,7 @@ tts_speak_engine(options)
 }
 \arguments{
 \item{options}{A list of chunk options. Usually this is just the object
-options passed to the engine function; see \code{\link{knit_engines}}}
+options passed to the engine function; see \code{\link[knitr]{knit_engines}}}
 }
 \value{
 A character string generated from the source code and output using

@@ -25,7 +25,7 @@ PCM filename}
 A filename of the output
 }
 \description{
-Accepts PCM audio data as input and generates a corresponding WAV file
+Accepts PCM audio data as input and generates a corresponding Wav file
 }
 \examples{
 \dontrun{

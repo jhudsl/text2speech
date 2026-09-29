@@ -1,6 +1,12 @@
-# text2speech (development version)
+# text2speech 1.2.0
 
+* Added speechify.
+* Putting back on CRAN.
 * Added Speechify as a text-to-speech engine to `tts()`, `tts_auth()`, and `tts_voices()` (#46)
+
+# text2speech 1.1.0
+
+* Fixes for links.
 
 # text2speech 1.0.0
 

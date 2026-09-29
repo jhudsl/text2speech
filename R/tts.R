@@ -6,9 +6,9 @@
 #'
 #' With the exception of Coqui TTS and Speechify, all these engines are
 #' accessible as R packages:
-#' * [aws.polly](https://github.com/cloudyr/aws.polly) is a client for Amazon Polly.
-#' * [googleLanguageR](https://github.com/ropensci/googleLanguageR) is a client to the Google Cloud Text-to-Speech API.
-#' * [conrad](https://github.com/fhdsl/conrad) is a client to the Microsoft Cognitive Services Text to Speech REST API
+#' * [`aws.polly`](https://github.com/cloudyr/aws.polly) is a client for Amazon Polly.
+#' * [`googleLanguageR`](https://github.com/ropensci/googleLanguageR) is a client to the Google Cloud Text-to-Speech API.
+#' * [`conrad`](https://github.com/fhdsl/conrad) is a client to the Microsoft Cognitive Services Text to Speech REST API
 #'
 #' Speechify is called directly through its REST API
 #' (<https://docs.speechify.ai>) using the key in the `SPEECHIFY_API_KEY`
@@ -391,53 +391,38 @@ tts_coqui <- function(
   )
 
   # Vocoder is provided
-  if(!is.null(vocoder_name)) {
-    # Iterate coqui tts over text
-    res = lapply(text, function(string) {
-      string_processed = tts_split_text(string, limit = limit)
+  base_tts_args <-
+    paste0(
+      "--model_name", " ", model_name, " ",
+      ifelse(!is.null(vocoder_name),
+             paste0("--vocoder_name", " ", vocoder_name),
+             ""),
+      " "
+    )
 
-      res = vapply(string_processed, function(tt) {
-        output_path = tts_temp_audio(audio_type)
-        tts_args <- paste0("--text", " ", shQuote(tt), " ",
-                           "--model_name", " ", model_name, " ",
-                           "--vocoder_name", " ", vocoder_name,
-                           " ", "--out_path /private", output_path)
-        # # Run command with temporary system search path
-        res <- withr::with_path(process_coqui_path(exec_path),
-                                system2("tts", tts_args))
-        # Output file path
-        output_path
-      }, FUN.VALUE = character(1L), USE.NAMES = FALSE)
-      out = lapply(res, tts_audio_read,
-                   output_format = audio_type)
-      df = dplyr::tibble(original_text = string,
-                         text = string_processed,
-                         wav = out, file = normalizePath(res))
-    })
-    # Vocoder not provided (in case of Jenny)
-  } else {
-    # Iterate coqui tts over text
-    res = lapply(text, function(string) {
-      string_processed = tts_split_text(string, limit = limit)
+  # Iterate coqui tts over text
+  res <- lapply(text, function(string) {
+    string_processed = tts_split_text(string, limit = limit)
 
-      res = vapply(string_processed, function(tt) {
-        output_path = tts_temp_audio(audio_type)
-        tts_args <- paste0("--text", " ", shQuote(tt), " ",
-                           "--model_name", " ", model_name, " ",
-                           " ", "--out_path /private", output_path)
-        # # Run command with temporary system search path
-        res <- withr::with_path(process_coqui_path(exec_path),
-                                system2("tts", tts_args))
-        # Output file path
-        output_path
-      }, FUN.VALUE = character(1L), USE.NAMES = FALSE)
-      out = lapply(res, tts_audio_read,
-                   output_format = audio_type)
-      df = dplyr::tibble(original_text = string,
-                         text = string_processed,
-                         wav = out, file = normalizePath(res))
-    })
-  }
+    res = vapply(string_processed, function(tt) {
+      output_path = tts_temp_audio(audio_type)
+      tts_args <- paste0(
+        base_tts_args,
+        "--text", " ", shQuote(tt), " ",
+        "--out_path ", output_path)
+      # # Run command with temporary system search path
+      res <- withr::with_path(process_coqui_path(exec_path),
+                              system2("tts", tts_args))
+      # Output file path
+      output_path
+    }, FUN.VALUE = character(1L), USE.NAMES = FALSE)
+    out = lapply(res, tts_audio_read,
+                 output_format = audio_type)
+    df = dplyr::tibble(original_text = string,
+                       text = string_processed,
+                       wav = out, file = normalizePath(res))
+  })
+
 
   # Post-processing
   names(res) = seq_along(text)

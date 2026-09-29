@@ -52,7 +52,7 @@ variable. Passing a key as \code{key_or_json_file} sets that variable for the
 session. Keys are created at \url{https://platform.speechify.ai/api-keys}.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Amazon Polly
 tts_auth("amazon")
 

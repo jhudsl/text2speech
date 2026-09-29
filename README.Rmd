@@ -13,21 +13,30 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r, include = FALSE}
+tts_path = normalizePath("~/miniconda3/bin/tts")
+if (file.exists(tts_path)) {
+  text2speech::set_coqui_path(tts_path)
+}
+```
+
+
 # Overview
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/jhudsl/text2speech/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jhudsl/text2speech/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of text2speech is to harmonize various text-to-speech engines, including Amazon Polly, Coqui TTS, Google Cloud Text-to-Speech API, Microsoft Cognitive Services Text to Speech REST API, and Speechify Text-to-Speech API. 
 
 With the exception of Coqui TTS and Speechify, all these engines are accessible as R packages:
 
-- [aws.polly](https://github.com/cloudyr/aws.polly) is a client for [Amazon Polly](https://docs.aws.amazon.com/polly/latest/dg/what-is.html)
-- [googleLanguageR](https://github.com/ropensci/googleLanguageR) is a client to the [Google Cloud Text-to-Speech API](https://cloud.google.com/text-to-speech/) 
-- [conrad](https://github.com/fhdsl/conrad) is a client to the [Microsoft Cognitive Services Text to Speech REST API](https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/rest-text-to-speech?tabs=streaming)
+- [`aws.polly`](https://github.com/cloudyr/aws.polly) is a client for [Amazon Polly](https://docs.aws.amazon.com/polly/latest/dg/what-is.html)
+- [`googleLanguageR`](https://github.com/ropensci/googleLanguageR) is a client to the [Google Cloud Text-to-Speech API](https://cloud.google.com/text-to-speech) 
+- [`conrad`](https://github.com/fhdsl/conrad) is a client to the [Microsoft Cognitive Services Text to Speech REST API](https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/rest-text-to-speech?tabs=streaming)
 
 
-You might notice Coqui TTS doesn't have its own R package. This is because, at this time, text2speech directly incorporates the functionality of Coqui TTS. The R wrapper of Coqui is [under development](https://github.com/howardbaek/ribbit).
+You might notice Coqui TTS doesn't have its own R package. This is because, at this time, text2speech directly incorporates the functionality of Coqui TTS.
 
 Speechify is called directly through the [Speechify Text-to-Speech API](https://docs.speechify.ai). Create an API key at <https://platform.speechify.ai/api-keys> and store it in the `SPEECHIFY_API_KEY` environment variable (for example in your `.Renviron`), or pass it with `tts_auth("speechify", key_or_json_file = "YOUR_KEY")`.
 
@@ -114,7 +123,7 @@ tts("Hello world!", service = "microsoft")
 tts("Hello world!", service = "speechify")
 ```
 
-The resulting output will consist of a standardized tibble featuring the following columns:
+The resulting output will consist of a standardized `tibble` featuring the following columns:
 
 - `index`: Sequential identifier number
 - `original_text`: The text input provided by the user

@@ -7,27 +7,27 @@
 set_coqui_path(path)
 }
 \arguments{
-\item{path}{path to the local coqui tts Executable File}
+\item{path}{path to the local \code{coqui} tts Executable File}
 }
 \value{
 Returns nothing, function sets the option variable
 \code{path_to_coqui}.
 }
 \description{
-Function to set an option that points to the local coqui tts Executable File
+Function to set an option that points to the local \code{coqui} tts Executable File
 \code{tts}.
 }
 \details{
-List of possible file path locations for the local coqui tts
+List of possible file path locations for the local \code{coqui} tts
 Executable File
 \describe{
-\item{Linux}{/usr/bin/tts, /usr/local/bin/tts}
-\item{Mac}{/opt/homebrew/Caskroom/miniforge/base/bin/tts}
-\item{Windows}{C:\\Program Files\\tts}
+\item{Linux}{\verb{/usr/bin/tts}, \verb{/usr/local/bin/tts}}
+\item{Mac}{\verb{/opt/homebrew/Caskroom/miniforge/base/bin/tts}}
+\item{Windows}{\verb{C:\\\\Program Files\\\\tts}}
 }
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 set_coqui_path("~/path/to/tts")
 \dontshow{\}) # examplesIf}
 }

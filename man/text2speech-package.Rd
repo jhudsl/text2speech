@@ -17,11 +17,12 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Howard Baek \email{howardbaek.fh@gmail.com} (\href{https://orcid.org/0009-0000-8942-1618}{ORCID})
+\strong{Maintainer}: John Muschelli \email{muschellij2@gmail.com} (\href{https://orcid.org/0000-0001-6469-1750}{ORCID})
 
 Authors:
 \itemize{
-  \item John Muschelli \email{muschellij2@gmail.com} (\href{https://orcid.org/0000-0001-6469-1750}{ORCID}) [contributor]
+  \item John Muschelli \email{muschellij2@gmail.com} (\href{https://orcid.org/0000-0001-6469-1750}{ORCID})
+  \item Howard Baek \email{muschellij2@gmail.com} (\href{https://orcid.org/0009-0000-8942-1618}{ORCID})
 }
 
 }

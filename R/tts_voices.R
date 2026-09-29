@@ -1,7 +1,7 @@
 #' Text-to-Speech (Speech Synthesis) Voices
 #'
 #'@description Various services offer a range of voice options:
-#' * Amazon Polly : <https://docs.aws.amazon.com/polly/latest/dg/voicelist.html>
+#' * Amazon Polly : <https://docs.aws.amazon.com/polly/latest/dg/available-voices.html>
 #' * Microsoft Cognitive Services Text to Speech REST API : <https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support?tabs=tts#voice-styles-and-roles>
 #' * Google Cloud Text-to-Speech API : <https://cloud.google.com/text-to-speech/docs/voices>
 #' * Coqui TTS : <https://huggingface.co/spaces/coqui/CoquiTTS>

@@ -54,7 +54,7 @@ the following columns:
 \description{
 Various services offer a range of voice options:
 \itemize{
-\item Amazon Polly : \url{https://docs.aws.amazon.com/polly/latest/dg/voicelist.html}
+\item Amazon Polly : \url{https://docs.aws.amazon.com/polly/latest/dg/available-voices.html}
 \item Microsoft Cognitive Services Text to Speech REST API : \url{https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support?tabs=tts#voice-styles-and-roles}
 \item Google Cloud Text-to-Speech API : \url{https://cloud.google.com/text-to-speech/docs/voices}
 \item Coqui TTS : \url{https://huggingface.co/spaces/coqui/CoquiTTS}
@@ -62,7 +62,7 @@ Various services offer a range of voice options:
 }
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Amazon Polly
 if (tts_auth(service = "amazon")) {
 tts_voices(service = "amazon")

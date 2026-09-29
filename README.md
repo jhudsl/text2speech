@@ -4,6 +4,8 @@
 # Overview
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/jhudsl/text2speech/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jhudsl/text2speech/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of text2speech is to harmonize various text-to-speech engines,
@@ -14,20 +16,19 @@ Text-to-Speech API.
 With the exception of Coqui TTS and Speechify, all these engines are
 accessible as R packages:
 
-- [aws.polly](https://github.com/cloudyr/aws.polly) is a client for
+- [`aws.polly`](https://github.com/cloudyr/aws.polly) is a client for
   [Amazon
   Polly](https://docs.aws.amazon.com/polly/latest/dg/what-is.html)
-- [googleLanguageR](https://github.com/ropensci/googleLanguageR) is a
+- [`googleLanguageR`](https://github.com/ropensci/googleLanguageR) is a
   client to the [Google Cloud Text-to-Speech
-  API](https://cloud.google.com/text-to-speech/)
-- [conrad](https://github.com/fhdsl/conrad) is a client to the
+  API](https://cloud.google.com/text-to-speech)
+- [`conrad`](https://github.com/fhdsl/conrad) is a client to the
   [Microsoft Cognitive Services Text to Speech REST
   API](https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/rest-text-to-speech?tabs=streaming)
 
 You might notice Coqui TTS doesn’t have its own R package. This is
 because, at this time, text2speech directly incorporates the
-functionality of Coqui TTS. The R wrapper of Coqui is [under
-development](https://github.com/howardbaek/ribbit).
+functionality of Coqui TTS.
 
 Speechify is called directly through the [Speechify Text-to-Speech
 API](https://docs.speechify.ai). Create an API key at
@@ -60,6 +61,10 @@ library(text2speech)
 
 # Amazon Polly
 tts_auth("amazon")
+#> Warning in pollyHTTP(action = "voices", verb = "GET", query = query, ...):
+#> Forbidden (HTTP 403).
+#> Warning in structure(out[["Voices"]], NextToken = out[["NextToken"]]): Calling 'structure(NULL, *)' is deprecated, as NULL cannot have attributes.
+#>   Consider 'structure(list(), *)' instead.
 #> [1] TRUE
 # Coqui TTS
 tts_auth("coqui")
@@ -88,33 +93,29 @@ head(voices_amazon)
 #> 2 Zhiyu Chinese Mandarin        cmn-CN Female  amazon
 #> 3  Naja           Danish         da-DK Female  amazon
 #> 4  Mads           Danish         da-DK   Male  amazon
-#> 5 Ruben            Dutch         nl-NL   Male  amazon
-#> 6 Lotte            Dutch         nl-NL Female  amazon
+#> 5 Sofie           Danish         da-DK Female  amazon
+#> 6 Ruben            Dutch         nl-NL   Male  amazon
 
 # Coqui TTS
 voices_coqui <- tts_coqui_voices()
+#> Warning in system("tts --list_models", intern = TRUE): running command 'tts
+#> --list_models' had status 1
 #> ℹ Test out different voices on the CoquiTTS Demo (<https://huggingface.co/spaces/coqui/CoquiTTS>)
 head(voices_coqui)
-#> # A tibble: 6 × 5
-#>   type       language     dataset       model_name service
-#>   <chr>      <chr>        <chr>         <chr>      <chr>  
-#> 1 tts_models multilingual multi-dataset your_tts   coqui  
-#> 2 tts_models multilingual multi-dataset bark       coqui  
-#> 3 tts_models bg           cv            vits       coqui  
-#> 4 tts_models cs           cv            vits       coqui  
-#> 5 tts_models da           cv            vits       coqui  
-#> 6 tts_models et           cv            vits       coqui
+#> # A tibble: 0 × 5
+#> # ℹ 5 variables: type <chr>, language <chr>, dataset <chr>, model_name <chr>,
+#> #   service <chr>
 
 # Google Cloud Text-to-Speech API 
 voices_google <- tts_google_voices()
 head(voices_google)
-#>              voice language language_code gender service
-#> 1 af-ZA-Standard-A     <NA>         af-ZA FEMALE  google
-#> 2 af-ZA-Standard-A     <NA>         af-ZA FEMALE  google
-#> 3  ar-XA-Wavenet-C   Arabic         ar-XA   MALE  google
-#> 4 ar-XA-Standard-C   Arabic         ar-XA   MALE  google
-#> 5 ar-XA-Standard-D   Arabic         ar-XA FEMALE  google
-#> 6  ar-XA-Wavenet-A   Arabic         ar-XA FEMALE  google
+#>                   voice language language_code gender service
+#> 1      af-ZA-Standard-A     <NA>         af-ZA FEMALE  google
+#> 2      am-ET-Standard-A     <NA>         am-ET FEMALE  google
+#> 3      am-ET-Standard-B     <NA>         am-ET   MALE  google
+#> 4       am-ET-Wavenet-A     <NA>         am-ET FEMALE  google
+#> 5       am-ET-Wavenet-B     <NA>         am-ET   MALE  google
+#> 6 ar-XA-Chirp3-HD-Aoede   Arabic         ar-XA FEMALE  google
 
 # Microsoft Cognitive Services Text to Speech REST API
 voices_microsoft <- tts_microsoft_voices()
@@ -133,7 +134,9 @@ head(voices_microsoft)
 #> 4            Amharic (Ethiopia)         am-ET   Male microsoft
 #> 5 Arabic (United Arab Emirates)         ar-AE Female microsoft
 #> 6 Arabic (United Arab Emirates)         ar-AE   Male microsoft
+```
 
+``` r
 # Speechify Text-to-Speech API
 voices_speechify <- tts_speechify_voices()
 head(voices_speechify)
@@ -167,8 +170,8 @@ tts("Hello world!", service = "microsoft")
 tts("Hello world!", service = "speechify")
 ```
 
-The resulting output will consist of a standardized tibble featuring the
-following columns:
+The resulting output will consist of a standardized `tibble` featuring
+the following columns:
 
 - `index`: Sequential identifier number
 - `original_text`: The text input provided by the user
