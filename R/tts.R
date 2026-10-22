@@ -23,8 +23,9 @@
 #' @param vocoder_name (Coqui TTS only) Voice coder used for speech coding and
 #'   transmission
 #' @param model (Speechify only) Model used for synthesis. The default,
-#'   "simba-3.2", is English only; use "simba-3.0" for voices in other
-#'   languages
+#'   "simba-3.5", speaks 48 languages with every voice; pass `language`
+#'   (for example "fr-FR") when the text is not in the voice's own language.
+#'   "simba-3.2" is English only
 #' @param bind_audio Should the [text2speech::tts_bind_wav()] be run on after
 #'   the audio has been created, to ensure that the length of text and the
 #'   number of rows is consistent?
@@ -453,7 +454,7 @@ tts_speechify = function(
     text,
     output_format = c("mp3", "wav"),
     voice = "geffen_32",
-    model = "simba-3.2",
+    model = "simba-3.5",
     bind_audio = TRUE,
     save_local = FALSE,
     save_local_dest = NULL,
