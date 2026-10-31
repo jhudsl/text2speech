@@ -1,3 +1,7 @@
+# text2speech (development version)
+
+* The Speechify engine now defaults to `simba-3.5`, which speaks 48 languages with every voice. Pass `language` through `...` for non-English text.
+
 # text2speech 1.2.0
 
 * Added speechify.
